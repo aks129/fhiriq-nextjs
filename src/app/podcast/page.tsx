@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import LivePodcastMetrics from '@/components/LivePodcastMetrics';
 
 interface PodcastEpisode {
   title: string;
@@ -195,27 +196,18 @@ export default function Podcast() {
         </div>
       </section>
 
-      {/* Stats Section */}
+      {/* Live Stats Section */}
       <section className="py-16 bg-bg-secondary">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="grid md:grid-cols-4 gap-8 text-center">
-            <div className="card">
-              <div className="text-4xl font-bold text-primary-blue mb-2">14</div>
-              <div className="text-neutral-gray">Episodes Published</div>
-            </div>
-            <div className="card">
-              <div className="text-4xl font-bold text-primary-blue mb-2">2K</div>
-              <div className="text-neutral-gray">Monthly Listeners</div>
-            </div>
-            <div className="card">
-              <div className="text-4xl font-bold text-primary-blue mb-2">15</div>
-              <div className="text-neutral-gray">Expert Guests</div>
-            </div>
-            <div className="card">
-              <div className="text-4xl font-bold text-primary-blue mb-2">15</div>
-              <div className="text-neutral-gray">Countries Reached</div>
-            </div>
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold mb-4 text-primary-navy">
+              📊 Live Podcast Metrics
+            </h2>
+            <p className="text-lg text-neutral-gray">
+              Real-time data from all platforms showing our growing community
+            </p>
           </div>
+          <LivePodcastMetrics showPlatformBreakdown={true} />
         </div>
       </section>
 
