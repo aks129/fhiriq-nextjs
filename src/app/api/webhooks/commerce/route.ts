@@ -40,19 +40,19 @@ export async function POST(request: NextRequest) {
   }
 }
 
-async function verifyWebhookSignature(request: NextRequest): Promise<boolean> {
+async function verifyWebhookSignature(_request: NextRequest): Promise<boolean> {
   // Implement webhook signature verification
   // This is a placeholder - implement actual signature verification
   return true;
 }
 
-async function handleOrderPaid(orderData: any) {
+async function handleOrderPaid(orderData: Record<string, unknown>) {
   // Import license generation logic
   const { createLicense } = await import('@/lib/licenseManager');
   await createLicense(orderData);
 }
 
-async function handleOrderCancelled(orderData: any) {
+async function handleOrderCancelled(orderData: Record<string, unknown>) {
   // Handle order cancellation
   console.log('Order cancelled:', orderData.orderId);
 }

@@ -16,7 +16,7 @@ export interface LicenseData {
   maxUsers?: number;
   currentUsers?: number;
   features?: string[];
-  deliverables?: any;
+  deliverables?: Record<string, unknown>;
   metadata?: {
     orderDate: Date;
     price: number;
@@ -37,7 +37,7 @@ export interface License extends LicenseData {
 /**
  * License generation and management for FHIR IQ products
  */
-export async function createLicense(orderData: any): Promise<License[]> {
+export async function createLicense(orderData: Record<string, unknown>): Promise<License[]> {
   try {
     console.log('Processing order for license generation:', orderData.orderId);
 
@@ -166,7 +166,7 @@ function calculateExpirationDate(term: string): Date {
 /**
  * Validate and activate a license key
  */
-export async function activateLicense(licenseKey: string, userInfo: any = {}) {
+export async function activateLicense(licenseKey: string, userInfo: Record<string, unknown> = {}) {
   try {
     const license = await getLicenseByKey(licenseKey);
 
@@ -208,7 +208,7 @@ export async function activateLicense(licenseKey: string, userInfo: any = {}) {
 }
 
 // Placeholder functions - these would integrate with your database
-async function getProductBySku(sku: string): Promise<any> {
+async function getProductBySku(sku: string): Promise<Record<string, unknown>> {
   // This would connect to your database
   // For now, return a mock product
   return {
@@ -234,7 +234,7 @@ async function saveLicense(licenseData: LicenseData): Promise<License> {
   return license;
 }
 
-async function getLicenseByKey(licenseKey: string): Promise<License | null> {
+async function getLicenseByKey(_licenseKey: string): Promise<License | null> {
   // This would query your database
   // For now, return null
   return null;
@@ -260,7 +260,7 @@ async function updateLicense(licenseId: string, updateData: Partial<LicenseData>
   return license;
 }
 
-async function sendLicenseEmail(license: License, orderData: any): Promise<void> {
+async function sendLicenseEmail(license: License, _orderData: Record<string, unknown>): Promise<void> {
   // This would send an email
   console.log('License email would be sent to:', license.customerEmail);
   console.log('License key:', license.licenseKey);

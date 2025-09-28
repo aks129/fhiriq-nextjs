@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -35,12 +35,7 @@ export default function Home() {
   const [newsletterEmail, setNewsletterEmail] = useState('');
   const [newsletterLoading, setNewsletterLoading] = useState(false);
 
-  useEffect(() => {
-    initializePage();
-    initializeAnalytics();
-  }, []);
-
-  async function initializePage() {
+  const initializePage = useCallback(async () => {
     try {
       console.log('Initializing FHIR IQ Home page...');
 
@@ -55,7 +50,9 @@ export default function Home() {
     } finally {
       setLoading(false);
     }
-  }
+  }, []);
+
+  const initializeAnalytics = useCallback(() => {
 
   async function loadFeaturedProducts() {
     try {
@@ -185,7 +182,12 @@ export default function Home() {
     } catch (error) {
       console.error('Analytics initialization error:', error);
     }
-  }
+  }, []);
+
+  useEffect(() => {
+    initializePage();
+    initializeAnalytics();
+  }, [initializePage, initializeAnalytics]);
 
   async function handleNewsletterSignup(e: React.FormEvent) {
     e.preventDefault();
@@ -220,18 +222,18 @@ export default function Home() {
     }
   }
 
-  function trackEvent(eventName: string, properties: any = {}) {
+  function trackEvent(eventName: string, properties: Record<string, unknown> = {}) {
     try {
       console.log('Track event:', eventName, properties);
 
       // Example implementation for Google Analytics
-      if (typeof window !== 'undefined' && (window as any).gtag) {
-        (window as any).gtag('event', eventName, properties);
+      if (typeof window !== 'undefined' && (window as Record<string, unknown>).gtag) {
+        (window as Record<string, unknown>).gtag('event', eventName, properties);
       }
 
       // Example implementation for PostHog
-      if (typeof window !== 'undefined' && (window as any).posthog) {
-        (window as any).posthog.capture(eventName, properties);
+      if (typeof window !== 'undefined' && (window as Record<string, unknown>).posthog) {
+        (window as Record<string, unknown>).posthog.capture(eventName, properties);
       }
     } catch (error) {
       console.error('Event tracking error:', error);
