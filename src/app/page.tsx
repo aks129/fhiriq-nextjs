@@ -269,60 +269,85 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Navigation */}
+      {/* Navigation - Updated per PRD IA specifications */}
       <nav className="bg-white shadow-lg">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center">
-              <Link href="/" className="text-2xl font-bold text-blue-600">
+              <Link href="/" className="text-2xl font-bold text-primary-blue">
                 FHIR IQ
               </Link>
             </div>
             <div className="hidden md:flex space-x-8">
-              <Link href="/products" className="text-gray-700 hover:text-blue-600">
-                Products
+              <Link href="/solutions" className="text-neutral-gray hover:text-primary-blue font-medium">
+                Solutions
               </Link>
-              <Link href="/builder" className="text-gray-700 hover:text-blue-600">
-                AI Builder
+              <Link href="/tools" className="text-neutral-gray hover:text-primary-blue font-medium">
+                Tools
               </Link>
-              <Link href="/blog" className="text-gray-700 hover:text-blue-600">
+              <Link href="/training" className="text-neutral-gray hover:text-primary-blue font-medium">
+                Training
+              </Link>
+              <Link href="/blog" className="text-neutral-gray hover:text-primary-blue font-medium">
                 Blog
               </Link>
-              <Link href="/about" className="text-gray-700 hover:text-blue-600">
+              <Link href="/podcast" className="text-neutral-gray hover:text-primary-blue font-medium">
+                Podcast
+              </Link>
+              <Link href="/partners" className="text-neutral-gray hover:text-primary-blue font-medium">
+                Partners
+              </Link>
+              <Link href="/about" className="text-neutral-gray hover:text-primary-blue font-medium">
                 About
               </Link>
-              <Link href="/contact" className="text-gray-700 hover:text-blue-600">
-                Contact
+              <Link href="/contact" className="btn-primary text-sm">
+                Book Consultation
               </Link>
             </div>
           </div>
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-20">
+      {/* Hero Section - Updated per PRD value proposition */}
+      <section className="bg-gradient-to-r from-primary-blue to-accent-purple text-white py-20">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <h1 className="text-5xl font-bold mb-6">
-            AI-Powered FHIR Development Platform
+            Ship real FHIR outcomes—faster
           </h1>
           <p className="text-xl mb-8 max-w-3xl mx-auto">
-            Accelerate your healthcare interoperability projects with our advanced FHIR tools,
-            AI-powered code generation, and expert consulting services.
+            From data mapping to digital measures, FHIR IQ delivers the tools and the playbooks—now with AI.
           </p>
+
+          {/* Stats Trio */}
+          <div className="flex justify-center gap-8 mb-8">
+            <div className="text-center">
+              <div className="text-3xl font-bold mb-1">80%</div>
+              <div className="text-sm opacity-90">faster mapping</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold mb-1">95%</div>
+              <div className="text-sm opacity-90">conformance score</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold mb-1">10x</div>
+              <div className="text-sm opacity-90">faster demos</div>
+            </div>
+          </div>
+
           <div className="flex gap-4 justify-center">
             <Link
-              href="/builder"
-              onClick={() => trackEvent('hero_cta_clicked', { button: 'start_building' })}
-              className="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition"
+              href="/tools/fhir-builder"
+              onClick={() => trackEvent('hero_cta_clicked', { button: 'build_fhir_app' })}
+              className="bg-white text-primary-blue px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition"
             >
-              Start Building
+              Build a FHIR app with AI
             </Link>
             <Link
-              href="/products"
-              onClick={() => trackEvent('hero_cta_clicked', { button: 'view_products' })}
-              className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition"
+              href="/contact"
+              onClick={() => trackEvent('hero_cta_clicked', { button: 'book_session' })}
+              className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-primary-blue transition"
             >
-              View Products
+              Book a working session
             </Link>
           </div>
         </div>
@@ -425,7 +450,7 @@ export default function Home() {
       </section>
 
       {/* Newsletter Signup */}
-      <section className="py-16 bg-blue-600 text-white">
+      <section className="py-16 bg-primary-blue text-white">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-4">Stay Updated with FHIR IQ</h2>
           <p className="text-xl mb-8">
@@ -437,13 +462,13 @@ export default function Home() {
               value={newsletterEmail}
               onChange={(e) => setNewsletterEmail(e.target.value)}
               placeholder="Enter your email"
-              className="flex-1 px-4 py-3 rounded-lg text-gray-900"
+              className="flex-1 px-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-white"
               required
             />
             <button
               type="submit"
               disabled={newsletterLoading}
-              className="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition disabled:opacity-50"
+              className="bg-white text-primary-blue px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition disabled:opacity-50"
             >
               {newsletterLoading ? 'Subscribing...' : 'Subscribe'}
             </button>
