@@ -3,30 +3,6 @@
 import Link from 'next/link';
 
 export default function Blog() {
-  const posts = [
-    {
-      id: 1,
-      title: "Getting Started with FHIR R4",
-      excerpt: "A comprehensive guide to understanding and implementing FHIR R4 in your healthcare applications.",
-      date: "2024-09-15",
-      author: "FHIR IQ Team"
-    },
-    {
-      id: 2,
-      title: "AI in Healthcare Interoperability",
-      excerpt: "How artificial intelligence is revolutionizing healthcare data exchange and FHIR implementations.",
-      date: "2024-09-10",
-      author: "FHIR IQ Team"
-    },
-    {
-      id: 3,
-      title: "FHIR Security Best Practices",
-      excerpt: "Essential security considerations when building FHIR-compliant healthcare applications.",
-      date: "2024-09-05",
-      author: "FHIR IQ Team"
-    }
-  ];
-
   return (
     <div className="min-h-screen bg-white">
       {/* Navigation */}
@@ -47,6 +23,9 @@ export default function Blog() {
               </Link>
               <Link href="/blog" className="text-blue-600 font-semibold">
                 Blog
+              </Link>
+              <Link href="/podcast" className="text-gray-700 hover:text-blue-600">
+                Podcast
               </Link>
               <Link href="/about" className="text-gray-700 hover:text-blue-600">
                 About
@@ -70,56 +49,93 @@ export default function Blog() {
         </div>
       </section>
 
-      {/* Blog Posts */}
+      {/* Substack Embed Section */}
       <section className="py-16">
-        <div className="max-w-4xl mx-auto px-4">
-          <div className="space-y-8">
-            {posts.map((post) => (
-              <article key={post.id} className="bg-white border border-gray-200 rounded-lg p-8 shadow-lg">
-                <div className="flex items-center text-sm text-gray-500 mb-4">
-                  <span>{post.date}</span>
-                  <span className="mx-2">•</span>
-                  <span>{post.author}</span>
-                </div>
-                <h2 className="text-2xl font-bold mb-4 text-gray-800">
-                  <Link href={`/blog/${post.id}`} className="hover:text-blue-600">
-                    {post.title}
-                  </Link>
-                </h2>
-                <p className="text-gray-600 mb-6">{post.excerpt}</p>
-                <Link
-                  href={`/blog/${post.id}`}
-                  className="inline-flex items-center text-blue-600 font-semibold hover:text-blue-700"
-                >
-                  Read More
-                  <svg className="w-4 h-4 ml-2" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </Link>
-              </article>
-            ))}
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="mb-8 text-center">
+            <h2 className="text-3xl font-bold mb-4 text-gray-800">
+              Read Our Latest Posts on Substack
+            </h2>
+            <p className="text-lg text-gray-600 mb-6">
+              Follow our newsletter for in-depth articles about FHIR, healthcare interoperability, and AI innovations.
+            </p>
+            <div className="flex gap-4 justify-center mb-8">
+              <a
+                href="https://evestel.substack.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition"
+              >
+                Visit Our Substack
+              </a>
+              <a
+                href="https://evestel.substack.com/subscribe"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-purple-700 transition"
+              >
+                Subscribe to Newsletter
+              </a>
+            </div>
+          </div>
+
+          {/* Substack Embed */}
+          <div className="bg-white rounded-lg shadow-xl p-4">
+            <iframe
+              src="https://evestel.substack.com/embed"
+              width="100%"
+              height="800"
+              style={{ border: '1px solid #EEE', background: 'white' }}
+              frameBorder="0"
+              scrolling="no"
+              title="FHIR IQ Substack Newsletter"
+            ></iframe>
           </div>
         </div>
       </section>
 
-      {/* Newsletter */}
-      <section className="bg-gray-50 py-16">
+      {/* Archive Link Section */}
+      <section className="bg-gray-50 py-12">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-6 text-gray-800">
-            Stay Updated
-          </h2>
-          <p className="text-xl text-gray-600 mb-8">
-            Subscribe to our newsletter for the latest FHIR insights and updates.
+          <h3 className="text-2xl font-bold mb-4 text-gray-800">
+            Looking for More Content?
+          </h3>
+          <p className="text-lg text-gray-600 mb-6">
+            Browse our complete archive of articles, tutorials, and case studies.
           </p>
-          <div className="flex max-w-md mx-auto">
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="flex-1 px-4 py-3 border border-gray-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
-            />
-            <button className="bg-blue-600 text-white px-6 py-3 rounded-r-lg font-semibold hover:bg-blue-700">
-              Subscribe
-            </button>
+          <a
+            href="https://evestel.substack.com/archive"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition"
+          >
+            View Full Archive
+            <svg className="w-5 h-5 ml-2" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+          </a>
+        </div>
+      </section>
+
+      {/* Newsletter Subscribe Section */}
+      <section className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-16">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <h2 className="text-3xl font-bold mb-6">
+            Never Miss an Update
+          </h2>
+          <p className="text-xl mb-8">
+            Get the latest FHIR insights, implementation guides, and industry news delivered to your inbox.
+          </p>
+          <div className="max-w-md mx-auto">
+            <iframe
+              src="https://evestel.substack.com/embed"
+              width="100%"
+              height="150"
+              style={{ border: 'none', background: 'transparent' }}
+              frameBorder="0"
+              scrolling="no"
+              title="Subscribe to FHIR IQ Newsletter"
+            ></iframe>
           </div>
         </div>
       </section>

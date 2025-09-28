@@ -1,75 +1,105 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 
+interface PodcastEpisode {
+  title: string;
+  description: string;
+  pubDate: string;
+  link: string;
+  enclosure?: {
+    url: string;
+    type: string;
+    length: string;
+  };
+  guid: string;
+  duration?: string;
+}
+
 export default function Podcast() {
-  // Mock recent episodes - these would come from RSS feed in production
-  const recentEpisodes = [
-    {
-      id: 1,
-      title: "AI-Powered FHIR: The Future of Healthcare Interoperability",
-      description: "Exploring how artificial intelligence is transforming FHIR implementations and accelerating healthcare data exchange.",
-      publishDate: "2024-01-20",
-      duration: "45:32",
-      episodeNumber: 42,
-      audioUrl: "#", // Will link to actual hosted audio
-      transcript: "Available",
-      guests: ["Dr. Sarah Johnson", "Mike Chen, CTO at HealthTech"]
-    },
-    {
-      id: 2,
-      title: "FHIR R5: What's New and Why It Matters",
-      description: "Deep dive into FHIR R5 features, improvements, and migration considerations for existing implementations.",
-      publishDate: "2024-01-15",
-      duration: "38:15",
-      episodeNumber: 41,
-      audioUrl: "#",
-      transcript: "Available",
-      guests: ["Lloyd McKenzie, HL7 FHIR Team"]
-    },
-    {
-      id: 3,
-      title: "Real-World FHIR Implementation: Lessons from the Trenches",
-      description: "Healthcare CTO shares insights from a large-scale FHIR deployment, including challenges and solutions.",
-      publishDate: "2024-01-10",
-      duration: "52:18",
-      episodeNumber: 40,
-      audioUrl: "#",
-      transcript: "Available",
-      guests: ["Jennifer Martinez, CTO Regional Health"]
-    },
-    {
-      id: 4,
-      title: "SMART on FHIR: Building Secure Healthcare Apps",
-      description: "Complete guide to SMART on FHIR authentication, authorization, and best practices for app developers.",
-      publishDate: "2024-01-05",
-      duration: "41:27",
-      episodeNumber: 39,
-      audioUrl: "#",
-      transcript: "Available",
-      guests: ["Josh Mandel, SMART Team Lead"]
-    }
-  ];
+  const [episodes, setEpisodes] = useState<PodcastEpisode[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    // Fetch podcast episodes from RSS feed
+    const fetchPodcastFeed = async () => {
+      try {
+        // Using a CORS proxy for client-side RSS feed fetching
+        const rssUrl = 'https://api.substack.com/feed/podcast/4334682.rss';
+        const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(rssUrl)}`;
+
+        const response = await fetch(proxyUrl);
+        const text = await response.text();
+
+        // Parse RSS XML
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(text, 'text/xml');
+
+        const items = xmlDoc.querySelectorAll('item');
+        const parsedEpisodes: PodcastEpisode[] = [];
+
+        items.forEach((item, index) => {
+          if (index < 10) { // Limit to 10 most recent episodes
+            const episode: PodcastEpisode = {
+              title: item.querySelector('title')?.textContent || '',
+              description: item.querySelector('description')?.textContent || '',
+              pubDate: item.querySelector('pubDate')?.textContent || '',
+              link: item.querySelector('link')?.textContent || '',
+              guid: item.querySelector('guid')?.textContent || String(index),
+            };
+
+            const enclosureNode = item.querySelector('enclosure');
+            if (enclosureNode) {
+              episode.enclosure = {
+                url: enclosureNode.getAttribute('url') || '',
+                type: enclosureNode.getAttribute('type') || '',
+                length: enclosureNode.getAttribute('length') || '',
+              };
+            }
+
+            // Extract duration if available
+            const duration = item.querySelector('duration');
+            if (duration) {
+              episode.duration = duration.textContent || '';
+            }
+
+            parsedEpisodes.push(episode);
+          }
+        });
+
+        setEpisodes(parsedEpisodes);
+        setLoading(false);
+      } catch (err) {
+        console.error('Error fetching podcast feed:', err);
+        setError('Failed to load podcast episodes');
+        setLoading(false);
+      }
+    };
+
+    fetchPodcastFeed();
+  }, []);
 
   const subscriptionLinks = [
     {
-      platform: "Apple Podcasts",
-      url: "https://podcasts.apple.com/podcast/fhir-iq-podcast", // Replace with actual URL
+      platform: "Substack Podcast",
+      url: "https://evestel.substack.com/podcast",
       icon: "🎧"
     },
     {
-      platform: "Spotify",
-      url: "https://open.spotify.com/show/fhir-iq-podcast", // Replace with actual URL
+      platform: "Apple Podcasts",
+      url: "https://podcasts.apple.com/podcast/id4334682",
       icon: "🎵"
     },
     {
-      platform: "Google Podcasts",
-      url: "https://podcasts.google.com/feed/fhir-iq-podcast", // Replace with actual URL
-      icon: "🎙️"
+      platform: "Spotify",
+      url: "https://open.spotify.com/show/4334682",
+      icon: "🎶"
     },
     {
       platform: "RSS Feed",
-      url: "https://fhiriq.substack.com/feed", // Link to your Substack RSS
+      url: "https://api.substack.com/feed/podcast/4334682.rss",
       icon: "📡"
     }
   ];
@@ -125,117 +155,115 @@ export default function Podcast() {
           </p>
           <div className="flex gap-4 justify-center">
             <a
-              href="https://fhiriq.substack.com"
+              href="https://evestel.substack.com/podcast"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-white text-primary-blue px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition"
             >
-              Read on Substack
+              Listen on Substack
             </a>
             <a
-              href="#subscribe"
+              href="https://api.substack.com/feed/podcast/4334682.rss"
+              target="_blank"
+              rel="noopener noreferrer"
               className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-primary-blue transition"
             >
-              Subscribe Now
+              Subscribe via RSS
             </a>
           </div>
         </div>
       </section>
 
-      {/* Latest Episode Highlight */}
-      <section className="py-16 bg-bg-secondary">
-        <div className="max-w-4xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-8 text-primary-navy">
-            Latest Episode
-          </h2>
-          {recentEpisodes[0] && (
-            <div className="card">
-              <div className="grid lg:grid-cols-3 gap-8">
-                <div className="lg:col-span-2">
-                  <div className="flex items-center gap-4 mb-4">
-                    <span className="bg-primary-blue text-white px-3 py-1 rounded-full text-sm">
-                      Episode {recentEpisodes[0].episodeNumber}
-                    </span>
-                    <span className="text-neutral-gray">{recentEpisodes[0].duration}</span>
-                    <span className="text-neutral-gray">
-                      {new Date(recentEpisodes[0].publishDate).toLocaleDateString()}
-                    </span>
-                  </div>
-                  <h3 className="text-2xl font-bold mb-4 text-primary-navy">
-                    {recentEpisodes[0].title}
-                  </h3>
-                  <p className="text-neutral-gray mb-6">
-                    {recentEpisodes[0].description}
-                  </p>
-                  <div className="mb-6">
-                    <h4 className="font-semibold mb-2 text-primary-navy">Guests:</h4>
-                    <ul className="text-neutral-gray">
-                      {recentEpisodes[0].guests.map((guest, index) => (
-                        <li key={index}>• {guest}</li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-                <div className="lg:col-span-1">
-                  <div className="bg-primary-navy text-white p-6 rounded-lg text-center">
-                    <div className="text-6xl mb-4">🎙️</div>
-                    <h4 className="font-bold mb-4">Listen Now</h4>
-                    <div className="space-y-3">
-                      <button className="w-full bg-white text-primary-navy py-2 px-4 rounded font-semibold hover:bg-gray-100 transition">
-                        ▶️ Play Episode
-                      </button>
-                      <a
-                        href="https://fhiriq.substack.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="block w-full bg-accent-orange text-white py-2 px-4 rounded font-semibold hover:bg-orange-600 transition"
-                      >
-                        View on Substack
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
-      </section>
-
-      {/* Recent Episodes */}
+      {/* Episodes Section */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12 text-primary-navy">
-            Recent Episodes
+            Latest Episodes
           </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {recentEpisodes.slice(1).map((episode) => (
-              <div key={episode.id} className="card hover:shadow-xl transition-shadow">
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="bg-bg-accent text-primary-blue px-2 py-1 rounded text-sm">
-                    Episode {episode.episodeNumber}
-                  </span>
-                  <span className="text-sm text-neutral-gray">{episode.duration}</span>
-                </div>
-                <h3 className="text-lg font-bold mb-3 text-primary-navy line-clamp-2">
-                  {episode.title}
-                </h3>
-                <p className="text-neutral-gray text-sm mb-4 line-clamp-3">
-                  {episode.description}
-                </p>
-                <div className="text-sm text-neutral-gray mb-4">
-                  {new Date(episode.publishDate).toLocaleDateString()}
-                </div>
-                <div className="flex gap-2">
-                  <button className="btn-primary flex-1 text-sm">
-                    Listen
-                  </button>
-                  <button className="btn-secondary flex-1 text-sm">
-                    Transcript
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
+
+          {loading && (
+            <div className="text-center py-12">
+              <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-primary-blue"></div>
+              <p className="mt-4 text-gray-600">Loading episodes...</p>
+            </div>
+          )}
+
+          {error && (
+            <div className="text-center py-12">
+              <p className="text-red-600">{error}</p>
+              <a
+                href="https://evestel.substack.com/podcast"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 inline-block bg-primary-blue text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition"
+              >
+                Visit Substack Podcast Page
+              </a>
+            </div>
+          )}
+
+          {!loading && !error && episodes.length > 0 && (
+            <div className="space-y-8">
+              {episodes.map((episode, index) => (
+                <article key={episode.guid} className="card hover:shadow-xl transition-shadow">
+                  <div className="flex flex-col lg:flex-row gap-6">
+                    <div className="lg:flex-1">
+                      <div className="flex items-center gap-4 mb-4">
+                        <span className="bg-primary-blue text-white px-3 py-1 rounded-full text-sm">
+                          Episode {episodes.length - index}
+                        </span>
+                        {episode.duration && (
+                          <span className="text-neutral-gray">{episode.duration}</span>
+                        )}
+                        <span className="text-neutral-gray">
+                          {new Date(episode.pubDate).toLocaleDateString()}
+                        </span>
+                      </div>
+                      <h3 className="text-2xl font-bold mb-4 text-primary-navy">
+                        {episode.title}
+                      </h3>
+                      <div
+                        className="text-neutral-gray mb-6 line-clamp-3"
+                        dangerouslySetInnerHTML={{ __html: episode.description }}
+                      />
+                      <div className="flex gap-4">
+                        {episode.enclosure && (
+                          <audio controls className="w-full max-w-md">
+                            <source src={episode.enclosure.url} type={episode.enclosure.type} />
+                            Your browser does not support the audio element.
+                          </audio>
+                        )}
+                      </div>
+                      <div className="flex gap-4 mt-4">
+                        <a
+                          href={episode.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="bg-primary-blue text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-700 transition"
+                        >
+                          View on Substack
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          )}
+
+          {!loading && !error && episodes.length === 0 && (
+            <div className="text-center py-12">
+              <p className="text-gray-600 mb-4">No episodes found.</p>
+              <a
+                href="https://evestel.substack.com/podcast"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-primary-blue text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition"
+              >
+                Visit Substack Podcast Page
+              </a>
+            </div>
+          )}
         </div>
       </section>
 
@@ -274,7 +302,7 @@ export default function Podcast() {
               and additional FHIR insights between episodes.
             </p>
             <a
-              href="https://fhiriq.substack.com/subscribe"
+              href="https://evestel.substack.com/subscribe"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-accent-orange text-white px-8 py-3 rounded-lg font-semibold hover:bg-orange-600 transition inline-block"
@@ -285,55 +313,22 @@ export default function Podcast() {
         </div>
       </section>
 
-      {/* Podcast Topics */}
+      {/* Podcast Player Embed */}
       <section className="py-16 bg-bg-secondary">
-        <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12 text-primary-navy">
-            What We Cover
+        <div className="max-w-4xl mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-8 text-primary-navy">
+            Listen to Our Podcast
           </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="card text-center">
-              <div className="text-4xl mb-4">🔧</div>
-              <h3 className="text-xl font-bold mb-3 text-primary-navy">Implementation</h3>
-              <p className="text-neutral-gray">
-                Real-world FHIR implementation stories, challenges, and solutions from the field.
-              </p>
-            </div>
-            <div className="card text-center">
-              <div className="text-4xl mb-4">🤖</div>
-              <h3 className="text-xl font-bold mb-3 text-primary-navy">AI & Innovation</h3>
-              <p className="text-neutral-gray">
-                How artificial intelligence and emerging technologies are transforming FHIR.
-              </p>
-            </div>
-            <div className="card text-center">
-              <div className="text-4xl mb-4">👥</div>
-              <h3 className="text-xl font-bold mb-3 text-primary-navy">Expert Interviews</h3>
-              <p className="text-neutral-gray">
-                Deep conversations with FHIR architects, implementers, and industry leaders.
-              </p>
-            </div>
-            <div className="card text-center">
-              <div className="text-4xl mb-4">📚</div>
-              <h3 className="text-xl font-bold mb-3 text-primary-navy">Standards & Specs</h3>
-              <p className="text-neutral-gray">
-                Breaking down FHIR specifications, profiles, and implementation guides.
-              </p>
-            </div>
-            <div className="card text-center">
-              <div className="text-4xl mb-4">🏥</div>
-              <h3 className="text-xl font-bold mb-3 text-primary-navy">Industry Trends</h3>
-              <p className="text-neutral-gray">
-                Analysis of healthcare IT trends, regulations, and market developments.
-              </p>
-            </div>
-            <div className="card text-center">
-              <div className="text-4xl mb-4">🎯</div>
-              <h3 className="text-xl font-bold mb-3 text-primary-navy">Practical Tips</h3>
-              <p className="text-neutral-gray">
-                Actionable advice for developers, architects, and healthcare IT professionals.
-              </p>
-            </div>
+          <div className="bg-white rounded-lg shadow-xl p-4">
+            <iframe
+              src="https://evestel.substack.com/embed/podcast"
+              width="100%"
+              height="600"
+              style={{ border: '1px solid #EEE', background: 'white' }}
+              frameBorder="0"
+              scrolling="no"
+              title="FHIR IQ Podcast Player"
+            ></iframe>
           </div>
         </div>
       </section>
@@ -345,7 +340,7 @@ export default function Podcast() {
             Want to be a Guest?
           </h2>
           <p className="text-xl mb-8">
-            Share your FHIR expertise with our audience. We're always looking for
+            Share your FHIR expertise with our audience. We&apos;re always looking for
             implementers, vendors, and innovators to join the conversation.
           </p>
           <div className="flex gap-4 justify-center">
@@ -356,7 +351,7 @@ export default function Podcast() {
               Pitch Your Story
             </Link>
             <a
-              href="https://fhiriq.substack.com"
+              href="https://evestel.substack.com"
               target="_blank"
               rel="noopener noreferrer"
               className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-primary-navy transition"
@@ -381,9 +376,9 @@ export default function Podcast() {
               <h4 className="font-semibold mb-4">Podcast</h4>
               <ul className="space-y-2 text-gray-400">
                 <li><a href="#subscribe" className="hover:text-white">Subscribe</a></li>
-                <li><a href="https://fhiriq.substack.com" target="_blank" rel="noopener noreferrer" className="hover:text-white">Substack</a></li>
+                <li><a href="https://evestel.substack.com/podcast" target="_blank" rel="noopener noreferrer" className="hover:text-white">Substack</a></li>
                 <li><Link href="/contact" className="hover:text-white">Be a Guest</Link></li>
-                <li><a href="#" className="hover:text-white">RSS Feed</a></li>
+                <li><a href="https://api.substack.com/feed/podcast/4334682.rss" target="_blank" rel="noopener noreferrer" className="hover:text-white">RSS Feed</a></li>
               </ul>
             </div>
             <div>

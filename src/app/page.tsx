@@ -3,6 +3,7 @@
 import { useEffect, useState, useCallback } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import ChatBot from '../components/ChatBot';
 
 interface Product {
   _id: string;
@@ -516,6 +517,9 @@ export default function Home() {
           </div>
         </div>
       </footer>
+
+      {/* AI Chatbot */}
+      <ChatBot />
     </div>
   );
 }
