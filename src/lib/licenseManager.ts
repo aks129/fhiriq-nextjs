@@ -1,5 +1,22 @@
 import { v4 as uuidv4 } from 'uuid';
 
+interface ProductDeliverables {
+  type: string;
+  maxUsers?: number;
+  [key: string]: unknown;
+}
+
+interface Product {
+  digital: boolean;
+  sku: string;
+  name: string;
+  category: string;
+  edition: string;
+  term: string;
+  features?: string[];
+  deliverables?: ProductDeliverables;
+}
+
 export interface LicenseData {
   licenseKey?: string;
   orderId: string;
@@ -54,24 +71,25 @@ export async function createLicense(orderData: Record<string, unknown>): Promise
       }
 
       // Generate license for digital products only
-      if ((product as any).digital && (product as any).deliverables?.type === 'license_key') {
+      const typedProduct = product as unknown as Product;
+      if (typedProduct.digital && typedProduct.deliverables?.type === 'license_key') {
         const licenseData: LicenseData = {
-          licenseKey: generateLicenseKey((product as any).category, (product as any).edition),
+          licenseKey: generateLicenseKey(typedProduct.category, typedProduct.edition),
           orderId: orderData.orderId as string,
           customerId: orderData.customerId as string,
           customerEmail: orderData.customerEmail as string,
-          productSku: (product as any).sku,
-          productName: (product as any).name,
-          productCategory: (product as any).category,
-          edition: (product as any).edition,
-          term: (product as any).term,
+          productSku: typedProduct.sku,
+          productName: typedProduct.name,
+          productCategory: typedProduct.category,
+          edition: typedProduct.edition,
+          term: typedProduct.term,
           status: 'active',
           activatedAt: null, // Will be set when first used
-          expiresAt: calculateExpirationDate((product as any).term),
-          maxUsers: (product as any).deliverables.maxUsers || 1,
+          expiresAt: calculateExpirationDate(typedProduct.term),
+          maxUsers: typedProduct.deliverables?.maxUsers || 1,
           currentUsers: 0,
-          features: (product as any).features || [],
-          deliverables: (product as any).deliverables,
+          features: typedProduct.features || [],
+          deliverables: typedProduct.deliverables,
           metadata: {
             orderDate: new Date(orderData.createdAt as string),
             price: item.price as number,
@@ -235,15 +253,17 @@ async function saveLicense(licenseData: LicenseData): Promise<License> {
   return license;
 }
 
-async function getLicenseByKey(_licenseKey: string): Promise<License | null> {
+async function getLicenseByKey(licenseKey: string): Promise<License | null> {
   // This would query your database
   // For now, return null
+  console.log('Getting license by key:', licenseKey);
   return null;
 }
 
 async function updateLicense(licenseId: string, updateData: Partial<LicenseData>): Promise<License> {
   // This would update your database
   // For now, return a mock updated license
+  console.log('Updating license:', licenseId, updateData);
   const license: License = {
     _id: licenseId,
     licenseKey: 'FHIR-LIC-PRO-TEST123',
@@ -261,8 +281,9 @@ async function updateLicense(licenseId: string, updateData: Partial<LicenseData>
   return license;
 }
 
-async function sendLicenseEmail(license: License, _orderData: Record<string, unknown>): Promise<void> {
+async function sendLicenseEmail(license: License, orderData: Record<string, unknown>): Promise<void> {
   // This would send an email
   console.log('License email would be sent to:', license.customerEmail);
   console.log('License key:', license.licenseKey);
+  console.log('Order data:', orderData);
 }

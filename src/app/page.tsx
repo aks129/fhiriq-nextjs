@@ -227,12 +227,12 @@ export default function Home() {
 
       // Example implementation for Google Analytics
       if (typeof window !== 'undefined' && 'gtag' in window) {
-        (window as any).gtag('event', eventName, properties);
+        (window as unknown as { gtag: (type: string, event: string, properties: unknown) => void }).gtag('event', eventName, properties);
       }
 
       // Example implementation for PostHog
       if (typeof window !== 'undefined' && 'posthog' in window) {
-        (window as any).posthog.capture(eventName, properties);
+        (window as unknown as { posthog: { capture: (event: string, properties: unknown) => void } }).posthog.capture(eventName, properties);
       }
     } catch (error) {
       console.error('Event tracking error:', error);

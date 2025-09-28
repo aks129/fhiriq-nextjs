@@ -17,7 +17,7 @@ export default function Tools() {
         'SMART on FHIR authentication'
       ],
       status: 'beta',
-      demoUrl: '/tools/fhir-builder',
+      demoUrl: 'https://fhir-viewdefinition-builder.vercel.app',
       pricing: 'Free during beta',
       popular: true
     },
@@ -34,7 +34,7 @@ export default function Tools() {
         'Versioned profile support'
       ],
       status: 'live',
-      demoUrl: '/tools/mapper',
+      demoUrl: 'https://fhir-map-master-aks129s-projects.vercel.app',
       pricing: 'Starting at $299/month',
       popular: false
     },
@@ -51,7 +51,7 @@ export default function Tools() {
         'Executive reports'
       ],
       status: 'live',
-      demoUrl: '/tools/data-quality',
+      demoUrl: 'https://fhirspective.vercel.app',
       pricing: 'Starting at $199/month',
       popular: true
     },
@@ -68,8 +68,42 @@ export default function Tools() {
         'Parquet export'
       ],
       status: 'live',
-      demoUrl: '/tools/analytics',
+      demoUrl: 'https://fhir-query-converter.vercel.app',
       pricing: 'Starting at $499/month',
+      popular: false
+    },
+    {
+      id: 'quiz',
+      name: 'FHIR Quiz Engine',
+      tagline: 'Test your knowledge',
+      description: 'Interactive FHIR quiz platform for training and certification preparation.',
+      features: [
+        'Comprehensive question bank',
+        'Adaptive learning paths',
+        'Progress tracking',
+        'Certification prep',
+        'Team dashboards'
+      ],
+      status: 'live',
+      demoUrl: 'https://fhirquiz.vercel.app',
+      pricing: 'Starting at $99/month',
+      popular: false
+    },
+    {
+      id: 'smart-connect',
+      name: 'SMART Health Connect',
+      tagline: 'SMART on FHIR testing',
+      description: 'Test and validate SMART on FHIR applications with comprehensive auth flows.',
+      features: [
+        'OAuth 2.0 validation',
+        'SMART scopes testing',
+        'Token validation',
+        'App registration testing',
+        'Compliance reports'
+      ],
+      status: 'live',
+      demoUrl: 'https://smart-health-connect.vercel.app',
+      pricing: 'Starting at $199/month',
       popular: false
     }
   ];
@@ -267,12 +301,14 @@ export default function Tools() {
                 </div>
               </div>
 
-              <Link
-                href="/tools/fhir-builder"
+              <a
+                href="https://fhir-viewdefinition-builder.vercel.app"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="btn-primary inline-block"
               >
                 Start Building Now (Free)
-              </Link>
+              </a>
             </div>
 
             <div className="bg-primary-navy text-white p-8 rounded-lg">
