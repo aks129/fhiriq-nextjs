@@ -51,12 +51,39 @@ export default function Partners() {
     },
     {
       id: 6,
-      name: "Epic",
-      logo: "⚡", // Replace with actual logo
-      description: "Certified app partner for Epic App Orchard marketplace integrations.",
-      category: "EHR Partner",
-      website: "https://epic.com",
+      name: "NCQA",
+      logo: "📊", // Replace with actual logo
+      description: "Healthcare quality measurement and digital health certification partner.",
+      category: "Quality Organization",
+      website: "https://ncqa.org",
       featured: true
+    },
+    {
+      id: 7,
+      name: "Particle Health",
+      logo: "🔬", // Replace with actual logo
+      description: "Advanced health data platform integration for comprehensive patient records.",
+      category: "Data Platform Partner",
+      website: "https://particlehealth.com",
+      featured: false
+    },
+    {
+      id: 8,
+      name: "Vermonster",
+      logo: "🏔️", // Replace with actual logo
+      description: "Custom healthcare application development and FHIR implementation services.",
+      category: "Development Partner",
+      website: "https://vermonster.com",
+      featured: false
+    },
+    {
+      id: 9,
+      name: "Bellese",
+      logo: "🏥", // Replace with actual logo
+      description: "Healthcare technology consulting and digital transformation expertise.",
+      category: "Consulting Partner",
+      website: "https://bellese.com",
+      featured: false
     }
   ];
 

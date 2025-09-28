@@ -324,7 +324,7 @@ export default function Builder() {
                     <textarea
                       value={requirements}
                       onChange={(e) => setRequirements(e.target.value)}
-                      placeholder="Example: I need a patient portal that shows upcoming appointments, lab results from the last 6 months, and allows patients to message their care team. It should integrate with Epic's FHIR API and support SMART on FHIR authentication..."
+                      placeholder="Example: I need a patient portal that shows upcoming appointments, lab results from the last 6 months, and allows patients to message their care team. It should integrate with standard FHIR APIs using Particle Health data aggregation and support SMART on FHIR authentication..."
                       className="w-full h-32 p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-blue focus:border-transparent"
                       rows={6}
                     />
