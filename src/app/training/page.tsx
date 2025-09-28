@@ -321,12 +321,14 @@ export default function Training() {
             </div>
 
             <div className="text-center mt-12">
-              <Link
-                href="/training/quiz"
-                className="btn-primary"
+              <a
+                href="https://fhirquiz.vercel.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary inline-block"
               >
-                Take Full FHIR Quiz (50+ questions)
-              </Link>
+                Take Full FHIR Quiz Platform (100+ questions) →
+              </a>
             </div>
           </div>
         </section>

@@ -5,73 +5,142 @@ import Link from 'next/link';
 export default function Tools() {
   const tools = [
     {
-      id: 'fhir-builder',
-      name: 'AI FHIR App Builder',
-      tagline: 'Build a FHIR app with AI',
-      description: 'Guided wizard that turns specifications into working FHIR applications with AI-generated scaffolding.',
+      id: 'fhir-quiz',
+      name: 'FHIR Quiz Training Platform',
+      tagline: 'Interactive FHIR Assessment',
+      description: 'Comprehensive FHIR knowledge testing platform with 100+ questions, real-time scoring, and detailed explanations.',
       features: [
-        'Next.js + HAPI FHIR scaffolding',
-        'Patient Summary & Quality Measure flows',
-        'AI-powered code generation',
-        'One-click Vercel deployment',
-        'SMART on FHIR authentication'
+        'Interactive quiz interface',
+        '100+ FHIR questions',
+        'Real-time scoring system',
+        'Detailed explanations',
+        'Progress tracking'
       ],
-      status: 'beta',
-      demoUrl: 'https://fhir-viewdefinition-builder.vercel.app',
-      pricing: 'Free during beta',
+      status: 'live',
+      demoUrl: 'https://fhirquiz.vercel.app',
+      pricing: 'Free',
       popular: true
     },
     {
-      id: 'mapper',
-      name: 'Mapper to FHIR',
-      tagline: '80% faster mapping',
-      description: 'Transform CSV, HL7 v2, CCDA, and JSON data into FHIR R4/US Core compliant resources.',
+      id: 'plumly-ai',
+      name: 'Plumly AI Summary Tool',
+      tagline: 'AI-powered summarization',
+      description: 'Advanced AI-powered document summarization tool for healthcare content with FHIR-aware processing.',
       features: [
-        'Multi-format input support',
-        'Visual mapping interface',
-        'FHIR R4 & US Core validation',
-        'Terminology lookups',
-        'Versioned profile support'
+        'AI-powered summarization',
+        'Healthcare document processing',
+        'FHIR-aware content analysis',
+        'Multi-format support',
+        'Context preservation'
       ],
       status: 'live',
-      demoUrl: 'https://fhir-map-master-aks129s-projects.vercel.app',
-      pricing: 'Starting at $299/month',
+      demoUrl: 'https://plumly.vercel.app',
+      pricing: 'Free',
+      popular: true
+    },
+    {
+      id: 'agent-interop',
+      name: 'Agent Interoperability Platform',
+      tagline: 'Multi-agent healthcare exchange',
+      description: 'Multi-agent system for healthcare data exchange and interoperability testing with FHIR validation.',
+      features: [
+        'Multi-agent architecture',
+        'FHIR validation engine',
+        'Interoperability testing',
+        'Real-time data exchange',
+        'Protocol compliance'
+      ],
+      status: 'live',
+      demoUrl: 'https://agent-inter-op.vercel.app',
+      pricing: 'Free',
+      popular: true
+    },
+    {
+      id: 'fhir-viewbuilder',
+      name: 'FHIR View Definition Builder',
+      tagline: 'Visual FHIR builder',
+      description: 'Visual builder for creating FHIR ViewDefinition resources with drag-and-drop interface and live preview.',
+      features: [
+        'Drag-and-drop interface',
+        'Live preview functionality',
+        'FHIR ViewDefinition support',
+        'Visual resource builder',
+        'Export capabilities'
+      ],
+      status: 'live',
+      demoUrl: 'https://fhir-viewdefinition-builder.vercel.app',
+      pricing: 'Free',
       popular: false
     },
     {
-      id: 'data-quality',
-      name: 'Data Quality Assessor',
-      tagline: '95% conformance score',
-      description: 'Comprehensive FHIR data quality analysis with completeness, conformance, and plausibility checks.',
+      id: 'fhir-query-converter',
+      name: 'FHIR Query Converter',
+      tagline: 'Query format conversion',
+      description: 'Powerful conversion tool for transforming between different FHIR query formats and search syntaxes.',
       features: [
-        'Quality scorecards by resource',
-        'Conformance validation',
-        'Completeness analysis',
-        'Remediation suggestions',
-        'Executive reports'
-      ],
-      status: 'live',
-      demoUrl: 'https://fhirspective.vercel.app',
-      pricing: 'Starting at $199/month',
-      popular: true
-    },
-    {
-      id: 'analytics',
-      name: 'FHIR Analytics',
-      tagline: '10x faster insights',
-      description: 'SQL-on-FHIR patterns, dashboards, cohorting, and measure calculations for population health.',
-      features: [
-        'Pre-built SQL templates',
-        'Population health dashboards',
-        'Cohort analysis tools',
-        'Quality measure automation',
-        'Parquet export'
+        'Multi-format conversion',
+        'FHIR search syntax support',
+        'Query validation',
+        'Syntax highlighting',
+        'Format preservation'
       ],
       status: 'live',
       demoUrl: 'https://fhir-query-converter.vercel.app',
-      pricing: 'Starting at $499/month',
+      pricing: 'Free',
       popular: false
     },
+    {
+      id: 'fhirspective',
+      name: 'FHIRspective Data Quality Assessment',
+      tagline: 'Comprehensive data quality analysis',
+      description: 'Comprehensive FHIR data quality analysis tool with automated reports and improvement recommendations.',
+      features: [
+        'Data quality scoring',
+        'Automated reporting',
+        'Improvement recommendations',
+        'Quality metrics dashboard',
+        'Compliance checking'
+      ],
+      status: 'live',
+      demoUrl: 'https://fhirspective.vercel.app',
+      pricing: 'Free',
+      popular: true
+    },
+    {
+      id: 'smart-scheduling',
+      name: 'Smart Scheduling System',
+      tagline: 'AI-powered appointment scheduling',
+      description: 'Intelligent healthcare appointment scheduling with FHIR integration and AI-powered optimization.',
+      features: [
+        'AI-powered optimization',
+        'FHIR integration',
+        'Appointment management',
+        'Resource scheduling',
+        'Conflict resolution'
+      ],
+      status: 'live',
+      demoUrl: 'https://smartscheduling.vercel.app',
+      pricing: 'Free',
+      popular: false
+    },
+    {
+      id: 'liara-health-ai',
+      name: 'Liara Health AI Connect',
+      tagline: 'Advanced health AI platform',
+      description: 'Advanced health AI platform connecting patients, providers, and systems with intelligent FHIR workflows.',
+      features: [
+        'Patient-provider connectivity',
+        'Intelligent FHIR workflows',
+        'AI-driven insights',
+        'System integration',
+        'Health data analytics'
+      ],
+      status: 'live',
+      demoUrl: 'https://smart-health-connect.vercel.app',
+      pricing: 'Free',
+      popular: false
+    }
+  ];
     {
       id: 'quiz',
       name: 'FHIR Quiz Engine',
