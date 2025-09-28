@@ -200,19 +200,19 @@ export default function Podcast() {
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8 text-center">
             <div className="card">
-              <div className="text-4xl font-bold text-primary-blue mb-2">150+</div>
+              <div className="text-4xl font-bold text-primary-blue mb-2">14</div>
               <div className="text-neutral-gray">Episodes Published</div>
             </div>
             <div className="card">
-              <div className="text-4xl font-bold text-primary-blue mb-2">50K+</div>
-              <div className="text-neutral-gray">Monthly Downloads</div>
+              <div className="text-4xl font-bold text-primary-blue mb-2">2K</div>
+              <div className="text-neutral-gray">Monthly Listeners</div>
             </div>
             <div className="card">
-              <div className="text-4xl font-bold text-primary-blue mb-2">200+</div>
+              <div className="text-4xl font-bold text-primary-blue mb-2">15</div>
               <div className="text-neutral-gray">Expert Guests</div>
             </div>
             <div className="card">
-              <div className="text-4xl font-bold text-primary-blue mb-2">85+</div>
+              <div className="text-4xl font-bold text-primary-blue mb-2">15</div>
               <div className="text-neutral-gray">Countries Reached</div>
             </div>
           </div>
@@ -411,7 +411,7 @@ export default function Podcast() {
             🔔 Never Miss an Episode
           </h2>
           <p className="text-xl mb-12 max-w-3xl mx-auto">
-            Subscribe to Out of the FHIR Podcast on your favorite platform and join thousands of
+            Subscribe to Out of the FHIR Podcast on your favorite platform and join our growing community of
             healthcare professionals staying current with FHIR and interoperability trends.
           </p>
 
