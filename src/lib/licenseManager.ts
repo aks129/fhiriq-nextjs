@@ -44,8 +44,9 @@ export async function createLicense(orderData: Record<string, unknown>): Promise
     const licenses: License[] = [];
 
     // Process each line item in the order
-    for (const item of orderData.lineItems) {
-      const product = await getProductBySku(item.sku);
+    const lineItems = orderData.lineItems as Array<Record<string, unknown>>;
+    for (const item of lineItems) {
+      const product = await getProductBySku(item.sku as string);
 
       if (!product) {
         console.error('Product not found for SKU:', item.sku);
@@ -53,28 +54,28 @@ export async function createLicense(orderData: Record<string, unknown>): Promise
       }
 
       // Generate license for digital products only
-      if (product.digital && product.deliverables?.type === 'license_key') {
+      if ((product as any).digital && (product as any).deliverables?.type === 'license_key') {
         const licenseData: LicenseData = {
-          licenseKey: generateLicenseKey(product.category, product.edition),
-          orderId: orderData.orderId,
-          customerId: orderData.customerId,
-          customerEmail: orderData.customerEmail,
-          productSku: product.sku,
-          productName: product.name,
-          productCategory: product.category,
-          edition: product.edition,
-          term: product.term,
+          licenseKey: generateLicenseKey((product as any).category, (product as any).edition),
+          orderId: orderData.orderId as string,
+          customerId: orderData.customerId as string,
+          customerEmail: orderData.customerEmail as string,
+          productSku: (product as any).sku,
+          productName: (product as any).name,
+          productCategory: (product as any).category,
+          edition: (product as any).edition,
+          term: (product as any).term,
           status: 'active',
           activatedAt: null, // Will be set when first used
-          expiresAt: calculateExpirationDate(product.term),
-          maxUsers: product.deliverables.maxUsers || 1,
+          expiresAt: calculateExpirationDate((product as any).term),
+          maxUsers: (product as any).deliverables.maxUsers || 1,
           currentUsers: 0,
-          features: product.features || [],
-          deliverables: product.deliverables,
+          features: (product as any).features || [],
+          deliverables: (product as any).deliverables,
           metadata: {
-            orderDate: new Date(orderData.createdAt),
-            price: item.price,
-            currency: item.currency
+            orderDate: new Date(orderData.createdAt as string),
+            price: item.price as number,
+            currency: item.currency as string
           },
           lastAccessedAt: null,
           accessCount: 0,
@@ -187,8 +188,8 @@ export async function activateLicense(licenseKey: string, userInfo: Record<strin
       activatedAt: license.activatedAt || new Date(),
       lastAccessedAt: new Date(),
       accessCount: (license.accessCount || 0) + 1,
-      ipAddresses: [...new Set([...(license.ipAddresses || []), userInfo.ipAddress].filter(Boolean))],
-      userAgents: [...new Set([...(license.userAgents || []), userInfo.userAgent].filter(Boolean))]
+      ipAddresses: [...new Set([...(license.ipAddresses || []), userInfo.ipAddress as string].filter(Boolean))] as string[],
+      userAgents: [...new Set([...(license.userAgents || []), userInfo.userAgent as string].filter(Boolean))] as string[]
     });
 
     return {

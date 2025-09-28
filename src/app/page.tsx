@@ -53,6 +53,49 @@ export default function Home() {
   }, []);
 
   const initializeAnalytics = useCallback(() => {
+    try {
+      // Track page view
+      trackEvent('page_view', {
+        page: 'home',
+        timestamp: new Date().toISOString()
+      });
+
+      // Track scroll depth
+      let scroll25Tracked = false;
+      let scroll50Tracked = false;
+      let scroll75Tracked = false;
+      let scroll90Tracked = false;
+
+      const handleScroll = () => {
+        const scrollPercent = Math.round(
+          (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100
+        );
+
+        if (scrollPercent >= 25 && !scroll25Tracked) {
+          trackEvent('scroll_depth', { depth: 25 });
+          scroll25Tracked = true;
+        }
+        if (scrollPercent >= 50 && !scroll50Tracked) {
+          trackEvent('scroll_depth', { depth: 50 });
+          scroll50Tracked = true;
+        }
+        if (scrollPercent >= 75 && !scroll75Tracked) {
+          trackEvent('scroll_depth', { depth: 75 });
+          scroll75Tracked = true;
+        }
+        if (scrollPercent >= 90 && !scroll90Tracked) {
+          trackEvent('scroll_depth', { depth: 90 });
+          scroll90Tracked = true;
+        }
+      };
+
+      window.addEventListener('scroll', handleScroll);
+
+      return () => window.removeEventListener('scroll', handleScroll);
+    } catch (error) {
+      console.error('Analytics initialization error:', error);
+    }
+  }, []);
 
   async function loadFeaturedProducts() {
     try {
@@ -139,50 +182,6 @@ export default function Home() {
     }
   }
 
-  function initializeAnalytics() {
-    try {
-      // Track page view
-      trackEvent('page_view', {
-        page: 'home',
-        timestamp: new Date().toISOString()
-      });
-
-      // Track scroll depth
-      let scroll25Tracked = false;
-      let scroll50Tracked = false;
-      let scroll75Tracked = false;
-      let scroll90Tracked = false;
-
-      const handleScroll = () => {
-        const scrollPercent = Math.round(
-          (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100
-        );
-
-        if (scrollPercent >= 25 && !scroll25Tracked) {
-          trackEvent('scroll_depth', { depth: 25 });
-          scroll25Tracked = true;
-        }
-        if (scrollPercent >= 50 && !scroll50Tracked) {
-          trackEvent('scroll_depth', { depth: 50 });
-          scroll50Tracked = true;
-        }
-        if (scrollPercent >= 75 && !scroll75Tracked) {
-          trackEvent('scroll_depth', { depth: 75 });
-          scroll75Tracked = true;
-        }
-        if (scrollPercent >= 90 && !scroll90Tracked) {
-          trackEvent('scroll_depth', { depth: 90 });
-          scroll90Tracked = true;
-        }
-      };
-
-      window.addEventListener('scroll', handleScroll);
-
-      return () => window.removeEventListener('scroll', handleScroll);
-    } catch (error) {
-      console.error('Analytics initialization error:', error);
-    }
-  }, []);
 
   useEffect(() => {
     initializePage();
@@ -227,13 +226,13 @@ export default function Home() {
       console.log('Track event:', eventName, properties);
 
       // Example implementation for Google Analytics
-      if (typeof window !== 'undefined' && (window as Record<string, unknown>).gtag) {
-        (window as Record<string, unknown>).gtag('event', eventName, properties);
+      if (typeof window !== 'undefined' && 'gtag' in window) {
+        (window as any).gtag('event', eventName, properties);
       }
 
       // Example implementation for PostHog
-      if (typeof window !== 'undefined' && (window as Record<string, unknown>).posthog) {
-        (window as Record<string, unknown>).posthog.capture(eventName, properties);
+      if (typeof window !== 'undefined' && 'posthog' in window) {
+        (window as any).posthog.capture(eventName, properties);
       }
     } catch (error) {
       console.error('Event tracking error:', error);
