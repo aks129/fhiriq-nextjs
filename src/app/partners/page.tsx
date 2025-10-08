@@ -3,87 +3,30 @@
 import Link from 'next/link';
 
 export default function Partners() {
-  const partners = [
+  const standards = [
     {
       id: 1,
       name: "HL7 International",
-      logo: "🏥", // Replace with actual logo
+      logo: "🏥",
       description: "Official collaboration on FHIR specification development and implementation guidance.",
       category: "Standards Organization",
-      website: "https://hl7.org",
-      featured: true
+      website: "https://hl7.org"
     },
     {
       id: 2,
       name: "HIMSS",
-      logo: "🌐", // Replace with actual logo
+      logo: "🌐",
       description: "Strategic partnership for healthcare IT education and interoperability initiatives.",
       category: "Industry Association",
-      website: "https://himss.org",
-      featured: true
+      website: "https://himss.org"
     },
     {
       id: 3,
-      name: "Firely",
-      logo: "🔥", // Replace with actual logo
-      description: "Technology partnership for FHIR server implementations and SDK integrations.",
-      category: "Technology Partner",
-      website: "https://fire.ly",
-      featured: false
-    },
-    {
-      id: 4,
-      name: "Smile Digital Health",
-      logo: "😊", // Replace with actual logo
-      description: "Joint solutions for enterprise FHIR deployments and compliance frameworks.",
-      category: "Technology Partner",
-      website: "https://smiledigitalhealth.com",
-      featured: false
-    },
-    {
-      id: 5,
-      name: "InterSystems",
-      logo: "🔗", // Replace with actual logo
-      description: "Integration partnership for healthcare data platforms and FHIR repositories.",
-      category: "Platform Partner",
-      website: "https://intersystems.com",
-      featured: false
-    },
-    {
-      id: 6,
       name: "NCQA",
-      logo: "📊", // Replace with actual logo
+      logo: "📊",
       description: "Healthcare quality measurement and digital health certification partner.",
       category: "Quality Organization",
-      website: "https://ncqa.org",
-      featured: true
-    },
-    {
-      id: 7,
-      name: "Particle Health",
-      logo: "🔬", // Replace with actual logo
-      description: "Advanced health data platform integration for comprehensive patient records.",
-      category: "Data Platform Partner",
-      website: "https://particlehealth.com",
-      featured: false
-    },
-    {
-      id: 8,
-      name: "Vermonster",
-      logo: "🏔️", // Replace with actual logo
-      description: "Custom healthcare application development and FHIR implementation services.",
-      category: "Development Partner",
-      website: "https://vermonster.com",
-      featured: false
-    },
-    {
-      id: 9,
-      name: "Bellese",
-      logo: "🏥", // Replace with actual logo
-      description: "Healthcare technology consulting and digital transformation expertise.",
-      category: "Consulting Partner",
-      website: "https://bellese.com",
-      featured: false
+      website: "https://ncqa.org"
     }
   ];
 
@@ -123,39 +66,6 @@ export default function Partners() {
       company: "Integrated Care Systems",
       logo: "🔧",
       metrics: "80% faster data mapping"
-    }
-  ];
-
-  const integrations = [
-    {
-      name: "HAPI FHIR",
-      description: "Certified reference implementation",
-      status: "Certified"
-    },
-    {
-      name: "Microsoft FHIR Server",
-      description: "Azure cloud deployment ready",
-      status: "Supported"
-    },
-    {
-      name: "Google Cloud Healthcare API",
-      description: "Native GCP integration",
-      status: "Certified"
-    },
-    {
-      name: "AWS HealthLake",
-      description: "AWS marketplace available",
-      status: "Listed"
-    },
-    {
-      name: "IBM FHIR Server",
-      description: "LinuxONE optimized",
-      status: "Supported"
-    },
-    {
-      name: "Vonk FHIR Server",
-      description: "Fire.ly partnership",
-      status: "Certified"
     }
   ];
 
@@ -203,31 +113,31 @@ export default function Partners() {
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-primary-green to-primary-blue text-white py-20">
         <div className="max-w-7xl mx-auto px-4 text-center">
-          <h1 className="text-5xl font-bold mb-6">Partners & Ecosystem</h1>
+          <h1 className="text-5xl font-bold mb-6">Standards & Integrations</h1>
           <p className="text-xl mb-8 max-w-3xl mx-auto">
-            Collaborating with industry leaders to deliver comprehensive FHIR solutions.
-            From standards organizations to technology vendors, we build on proven partnerships.
+            We utilize industry-leading standards and partner recommendations to deliver
+            comprehensive FHIR solutions built on proven technology.
           </p>
         </div>
       </section>
 
-      {/* Featured Partners */}
+      {/* Standards Organizations */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12 text-primary-navy">
-            Strategic Partners
+            Standards & Partner Recommendations
           </h2>
           <div className="grid md:grid-cols-3 gap-8 mb-12">
-            {partners.filter(p => p.featured).map((partner) => (
-              <div key={partner.id} className="card text-center hover:shadow-xl transition-shadow">
-                <div className="text-6xl mb-4">{partner.logo}</div>
-                <h3 className="text-xl font-bold mb-2 text-primary-navy">{partner.name}</h3>
+            {standards.map((standard) => (
+              <div key={standard.id} className="card text-center hover:shadow-xl transition-shadow">
+                <div className="text-6xl mb-4">{standard.logo}</div>
+                <h3 className="text-xl font-bold mb-2 text-primary-navy">{standard.name}</h3>
                 <div className="bg-bg-accent text-primary-blue px-3 py-1 rounded-full text-sm mb-4 inline-block">
-                  {partner.category}
+                  {standard.category}
                 </div>
-                <p className="text-neutral-gray mb-6">{partner.description}</p>
+                <p className="text-neutral-gray mb-6">{standard.description}</p>
                 <a
-                  href={partner.website}
+                  href={standard.website}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-secondary text-sm"
@@ -240,38 +150,8 @@ export default function Partners() {
         </div>
       </section>
 
-      {/* Technology Integrations */}
-      <section className="py-16 bg-bg-secondary">
-        <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12 text-primary-navy">
-            Technology Integrations
-          </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {integrations.map((integration, index) => (
-              <div key={index} className="card flex justify-between items-center">
-                <div>
-                  <h3 className="font-bold text-primary-navy">{integration.name}</h3>
-                  <p className="text-sm text-neutral-gray">{integration.description}</p>
-                </div>
-                <div>
-                  <span className={`px-3 py-1 rounded-full text-sm ${
-                    integration.status === 'Certified'
-                      ? 'bg-primary-green text-white'
-                      : integration.status === 'Supported'
-                      ? 'bg-primary-blue text-white'
-                      : 'bg-neutral-gray text-white'
-                  }`}>
-                    {integration.status}
-                  </span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Client Testimonials */}
-      <section className="py-16">
+      <section className="py-16 bg-bg-secondary">
         <div className="max-w-7xl mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12 text-primary-navy">
             What Our Clients Say
@@ -301,27 +181,6 @@ export default function Partners() {
         </div>
       </section>
 
-      {/* All Partners Grid */}
-      <section className="py-16 bg-bg-secondary">
-        <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12 text-primary-navy">
-            Partner Network
-          </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {partners.map((partner) => (
-              <div key={partner.id} className="bg-white p-6 rounded-lg shadow hover:shadow-lg transition-shadow">
-                <div className="flex items-center gap-4">
-                  <div className="text-3xl">{partner.logo}</div>
-                  <div>
-                    <h3 className="font-bold text-primary-navy">{partner.name}</h3>
-                    <p className="text-sm text-primary-blue">{partner.category}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Partnership Benefits */}
       <section className="py-16">

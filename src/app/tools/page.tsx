@@ -5,6 +5,23 @@ import Link from 'next/link';
 export default function Tools() {
   const tools = [
     {
+      id: 'fpas',
+      name: 'FPAS - Prior Authorization System',
+      tagline: 'Automated Prior Auth',
+      description: 'Production-ready FHIR-based prior authorization platform with intelligent automation and real-time decision support.',
+      features: [
+        'Real-time eligibility verification',
+        'Automated decision engine',
+        'FHIR R4 integration',
+        'Clinical criteria matching',
+        'Compliance tracking'
+      ],
+      status: 'live',
+      demoUrl: 'https://fpas-ui.vercel.app',
+      pricing: 'Enterprise',
+      popular: true
+    },
+    {
       id: 'fhir-quiz',
       name: 'FHIR Quiz Training Platform',
       tagline: 'Interactive FHIR Assessment',
@@ -139,8 +156,7 @@ export default function Tools() {
       demoUrl: 'https://smart-health-connect.vercel.app',
       pricing: 'Free',
       popular: false
-    }
-  ];
+    },
     {
       id: 'quiz',
       name: 'FHIR Quiz Engine',

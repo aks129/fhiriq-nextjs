@@ -5,6 +5,22 @@ import Link from 'next/link';
 export default function Solutions() {
   const solutions = [
     {
+      id: 'fpas',
+      title: 'FPAS - Prior Authorization Solution',
+      subtitle: 'Automated FHIR-based prior authorization',
+      description: 'Streamline prior auth workflows with intelligent automation',
+      benefits: [
+        'Real-time eligibility checks',
+        'Automated decision support',
+        'FHIR-based integration',
+        'Compliance tracking'
+      ],
+      outcomes: 'Reduce prior auth processing time by 80% and improve approval rates',
+      cta: 'View FPAS Demo',
+      link: '/solutions/fpas',
+      featured: true
+    },
+    {
       id: 'payers',
       title: 'Payers',
       subtitle: 'Member data exchange & quality measurement',

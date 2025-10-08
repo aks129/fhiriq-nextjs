@@ -286,6 +286,9 @@ export default function Home() {
               <Link href="/tools" className="text-neutral-gray hover:text-primary-blue font-medium">
                 Tools
               </Link>
+              <Link href="/store" className="text-neutral-gray hover:text-primary-blue font-medium">
+                Store
+              </Link>
               <Link href="/training" className="text-neutral-gray hover:text-primary-blue font-medium">
                 Training
               </Link>
