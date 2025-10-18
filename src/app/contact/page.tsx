@@ -26,11 +26,22 @@ export default function Contact() {
     setSubmitStatus('');
 
     try {
-      // Simulate form submission
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      setSubmitStatus('success');
-      setFormData({ name: '', email: '', company: '', message: '' });
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        setFormData({ name: '', email: '', company: '', message: '' });
+      } else {
+        setSubmitStatus('error');
+      }
     } catch (error) {
+      console.error('Contact form error:', error);
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
@@ -183,23 +194,30 @@ export default function Contact() {
                   </div>
                   <div>
                     <h3 className="font-bold text-lg mb-2">Email</h3>
-                    <p className="text-gray-600">contact@fhiriq.com</p>
-                    <p className="text-gray-600">support@fhiriq.com</p>
+                    <a href="mailto:gene@fhiriq.com" className="text-blue-600 hover:text-blue-700 block">
+                      gene@fhiriq.com
+                    </a>
+                    <p className="text-gray-600 text-sm mt-1">Direct inquiries and support</p>
                   </div>
                 </div>
 
                 <div className="flex items-start">
                   <div className="bg-green-100 rounded-full w-12 h-12 flex items-center justify-center mr-4 mt-1">
-                    <span className="text-green-600">📞</span>
+                    <span className="text-green-600">📅</span>
                   </div>
                   <div>
-                    <h3 className="font-bold text-lg mb-2">Schedule a Call</h3>
-                    <p className="text-gray-600 mb-2">
-                      Book a free 30-minute consultation to discuss your FHIR needs.
+                    <h3 className="font-bold text-lg mb-2">Book a Meeting</h3>
+                    <p className="text-gray-600 mb-3">
+                      Schedule a free consultation to discuss your FHIR implementation needs.
                     </p>
-                    <button className="text-blue-600 font-semibold hover:text-blue-700">
-                      Book Consultation →
-                    </button>
+                    <a
+                      href="https://calendar.app.google/TMvRGiiYfbBKNd889"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-block bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-700 transition"
+                    >
+                      Schedule Meeting →
+                    </a>
                   </div>
                 </div>
 

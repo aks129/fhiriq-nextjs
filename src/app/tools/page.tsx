@@ -194,9 +194,9 @@ export default function Tools() {
               <Link href="/about" className="text-neutral-gray hover:text-primary-blue font-medium">
                 About
               </Link>
-              <Link href="/contact" className="btn-primary text-sm">
-                Book Consultation
-              </Link>
+              <a href="https://calendar.app.google/TMvRGiiYfbBKNd889" target="_blank" rel="noopener noreferrer" className="btn-primary text-sm">
+                Book Meeting
+              </a>
             </div>
           </div>
         </div>
