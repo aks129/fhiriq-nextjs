@@ -248,23 +248,22 @@ export default function Tools() {
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-primary-green to-primary-blue text-white py-20">
         <div className="max-w-7xl mx-auto px-4 text-center">
-          <h1 className="text-5xl font-bold mb-6">AI-Driven FHIR Tools</h1>
+          <h1 className="text-5xl font-bold mb-6">FHIR Development Tools</h1>
           <p className="text-xl mb-8 max-w-3xl mx-auto">
-            Accelerate your FHIR development with our suite of AI-powered tools.
-            From mapping to analytics, we provide the automation you need to scale.
+            Production-ready tools for building, validating, and deploying FHIR-compliant healthcare applications.
           </p>
           <div className="flex gap-4 justify-center">
             <Link
-              href="/tools/fhir-builder"
+              href="#tools-catalog"
               className="bg-white text-primary-blue px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition"
             >
-              Try AI Builder (Free)
+              Browse Tools
             </Link>
             <Link
-              href="#tools-catalog"
+              href="/contact"
               className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-primary-blue transition"
             >
-              Explore All Tools
+              Request Enterprise Access
             </Link>
           </div>
         </div>
@@ -273,9 +272,14 @@ export default function Tools() {
       {/* Tools Catalog */}
       <section id="tools-catalog" className="py-16">
         <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12 text-primary-navy">
-            Choose Your FHIR Tool
-          </h2>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-primary-navy mb-4">
+              Complete FHIR Toolset
+            </h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              From validation to analytics, our integrated tools cover every stage of FHIR development
+            </p>
+          </div>
           <div className="grid md:grid-cols-2 gap-8">
             {tools.map((tool) => (
               <div
@@ -349,132 +353,55 @@ export default function Tools() {
         </div>
       </section>
 
-      {/* Feature Highlight: AI Builder */}
+      {/* Value Proposition */}
       <section className="py-16 bg-bg-secondary">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl font-bold mb-6 text-primary-navy">
-                Featured: AI FHIR App Builder
-              </h2>
-              <p className="text-lg text-neutral-gray mb-8">
-                Our flagship tool turns your FHIR requirements into working applications.
-                Choose your stack, connect to a FHIR server, and download a complete
-                scaffold ready for deployment.
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-primary-navy mb-4">
+              Why Healthcare Developers Choose Our Tools
+            </h2>
+            <p className="text-lg text-neutral-gray max-w-3xl mx-auto">
+              Battle-tested tools built by FHIR experts for real-world healthcare implementations
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="bg-white p-6 rounded-lg shadow-sm">
+              <div className="w-12 h-12 bg-primary-blue/10 rounded-lg flex items-center justify-center mb-4">
+                <svg className="w-6 h-6 text-primary-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold mb-3 text-primary-navy">Standards Compliant</h3>
+              <p className="text-neutral-gray">
+                Built-in validation for US Core, CARIN BB, Da Vinci, and other major implementation guides
               </p>
-
-              <div className="space-y-4 mb-8">
-                <div className="flex items-center">
-                  <span className="text-primary-green text-xl mr-3">1.</span>
-                  <span className="text-neutral-gray">Select use case (Patient Summary, Quality Measures)</span>
-                </div>
-                <div className="flex items-center">
-                  <span className="text-primary-green text-xl mr-3">2.</span>
-                  <span className="text-neutral-gray">Connect to FHIR server or upload CapabilityStatement</span>
-                </div>
-                <div className="flex items-center">
-                  <span className="text-primary-green text-xl mr-3">3.</span>
-                  <span className="text-neutral-gray">Choose tech stack (Next.js + HAPI FHIR)</span>
-                </div>
-                <div className="flex items-center">
-                  <span className="text-primary-green text-xl mr-3">4.</span>
-                  <span className="text-neutral-gray">AI generates working application scaffold</span>
-                </div>
-                <div className="flex items-center">
-                  <span className="text-primary-green text-xl mr-3">5.</span>
-                  <span className="text-neutral-gray">Download ZIP or deploy to Vercel</span>
-                </div>
-              </div>
-
-              <a
-                href="https://fhir-viewdefinition-builder.vercel.app"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-primary inline-block"
-              >
-                Start Building Now (Free)
-              </a>
             </div>
 
-            <div className="bg-primary-navy text-white p-8 rounded-lg">
-              <h3 className="text-xl font-bold mb-4">Demo Output Preview</h3>
-              <div className="bg-black p-4 rounded text-green-400 font-mono text-sm">
-                <div>✓ Generated Next.js 15 app with TypeScript</div>
-                <div>✓ HAPI FHIR server configuration</div>
-                <div>✓ Patient summary components</div>
-                <div>✓ SMART on FHIR authentication</div>
-                <div>✓ Docker compose for local development</div>
-                <div>✓ Vercel deployment configuration</div>
-                <div className="mt-2 text-white">
-                  📦 Download ready: patient-summary-app.zip
-                </div>
+            <div className="bg-white p-6 rounded-lg shadow-sm">
+              <div className="w-12 h-12 bg-primary-green/10 rounded-lg flex items-center justify-center mb-4">
+                <svg className="w-6 h-6 text-primary-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
               </div>
+              <h3 className="text-xl font-semibold mb-3 text-primary-navy">Production Ready</h3>
+              <p className="text-neutral-gray">
+                Used by healthcare organizations in production environments serving real patients
+              </p>
+            </div>
+
+            <div className="bg-white p-6 rounded-lg shadow-sm">
+              <div className="w-12 h-12 bg-accent-purple/10 rounded-lg flex items-center justify-center mb-4">
+                <svg className="w-6 h-6 text-accent-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold mb-3 text-primary-navy">Continuously Updated</h3>
+              <p className="text-neutral-gray">
+                Regular updates to keep pace with evolving FHIR standards and implementation guide releases
+              </p>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* Pricing Overview */}
-      <section className="py-16">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-8 text-primary-navy">
-            Transparent Pricing
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8 mb-12">
-            <div className="card text-center">
-              <h3 className="text-xl font-bold mb-4 text-primary-navy">Starter</h3>
-              <div className="text-3xl font-bold text-primary-blue mb-4">$199</div>
-              <div className="text-neutral-gray mb-6">per month</div>
-              <ul className="text-left text-neutral-gray space-y-2 mb-6">
-                <li>✓ Data Quality Assessor</li>
-                <li>✓ Basic mapping tools</li>
-                <li>✓ Email support</li>
-                <li>✓ Up to 10k records/month</li>
-              </ul>
-              <Link href="/contact" className="btn-primary w-full text-center">
-                Get Started
-              </Link>
-            </div>
-
-            <div className="card text-center ring-2 ring-primary-blue">
-              <div className="bg-primary-blue text-white px-3 py-1 rounded-full text-sm mb-4">
-                Most Popular
-              </div>
-              <h3 className="text-xl font-bold mb-4 text-primary-navy">Professional</h3>
-              <div className="text-3xl font-bold text-primary-blue mb-4">$499</div>
-              <div className="text-neutral-gray mb-6">per month</div>
-              <ul className="text-left text-neutral-gray space-y-2 mb-6">
-                <li>✓ All Starter features</li>
-                <li>✓ FHIR Analytics</li>
-                <li>✓ Advanced mapping</li>
-                <li>✓ Priority support</li>
-                <li>✓ Up to 100k records/month</li>
-              </ul>
-              <Link href="/contact" className="btn-primary w-full text-center">
-                Get Started
-              </Link>
-            </div>
-
-            <div className="card text-center">
-              <h3 className="text-xl font-bold mb-4 text-primary-navy">Enterprise</h3>
-              <div className="text-3xl font-bold text-primary-blue mb-4">Custom</div>
-              <div className="text-neutral-gray mb-6">tailored pricing</div>
-              <ul className="text-left text-neutral-gray space-y-2 mb-6">
-                <li>✓ All Professional features</li>
-                <li>✓ Custom integrations</li>
-                <li>✓ Dedicated support</li>
-                <li>✓ Unlimited records</li>
-                <li>✓ SLA guarantees</li>
-              </ul>
-              <Link href="/contact" className="btn-primary w-full text-center">
-                Contact Sales
-              </Link>
-            </div>
-          </div>
-
-          <p className="text-neutral-gray">
-            All plans include a 14-day free trial. No credit card required.
-          </p>
         </div>
       </section>
 
@@ -482,24 +409,23 @@ export default function Tools() {
       <section className="py-16 bg-primary-blue text-white">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-6">
-            Ready to Accelerate Your FHIR Development?
+            Start Building with FHIR IQ Tools
           </h2>
           <p className="text-xl mb-8">
-            Join hundreds of healthcare organizations using FHIR IQ tools
-            to ship faster and more reliable FHIR implementations.
+            Join healthcare developers using our tools to build compliant, production-ready FHIR applications
           </p>
           <div className="flex gap-4 justify-center">
             <Link
-              href="/tools/fhir-builder"
+              href="/contact"
               className="bg-white text-primary-blue px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition"
             >
-              Start Free Trial
+              Request Demo
             </Link>
             <Link
-              href="/contact"
+              href="/training"
               className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-primary-blue transition"
             >
-              Schedule Demo
+              View Training
             </Link>
           </div>
         </div>

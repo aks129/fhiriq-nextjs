@@ -317,169 +317,379 @@ export default function Home() {
 
       {/* Hero Section - Updated per PRD value proposition */}
       <section className="bg-gradient-to-r from-primary-blue to-accent-purple text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <h1 className="text-5xl font-bold mb-6">
-            Ship real FHIR outcomes—faster
-          </h1>
-          <p className="text-xl mb-8 max-w-3xl mx-auto">
-            From data mapping to digital measures, FHIR IQ delivers the tools and the playbooks—now with AI.
-          </p>
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h1 className="text-5xl font-bold mb-6">
+              Accelerate FHIR Development with AI-Powered Tools
+            </h1>
+            <p className="text-xl mb-8 max-w-3xl mx-auto">
+              Build, validate, and deploy FHIR-compliant healthcare applications faster with our integrated platform and expert guidance.
+            </p>
 
-          {/* Stats Trio */}
-          <div className="flex justify-center gap-8 mb-8">
-            <div className="text-center">
-              <div className="text-3xl font-bold mb-1">80%</div>
-              <div className="text-sm opacity-90">faster mapping</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold mb-1">95%</div>
-              <div className="text-sm opacity-90">conformance score</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold mb-1">10x</div>
-              <div className="text-sm opacity-90">faster demos</div>
+            <div className="flex gap-4 justify-center mb-12">
+              <Link
+                href="/tools"
+                onClick={() => trackEvent('hero_cta_clicked', { button: 'try_tools' })}
+                className="bg-white text-primary-blue px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition"
+              >
+                Try Our Tools
+              </Link>
+              <Link
+                href="/contact"
+                onClick={() => trackEvent('hero_cta_clicked', { button: 'get_demo' })}
+                className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-primary-blue transition"
+              >
+                Request Demo
+              </Link>
             </div>
           </div>
 
-          <div className="flex gap-4 justify-center">
+          {/* Trusted By Section */}
+          <div className="text-center border-t border-white/20 pt-8">
+            <p className="text-sm opacity-80 mb-6">Trusted by healthcare organizations building FHIR solutions</p>
+            <div className="flex justify-center items-center gap-12 flex-wrap">
+              <div className="text-white/60 font-semibold text-lg">Healthcare Startups</div>
+              <div className="text-white/60 font-semibold text-lg">Health Systems</div>
+              <div className="text-white/60 font-semibold text-lg">Payer Organizations</div>
+              <div className="text-white/60 font-semibold text-lg">Digital Health Companies</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Platform Overview Section */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Complete FHIR Development Platform</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Everything you need to build, validate, and scale FHIR-compliant healthcare applications
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="text-center p-6">
+              <div className="w-16 h-16 bg-accent-teal/10 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-accent-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold mb-3">Developer Tools</h3>
+              <p className="text-gray-600">
+                Code generators, validators, and testing tools built specifically for FHIR R4 development
+              </p>
+            </div>
+
+            <div className="text-center p-6">
+              <div className="w-16 h-16 bg-accent-purple/10 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-accent-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold mb-3">Compliance & Validation</h3>
+              <p className="text-gray-600">
+                Ensure conformance with US Core, CARIN BB, and other implementation guides
+              </p>
+            </div>
+
+            <div className="text-center p-6">
+              <div className="w-16 h-16 bg-accent-orange/10 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-accent-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold mb-3">Training & Support</h3>
+              <p className="text-gray-600">
+                Expert guidance, comprehensive training, and implementation support when you need it
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Use Cases Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Built for Your Healthcare Use Case</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              From payer platforms to clinical data exchange, our tools support the full spectrum of FHIR implementations
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition">
+              <div className="text-3xl mb-3">🏥</div>
+              <h3 className="text-lg font-semibold mb-2">Patient Portals</h3>
+              <p className="text-gray-600 text-sm">Enable patients to access their health records with SMART on FHIR</p>
+            </div>
+
+            <div className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition">
+              <div className="text-3xl mb-3">💳</div>
+              <h3 className="text-lg font-semibold mb-2">Payer Data Exchange</h3>
+              <p className="text-gray-600 text-sm">Build CARIN Blue Button compliant member access APIs</p>
+            </div>
+
+            <div className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition">
+              <div className="text-3xl mb-3">⚕️</div>
+              <h3 className="text-lg font-semibold mb-2">Clinical Decision Support</h3>
+              <p className="text-gray-600 text-sm">Integrate CDS Hooks and clinical logic into EHR workflows</p>
+            </div>
+
+            <div className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition">
+              <div className="text-3xl mb-3">📊</div>
+              <h3 className="text-lg font-semibold mb-2">Analytics & Reporting</h3>
+              <p className="text-gray-600 text-sm">Extract and analyze FHIR data for population health insights</p>
+            </div>
+          </div>
+
+          <div className="text-center mt-8">
             <Link
-              href="/tools/fhir-builder"
-              onClick={() => trackEvent('hero_cta_clicked', { button: 'build_fhir_app' })}
-              className="bg-white text-primary-blue px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition"
+              href="/solutions"
+              className="inline-block text-primary-blue font-semibold hover:underline"
             >
-              Build a FHIR app with AI
+              Explore All Use Cases →
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Popular Tools Section */}
+      <section className="py-16">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Popular Tools</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Production-ready tools used by healthcare developers worldwide
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <Link href="/tools" className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-xl font-semibold">FHIR Validator</h3>
+                <span className="bg-green-100 text-green-800 px-2 py-1 rounded text-sm">Live</span>
+              </div>
+              <p className="text-gray-600 mb-4">
+                Validate FHIR resources against implementation guides including US Core, CARIN BB, and Da Vinci
+              </p>
+              <div className="text-primary-blue font-semibold">Free to use →</div>
+            </Link>
+
+            <Link href="/tools" className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-xl font-semibold">Data Quality Analyzer</h3>
+                <span className="bg-green-100 text-green-800 px-2 py-1 rounded text-sm">Live</span>
+              </div>
+              <p className="text-gray-600 mb-4">
+                Assess FHIR data completeness, conformance, and identify quality issues automatically
+              </p>
+              <div className="text-primary-blue font-semibold">Free to use →</div>
+            </Link>
+
+            <Link href="/tools/fhir-builder" className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-xl font-semibold">App Scaffolding Tool</h3>
+                <span className="bg-orange-100 text-orange-800 px-2 py-1 rounded text-sm">Beta</span>
+              </div>
+              <p className="text-gray-600 mb-4">
+                Generate starter code for FHIR applications with authentication and deployment configs
+              </p>
+              <div className="text-primary-blue font-semibold">Join waitlist →</div>
+            </Link>
+          </div>
+
+          <div className="text-center mt-8">
+            <Link
+              href="/tools"
+              className="btn-primary inline-block"
+            >
+              View All Tools
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Why FHIR IQ Section */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Why Healthcare Teams Choose FHIR IQ</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Proven expertise and practical tools that accelerate your FHIR development
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-12">
+            <div className="space-y-6">
+              <div className="flex gap-4">
+                <div className="flex-shrink-0">
+                  <div className="w-12 h-12 bg-primary-blue/10 rounded-lg flex items-center justify-center">
+                    <svg className="w-6 h-6 text-primary-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                  </div>
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold mb-2">Faster Time to Market</h3>
+                  <p className="text-gray-600">
+                    Pre-built components and templates help you launch FHIR-compliant features in weeks instead of months
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex gap-4">
+                <div className="flex-shrink-0">
+                  <div className="w-12 h-12 bg-primary-blue/10 rounded-lg flex items-center justify-center">
+                    <svg className="w-6 h-6 text-primary-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    </svg>
+                  </div>
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold mb-2">Standards Compliance</h3>
+                  <p className="text-gray-600">
+                    Built-in validation ensures your implementations meet US Core, CARIN BB, and other IG requirements
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex gap-4">
+                <div className="flex-shrink-0">
+                  <div className="w-12 h-12 bg-primary-blue/10 rounded-lg flex items-center justify-center">
+                    <svg className="w-6 h-6 text-primary-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
+                  </div>
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold mb-2">Expert Support</h3>
+                  <p className="text-gray-600">
+                    Access to FHIR specialists who understand both the technical and regulatory landscape
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-8">
+              <div className="space-y-6">
+                <div className="bg-white p-6 rounded-lg shadow-sm">
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="w-12 h-12 bg-gray-300 rounded-full"></div>
+                    <div>
+                      <div className="font-semibold">Healthcare Developer</div>
+                      <div className="text-sm text-gray-600">Digital Health Startup</div>
+                    </div>
+                  </div>
+                  <p className="text-gray-700 italic">
+                    "FHIR IQ's tools helped us pass our US Core validation on the first try. The data quality analyzer caught issues we would have missed."
+                  </p>
+                </div>
+
+                <div className="bg-white p-6 rounded-lg shadow-sm">
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="w-12 h-12 bg-gray-300 rounded-full"></div>
+                    <div>
+                      <div className="font-semibold">Technical Architect</div>
+                      <div className="text-sm text-gray-600">Regional Health System</div>
+                    </div>
+                  </div>
+                  <p className="text-gray-700 italic">
+                    "The comprehensive training and hands-on workshops brought our team up to speed on FHIR implementation best practices quickly."
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Resources Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Latest Resources</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Stay current with FHIR best practices, implementation guides, and industry updates
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <Link href="/blog" className="bg-white rounded-lg shadow-sm hover:shadow-md transition p-6">
+              <div className="text-primary-blue font-semibold text-sm mb-2">BLOG</div>
+              <h3 className="text-xl font-semibold mb-2">Getting Started with FHIR R4</h3>
+              <p className="text-gray-600 mb-4">Essential concepts and practical examples for developers new to FHIR</p>
+              <div className="text-sm text-gray-500">5 min read</div>
+            </Link>
+
+            <Link href="/training" className="bg-white rounded-lg shadow-sm hover:shadow-md transition p-6">
+              <div className="text-accent-purple font-semibold text-sm mb-2">TRAINING</div>
+              <h3 className="text-xl font-semibold mb-2">FHIR Implementation Workshop</h3>
+              <p className="text-gray-600 mb-4">Hands-on training for building SMART on FHIR applications</p>
+              <div className="text-sm text-gray-500">4-hour workshop</div>
+            </Link>
+
+            <Link href="/podcast" className="bg-white rounded-lg shadow-sm hover:shadow-md transition p-6">
+              <div className="text-accent-teal font-semibold text-sm mb-2">PODCAST</div>
+              <h3 className="text-xl font-semibold mb-2">FHIR in Practice</h3>
+              <p className="text-gray-600 mb-4">Real-world implementation stories from healthcare technology leaders</p>
+              <div className="text-sm text-gray-500">Weekly episodes</div>
+            </Link>
+          </div>
+
+          <div className="text-center mt-8">
+            <Link
+              href="/blog"
+              className="inline-block text-primary-blue font-semibold hover:underline"
+            >
+              View All Resources →
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 bg-gradient-to-r from-primary-blue to-accent-purple text-white">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <h2 className="text-4xl font-bold mb-6">Ready to Accelerate Your FHIR Development?</h2>
+          <p className="text-xl mb-8 opacity-90">
+            Join healthcare organizations using FHIR IQ to build compliant, production-ready applications faster
+          </p>
+          <div className="flex gap-4 justify-center mb-8">
+            <Link
+              href="/tools"
+              className="bg-white text-primary-blue px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition text-lg"
+            >
+              Explore Tools
             </Link>
             <Link
               href="/contact"
-              onClick={() => trackEvent('hero_cta_clicked', { button: 'book_session' })}
-              className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-primary-blue transition"
+              className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-primary-blue transition text-lg"
             >
-              Book a working session
+              Talk to an Expert
             </Link>
           </div>
-        </div>
-      </section>
 
-      {/* Featured Products */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">Featured Products</h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {featuredProducts.map((product) => (
-              <div
-                key={product._id}
-                className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition cursor-pointer"
-                onClick={() => {
-                  trackEvent('product_clicked', {
-                    productId: product._id,
-                    productName: product.name,
-                    category: product.category
-                  });
-                }}
+          <div className="border-t border-white/20 pt-8 mt-8">
+            <p className="text-sm opacity-80 mb-4">Stay updated with FHIR best practices and platform updates</p>
+            <form onSubmit={handleNewsletterSignup} className="flex gap-3 max-w-md mx-auto">
+              <input
+                type="email"
+                value={newsletterEmail}
+                onChange={(e) => setNewsletterEmail(e.target.value)}
+                placeholder="your@email.com"
+                className="flex-1 px-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-white"
+                required
+              />
+              <button
+                type="submit"
+                disabled={newsletterLoading}
+                className="bg-white text-primary-blue px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition disabled:opacity-50 whitespace-nowrap"
               >
-                <div className="h-48 bg-gray-200">
-                  {product.image && (
-                    <Image
-                      src={product.image}
-                      alt={product.name}
-                      width={400}
-                      height={200}
-                      className="w-full h-full object-cover"
-                    />
-                  )}
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold mb-2">{product.name}</h3>
-                  <p className="text-gray-600 mb-4">{product.description}</p>
-                  <div className="flex justify-between items-center">
-                    <div className="flex items-center gap-2">
-                      <span className="text-2xl font-bold text-blue-600">
-                        {formatPrice(product.price, product.currency)}
-                      </span>
-                      {product.originalPrice && (
-                        <span className="text-gray-500 line-through">
-                          {formatPrice(product.originalPrice, product.currency)}
-                        </span>
-                      )}
-                    </div>
-                    {product.popular && (
-                      <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-sm">
-                        Popular
-                      </span>
-                    )}
-                  </div>
-                </div>
-              </div>
-            ))}
+                {newsletterLoading ? 'Subscribing...' : 'Subscribe'}
+              </button>
+            </form>
           </div>
-        </div>
-      </section>
-
-      {/* Recent Blog Posts */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">Latest Blog Posts</h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {blogPosts.map((post) => (
-              <article
-                key={post._id}
-                className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition cursor-pointer"
-                onClick={() => {
-                  trackEvent('blog_post_clicked', {
-                    postId: post._id,
-                    postTitle: post.title
-                  });
-                }}
-              >
-                <div className="h-48 bg-gray-200">
-                  {post.featuredImage && (
-                    <Image
-                      src={post.featuredImage}
-                      alt={post.title}
-                      width={400}
-                      height={200}
-                      className="w-full h-full object-cover"
-                    />
-                  )}
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold mb-2">{post.title}</h3>
-                  <p className="text-gray-600 mb-4">{post.excerpt}</p>
-                  <div className="flex justify-between items-center text-sm text-gray-500">
-                    <span>{post.author}</span>
-                    <span>{formatDate(post.publishedDate)}</span>
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Newsletter Signup */}
-      <section className="py-16 bg-primary-blue text-white">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-4">Stay Updated with FHIR IQ</h2>
-          <p className="text-xl mb-8">
-            Get the latest insights, tutorials, and product updates delivered to your inbox.
-          </p>
-          <form onSubmit={handleNewsletterSignup} className="flex gap-4 max-w-md mx-auto">
-            <input
-              type="email"
-              value={newsletterEmail}
-              onChange={(e) => setNewsletterEmail(e.target.value)}
-              placeholder="Enter your email"
-              className="flex-1 px-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-white"
-              required
-            />
-            <button
-              type="submit"
-              disabled={newsletterLoading}
-              className="bg-white text-primary-blue px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition disabled:opacity-50"
-            >
-              {newsletterLoading ? 'Subscribing...' : 'Subscribe'}
-            </button>
-          </form>
         </div>
       </section>
 
