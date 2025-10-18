@@ -6,66 +6,52 @@ export default function Tools() {
   const tools = [
     {
       id: 'fpas',
-      name: 'FPAS - Prior Authorization System',
-      tagline: 'Automated Prior Auth',
-      description: 'Production-ready FHIR-based prior authorization platform with intelligent automation and real-time decision support.',
+      name: 'FPAS - Prior Authorization Platform',
+      tagline: 'Meet the Jan 2027 CMS Deadline',
+      problem: 'Prior auth is complex and expensive. CMS mandates FHIR-based prior authorization by January 2027.',
+      description: 'Production-ready prior authorization platform. Avoid expensive multi-year contracts - use only what you need to meet regulatory deadlines.',
       features: [
-        'Real-time eligibility verification',
+        'CMS compliance ready for Jan 2027 deadline',
+        'Pay-as-you-go pricing vs expensive contracts',
+        'FHIR R4 prior auth API (Da Vinci PAS)',
         'Automated decision engine',
-        'FHIR R4 integration',
-        'Clinical criteria matching',
-        'Compliance tracking'
+        'Real-time eligibility verification'
       ],
       status: 'live',
       demoUrl: 'https://fpas-ui.vercel.app',
-      pricing: 'Enterprise',
+      pricing: 'Contact for Pricing',
       popular: true
     },
     {
-      id: 'fhir-quiz',
-      name: 'FHIR Quiz Training Platform',
-      tagline: 'Interactive FHIR Assessment',
-      description: 'Comprehensive FHIR knowledge testing platform with 100+ questions, real-time scoring, and detailed explanations.',
+      id: 'fhirspective',
+      name: 'FHIRspective Data Quality Analyzer',
+      tagline: 'FHIR Data Quality is Hard',
+      problem: 'FHIR data quality issues cause integration failures and compliance problems.',
+      description: 'Get instant assessment of your FHIR data quality using latest standards-based DQ frameworks. Identify issues before they cause production problems.',
       features: [
-        'Interactive quiz interface',
-        '100+ FHIR questions',
-        'Real-time scoring system',
-        'Detailed explanations',
-        'Progress tracking'
+        'Standards-based DQ scoring framework',
+        'US Core & IG compliance validation',
+        'Automated quality reports',
+        'Completeness & conformance metrics',
+        'Actionable improvement recommendations'
       ],
       status: 'live',
-      demoUrl: 'https://fhirquiz.vercel.app',
+      demoUrl: 'https://fhirspective.vercel.app',
       pricing: 'Free',
       popular: true
     },
     {
-      id: 'plumly-ai',
-      name: 'Plumly AI Summary Tool',
-      tagline: 'AI-powered summarization',
-      description: 'Advanced AI-powered document summarization tool for healthcare content with FHIR-aware processing.',
+      id: 'data-mapper',
+      name: 'FHIR Data Mapper',
+      tagline: 'FHIR Data Mapping is Hard',
+      problem: 'Mapping legacy healthcare data to FHIR is complex, time-consuming, and error-prone.',
+      description: 'Map your data to FHIR faster with intelligent mapping suggestions and validation. Reduce weeks of manual work to hours.',
       features: [
-        'AI-powered summarization',
-        'Healthcare document processing',
-        'FHIR-aware content analysis',
-        'Multi-format support',
-        'Context preservation'
-      ],
-      status: 'live',
-      demoUrl: 'https://plumly.vercel.app',
-      pricing: 'Free',
-      popular: true
-    },
-    {
-      id: 'agent-interop',
-      name: 'Agent Interoperability Platform',
-      tagline: 'Multi-agent healthcare exchange',
-      description: 'Multi-agent system for healthcare data exchange and interoperability testing with FHIR validation.',
-      features: [
-        'Multi-agent architecture',
-        'FHIR validation engine',
-        'Interoperability testing',
-        'Real-time data exchange',
-        'Protocol compliance'
+        'AI-assisted mapping suggestions',
+        'HL7 v2, CDA, CSV to FHIR conversion',
+        'Visual mapping interface',
+        'Built-in FHIR validation',
+        'Export mapping configurations'
       ],
       status: 'live',
       demoUrl: 'https://agent-inter-op.vercel.app',
@@ -73,16 +59,53 @@ export default function Tools() {
       popular: true
     },
     {
+      id: 'fhir-quiz',
+      name: 'FHIR Quiz Training Platform',
+      tagline: 'Train Your Team on FHIR',
+      problem: 'HL7 training costs $1,500+ per person. HL7 certifications are recommended for RFPs.',
+      description: 'On-demand FHIR certification prep at a fraction of traditional training costs. Get your team ready for HL7 FHIR certification exams.',
+      features: [
+        'Save vs $1,500/person HL7 training',
+        'HL7 certification exam preparation',
+        '100+ FHIR R4 practice questions',
+        'Team progress tracking & reporting',
+        'Self-paced learning modules'
+      ],
+      status: 'live',
+      demoUrl: 'https://fhirquiz.vercel.app',
+      pricing: 'Free Trial Available',
+      popular: true
+    },
+    {
+      id: 'smart-connect',
+      name: 'SMART on FHIR Testing Suite',
+      tagline: 'Test SMART on FHIR Apps',
+      problem: 'SMART on FHIR authentication is complex and testing is time-consuming.',
+      description: 'Validate your SMART on FHIR applications with comprehensive OAuth 2.0 and scope testing tools.',
+      features: [
+        'OAuth 2.0 flow validation',
+        'SMART scopes testing',
+        'Token validation & debugging',
+        'App registration testing',
+        'Compliance reports'
+      ],
+      status: 'live',
+      demoUrl: 'https://smart-health-connect.vercel.app',
+      pricing: 'Free',
+      popular: false
+    },
+    {
       id: 'fhir-viewbuilder',
-      name: 'FHIR View Definition Builder',
-      tagline: 'Visual FHIR builder',
-      description: 'Visual builder for creating FHIR ViewDefinition resources with drag-and-drop interface and live preview.',
+      name: 'FHIR ViewDefinition Builder',
+      tagline: 'Build FHIR Views Visually',
+      problem: 'Creating FHIR ViewDefinitions manually is tedious and error-prone.',
+      description: 'Visual drag-and-drop builder for FHIR ViewDefinition resources with live preview and validation.',
       features: [
         'Drag-and-drop interface',
         'Live preview functionality',
-        'FHIR ViewDefinition support',
-        'Visual resource builder',
-        'Export capabilities'
+        'FHIR R4 ViewDefinition support',
+        'Export to JSON',
+        'Built-in validation'
       ],
       status: 'live',
       demoUrl: 'https://fhir-viewdefinition-builder.vercel.app',
@@ -92,14 +115,15 @@ export default function Tools() {
     {
       id: 'fhir-query-converter',
       name: 'FHIR Query Converter',
-      tagline: 'Query format conversion',
-      description: 'Powerful conversion tool for transforming between different FHIR query formats and search syntaxes.',
+      tagline: 'Convert FHIR Query Formats',
+      problem: 'Different FHIR servers use different query syntaxes.',
+      description: 'Convert between FHIR query formats and search syntaxes for different FHIR server implementations.',
       features: [
         'Multi-format conversion',
-        'FHIR search syntax support',
+        'FHIR search parameter support',
         'Query validation',
         'Syntax highlighting',
-        'Format preservation'
+        'Copy-paste ready output'
       ],
       status: 'live',
       demoUrl: 'https://fhir-query-converter.vercel.app',
@@ -107,88 +131,21 @@ export default function Tools() {
       popular: false
     },
     {
-      id: 'fhirspective',
-      name: 'FHIRspective Data Quality Assessment',
-      tagline: 'Comprehensive data quality analysis',
-      description: 'Comprehensive FHIR data quality analysis tool with automated reports and improvement recommendations.',
-      features: [
-        'Data quality scoring',
-        'Automated reporting',
-        'Improvement recommendations',
-        'Quality metrics dashboard',
-        'Compliance checking'
-      ],
-      status: 'live',
-      demoUrl: 'https://fhirspective.vercel.app',
-      pricing: 'Free',
-      popular: true
-    },
-    {
       id: 'smart-scheduling',
-      name: 'Smart Scheduling System',
-      tagline: 'AI-powered appointment scheduling',
-      description: 'Intelligent healthcare appointment scheduling with FHIR integration and AI-powered optimization.',
+      name: 'FHIR Appointment Scheduler',
+      tagline: 'FHIR-Based Scheduling',
+      problem: 'Appointment scheduling systems lack FHIR integration.',
+      description: 'Healthcare appointment scheduling with native FHIR Appointment and Schedule resource support.',
       features: [
-        'AI-powered optimization',
-        'FHIR integration',
-        'Appointment management',
+        'FHIR Appointment resources',
+        'Schedule resource management',
+        'Availability checking',
         'Resource scheduling',
-        'Conflict resolution'
+        'Conflict detection'
       ],
       status: 'live',
       demoUrl: 'https://smartscheduling.vercel.app',
       pricing: 'Free',
-      popular: false
-    },
-    {
-      id: 'liara-health-ai',
-      name: 'Liara Health AI Connect',
-      tagline: 'Advanced health AI platform',
-      description: 'Advanced health AI platform connecting patients, providers, and systems with intelligent FHIR workflows.',
-      features: [
-        'Patient-provider connectivity',
-        'Intelligent FHIR workflows',
-        'AI-driven insights',
-        'System integration',
-        'Health data analytics'
-      ],
-      status: 'live',
-      demoUrl: 'https://smart-health-connect.vercel.app',
-      pricing: 'Free',
-      popular: false
-    },
-    {
-      id: 'quiz',
-      name: 'FHIR Quiz Engine',
-      tagline: 'Test your knowledge',
-      description: 'Interactive FHIR quiz platform for training and certification preparation.',
-      features: [
-        'Comprehensive question bank',
-        'Adaptive learning paths',
-        'Progress tracking',
-        'Certification prep',
-        'Team dashboards'
-      ],
-      status: 'live',
-      demoUrl: 'https://fhirquiz.vercel.app',
-      pricing: 'Starting at $99/month',
-      popular: false
-    },
-    {
-      id: 'smart-connect',
-      name: 'SMART Health Connect',
-      tagline: 'SMART on FHIR testing',
-      description: 'Test and validate SMART on FHIR applications with comprehensive auth flows.',
-      features: [
-        'OAuth 2.0 validation',
-        'SMART scopes testing',
-        'Token validation',
-        'App registration testing',
-        'Compliance reports'
-      ],
-      status: 'live',
-      demoUrl: 'https://smart-health-connect.vercel.app',
-      pricing: 'Starting at $199/month',
       popular: false
     }
   ];
@@ -309,8 +266,15 @@ export default function Tools() {
                   </div>
                 </div>
 
+                {tool.problem && (
+                  <div className="bg-red-50 border-l-4 border-red-500 p-4 mb-4">
+                    <p className="text-sm font-semibold text-red-900">❗ Problem:</p>
+                    <p className="text-sm text-red-800">{tool.problem}</p>
+                  </div>
+                )}
+
                 <p className="text-neutral-gray mb-6">
-                  {tool.description}
+                  <strong>Solution:</strong> {tool.description}
                 </p>
 
                 <div className="mb-6">
