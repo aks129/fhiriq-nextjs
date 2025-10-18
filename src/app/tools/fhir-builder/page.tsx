@@ -20,21 +20,21 @@ export default function FHIRAppBuilder() {
   };
 
   const useCases = [
-    { id: 'patient-portal', name: 'Patient Portal', icon: '👤', desc: 'Patient-facing health records access', count: '2.3K' },
-    { id: 'provider-dashboard', name: 'Provider Dashboard', icon: '⚕️', desc: 'Clinical workflow management', count: '1.8K' },
-    { id: 'care-coordination', name: 'Care Coordination', icon: '🤝', desc: 'Multi-provider care management', count: '950' },
-    { id: 'telehealth', name: 'Telehealth Platform', icon: '💻', desc: 'Virtual care delivery', count: '1.5K' },
-    { id: 'analytics', name: 'Health Analytics', icon: '📊', desc: 'Population health insights', count: '720' },
-    { id: 'payer-platform', name: 'Payer Platform', icon: '💳', desc: 'Insurance & claims management', count: '580' },
+    { id: 'patient-portal', name: 'Patient Portal', icon: '👤', desc: 'Basic patient-facing health records viewer', count: 'Starter Template' },
+    { id: 'provider-dashboard', name: 'Provider Dashboard', icon: '⚕️', desc: 'Simple clinical data viewer', count: 'Starter Template' },
+    { id: 'care-coordination', name: 'Care Coordination', icon: '🤝', desc: 'Basic care team data sharing', count: 'Coming Soon' },
+    { id: 'telehealth', name: 'Telehealth Platform', icon: '💻', desc: 'Virtual visit data integration', count: 'Coming Soon' },
+    { id: 'analytics', name: 'Health Analytics', icon: '📊', desc: 'Basic data visualization dashboard', count: 'Coming Soon' },
+    { id: 'payer-platform', name: 'Payer Platform', icon: '💳', desc: 'Claims data viewer', count: 'Coming Soon' },
   ];
 
   const implementationGuides = [
-    { id: 'us-core', name: 'US Core', desc: 'Base FHIR profiles for US realm' },
-    { id: 'carin-bb', name: 'CARIN Blue Button', desc: 'Payer data exchange' },
-    { id: 'davinci-pdex', name: 'Da Vinci PDex', desc: 'Payer data exchange' },
-    { id: 'davinci-hrex', name: 'Da Vinci HRex', desc: 'Health record exchange' },
-    { id: 'smart-app', name: 'SMART App Launch', desc: 'App authorization framework' },
-    { id: 'bulk-data', name: 'Bulk Data', desc: 'Large-scale data export' },
+    { id: 'us-core', name: 'US Core', desc: 'Base FHIR R4 profiles (Included)' },
+    { id: 'smart-app', name: 'SMART App Launch', desc: 'OAuth 2.0 authentication (Included)' },
+    { id: 'carin-bb', name: 'CARIN Blue Button', desc: 'Payer data exchange (Roadmap)' },
+    { id: 'davinci-pdex', name: 'Da Vinci PDex', desc: 'Payer data exchange (Roadmap)' },
+    { id: 'davinci-hrex', name: 'Da Vinci HRex', desc: 'Health record exchange (Roadmap)' },
+    { id: 'bulk-data', name: 'Bulk Data', desc: 'Large-scale data export (Roadmap)' },
   ];
 
   const toggleIG = (igId: string) => {
@@ -66,18 +66,18 @@ export default function FHIRAppBuilder() {
         {/* Coming Soon Badge */}
         <div className="flex justify-center mb-8">
           <span className="inline-flex items-center px-4 py-2 rounded-full text-sm font-semibold bg-accent-orange text-white">
-            Coming Soon - Q4 2025
+            Early Preview - Beta Q2 2026
           </span>
         </div>
 
         {/* Hero Section */}
         <div className="text-center mb-16">
           <h1 className="text-5xl font-bold text-gray-900 mb-6">
-            FHIR App Builder
+            FHIR App Scaffolding Tool
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-            Build production-ready FHIR healthcare applications powered by AI.
-            From concept to deployment in minutes, not months.
+            Generate starter templates for FHIR healthcare applications.
+            Get a development-ready codebase to build upon and customize.
           </p>
         </div>
 
@@ -86,7 +86,7 @@ export default function FHIRAppBuilder() {
           {/* Preview Badge */}
           <div className="absolute top-4 right-4 z-20">
             <div className="bg-gradient-to-r from-accent-orange to-red-500 text-white px-4 py-2 rounded-lg shadow-lg font-semibold text-sm">
-              Interactive Preview - Full Version Q4 2025
+              Interactive Demo - Beta Launch Q2 2026
             </div>
           </div>
 
@@ -105,7 +105,7 @@ export default function FHIRAppBuilder() {
                 <span className="font-medium text-white">{appName}</span>
               </div>
               <button className="px-4 py-1.5 bg-gradient-to-r from-accent-teal to-accent-purple hover:opacity-90 rounded text-sm font-medium transition-all">
-                Generate App
+                Generate Scaffold
               </button>
             </div>
           </div>
@@ -145,7 +145,7 @@ export default function FHIRAppBuilder() {
             {currentStep === 1 && (
               <div>
                 <h2 className="text-2xl font-bold text-gray-900 mb-2">Choose Your Use Case</h2>
-                <p className="text-gray-600 mb-8">Select from thousands of pre-built healthcare templates</p>
+                <p className="text-gray-600 mb-8">Select from our curated starter templates (more coming soon)</p>
 
                 <div className="grid md:grid-cols-3 gap-6">
                   {useCases.map((useCase) => (
@@ -162,7 +162,7 @@ export default function FHIRAppBuilder() {
                       <h3 className="text-lg font-semibold text-gray-900 mb-2">{useCase.name}</h3>
                       <p className="text-sm text-gray-600 mb-4">{useCase.desc}</p>
                       <div className="flex items-center justify-between">
-                        <span className="text-xs text-gray-500">{useCase.count} templates</span>
+                        <span className="text-xs text-gray-500">{useCase.count}</span>
                         {selectedUseCase === useCase.id && (
                           <svg className="w-5 h-5 text-accent-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -251,10 +251,10 @@ export default function FHIRAppBuilder() {
                     </div>
                   </div>
 
-                  {/* Tenancy */}
+                  {/* Deployment Type */}
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-3">
-                      Tenancy Model
+                      Deployment Target
                     </label>
                     <div className="grid md:grid-cols-2 gap-4">
                       <button
@@ -266,14 +266,14 @@ export default function FHIRAppBuilder() {
                         }`}
                       >
                         <div className="flex items-center justify-between mb-2">
-                          <h4 className="font-semibold text-gray-900">Multi-Tenant</h4>
+                          <h4 className="font-semibold text-gray-900">Vercel / Netlify</h4>
                           {selectedTenant === 'multi-tenant' && (
                             <svg className="w-5 h-5 text-accent-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                             </svg>
                           )}
                         </div>
-                        <p className="text-sm text-gray-600">Shared infrastructure, isolated data</p>
+                        <p className="text-sm text-gray-600">Optimized for serverless platforms</p>
                       </button>
 
                       <button
@@ -285,14 +285,14 @@ export default function FHIRAppBuilder() {
                         }`}
                       >
                         <div className="flex items-center justify-between mb-2">
-                          <h4 className="font-semibold text-gray-900">Single Tenant</h4>
+                          <h4 className="font-semibold text-gray-900">Docker / VPS</h4>
                           {selectedTenant === 'single-tenant' && (
                             <svg className="w-5 h-5 text-accent-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                             </svg>
                           )}
                         </div>
-                        <p className="text-sm text-gray-600">Dedicated infrastructure per client</p>
+                        <p className="text-sm text-gray-600">Containerized deployment setup</p>
                       </button>
                     </div>
                   </div>
@@ -301,8 +301,8 @@ export default function FHIRAppBuilder() {
                   <div>
                     <label className="flex items-center justify-between p-4 bg-gradient-to-r from-accent-teal/10 to-accent-purple/10 rounded-lg border border-gray-200">
                       <div>
-                        <h4 className="font-semibold text-gray-900 mb-1">AI Agent Integration</h4>
-                        <p className="text-sm text-gray-600">Connect to LLM-powered AI agents for intelligent workflows</p>
+                        <h4 className="font-semibold text-gray-900 mb-1">Include Example AI Components</h4>
+                        <p className="text-sm text-gray-600">Add sample code for integrating AI/LLM features</p>
                       </div>
                       <button
                         onClick={() => setAiEnabled(!aiEnabled)}
@@ -339,7 +339,7 @@ export default function FHIRAppBuilder() {
             {currentStep === 3 && (
               <div>
                 <h2 className="text-2xl font-bold text-gray-900 mb-2">Select Implementation Guides</h2>
-                <p className="text-gray-600 mb-8">Choose FHIR standards and profiles for your app</p>
+                <p className="text-gray-600 mb-8">US Core and SMART Launch included by default. Additional IGs coming soon.</p>
 
                 <div className="grid md:grid-cols-2 gap-4 max-w-4xl">
                   {implementationGuides.map((ig) => (
@@ -405,8 +405,8 @@ export default function FHIRAppBuilder() {
             {/* Step 4: Deployment */}
             {currentStep === 4 && (
               <div>
-                <h2 className="text-2xl font-bold text-gray-900 mb-2">Deploy Your App</h2>
-                <p className="text-gray-600 mb-8">Choose deployment options and generate your application</p>
+                <h2 className="text-2xl font-bold text-gray-900 mb-2">Generate Your Scaffold</h2>
+                <p className="text-gray-600 mb-8">Review your configuration and download starter code</p>
 
                 <div className="max-w-4xl space-y-6">
                   {/* Deployment Summary */}
@@ -426,12 +426,12 @@ export default function FHIRAppBuilder() {
                         <span className="ml-2 font-medium text-gray-900">{selectedAuth === 'smart-on-fhir' ? 'SMART on FHIR' : 'Custom OAuth 2.0'}</span>
                       </div>
                       <div>
-                        <span className="text-gray-600">Tenancy:</span>
-                        <span className="ml-2 font-medium text-gray-900">{selectedTenant === 'multi-tenant' ? 'Multi-Tenant' : 'Single Tenant'}</span>
+                        <span className="text-gray-600">Deployment:</span>
+                        <span className="ml-2 font-medium text-gray-900">{selectedTenant === 'multi-tenant' ? 'Vercel/Netlify' : 'Docker/VPS'}</span>
                       </div>
                       <div>
-                        <span className="text-gray-600">AI Integration:</span>
-                        <span className="ml-2 font-medium text-gray-900">{aiEnabled ? 'Enabled' : 'Disabled'}</span>
+                        <span className="text-gray-600">AI Examples:</span>
+                        <span className="ml-2 font-medium text-gray-900">{aiEnabled ? 'Included' : 'Not Included'}</span>
                       </div>
                       <div>
                         <span className="text-gray-600">Implementation Guides:</span>
@@ -441,15 +441,15 @@ export default function FHIRAppBuilder() {
                   </div>
 
                   {/* Deployment Options */}
-                  <div className="grid md:grid-cols-3 gap-4">
+                  <div className="grid md:grid-cols-2 gap-4">
                     <div className="p-6 bg-white border-2 border-gray-200 rounded-lg hover:border-accent-teal transition-all cursor-pointer">
                       <div className="w-12 h-12 bg-gray-900 rounded-lg flex items-center justify-center mb-4">
                         <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
                           <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                         </svg>
                       </div>
-                      <h4 className="font-semibold text-gray-900 mb-2">Deploy to GitHub</h4>
-                      <p className="text-sm text-gray-600">Push code to your repository</p>
+                      <h4 className="font-semibold text-gray-900 mb-2">Download ZIP</h4>
+                      <p className="text-sm text-gray-600">Download code and push to your repo</p>
                     </div>
 
                     <div className="p-6 bg-white border-2 border-gray-200 rounded-lg hover:border-accent-teal transition-all cursor-pointer">
@@ -459,26 +459,16 @@ export default function FHIRAppBuilder() {
                         </svg>
                       </div>
                       <h4 className="font-semibold text-gray-900 mb-2">Deploy to Vercel</h4>
-                      <p className="text-sm text-gray-600">Instant production hosting</p>
-                    </div>
-
-                    <div className="p-6 bg-white border-2 border-gray-200 rounded-lg hover:border-accent-teal transition-all cursor-pointer">
-                      <div className="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center mb-4">
-                        <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M14.94 5.19A4.38 4.38 0 0 0 16 2.5 4.44 4.44 0 0 0 16 0a4.48 4.48 0 0 0-3.17 1.22a4.35 4.35 0 0 0-1.15 3.19a4.24 4.24 0 0 0 3.26 1.97M12 24c2.97 0 6.16-4.45 6.16-8.18c0-2.55-1.41-4.31-3.81-4.31c-2.43 0-3.87 1.76-3.87 4.31C10.48 19.55 9.03 24 12 24z"/>
-                        </svg>
-                      </div>
-                      <h4 className="font-semibold text-gray-900 mb-2">Submit to App Store</h4>
-                      <p className="text-sm text-gray-600">iOS app submission ready</p>
+                      <p className="text-sm text-gray-600">One-click Vercel deployment</p>
                     </div>
                   </div>
 
                   {/* Generate Button */}
                   <div className="bg-gradient-to-r from-accent-teal to-accent-purple p-8 rounded-lg text-center">
-                    <h3 className="text-2xl font-bold text-white mb-3">Ready to Build?</h3>
-                    <p className="text-white/90 mb-6">Generate your complete FHIR application with one click</p>
+                    <h3 className="text-2xl font-bold text-white mb-3">Ready to Start Coding?</h3>
+                    <p className="text-white/90 mb-6">Generate your FHIR starter template and begin customization</p>
                     <button className="px-8 py-4 bg-white text-accent-teal font-bold rounded-lg hover:bg-gray-50 transition-colors text-lg shadow-lg">
-                      🚀 Generate Application
+                      Download Starter Code
                     </button>
                   </div>
                 </div>
@@ -504,9 +494,9 @@ export default function FHIRAppBuilder() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
               </svg>
             </div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">Thousands of Use Cases</h3>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Curated Starter Templates</h3>
             <p className="text-gray-600">
-              Pre-built templates for patient portals, provider dashboards, telehealth, analytics, and more
+              Hand-crafted templates for patient portals and provider dashboards with more use cases in development
             </p>
           </div>
 
@@ -516,9 +506,9 @@ export default function FHIRAppBuilder() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
               </svg>
             </div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">AI-Native Integration</h3>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">AI-Ready Components</h3>
             <p className="text-gray-600">
-              Connect to LLM-powered AI agents for intelligent clinical workflows and automation
+              Optional example code for integrating AI/LLM features into your FHIR applications
             </p>
           </div>
 
@@ -530,7 +520,7 @@ export default function FHIRAppBuilder() {
             </div>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">Standards Compliant</h3>
             <p className="text-gray-600">
-              Built-in support for US Core, CARIN BB, Da Vinci, and other major implementation guides
+              Includes US Core and SMART on FHIR authentication. Additional IGs planned for future releases
             </p>
           </div>
         </div>
@@ -541,7 +531,7 @@ export default function FHIRAppBuilder() {
             Get Early Access
           </h2>
           <p className="text-white/90 mb-6 max-w-2xl mx-auto">
-            Be among the first to build FHIR apps with AI. Join our beta program for Q4 2025 launch.
+            Be among the first to try our FHIR scaffolding tool. Join our beta waitlist for Q2 2026 launch.
           </p>
 
           {!submitted ? (
@@ -574,19 +564,19 @@ export default function FHIRAppBuilder() {
           <div className="max-w-3xl mx-auto">
             <div className="grid md:grid-cols-3 gap-6">
               <div className="bg-white p-6 rounded-lg border-2 border-accent-teal">
-                <div className="text-accent-teal font-bold mb-2">Q1 2025</div>
-                <div className="font-semibold text-gray-900 mb-2">Alpha Release</div>
-                <div className="text-sm text-gray-600">Core builder with 100+ templates</div>
+                <div className="text-accent-teal font-bold mb-2">Q4 2025</div>
+                <div className="font-semibold text-gray-900 mb-2">Private Alpha</div>
+                <div className="text-sm text-gray-600">Initial scaffold generator with 2 starter templates</div>
               </div>
               <div className="bg-white p-6 rounded-lg border border-gray-200">
-                <div className="text-gray-500 font-bold mb-2">Q2 2025</div>
-                <div className="font-semibold text-gray-900 mb-2">Beta Release</div>
-                <div className="text-sm text-gray-600">AI agent integration & deployment automation</div>
+                <div className="text-gray-500 font-bold mb-2">Q2 2026</div>
+                <div className="font-semibold text-gray-900 mb-2">Public Beta</div>
+                <div className="text-sm text-gray-600">5-10 templates, improved customization options</div>
               </div>
               <div className="bg-white p-6 rounded-lg border border-gray-200">
-                <div className="text-gray-500 font-bold mb-2">Q4 2025</div>
+                <div className="text-gray-500 font-bold mb-2">Q4 2026</div>
                 <div className="font-semibold text-gray-900 mb-2">v1.0 Release</div>
-                <div className="text-sm text-gray-600">1000s of use cases, full IG support, App Store ready</div>
+                <div className="text-sm text-gray-600">15+ use cases, expanded IG support, CI/CD integration</div>
               </div>
             </div>
           </div>
