@@ -5,7 +5,21 @@
       "Bash(nslookup:*)",
       "Bash(curl:*)",
       "Bash(npm run build:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(gh repo view:*)",
+      "Bash(gh auth:*)",
+      "Bash(gh repo create:*)",
+      "Bash(git remote set-url:*)",
+      "Bash(find src/app -name \"*.tsx\" -exec sed -i 's|<Link href=\"\"/contact\"\" className=\"\"btn-primary text-sm\"\">[\\s\\n]*Book Consultation|<a href=\"\"https://calendar.app.google/TMvRGiiYfbBKNd889\"\" target=\"\"_blank\"\" rel=\"\"noopener noreferrer\"\" className=\"\"btn-primary text-sm\"\">\\n                Book Meeting|g' {} ;)",
+      "Bash(for file in src/app/builder/page.tsx src/app/partners/page.tsx src/app/podcast/page.tsx src/app/portfolio/page.tsx src/app/solutions/page.tsx src/app/training/page.tsx)",
+      "Bash(do)",
+      "Bash(if [ -f \"$file\" ])",
+      "Bash(then)",
+      "Bash(fi)",
+      "Bash(done)",
+      "Bash(git restore --staged .claude/settings.local.json)"
     ],
     "deny": [],
     "ask": []

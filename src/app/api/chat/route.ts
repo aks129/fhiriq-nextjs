@@ -11,10 +11,10 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const openaiApiKey = process.env.OPENAI_API_KEY;
+    const claudeApiKey = process.env.ANTHROPIC_API_KEY;
 
-    if (!openaiApiKey) {
-      // Fallback to simple responses if OpenAI not configured
+    if (!claudeApiKey) {
+      // Fallback to simple responses if Claude not configured
       const response = generateFallbackResponse(message);
       return NextResponse.json({
         message: response,
@@ -23,8 +23,8 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    // Use OpenAI for enhanced responses
-    const aiResponse = await generateAIResponse(message, systemPrompt, openaiApiKey);
+    // Use Claude for enhanced responses
+    const aiResponse = await generateAIResponse(message, systemPrompt, claudeApiKey);
 
     return NextResponse.json({
       message: aiResponse,
@@ -49,37 +49,36 @@ export async function POST(request: NextRequest) {
 // Helper functions
 async function generateAIResponse(message: string, systemPrompt: string, apiKey: string): Promise<string> {
   try {
-    const response = await fetch('https://api.openai.com/v1/chat/completions', {
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${apiKey}`,
+        'x-api-key': apiKey,
+        'anthropic-version': '2023-06-01',
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        model: 'gpt-4o-mini', // Using more cost-effective model
+        model: 'claude-3-5-sonnet-20241022',
+        max_tokens: 1024,
+        system: systemPrompt || DEFAULT_SYSTEM_PROMPT,
         messages: [
-          {
-            role: 'system',
-            content: systemPrompt || DEFAULT_SYSTEM_PROMPT
-          },
           {
             role: 'user',
             content: message
           }
-        ],
-        max_tokens: 500,
-        temperature: 0.7
+        ]
       }),
     });
 
     if (!response.ok) {
-      throw new Error(`OpenAI API error: ${response.status}`);
+      const errorText = await response.text();
+      console.error('Claude API error:', response.status, errorText);
+      throw new Error(`Claude API error: ${response.status}`);
     }
 
     const data = await response.json();
-    return data.choices[0]?.message?.content || generateFallbackResponse(message);
+    return data.content[0]?.text || generateFallbackResponse(message);
   } catch (error) {
-    console.error('OpenAI API error:', error);
+    console.error('Claude API error:', error);
     return generateFallbackResponse(message);
   }
 }
@@ -223,23 +222,54 @@ Would you like to schedule a consultation to discuss your specific needs? We off
 What specific FHIR topic would you like to explore? Try asking about "FHIR basics," "implementation planning," or "AI Builder demo."`;
 }
 
-const DEFAULT_SYSTEM_PROMPT = `You are the FHIR IQ Assistant, an expert AI chatbot specializing in FHIR (Fast Healthcare Interoperability Resources) standards and implementation. You represent FHIR IQ, a leading consultancy that combines deep FHIR expertise with AI-driven development tools.
+const DEFAULT_SYSTEM_PROMPT = `You are a FHIR IQ representative - answer questions about FHIR IQ and our products for customers.
 
-Key Guidelines:
-1. FHIR Expertise: Provide accurate, up-to-date information about FHIR R4/R5, implementation guides, and best practices
-2. FHIR IQ Services: When relevant, mention FHIR IQ's consulting, training, and AI tools
-3. Code Examples: Provide practical FHIR JSON/XML examples when helpful
-4. Lead Qualification: For complex questions, suggest booking a consultation
-5. Resource Recommendations: Direct users to relevant blog posts, documentation, or tools
-6. Professional Tone: Maintain a helpful, knowledgeable, and professional demeanor
-7. Limitations: Acknowledge when questions are outside your scope or require human expertise
+About FHIR IQ:
+FHIR IQ is a leading healthcare technology company specializing in FHIR (Fast Healthcare Interoperability Resources) implementation, consulting, and AI-powered development tools.
 
-FHIR IQ Services:
-- Consulting: FHIR implementation strategy, data migration, API development
-- Training: FHIR fundamentals, advanced development, AI-assisted workflows
-- AI Tools: FHIR Builder AI, Data Quality Scanner, API Testing Suite
+Our Products & Services:
 
-Never provide medical advice or diagnose conditions. Focus on technical implementation and standards guidance.`;
+1. **FPAS - Prior Authorization Platform**
+   - Meet the Jan 2027 CMS mandate
+   - Avoid expensive multi-year contracts
+   - Pay-as-you-go FHIR-based prior authorization
+   - Contact: gene@fhiriq.com
+
+2. **FHIRspective Data Quality Analyzer** (Free)
+   - Standards-based FHIR data quality scoring
+   - US Core & IG compliance validation
+   - Instant assessment of data quality issues
+   - https://fhirspective.vercel.app
+
+3. **FHIR Data Mapper** (Free)
+   - AI-assisted data mapping to FHIR
+   - HL7 v2, CDA, CSV to FHIR conversion
+   - Reduce weeks of work to hours
+   - https://agent-inter-op.vercel.app
+
+4. **FHIR Quiz Training Platform** (Free Trial)
+   - Alternative to expensive $1,500/person HL7 training
+   - HL7 certification exam preparation
+   - Team training and progress tracking
+   - https://fhirquiz.vercel.app
+
+5. **Consulting & Training**
+   - FHIR implementation strategy
+   - Custom development
+   - Team training programs
+   - Book meeting: https://calendar.app.google/TMvRGiiYfbBKNd889
+
+Contact Information:
+- Email: gene@fhiriq.com
+- Book a meeting: https://calendar.app.google/TMvRGiiYfbBKNd889
+- Website: https://fhiriq.com
+
+Guidelines:
+- Be helpful and knowledgeable about FHIR IQ's products
+- For complex needs, recommend booking a consultation with Gene
+- Provide accurate information about our tools and pricing
+- Never provide medical advice
+- Focus on how FHIR IQ can solve customer problems`;
 
 function generateConversationId(): string {
   return 'conv_' + Math.random().toString(36).substr(2, 9);
