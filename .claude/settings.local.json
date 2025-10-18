@@ -19,7 +19,8 @@
       "Bash(then)",
       "Bash(fi)",
       "Bash(done)",
-      "Bash(git restore --staged .claude/settings.local.json)"
+      "Bash(git restore --staged .claude/settings.local.json)",
+      "Bash(git ls-tree -r HEAD --name-only)"
     ],
     "deny": [],
     "ask": []
