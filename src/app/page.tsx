@@ -205,15 +205,23 @@ export default function Home() {
     setNewsletterLoading(true);
 
     try {
-      // TODO: Implement newsletter subscription API
-      console.log('Newsletter signup:', newsletterEmail);
+      const response = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email: newsletterEmail }),
+      });
 
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      const data = await response.json();
 
-      alert('Thank you for subscribing to our newsletter!');
-      setNewsletterEmail('');
-      trackEvent('newsletter_signup', { email: newsletterEmail });
+      if (response.ok) {
+        alert('Thank you for subscribing! Check your email for confirmation.');
+        setNewsletterEmail('');
+        trackEvent('newsletter_signup', { email: newsletterEmail });
+      } else {
+        alert(data.error || 'Failed to subscribe. Please try again.');
+      }
     } catch (error) {
       console.error('Newsletter signup error:', error);
       alert('Failed to subscribe. Please try again.');
