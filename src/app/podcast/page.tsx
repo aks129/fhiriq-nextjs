@@ -79,18 +79,18 @@ export default function Podcast() {
           setEpisodes(parsedEpisodes);
         } else {
           // Use fallback data if no episodes parsed
-          useFallbackData();
+          loadFallbackData();
         }
         setLoading(false);
       } catch (err) {
         console.error('Error fetching podcast feed:', err);
         // Use fallback data instead of showing error
-        useFallbackData();
+        loadFallbackData();
         setLoading(false);
       }
     };
 
-    const useFallbackData = () => {
+    const loadFallbackData = () => {
       // Fallback podcast episodes if RSS feed fails
       const fallbackEpisodes: PodcastEpisode[] = [
         {
