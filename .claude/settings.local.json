@@ -20,7 +20,9 @@
       "Bash(fi)",
       "Bash(done)",
       "Bash(git restore --staged .claude/settings.local.json)",
-      "Bash(git ls-tree -r HEAD --name-only)"
+      "Bash(git ls-tree -r HEAD --name-only)",
+      "Bash(cat .gitignore)",
+      "Bash(npx tsc --noEmit src/app/api/newsletter/route.ts)"
     ],
     "deny": [],
     "ask": []
