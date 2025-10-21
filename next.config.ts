@@ -1,7 +1,14 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  async rewrites() {
+    return [
+      {
+        source: '/mappingguide',
+        destination: '/mappingguide/index.html',
+      },
+    ];
+  },
 };
 
 export default nextConfig;
