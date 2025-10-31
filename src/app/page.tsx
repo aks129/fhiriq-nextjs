@@ -300,6 +300,9 @@ export default function Home() {
               <Link href="/training" className="text-neutral-gray hover:text-primary-blue font-medium">
                 Training
               </Link>
+              <Link href="/games" className="text-neutral-gray hover:text-primary-blue font-medium">
+                Games
+              </Link>
               <Link href="/blog" className="text-neutral-gray hover:text-primary-blue font-medium">
                 Blog
               </Link>
