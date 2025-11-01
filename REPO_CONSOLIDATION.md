@@ -168,4 +168,4 @@ For questions about this consolidation, review the commit history or contact the
 ---
 
 **Last Updated:** November 1, 2025
-**Consolidation Commit:** [Will be added after commit]
+**Consolidation Commit:** 6d79584
