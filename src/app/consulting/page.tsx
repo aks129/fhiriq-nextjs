@@ -118,7 +118,7 @@ export default function Consulting() {
                 <h3 className="font-semibold text-lg mb-2">Knowledge Gaps</h3>
                 <p className="text-neutral-gray">
                   Your developers are brilliant engineers, but FHIR requires specialized healthcare
-                  interoperability expertise they don't have.
+                  interoperability expertise they don&apos;t have.
                 </p>
               </div>
             </div>
@@ -178,7 +178,7 @@ export default function Consulting() {
               </div>
               <h3 className="text-xl font-bold mb-3 text-primary-navy">Hands-On Implementation</h3>
               <p className="text-neutral-gray mb-4">
-                I don't just give advice and disappear. I roll up my sleeves and work alongside your team:
+                I don&apos;t just give advice and disappear. I roll up my sleeves and work alongside your team:
               </p>
               <ul className="space-y-2 text-neutral-gray text-sm">
                 <li className="flex items-start">
@@ -440,7 +440,7 @@ export default function Consulting() {
 
           <div className="mt-12 text-center">
             <p className="text-neutral-gray mb-4">
-              Need a custom engagement model? Let's discuss what works best for your situation.
+              Need a custom engagement model? Let&apos;s discuss what works best for your situation.
             </p>
             <a
               href="https://calendar.app.google/TMvRGiiYfbBKNd889"
@@ -506,7 +506,7 @@ export default function Consulting() {
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4 text-primary-navy">Proven Results</h2>
             <p className="text-xl text-neutral-gray max-w-3xl mx-auto">
-              Real outcomes from organizations I've helped succeed with FHIR
+              Real outcomes from organizations I&apos;ve helped succeed with FHIR
             </p>
           </div>
 
@@ -538,9 +538,9 @@ export default function Consulting() {
                 </div>
               </div>
               <p className="text-neutral-gray italic">
-                "We were 6 months into our FHIR project and completely stuck. Within 3 weeks of engaging with FHIR IQ,
+                &ldquo;We were 6 months into our FHIR project and completely stuck. Within 3 weeks of engaging with FHIR IQ,
                 we had a clear path forward and avoided what would have been a complete rebuild. The ROI was immediate
-                and obvious."
+                and obvious.&rdquo;
               </p>
             </div>
 
@@ -553,8 +553,8 @@ export default function Consulting() {
                 </div>
               </div>
               <p className="text-neutral-gray italic">
-                "The strategic advisory engagement gave us confidence we were building the right thing. The architecture
-                patterns and implementation guide selection saved us months of trial and error. Worth every penny."
+                &ldquo;The strategic advisory engagement gave us confidence we were building the right thing. The architecture
+                patterns and implementation guide selection saved us months of trial and error. Worth every penny.&rdquo;
               </p>
             </div>
           </div>
@@ -571,7 +571,7 @@ export default function Consulting() {
       <section className="py-16 bg-bg-secondary">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4 text-primary-navy">How We'll Work Together</h2>
+            <h2 className="text-3xl font-bold mb-4 text-primary-navy">How We&apos;ll Work Together</h2>
             <p className="text-xl text-neutral-gray max-w-3xl mx-auto">
               A proven process that gets you from strategy to production efficiently
             </p>
@@ -588,8 +588,8 @@ export default function Consulting() {
                 <div>
                   <h3 className="text-xl font-bold mb-2 text-primary-navy">Discovery Call</h3>
                   <p className="text-neutral-gray">
-                    We'll discuss your goals, current challenges, and technical requirements. I'll assess if
-                    we're a good fit and provide initial recommendations. No charge, no obligation.
+                    We&apos;ll discuss your goals, current challenges, and technical requirements. I&apos;ll assess if
+                    we&apos;re a good fit and provide initial recommendations. No charge, no obligation.
                   </p>
                 </div>
               </div>
@@ -603,8 +603,8 @@ export default function Consulting() {
                 <div>
                   <h3 className="text-xl font-bold mb-2 text-primary-navy">Proposal & Planning</h3>
                   <p className="text-neutral-gray">
-                    You'll receive a detailed proposal with scope, timeline, deliverables, and investment.
-                    We'll align on success metrics and engagement structure.
+                    You&apos;ll receive a detailed proposal with scope, timeline, deliverables, and investment.
+                    We&apos;ll align on success metrics and engagement structure.
                   </p>
                 </div>
               </div>
@@ -618,8 +618,8 @@ export default function Consulting() {
                 <div>
                   <h3 className="text-xl font-bold mb-2 text-primary-navy">Kickoff & Deep Dive</h3>
                   <p className="text-neutral-gray">
-                    We'll meet with your team, review existing work, and establish communication channels.
-                    I'll deliver an initial assessment and prioritized action plan.
+                    We&apos;ll meet with your team, review existing work, and establish communication channels.
+                    I&apos;ll deliver an initial assessment and prioritized action plan.
                   </p>
                 </div>
               </div>
@@ -634,7 +634,7 @@ export default function Consulting() {
                   <h3 className="text-xl font-bold mb-2 text-primary-navy">Execution & Support</h3>
                   <p className="text-neutral-gray">
                     Regular touchpoints, hands-on implementation support, and continuous course correction
-                    as we work toward your goals. You'll always know where we stand.
+                    as we work toward your goals. You&apos;ll always know where we stand.
                   </p>
                 </div>
               </div>
@@ -648,7 +648,7 @@ export default function Consulting() {
                 <div>
                   <h3 className="text-xl font-bold mb-2 text-primary-navy">Launch & Transition</h3>
                   <p className="text-neutral-gray">
-                    We'll ensure your team has everything they need to succeed independently: documentation,
+                    We&apos;ll ensure your team has everything they need to succeed independently: documentation,
                     training, and a clear playbook for maintaining and evolving your FHIR implementation.
                   </p>
                 </div>
@@ -677,8 +677,8 @@ export default function Consulting() {
               <div>
                 <h3 className="font-bold text-lg mb-2 text-primary-navy">Battle-Tested Expertise</h3>
                 <p className="text-neutral-gray">
-                  10+ years implementing FHIR across payers, providers, and digital health. I've seen and solved
-                  the problems you're facing.
+                  10+ years implementing FHIR across payers, providers, and digital health. I&apos;ve seen and solved
+                  the problems you&apos;re facing.
                 </p>
               </div>
             </div>
@@ -694,7 +694,7 @@ export default function Consulting() {
               <div>
                 <h3 className="font-bold text-lg mb-2 text-primary-navy">Results-Focused</h3>
                 <p className="text-neutral-gray">
-                  I'm not interested in long consulting engagements that go nowhere. My goal is to make you
+                  I&apos;m not interested in long consulting engagements that go nowhere. My goal is to make you
                   successful and self-sufficient as quickly as possible.
                 </p>
               </div>
@@ -711,7 +711,7 @@ export default function Consulting() {
               <div>
                 <h3 className="font-bold text-lg mb-2 text-primary-navy">Hands-On Technical Leader</h3>
                 <p className="text-neutral-gray">
-                  I'm a developer and architect first. I can review code, design systems, and write production-ready
+                  I&apos;m a developer and architect first. I can review code, design systems, and write production-ready
                   implementations myself.
                 </p>
               </div>
@@ -728,7 +728,7 @@ export default function Consulting() {
               <div>
                 <h3 className="font-bold text-lg mb-2 text-primary-navy">Knowledge Transfer</h3>
                 <p className="text-neutral-gray">
-                  I ensure your team learns while we work together. You'll have the knowledge and confidence
+                  I ensure your team learns while we work together. You&apos;ll have the knowledge and confidence
                   to maintain and extend your solution.
                 </p>
               </div>
@@ -751,7 +751,7 @@ export default function Consulting() {
               </h3>
               <p className="text-neutral-gray">
                 Yes. While I specialize in US-based implementation guides like US Core and CARIN Blue Button,
-                I've worked with international organizations implementing FHIR R4 and can adapt to other jurisdictions.
+                I&apos;ve worked with international organizations implementing FHIR R4 and can adapt to other jurisdictions.
               </p>
             </div>
 
@@ -760,8 +760,8 @@ export default function Consulting() {
                 What if our project needs change mid-engagement?
               </h3>
               <p className="text-neutral-gray">
-                Flexibility is built in. For ongoing engagements, we'll adjust priorities and scope as needed.
-                For fixed-scope projects, we'll discuss changes and agree on any adjustments before proceeding.
+                Flexibility is built in. For ongoing engagements, we&apos;ll adjust priorities and scope as needed.
+                For fixed-scope projects, we&apos;ll discuss changes and agree on any adjustments before proceeding.
               </p>
             </div>
 
@@ -790,8 +790,8 @@ export default function Consulting() {
                 What happens after our engagement ends?
               </h3>
               <p className="text-neutral-gray">
-                You'll have complete documentation, trained team members, and a clear path forward. Many clients
-                come back for periodic reviews or new initiatives, but there's no ongoing obligation.
+                You&apos;ll have complete documentation, trained team members, and a clear path forward. Many clients
+                come back for periodic reviews or new initiatives, but there&apos;s no ongoing obligation.
               </p>
             </div>
           </div>
