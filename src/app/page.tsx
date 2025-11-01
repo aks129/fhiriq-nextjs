@@ -294,26 +294,17 @@ export default function Home() {
               <Link href="/tools" className="text-neutral-gray hover:text-primary-blue font-medium">
                 Tools
               </Link>
-              <Link href="/store" className="text-neutral-gray hover:text-primary-blue font-medium">
-                Store
-              </Link>
               <Link href="/training" className="text-neutral-gray hover:text-primary-blue font-medium">
                 Training
               </Link>
-              <Link href="/games" className="text-neutral-gray hover:text-primary-blue font-medium">
-                Games
+              <Link href="/consulting" className="text-neutral-gray hover:text-primary-blue font-medium">
+                Consulting
               </Link>
               <Link href="/blog" className="text-neutral-gray hover:text-primary-blue font-medium">
                 Blog
               </Link>
               <Link href="/podcast" className="text-neutral-gray hover:text-primary-blue font-medium">
                 Podcast
-              </Link>
-              <Link href="/partners" className="text-neutral-gray hover:text-primary-blue font-medium">
-                Partners
-              </Link>
-              <Link href="/portfolio" className="text-neutral-gray hover:text-primary-blue font-medium">
-                Portfolio
               </Link>
               <Link href="/about" className="text-neutral-gray hover:text-primary-blue font-medium">
                 About
@@ -655,6 +646,98 @@ export default function Home() {
             >
               View All Resources →
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Expert Consulting Section */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <div className="inline-block bg-primary-blue/10 text-primary-blue px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                Expert Consulting Services
+              </div>
+              <h2 className="text-4xl font-bold text-gray-900 mb-6">
+                Get Strategic FHIR Guidance from an Expert
+              </h2>
+              <p className="text-xl text-gray-600 mb-6">
+                Don&apos;t waste months on trial and error. Partner with a consultant who has successfully
+                architected and implemented FHIR solutions for payers, providers, and digital health companies.
+              </p>
+              <div className="space-y-4 mb-8">
+                <div className="flex items-start gap-3">
+                  <div className="flex-shrink-0 w-6 h-6 bg-primary-green rounded-full flex items-center justify-center mt-1">
+                    <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-gray-900 mb-1">Strategic Planning & Architecture</h3>
+                    <p className="text-gray-600">Get a clear roadmap and technical architecture before writing a single line of code</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="flex-shrink-0 w-6 h-6 bg-primary-green rounded-full flex items-center justify-center mt-1">
+                    <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-gray-900 mb-1">Hands-On Implementation Support</h3>
+                    <p className="text-gray-600">Code reviews, pair programming, and architecture guidance throughout your project</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="flex-shrink-0 w-6 h-6 bg-primary-green rounded-full flex items-center justify-center mt-1">
+                    <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-gray-900 mb-1">Team Training & Knowledge Transfer</h3>
+                    <p className="text-gray-600">Ensure your team has the expertise to maintain and evolve your solution</p>
+                  </div>
+                </div>
+              </div>
+              <div className="flex gap-4">
+                <Link
+                  href="/consulting"
+                  className="btn-primary"
+                >
+                  View Consulting Services
+                </Link>
+                <a
+                  href="https://calendar.app.google/TMvRGiiYfbBKNd889"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-secondary"
+                >
+                  Schedule Discovery Call
+                </a>
+              </div>
+            </div>
+            <div className="bg-gradient-to-br from-primary-blue to-accent-purple rounded-2xl p-8 text-white">
+              <div className="mb-6">
+                <div className="text-5xl font-bold mb-2">60%</div>
+                <div className="text-white/90">Faster time to production vs. going it alone</div>
+              </div>
+              <div className="mb-6">
+                <div className="text-5xl font-bold mb-2">$500K+</div>
+                <div className="text-white/90">Average cost savings from avoiding costly mistakes</div>
+              </div>
+              <div className="mb-8">
+                <div className="text-5xl font-bold mb-2">100%</div>
+                <div className="text-white/90">First-time validation success for implementation guides</div>
+              </div>
+              <div className="border-t border-white/20 pt-6">
+                <p className="text-white/90 italic">
+                  &ldquo;Within 3 weeks of engaging with FHIR IQ, we had a clear path forward and avoided
+                  what would have been a complete rebuild. The ROI was immediate and obvious.&rdquo;
+                </p>
+                <p className="text-sm text-white/70 mt-3">- Sarah Chen, VP Engineering</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
