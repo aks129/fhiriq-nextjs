@@ -617,18 +617,18 @@ export default function Home() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <Link href="/blog" className="bg-white rounded-lg shadow-sm hover:shadow-md transition p-6">
-              <div className="text-primary-blue font-semibold text-sm mb-2">BLOG</div>
-              <h3 className="text-xl font-semibold mb-2">Getting Started with FHIR R4</h3>
-              <p className="text-gray-600 mb-4">Essential concepts and practical examples for developers new to FHIR</p>
-              <div className="text-sm text-gray-500">5 min read</div>
+            <Link href="/mappingguide" className="bg-white rounded-lg shadow-sm hover:shadow-md transition p-6">
+              <div className="text-primary-blue font-semibold text-sm mb-2">GUIDE</div>
+              <h3 className="text-xl font-semibold mb-2">FHIR IQ Mapping Wiki</h3>
+              <p className="text-gray-600 mb-4">Comprehensive guide to FHIR data mapping patterns and best practices</p>
+              <div className="text-sm text-gray-500">Interactive guide</div>
             </Link>
 
-            <Link href="/training" className="bg-white rounded-lg shadow-sm hover:shadow-md transition p-6">
-              <div className="text-accent-purple font-semibold text-sm mb-2">TRAINING</div>
-              <h3 className="text-xl font-semibold mb-2">FHIR Implementation Workshop</h3>
-              <p className="text-gray-600 mb-4">Hands-on training for building SMART on FHIR applications</p>
-              <div className="text-sm text-gray-500">4-hour workshop</div>
+            <Link href="/cqlguide" className="bg-white rounded-lg shadow-sm hover:shadow-md transition p-6">
+              <div className="text-accent-purple font-semibold text-sm mb-2">GUIDE</div>
+              <h3 className="text-xl font-semibold mb-2">CQL Quality Measures</h3>
+              <p className="text-gray-600 mb-4">Learn to implement quality measures using CQL on FHIR with breast cancer screening example</p>
+              <div className="text-sm text-gray-500">Implementation guide</div>
             </Link>
 
             <Link href="/podcast" className="bg-white rounded-lg shadow-sm hover:shadow-md transition p-6">
