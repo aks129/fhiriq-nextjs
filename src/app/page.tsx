@@ -651,8 +651,8 @@ export default function Home() {
 
           <div className="text-center mt-8">
             <Link
-              href="/blog"
-              className="inline-block text-primary-blue font-semibold hover:underline"
+              href="/resources"
+              className="inline-block text-primary-blue font-semibold hover:underline text-lg"
             >
               View All Resources →
             </Link>
