@@ -616,7 +616,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             <Link href="/mappingguide" className="bg-white rounded-lg shadow-sm hover:shadow-md transition p-6">
               <div className="text-primary-blue font-semibold text-sm mb-2">GUIDE</div>
               <h3 className="text-xl font-semibold mb-2">FHIR IQ Mapping Wiki</h3>
@@ -629,6 +629,13 @@ export default function Home() {
               <h3 className="text-xl font-semibold mb-2">CQL Quality Measures</h3>
               <p className="text-gray-600 mb-4">Learn to implement quality measures using CQL on FHIR with breast cancer screening example</p>
               <div className="text-sm text-gray-500">Implementation guide</div>
+            </Link>
+
+            <Link href="/profilingguide" className="bg-white rounded-lg shadow-sm hover:shadow-md transition p-6">
+              <div className="text-accent-orange font-semibold text-sm mb-2">GUIDE</div>
+              <h3 className="text-xl font-semibold mb-2">FHIR Profiling Design</h3>
+              <p className="text-gray-600 mb-4">Master FHIR data modeling and profiling using the Learn, Build, Use framework</p>
+              <div className="text-sm text-gray-500">Design guide</div>
             </Link>
 
             <Link href="/podcast" className="bg-white rounded-lg shadow-sm hover:shadow-md transition p-6">
