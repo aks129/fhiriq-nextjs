@@ -321,7 +321,7 @@ export default function ResourcesPage() {
             <div>
               <h2 className="text-3xl font-bold mb-2 flex items-center">
                 <span className="text-3xl mr-3">🎙️</span>
-                FHIR in Practice Podcast
+                Out of the FHIR Podcast
               </h2>
               <p className="text-gray-600">Real-world implementation stories from healthcare technology leaders</p>
             </div>
