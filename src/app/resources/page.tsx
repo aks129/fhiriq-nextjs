@@ -165,7 +165,7 @@ export default function ResourcesPage() {
                 Get Expert Help
               </Link>
               <a
-                href="https://fhiriq.substack.com"
+                href="https://evestel.substack.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white/10 transition"
@@ -383,7 +383,7 @@ export default function ResourcesPage() {
               <p className="text-gray-600">Weekly insights on FHIR standards, implementation patterns, and industry news</p>
             </div>
             <a
-              href="https://fhiriq.substack.com"
+              href="https://evestel.substack.com"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-accent-orange text-white px-6 py-3 rounded-lg font-semibold hover:bg-accent-orange/90 transition"
@@ -401,7 +401,7 @@ export default function ResourcesPage() {
                 A comprehensive overview of FHIR R5 changes, breaking changes, and migration strategies for existing implementations.
               </p>
               <a
-                href="https://fhiriq.substack.com"
+                href="https://evestel.substack.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-accent-orange font-semibold text-sm hover:underline"
@@ -417,7 +417,7 @@ export default function ResourcesPage() {
                 Best practices for implementing FHIR $export operations at scale, with benchmarks and real-world case studies.
               </p>
               <a
-                href="https://fhiriq.substack.com"
+                href="https://evestel.substack.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-accent-orange font-semibold text-sm hover:underline"
@@ -433,7 +433,7 @@ export default function ResourcesPage() {
                 Understanding the security improvements in SMART App Launch 2.0 and how to implement them in your apps.
               </p>
               <a
-                href="https://fhiriq.substack.com"
+                href="https://evestel.substack.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-accent-orange font-semibold text-sm hover:underline"
@@ -449,7 +449,7 @@ export default function ResourcesPage() {
                 A detailed analysis of US Core 7.0 updates, new profiles, and what they mean for your implementation.
               </p>
               <a
-                href="https://fhiriq.substack.com"
+                href="https://evestel.substack.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-accent-orange font-semibold text-sm hover:underline"
