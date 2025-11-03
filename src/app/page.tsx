@@ -291,6 +291,9 @@ export default function Home() {
               <Link href="/solutions" className="text-neutral-gray hover:text-primary-blue font-medium">
                 Solutions
               </Link>
+              <Link href="/architectures" className="text-neutral-gray hover:text-primary-blue font-medium">
+                Architectures
+              </Link>
               <Link href="/tools" className="text-neutral-gray hover:text-primary-blue font-medium">
                 Tools
               </Link>
@@ -617,18 +620,11 @@ export default function Home() {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <Link href="/mappingguide" className="bg-white rounded-lg shadow-sm hover:shadow-md transition p-6">
-              <div className="text-primary-blue font-semibold text-sm mb-2">GUIDE</div>
-              <h3 className="text-xl font-semibold mb-2">FHIR IQ Mapping Wiki</h3>
-              <p className="text-gray-600 mb-4">Comprehensive guide to FHIR data mapping patterns and best practices</p>
-              <div className="text-sm text-gray-500">Interactive guide</div>
-            </Link>
-
-            <Link href="/cqlguide" className="bg-white rounded-lg shadow-sm hover:shadow-md transition p-6">
-              <div className="text-accent-purple font-semibold text-sm mb-2">GUIDE</div>
-              <h3 className="text-xl font-semibold mb-2">CQL Quality Measures</h3>
-              <p className="text-gray-600 mb-4">Learn to implement quality measures using CQL on FHIR with breast cancer screening example</p>
-              <div className="text-sm text-gray-500">Implementation guide</div>
+            <Link href="/architectures" className="bg-white rounded-lg shadow-sm hover:shadow-md transition p-6 border-2 border-primary-blue">
+              <div className="text-primary-blue font-semibold text-sm mb-2">⭐ REFERENCE</div>
+              <h3 className="text-xl font-semibold mb-2">FHIR Architectures</h3>
+              <p className="text-gray-600 mb-4">Proven architecture patterns and implementation strategies for healthcare data platforms</p>
+              <div className="text-sm text-gray-500">8 architecture patterns</div>
             </Link>
 
             <Link href="/profilingguide" className="bg-white rounded-lg shadow-sm hover:shadow-md transition p-6">
@@ -638,11 +634,18 @@ export default function Home() {
               <div className="text-sm text-gray-500">Design guide</div>
             </Link>
 
-            <Link href="/podcast" className="bg-white rounded-lg shadow-sm hover:shadow-md transition p-6">
-              <div className="text-accent-teal font-semibold text-sm mb-2">PODCAST</div>
-              <h3 className="text-xl font-semibold mb-2">FHIR in Practice</h3>
-              <p className="text-gray-600 mb-4">Real-world implementation stories from healthcare technology leaders</p>
-              <div className="text-sm text-gray-500">Weekly episodes</div>
+            <Link href="/cqlguide" className="bg-white rounded-lg shadow-sm hover:shadow-md transition p-6">
+              <div className="text-accent-purple font-semibold text-sm mb-2">GUIDE</div>
+              <h3 className="text-xl font-semibold mb-2">CQL Quality Measures</h3>
+              <p className="text-gray-600 mb-4">Learn to implement quality measures using CQL on FHIR with breast cancer screening example</p>
+              <div className="text-sm text-gray-500">Implementation guide</div>
+            </Link>
+
+            <Link href="/mappingguide" className="bg-white rounded-lg shadow-sm hover:shadow-md transition p-6">
+              <div className="text-primary-blue font-semibold text-sm mb-2">GUIDE</div>
+              <h3 className="text-xl font-semibold mb-2">FHIR IQ Mapping Wiki</h3>
+              <p className="text-gray-600 mb-4">Comprehensive guide to FHIR data mapping patterns and best practices</p>
+              <div className="text-sm text-gray-500">Interactive guide</div>
             </Link>
           </div>
 
