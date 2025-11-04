@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
+import ArchitectureDiagram from '@/components/ArchitectureDiagram';
 
 export default function ArchitecturesPage() {
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -205,15 +206,22 @@ export default function ArchitecturesPage() {
                 A FHIR Facade acts as an API translation layer that exposes legacy data through modern FHIR endpoints. The underlying data remains in its original format (HL7 v2, proprietary databases, etc.) while the facade transforms requests and responses in real-time.
               </p>
 
-              <div className="bg-gray-50 p-6 rounded-lg mb-6 font-mono text-sm">
-                <div className="text-gray-700">
-                  SMART App / EHR → FHIR API Gateway → Facade Service → Legacy System
-                  <br />
-                  ↓ FHIR Request&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓ Transform&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓ Query
-                  <br />
-                  ← FHIR Response&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;← Transform&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;← Native Format
-                </div>
-              </div>
+              <ArchitectureDiagram
+                title="FHIR Facade Data Flow"
+                nodes={[
+                  { id: 'client', label: 'SMART App / EHR', icon: '📱', color: '#3B82F6', x: 50, y: 150 },
+                  { id: 'gateway', label: 'API Gateway', icon: '🔐', color: '#8B5CF6', x: 240, y: 150 },
+                  { id: 'facade', label: 'Facade Service', sublabel: 'Transform', icon: '🔄', color: '#6366F1', x: 430, y: 150 },
+                  { id: 'legacy', label: 'Legacy System', sublabel: 'HL7v2/DB', icon: '🏛️', color: '#64748B', x: 620, y: 150 },
+                ]}
+                connections={[
+                  { from: 'client', to: 'gateway', label: 'FHIR Request', bidirectional: true },
+                  { from: 'gateway', to: 'facade', label: 'Validated', bidirectional: true },
+                  { from: 'facade', to: 'legacy', label: 'Native Query', bidirectional: true },
+                ]}
+                width={800}
+                height={400}
+              />
 
               <h4 className="text-lg font-semibold mb-3">Key Components</h4>
               <ul className="space-y-2 text-gray-700">
@@ -289,17 +297,26 @@ export default function ArchitecturesPage() {
                 A FHIR CDR stores clinical data in native FHIR format, serving as the single source of truth for an organization. Unlike a facade, data is actually stored as FHIR resources, enabling rich querying, versioning, and compliance features.
               </p>
 
-              <div className="bg-gray-50 p-6 rounded-lg mb-6 font-mono text-sm">
-                <div className="text-gray-700">
-                  Data Sources → ETL Pipeline → FHIR Server → Search/Query Layer
-                  <br />
-                  (HL7v2, CDA, CSV)&nbsp;&nbsp;&nbsp;↓ Transform&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓ Store&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓ API
-                  <br />
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FHIR Resources → PostgreSQL/MongoDB
-                  <br />
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ Elasticsearch
-                </div>
-              </div>
+              <ArchitectureDiagram
+                title="FHIR Clinical Data Repository Architecture"
+                nodes={[
+                  { id: 'sources', label: 'Data Sources', sublabel: 'HL7v2, CDA, CSV', icon: '📊', color: '#64748B', x: 50, y: 80 },
+                  { id: 'etl', label: 'ETL Pipeline', sublabel: 'Transform', icon: '⚙️', color: '#8B5CF6', x: 240, y: 80 },
+                  { id: 'fhir-server', label: 'FHIR Server', sublabel: 'HAPI/Azure', icon: '🔥', color: '#EF4444', x: 430, y: 80 },
+                  { id: 'postgres', label: 'PostgreSQL', sublabel: 'Relational', icon: '🗄️', color: '#3B82F6', x: 340, y: 240 },
+                  { id: 'elasticsearch', label: 'Elasticsearch', sublabel: 'Search Index', icon: '🔍', color: '#10B981', x: 520, y: 240 },
+                  { id: 'api', label: 'REST API', sublabel: 'FHIR R4', icon: '🌐', color: '#6366F1', x: 620, y: 80 },
+                ]}
+                connections={[
+                  { from: 'sources', to: 'etl', label: 'Raw Data' },
+                  { from: 'etl', to: 'fhir-server', label: 'FHIR Resources' },
+                  { from: 'fhir-server', to: 'postgres', label: 'Store' },
+                  { from: 'fhir-server', to: 'elasticsearch', label: 'Index' },
+                  { from: 'fhir-server', to: 'api', label: 'Expose' },
+                ]}
+                width={800}
+                height={380}
+              />
 
               <h4 className="text-lg font-semibold mb-3">Key Components</h4>
               <ul className="space-y-2 text-gray-700">
@@ -374,15 +391,23 @@ export default function ArchitecturesPage() {
                 SMART on FHIR enables healthcare applications to launch from within EHRs and securely access patient data. This architecture standardizes authentication, authorization, and data access patterns across the healthcare ecosystem.
               </p>
 
-              <div className="bg-gray-50 p-6 rounded-lg mb-6 font-mono text-sm">
-                <div className="text-gray-700">
-                  EHR Launch → SMART App → OAuth 2.0 Flow → FHIR API
-                  <br />
-                  ↓ Context&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓ Authorize&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓ Token&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓ Data
-                  <br />
-                  Patient ID&nbsp;&nbsp;&nbsp;&nbsp;Request Scopes&nbsp;&nbsp;Access Token&nbsp;&nbsp;&nbsp;FHIR Resources
-                </div>
-              </div>
+              <ArchitectureDiagram
+                title="SMART on FHIR Application Architecture"
+                nodes={[
+                  { id: 'ehr', label: 'EHR System', sublabel: 'Epic/Cerner', icon: '🏥', color: '#64748B', x: 50, y: 150 },
+                  { id: 'smart-app', label: 'SMART App', sublabel: 'Web/Mobile', icon: '📱', color: '#3B82F6', x: 240, y: 150 },
+                  { id: 'oauth', label: 'OAuth Server', sublabel: 'Authorize', icon: '🔐', color: '#8B5CF6', x: 430, y: 150 },
+                  { id: 'fhir-api', label: 'FHIR API', sublabel: 'Resources', icon: '🔥', color: '#EF4444', x: 620, y: 150 },
+                ]}
+                connections={[
+                  { from: 'ehr', to: 'smart-app', label: 'Launch Context' },
+                  { from: 'smart-app', to: 'oauth', label: 'Request Scopes' },
+                  { from: 'oauth', to: 'smart-app', label: 'Access Token', bidirectional: true },
+                  { from: 'smart-app', to: 'fhir-api', label: 'API Calls' },
+                ]}
+                width={800}
+                height={400}
+              />
 
               <h4 className="text-lg font-semibold mb-3">Key Components</h4>
               <ul className="space-y-2 text-gray-700">
@@ -468,17 +493,26 @@ export default function ArchitecturesPage() {
                 FHIR resources are hierarchical and nested, making them challenging for traditional analytics tools. An analytics platform flattens FHIR data into relational tables or data warehouse schemas optimized for querying and reporting.
               </p>
 
-              <div className="bg-gray-50 p-6 rounded-lg mb-6 font-mono text-sm">
-                <div className="text-gray-700">
-                  FHIR Server → Bulk Export → ETL Pipeline → Data Warehouse
-                  <br />
-                  ↓ $export&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓ NDJSON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓ Flatten&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓ Analytics
-                  <br />
-                  Resources&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Files&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SQL Tables&nbsp;&nbsp;&nbsp;&nbsp;Tableau/Power BI
-                  <br />
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Python/R
-                </div>
-              </div>
+              <ArchitectureDiagram
+                title="FHIR Analytics Platform Architecture"
+                nodes={[
+                  { id: 'fhir-server', label: 'FHIR Server', sublabel: 'CDR', icon: '🔥', color: '#EF4444', x: 50, y: 150 },
+                  { id: 'bulk-export', label: 'Bulk Export', sublabel: '$export', icon: '📦', color: '#8B5CF6', x: 220, y: 150 },
+                  { id: 'etl', label: 'ETL Pipeline', sublabel: 'Flatten', icon: '⚙️', color: '#6366F1', x: 390, y: 150 },
+                  { id: 'warehouse', label: 'Data Warehouse', sublabel: 'Snowflake/BigQuery', icon: '🏢', color: '#3B82F6', x: 560, y: 150 },
+                  { id: 'bi', label: 'BI Tools', sublabel: 'Tableau/Power BI', icon: '📊', color: '#10B981', x: 470, y: 280 },
+                  { id: 'ml', label: 'ML/Analytics', sublabel: 'Python/R', icon: '🤖', color: '#F59E0B', x: 650, y: 280 },
+                ]}
+                connections={[
+                  { from: 'fhir-server', to: 'bulk-export', label: 'NDJSON' },
+                  { from: 'bulk-export', to: 'etl', label: 'Resources' },
+                  { from: 'etl', to: 'warehouse', label: 'SQL Tables' },
+                  { from: 'warehouse', to: 'bi', label: 'Query' },
+                  { from: 'warehouse', to: 'ml', label: 'Analytics' },
+                ]}
+                width={800}
+                height={420}
+              />
 
               <h4 className="text-lg font-semibold mb-3">Key Components</h4>
               <ul className="space-y-2 text-gray-700">
