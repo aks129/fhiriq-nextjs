@@ -97,6 +97,39 @@ export default function ArchitecturesPage() {
 
   return (
     <div className="min-h-screen bg-white">
+      {/* GitHub Contribution Banner */}
+      <div className="bg-gradient-to-r from-green-600 to-teal-600 text-white">
+        <div className="max-w-7xl mx-auto px-4 py-4">
+          <div className="flex items-center justify-between flex-wrap gap-4">
+            <div className="flex items-center gap-3">
+              <span className="text-2xl">📝</span>
+              <div>
+                <div className="font-semibold">Community-Driven Architecture Guide</div>
+                <div className="text-sm opacity-90">Share your architecture patterns and implementation learnings</div>
+              </div>
+            </div>
+            <div className="flex gap-3">
+              <a
+                href="https://github.com/aks129/fhiriq-nextjs/blob/master/docs/guides/architectures-guide.md"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-white text-green-700 px-4 py-2 rounded-lg font-semibold hover:bg-green-50 transition inline-flex items-center gap-2"
+              >
+                <span>📖</span> View on GitHub
+              </a>
+              <a
+                href="https://github.com/aks129/fhiriq-nextjs/edit/master/docs/guides/architectures-guide.md"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-white/10 text-white border-2 border-white px-4 py-2 rounded-lg font-semibold hover:bg-white/20 transition inline-flex items-center gap-2"
+              >
+                <span>✏️</span> Contribute
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-primary-blue to-accent-purple text-white py-20">
         <div className="max-w-7xl mx-auto px-4">
