@@ -301,10 +301,10 @@ export default function Home() {
               <Link href="/tools" className="text-neutral-gray hover:text-primary-blue font-medium">
                 Tools
               </Link>
-              <a href="https://fhir-squire.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-accent-purple hover:text-primary-blue font-medium flex items-center gap-1">
+              <Link href="/fhirsquire" className="text-accent-purple hover:text-primary-blue font-medium flex items-center gap-1">
                 FHIRSquire
                 <span className="bg-accent-purple text-white px-1.5 py-0.5 rounded text-xs font-bold">NEW</span>
-              </a>
+              </Link>
               <Link href="/training" className="text-neutral-gray hover:text-primary-blue font-medium">
                 Training
               </Link>
@@ -478,7 +478,7 @@ export default function Home() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <Link href="https://fhir-squire.vercel.app/" target="_blank" rel="noopener noreferrer" className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition ring-2 ring-accent-purple">
+            <Link href="/fhirsquire" className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition ring-2 ring-accent-purple">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-xl font-semibold">FHIRSquire</h3>
                 <div className="flex gap-2">

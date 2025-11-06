@@ -22,9 +22,7 @@ export default function FHIRSquireBanner() {
         </div>
         <div className="flex items-center gap-4 ml-4">
           <Link
-            href="https://fhir-squire.vercel.app/"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/fhirsquire"
             className="bg-white text-primary-blue px-4 py-2 rounded-lg font-semibold hover:bg-gray-100 transition text-sm whitespace-nowrap"
           >
             Try It Now

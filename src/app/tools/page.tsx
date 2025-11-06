@@ -18,7 +18,7 @@ export default function Tools() {
         'Support for US Core, CARIN BB, Da Vinci IGs'
       ],
       status: 'live',
-      demoUrl: 'https://fhir-squire.vercel.app/',
+      demoUrl: '/fhirsquire',
       pricing: 'Free',
       popular: true
     },
