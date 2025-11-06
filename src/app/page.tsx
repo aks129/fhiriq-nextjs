@@ -844,7 +844,11 @@ export default function Home() {
             </div>
           </div>
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-            <p>&copy; 2024 FHIR IQ. All rights reserved.</p>
+            <p className="mb-3">&copy; 2024 FHIR IQ. All rights reserved.</p>
+            <p className="text-sm text-gray-500">
+              FHIR® is a registered trademark of Health Level Seven International (HL7®) and is used with permission.
+              Use of this trademark does not constitute endorsement by HL7 or represent any official HL7 initiatives.
+            </p>
           </div>
         </div>
       </footer>
