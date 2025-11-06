@@ -295,6 +295,9 @@ export default function Home() {
               <Link href="/solutions" className="text-neutral-gray hover:text-primary-blue font-medium">
                 Solutions
               </Link>
+              <Link href="/architectures" className="text-neutral-gray hover:text-primary-blue font-medium">
+                Architectures
+              </Link>
               <Link href="/tools" className="text-neutral-gray hover:text-primary-blue font-medium">
                 Tools
               </Link>
@@ -302,26 +305,17 @@ export default function Home() {
                 FHIRSquire
                 <span className="bg-accent-purple text-white px-1.5 py-0.5 rounded text-xs font-bold">NEW</span>
               </a>
-              <Link href="/store" className="text-neutral-gray hover:text-primary-blue font-medium">
-                Store
-              </Link>
               <Link href="/training" className="text-neutral-gray hover:text-primary-blue font-medium">
                 Training
               </Link>
-              <Link href="/games" className="text-neutral-gray hover:text-primary-blue font-medium">
-                Games
+              <Link href="/consulting" className="text-neutral-gray hover:text-primary-blue font-medium">
+                Consulting
               </Link>
               <Link href="/blog" className="text-neutral-gray hover:text-primary-blue font-medium">
                 Blog
               </Link>
               <Link href="/podcast" className="text-neutral-gray hover:text-primary-blue font-medium">
                 Podcast
-              </Link>
-              <Link href="/partners" className="text-neutral-gray hover:text-primary-blue font-medium">
-                Partners
-              </Link>
-              <Link href="/portfolio" className="text-neutral-gray hover:text-primary-blue font-medium">
-                Portfolio
               </Link>
               <Link href="/about" className="text-neutral-gray hover:text-primary-blue font-medium">
                 About
@@ -636,36 +630,135 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            <Link href="/blog" className="bg-white rounded-lg shadow-sm hover:shadow-md transition p-6">
-              <div className="text-primary-blue font-semibold text-sm mb-2">BLOG</div>
-              <h3 className="text-xl font-semibold mb-2">Getting Started with FHIR R4</h3>
-              <p className="text-gray-600 mb-4">Essential concepts and practical examples for developers new to FHIR</p>
-              <div className="text-sm text-gray-500">5 min read</div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <Link href="/architectures" className="bg-white rounded-lg shadow-sm hover:shadow-md transition p-6 border-2 border-primary-blue">
+              <div className="text-primary-blue font-semibold text-sm mb-2">⭐ REFERENCE</div>
+              <h3 className="text-xl font-semibold mb-2">FHIR Architectures</h3>
+              <p className="text-gray-600 mb-4">Proven architecture patterns and implementation strategies for healthcare data platforms</p>
+              <div className="text-sm text-gray-500">8 architecture patterns</div>
             </Link>
 
-            <Link href="/training" className="bg-white rounded-lg shadow-sm hover:shadow-md transition p-6">
-              <div className="text-accent-purple font-semibold text-sm mb-2">TRAINING</div>
-              <h3 className="text-xl font-semibold mb-2">FHIR Implementation Workshop</h3>
-              <p className="text-gray-600 mb-4">Hands-on training for building SMART on FHIR applications</p>
-              <div className="text-sm text-gray-500">4-hour workshop</div>
+            <Link href="/profilingguide" className="bg-white rounded-lg shadow-sm hover:shadow-md transition p-6">
+              <div className="text-accent-orange font-semibold text-sm mb-2">GUIDE</div>
+              <h3 className="text-xl font-semibold mb-2">FHIR Profiling Design</h3>
+              <p className="text-gray-600 mb-4">Master FHIR data modeling and profiling using the Learn, Build, Use framework</p>
+              <div className="text-sm text-gray-500">Design guide</div>
             </Link>
 
-            <Link href="/podcast" className="bg-white rounded-lg shadow-sm hover:shadow-md transition p-6">
-              <div className="text-accent-teal font-semibold text-sm mb-2">PODCAST</div>
-              <h3 className="text-xl font-semibold mb-2">FHIR in Practice</h3>
-              <p className="text-gray-600 mb-4">Real-world implementation stories from healthcare technology leaders</p>
-              <div className="text-sm text-gray-500">Weekly episodes</div>
+            <Link href="/cqlguide" className="bg-white rounded-lg shadow-sm hover:shadow-md transition p-6">
+              <div className="text-accent-purple font-semibold text-sm mb-2">GUIDE</div>
+              <h3 className="text-xl font-semibold mb-2">CQL Quality Measures</h3>
+              <p className="text-gray-600 mb-4">Learn to implement quality measures using CQL on FHIR with breast cancer screening example</p>
+              <div className="text-sm text-gray-500">Implementation guide</div>
+            </Link>
+
+            <Link href="/mappingguide" className="bg-white rounded-lg shadow-sm hover:shadow-md transition p-6">
+              <div className="text-primary-blue font-semibold text-sm mb-2">GUIDE</div>
+              <h3 className="text-xl font-semibold mb-2">FHIR IQ Mapping Wiki</h3>
+              <p className="text-gray-600 mb-4">Comprehensive guide to FHIR data mapping patterns and best practices</p>
+              <div className="text-sm text-gray-500">Interactive guide</div>
             </Link>
           </div>
 
           <div className="text-center mt-8">
             <Link
-              href="/blog"
-              className="inline-block text-primary-blue font-semibold hover:underline"
+              href="/resources"
+              className="inline-block text-primary-blue font-semibold hover:underline text-lg"
             >
               View All Resources →
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Expert Consulting Section */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <div className="inline-block bg-primary-blue/10 text-primary-blue px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                Expert Consulting Services
+              </div>
+              <h2 className="text-4xl font-bold text-gray-900 mb-6">
+                Get Strategic FHIR Guidance from an Expert
+              </h2>
+              <p className="text-xl text-gray-600 mb-6">
+                Don&apos;t waste months on trial and error. Partner with a consultant who has successfully
+                architected and implemented FHIR solutions for payers, providers, and digital health companies.
+              </p>
+              <div className="space-y-4 mb-8">
+                <div className="flex items-start gap-3">
+                  <div className="flex-shrink-0 w-6 h-6 bg-primary-green rounded-full flex items-center justify-center mt-1">
+                    <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-gray-900 mb-1">Strategic Planning & Architecture</h3>
+                    <p className="text-gray-600">Get a clear roadmap and technical architecture before writing a single line of code</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="flex-shrink-0 w-6 h-6 bg-primary-green rounded-full flex items-center justify-center mt-1">
+                    <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-gray-900 mb-1">Hands-On Implementation Support</h3>
+                    <p className="text-gray-600">Code reviews, pair programming, and architecture guidance throughout your project</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="flex-shrink-0 w-6 h-6 bg-primary-green rounded-full flex items-center justify-center mt-1">
+                    <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-gray-900 mb-1">Team Training & Knowledge Transfer</h3>
+                    <p className="text-gray-600">Ensure your team has the expertise to maintain and evolve your solution</p>
+                  </div>
+                </div>
+              </div>
+              <div className="flex gap-4">
+                <Link
+                  href="/consulting"
+                  className="btn-primary"
+                >
+                  View Consulting Services
+                </Link>
+                <a
+                  href="https://calendar.app.google/TMvRGiiYfbBKNd889"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-secondary"
+                >
+                  Schedule Discovery Call
+                </a>
+              </div>
+            </div>
+            <div className="bg-gradient-to-br from-primary-blue to-accent-purple rounded-2xl p-8 text-white">
+              <div className="mb-6">
+                <div className="text-5xl font-bold mb-2">60%</div>
+                <div className="text-white/90">Faster time to production vs. going it alone</div>
+              </div>
+              <div className="mb-6">
+                <div className="text-5xl font-bold mb-2">$500K+</div>
+                <div className="text-white/90">Average cost savings from avoiding costly mistakes</div>
+              </div>
+              <div className="mb-8">
+                <div className="text-5xl font-bold mb-2">100%</div>
+                <div className="text-white/90">First-time validation success for implementation guides</div>
+              </div>
+              <div className="border-t border-white/20 pt-6">
+                <p className="text-white/90 italic">
+                  &ldquo;Within 3 weeks of engaging with FHIR IQ, we had a clear path forward and avoided
+                  what would have been a complete rebuild. The ROI was immediate and obvious.&rdquo;
+                </p>
+                <p className="text-sm text-white/70 mt-3">- Sarah Chen, VP Engineering</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
