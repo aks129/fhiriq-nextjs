@@ -4,6 +4,7 @@ import { useEffect, useState, useCallback } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import ChatBot from '../components/ChatBot';
+import FHIRSquireBanner from '../components/FHIRSquireBanner';
 
 interface Product {
   _id: string;
@@ -278,6 +279,9 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-white">
+      {/* FHIRSquire Announcement Banner */}
+      <FHIRSquireBanner />
+
       {/* Navigation - Updated per PRD IA specifications */}
       <nav className="bg-white shadow-lg">
         <div className="max-w-7xl mx-auto px-4">
@@ -294,6 +298,10 @@ export default function Home() {
               <Link href="/tools" className="text-neutral-gray hover:text-primary-blue font-medium">
                 Tools
               </Link>
+              <a href="https://fhir-squire.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-accent-purple hover:text-primary-blue font-medium flex items-center gap-1">
+                FHIRSquire
+                <span className="bg-accent-purple text-white px-1.5 py-0.5 rounded text-xs font-bold">NEW</span>
+              </a>
               <Link href="/store" className="text-neutral-gray hover:text-primary-blue font-medium">
                 Store
               </Link>
@@ -476,6 +484,20 @@ export default function Home() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
+            <Link href="https://fhir-squire.vercel.app/" target="_blank" rel="noopener noreferrer" className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition ring-2 ring-accent-purple">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-xl font-semibold">FHIRSquire</h3>
+                <div className="flex gap-2">
+                  <span className="bg-green-100 text-green-800 px-2 py-1 rounded text-sm">Live</span>
+                  <span className="bg-accent-purple text-white px-2 py-1 rounded text-sm">New</span>
+                </div>
+              </div>
+              <p className="text-gray-600 mb-4">
+                AI-powered FHIR profile advisor providing instant guidance on profiles, implementation guides, and best practices
+              </p>
+              <div className="text-primary-blue font-semibold">Try it now →</div>
+            </Link>
+
             <Link href="/tools" className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-xl font-semibold">FHIR Validator</h3>
@@ -496,17 +518,6 @@ export default function Home() {
                 Assess FHIR data completeness, conformance, and identify quality issues automatically
               </p>
               <div className="text-primary-blue font-semibold">Free to use →</div>
-            </Link>
-
-            <Link href="/tools/fhir-builder" className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-xl font-semibold">App Scaffolding Tool</h3>
-                <span className="bg-orange-100 text-orange-800 px-2 py-1 rounded text-sm">Beta</span>
-              </div>
-              <p className="text-gray-600 mb-4">
-                Generate starter code for FHIR applications with authentication and deployment configs
-              </p>
-              <div className="text-primary-blue font-semibold">Join waitlist →</div>
             </Link>
           </div>
 

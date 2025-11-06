@@ -5,6 +5,24 @@ import Link from 'next/link';
 export default function Tools() {
   const tools = [
     {
+      id: 'fhirsquire',
+      name: 'FHIRSquire - FHIR Profile Advisor',
+      tagline: 'AI-Powered FHIR Profile Guidance',
+      problem: 'Understanding which FHIR profiles to use and how to implement them correctly is challenging.',
+      description: 'Get instant, AI-powered guidance on FHIR profiles, implementation guides, and best practices. FHIRSquire helps you navigate the complexity of FHIR standards.',
+      features: [
+        'AI-powered FHIR profile recommendations',
+        'Implementation guide navigation',
+        'Real-time profile validation',
+        'Best practices and code examples',
+        'Support for US Core, CARIN BB, Da Vinci IGs'
+      ],
+      status: 'live',
+      demoUrl: 'https://fhir-squire.vercel.app/',
+      pricing: 'Free',
+      popular: true
+    },
+    {
       id: 'fpas',
       name: 'FPAS - Prior Authorization Platform',
       tagline: 'Meet the Jan 2027 CMS Deadline',
