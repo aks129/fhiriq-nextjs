@@ -839,7 +839,8 @@ export default function Home() {
               <ul className="space-y-2 text-gray-400">
                 <li><Link href="/about" className="hover:text-white">About</Link></li>
                 <li><Link href="/contact" className="hover:text-white">Contact</Link></li>
-                <li><Link href="/privacy" className="hover:text-white">Privacy</Link></li>
+                <li><Link href="/privacy" className="hover:text-white">Privacy Policy</Link></li>
+                <li><Link href="/security" className="hover:text-white">Security Policy</Link></li>
               </ul>
             </div>
           </div>
