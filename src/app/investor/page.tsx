@@ -42,7 +42,7 @@ export default function Investor() {
       <section className="bg-gradient-to-br from-primary-blue via-purple-700 to-indigo-800 text-white py-20">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <p className="text-sm uppercase tracking-wider text-blue-200 mb-4">
-            Investor One-Pager
+            Idea Vision
           </p>
           <h1 className="text-5xl font-bold mb-4">Open Quality</h1>
           <p className="text-2xl text-blue-100 font-light">
@@ -297,7 +297,7 @@ export default function Investor() {
       <footer className="bg-gray-800 text-white py-12">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-            <p className="text-gray-400">Open Quality · Investor One-Pager</p>
+            <p className="text-gray-400">Open Quality · Idea Vision</p>
             <div className="flex gap-8">
               <Link href="/differentiation" className="text-gray-400 hover:text-white transition">
                 Differentiation Matrix
