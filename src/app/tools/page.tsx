@@ -5,6 +5,25 @@ import Link from 'next/link';
 export default function Tools() {
   const tools = [
     {
+      id: 'cql-builder',
+      name: 'CQL Builder - AI Code Generator',
+      tagline: 'Generate CQL with Natural Language',
+      problem: 'Writing Clinical Quality Language (CQL) for eCQMs requires deep expertise and is time-consuming.',
+      description: 'Generate production-ready CQL code using natural language descriptions. AI-powered code generation with auto-fix capabilities and Synthea test data integration.',
+      features: [
+        'Natural language to CQL generation',
+        'Multi-IG support (US Core, QI-Core, HEDIS)',
+        'Auto-fix validation errors with AI',
+        'Synthea test data configuration',
+        'CQL-to-ELM compilation',
+        'VSAC value set integration'
+      ],
+      status: 'poc',
+      demoUrl: 'https://s77.vercel.app',
+      pricing: 'Free POC',
+      popular: true
+    },
+    {
       id: 'fhirsquire',
       name: 'FHIRSquire - FHIR Profile Advisor',
       tagline: 'AI-Powered FHIR Profile Guidance',
@@ -174,6 +193,8 @@ export default function Tools() {
         return 'bg-accent-orange text-white px-2 py-1 rounded text-sm';
       case 'live':
         return 'bg-primary-green text-white px-2 py-1 rounded text-sm';
+      case 'poc':
+        return 'bg-blue-500 text-white px-2 py-1 rounded text-sm';
       default:
         return 'bg-neutral-gray text-white px-2 py-1 rounded text-sm';
     }

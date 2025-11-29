@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import ChatBot from '../components/ChatBot';
 import FHIRSquireBanner from '../components/FHIRSquireBanner';
+import CQLBuilderBanner from '../components/CQLBuilderBanner';
 
 interface Product {
   _id: string;
@@ -279,7 +280,8 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* FHIRSquire Announcement Banner */}
+      {/* Announcement Banners */}
+      <CQLBuilderBanner />
       <FHIRSquireBanner />
 
       {/* Navigation - Updated per PRD IA specifications */}
@@ -477,7 +479,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             <Link href="/fhirsquire" className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition ring-2 ring-accent-purple">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-xl font-semibold">FHIRSquire</h3>
@@ -513,6 +515,20 @@ export default function Home() {
               </p>
               <div className="text-primary-blue font-semibold">Free to use →</div>
             </Link>
+
+            <a href="https://s77.vercel.app" target="_blank" rel="noopener noreferrer" className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition ring-2 ring-blue-500">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-xl font-semibold">CQL Builder</h3>
+                <div className="flex gap-2">
+                  <span className="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-sm">POC</span>
+                  <span className="bg-blue-500 text-white px-2 py-1 rounded text-sm">New</span>
+                </div>
+              </div>
+              <p className="text-gray-600 mb-4">
+                Generate production-ready Clinical Quality Language (CQL) code using natural language with AI
+              </p>
+              <div className="text-blue-600 font-semibold">Try the POC →</div>
+            </a>
           </div>
 
           <div className="text-center mt-8">
