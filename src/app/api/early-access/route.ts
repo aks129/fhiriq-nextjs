@@ -1,18 +1,17 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-// Google Form entry IDs (from form: New Contact & Interest Form)
+// Google Form entry IDs (from pre-fill URL)
 const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSf6Z_EFgyxqtUXR7t4E7Su3v5SgJXYAsia1crDPCSiqnxSigA/formResponse';
 const GOOGLE_FORM_ENTRIES = {
-  fullName: 'entry.367199661',
-  organization: 'entry.745805005',
-  email: 'entry.249034327',
-  role: 'entry.1685458231',
-  orgType: 'entry.1993123583',
-  orgTypeOther: 'entry.1993123583.other_option_response',
-  problems: 'entry.1258678742',
-  interests: 'entry.1957504615',
-  pilotInterest: 'entry.710099946',
-  additionalInfo: 'entry.1781031335',
+  fullName: 'entry.1573045922',
+  organization: 'entry.439554761',
+  email: 'entry.2057947240',
+  role: 'entry.1038064730',
+  orgType: 'entry.32503790',
+  problems: 'entry.1364177038',
+  interests: 'entry.825326795',
+  pilotInterest: 'entry.33126276',
+  additionalInfo: 'entry.1730320025',
 };
 
 interface EarlyAccessForm {
@@ -68,24 +67,19 @@ export async function POST(request: NextRequest) {
       formData.append(GOOGLE_FORM_ENTRIES.role, role);
 
       // Map org type from website to Google Form options
+      // Google Form options: Health Tech/Vendor (and others - send as-is, Google Form will accept text)
       const orgTypeMap: Record<string, string> = {
-        "Health System": "Provider/Health System",
-        "Payer": "Payer/Insurance",
-        "ACO / Risk-bearing Group": "Provider/Health System",
-        "Quality / Performance Improvement Org": "Provider/Health System",
+        "Health System": "Health System",
+        "Payer": "Payer",
+        "ACO / Risk-bearing Group": "ACO / Risk-bearing Group",
+        "Quality / Performance Improvement Org": "Quality / Performance Improvement Org",
         "Data Platform / Infrastructure": "Health Tech/Vendor",
         "Startup": "Health Tech/Vendor",
         "Vendor / Consultancy": "Health Tech/Vendor"
       };
 
-      const googleOrgType = orgTypeMap[orgType];
-      if (googleOrgType) {
-        formData.append(GOOGLE_FORM_ENTRIES.orgType, googleOrgType);
-      } else {
-        // Use "Other" for unmapped types
-        formData.append(GOOGLE_FORM_ENTRIES.orgType, '__other_option__');
-        formData.append(GOOGLE_FORM_ENTRIES.orgTypeOther, orgType);
-      }
+      const googleOrgType = orgTypeMap[orgType] || orgType;
+      formData.append(GOOGLE_FORM_ENTRIES.orgType, googleOrgType);
 
       formData.append(GOOGLE_FORM_ENTRIES.problems, problems);
       formData.append(GOOGLE_FORM_ENTRIES.interests, interests.join(', '));
