@@ -1,5 +1,20 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+// Google Form entry IDs
+const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSf6Z_EFgyxqtUXR7t4E7Su3v5SgJXYAsia1crDPCSiqnxSigA/formResponse';
+const GOOGLE_FORM_ENTRIES = {
+  fullName: 'entry.1573045922',
+  organization: 'entry.439554761',
+  email: 'entry.2057947240',
+  role: 'entry.1038064730',
+  orgType: 'entry.32503790',
+  orgTypeOther: 'entry.32503790.other_option_response',
+  problems: 'entry.1364177038',
+  interests: 'entry.825326795',
+  pilotInterest: 'entry.33126276',
+  additionalInfo: 'entry.1730320025',
+};
+
 interface EarlyAccessForm {
   fullName: string;
   organization: string;
@@ -42,6 +57,61 @@ export async function POST(request: NextRequest) {
         { error: 'Invalid email address' },
         { status: 400 }
       );
+    }
+
+    // Submit to Google Forms
+    try {
+      const formData = new URLSearchParams();
+      formData.append(GOOGLE_FORM_ENTRIES.fullName, fullName);
+      formData.append(GOOGLE_FORM_ENTRIES.organization, organization);
+      formData.append(GOOGLE_FORM_ENTRIES.email, email);
+      formData.append(GOOGLE_FORM_ENTRIES.role, role);
+
+      // Handle org type - check if it's a standard option or "Other"
+      const standardOrgTypes = [
+        "Health System",
+        "Payer",
+        "ACO / Risk-bearing Group",
+        "Quality / Performance Improvement Org",
+        "Data Platform / Infrastructure",
+        "Startup",
+        "Vendor / Consultancy"
+      ];
+
+      if (standardOrgTypes.includes(orgType)) {
+        formData.append(GOOGLE_FORM_ENTRIES.orgType, orgType);
+      } else {
+        formData.append(GOOGLE_FORM_ENTRIES.orgType, '__other_option__');
+        formData.append(GOOGLE_FORM_ENTRIES.orgTypeOther, orgType);
+      }
+
+      formData.append(GOOGLE_FORM_ENTRIES.problems, problems);
+      formData.append(GOOGLE_FORM_ENTRIES.interests, interests.join(', '));
+
+      // Map pilot interest
+      const pilotMap: Record<string, string> = {
+        'yes': 'Yes',
+        'possibly': 'Possibly',
+        'updates': 'No, just want updates'
+      };
+      formData.append(GOOGLE_FORM_ENTRIES.pilotInterest, pilotMap[pilotInterest] || pilotInterest);
+
+      formData.append(GOOGLE_FORM_ENTRIES.additionalInfo, additionalInfo || '');
+
+      const googleResponse = await fetch(GOOGLE_FORM_URL, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+      });
+
+      // Google Forms returns 200 even on success (it redirects to a thank you page)
+      // We consider it successful if we don't get a network error
+      console.log('Google Form submission status:', googleResponse.status);
+    } catch (googleError) {
+      // Log but don't fail - Google Forms submission is best-effort
+      console.error('Google Forms submission error:', googleError);
     }
 
     const resendApiKey = process.env.RESEND_API_KEY;
