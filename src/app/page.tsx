@@ -145,8 +145,11 @@ export default function Home() {
               <Link href="/services" className="text-neutral-gray hover:text-primary-blue font-medium">
                 Services
               </Link>
-              <Link href="/resources" className="text-neutral-gray hover:text-primary-blue font-medium">
-                Resources
+              <Link href="/blog" className="text-neutral-gray hover:text-primary-blue font-medium">
+                Blog
+              </Link>
+              <Link href="/podcast" className="text-neutral-gray hover:text-primary-blue font-medium">
+                Podcast
               </Link>
               <Link href="/about" className="text-neutral-gray hover:text-primary-blue font-medium">
                 About
@@ -544,6 +547,7 @@ export default function Home() {
                 <li><Link href="/tools" className="hover:text-white">Developer Tools</Link></li>
                 <li><Link href="/architectures" className="hover:text-white">Architectures</Link></li>
                 <li><Link href="/blog" className="hover:text-white">Blog</Link></li>
+                <li><Link href="/podcast" className="hover:text-white">Podcast</Link></li>
               </ul>
             </div>
             <div>
