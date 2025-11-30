@@ -1,137 +1,9 @@
-'use client';
-
-import { useState } from 'react';
 import Link from 'next/link';
 
-const ORG_TYPES = [
-  "Health System",
-  "Payer",
-  "ACO / Risk-bearing Group",
-  "Quality / Performance Improvement Org",
-  "Data Platform / Infrastructure",
-  "Startup",
-  "Vendor / Consultancy",
-  "Other"
-];
-
-const INTERESTS = [
-  "Explaining why a measure passed or failed",
-  "Understanding missing data or incorrect mappings",
-  "Transparent, evidence-based logic",
-  "Root cause insights",
-  "SQL-on-FHIR alignment",
-  "Preparing for dQMs",
-  "Reducing manual chart review",
-  "Improving population outcomes"
-];
-
-const PILOT_OPTIONS = [
-  { value: "yes", label: "Yes" },
-  { value: "possibly", label: "Possibly" },
-  { value: "updates", label: "No, just want updates" }
-];
+// Google Form embed URL
+const GOOGLE_FORM_EMBED_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSf6Z_EFgyxqtUXR7t4E7Su3v5SgJXYAsia1crDPCSiqnxSigA/viewform?embedded=true';
 
 export default function EarlyAccess() {
-  const [submitted, setSubmitted] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [formData, setFormData] = useState({
-    fullName: "",
-    organization: "",
-    email: "",
-    role: "",
-    orgType: "",
-    problems: "",
-    interests: [] as string[],
-    pilotInterest: "",
-    additionalInfo: "",
-    consent: false
-  });
-
-  const handleInterestChange = (interest: string, checked: boolean) => {
-    setFormData(prev => ({
-      ...prev,
-      interests: checked
-        ? [...prev.interests, interest]
-        : prev.interests.filter(i => i !== interest)
-    }));
-  };
-
-  const handleSelectAllInterests = () => {
-    setFormData(prev => ({
-      ...prev,
-      interests: prev.interests.length === INTERESTS.length ? [] : [...INTERESTS]
-    }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    try {
-      const response = await fetch('/api/early-access', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      const data = await response.json();
-
-      if (response.ok && data.success) {
-        setSubmitted(true);
-      } else {
-        alert(data.error || 'Failed to submit application. Please try again.');
-      }
-    } catch (error) {
-      console.error('Submission error:', error);
-      alert('Failed to submit application. Please try again.');
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  const isFormValid = () => {
-    return (
-      formData.fullName.trim() !== "" &&
-      formData.organization.trim() !== "" &&
-      formData.email.trim() !== "" &&
-      formData.role.trim() !== "" &&
-      formData.orgType !== "" &&
-      formData.problems.trim() !== "" &&
-      formData.consent
-    );
-  };
-
-  if (submitted) {
-    return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
-        <div className="max-w-md mx-auto px-6 text-center">
-          <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-6">
-            <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-          </div>
-          <h1 className="text-3xl font-light text-gray-900 mb-4">
-            Thank you — you're on the list.
-          </h1>
-          <p className="text-gray-500 font-light mb-8">
-            We'll reach out shortly with next steps.
-          </p>
-          <Link
-            href="/investor"
-            className="inline-flex items-center gap-2 px-6 py-3 border border-gray-200 rounded-xl text-gray-700 hover:bg-gray-50 transition"
-          >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-            </svg>
-            Back to Idea Vision
-          </Link>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div className="min-h-screen bg-white">
       {/* Navigation */}
@@ -168,7 +40,7 @@ export default function EarlyAccess() {
       </nav>
 
       {/* Back Link */}
-      <div className="max-w-2xl mx-auto px-6 pt-8">
+      <div className="max-w-4xl mx-auto px-6 pt-8">
         <Link
           href="/investor"
           className="inline-flex items-center gap-2 text-gray-500 hover:text-gray-900 text-sm"
@@ -181,219 +53,47 @@ export default function EarlyAccess() {
       </div>
 
       {/* Header */}
-      <section className="max-w-2xl mx-auto px-6 pt-12 pb-8 text-center">
+      <section className="max-w-4xl mx-auto px-6 pt-12 pb-8 text-center">
         <h1 className="text-4xl font-light tracking-tight text-gray-900 mb-4">
           Early Access Program
         </h1>
         <p className="text-lg text-gray-500 font-light leading-relaxed">
-          We're building an AI that explains healthcare quality, surfaces missing or incorrect data,
+          We&apos;re building an AI that explains healthcare quality, surfaces missing or incorrect data,
           and helps teams fix what matters.
         </p>
         <p className="text-gray-500 font-light mt-4">
-          If you're interested in joining early access or being considered for a pilot,
-          share a few details below. We'll reach out personally.
+          If you&apos;re interested in joining early access or being considered for a pilot,
+          share a few details below. We&apos;ll reach out personally.
         </p>
+
+        {/* Google Sign-in hint */}
+        <div className="mt-6 inline-flex items-center gap-2 px-4 py-2 bg-blue-50 text-blue-700 rounded-lg text-sm">
+          <svg className="w-5 h-5" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+            <path fill="currentColor" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+            <path fill="currentColor" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+            <path fill="currentColor" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+          </svg>
+          <span>Sign in with Google for faster form completion</span>
+        </div>
       </section>
 
-      {/* Form */}
-      <section className="max-w-2xl mx-auto px-6 pb-20">
-        <form onSubmit={handleSubmit} className="space-y-8">
-          {/* Full Name */}
-          <div className="space-y-2">
-            <label htmlFor="fullName" className="block text-sm font-medium text-gray-700">
-              Full Name <span className="text-red-500">*</span>
-            </label>
-            <input
-              id="fullName"
-              type="text"
-              value={formData.fullName}
-              onChange={(e) => setFormData(prev => ({ ...prev, fullName: e.target.value }))}
-              className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary-blue focus:ring-2 focus:ring-primary-blue/20 outline-none transition"
-              required
-            />
-          </div>
-
-          {/* Organization */}
-          <div className="space-y-2">
-            <label htmlFor="organization" className="block text-sm font-medium text-gray-700">
-              Organization <span className="text-red-500">*</span>
-            </label>
-            <input
-              id="organization"
-              type="text"
-              value={formData.organization}
-              onChange={(e) => setFormData(prev => ({ ...prev, organization: e.target.value }))}
-              className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary-blue focus:ring-2 focus:ring-primary-blue/20 outline-none transition"
-              required
-            />
-          </div>
-
-          {/* Email */}
-          <div className="space-y-2">
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-              Email Address <span className="text-red-500">*</span>
-            </label>
-            <input
-              id="email"
-              type="email"
-              value={formData.email}
-              onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
-              className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary-blue focus:ring-2 focus:ring-primary-blue/20 outline-none transition"
-              required
-            />
-          </div>
-
-          {/* Role */}
-          <div className="space-y-2">
-            <label htmlFor="role" className="block text-sm font-medium text-gray-700">
-              Role / Title <span className="text-red-500">*</span>
-            </label>
-            <input
-              id="role"
-              type="text"
-              value={formData.role}
-              onChange={(e) => setFormData(prev => ({ ...prev, role: e.target.value }))}
-              className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary-blue focus:ring-2 focus:ring-primary-blue/20 outline-none transition"
-              required
-            />
-          </div>
-
-          {/* Organization Type */}
-          <div className="space-y-3">
-            <label className="block text-sm font-medium text-gray-700">
-              What type of organization best describes you? <span className="text-red-500">*</span>
-            </label>
-            <div className="space-y-2">
-              {ORG_TYPES.map((type) => (
-                <label key={type} className="flex items-center space-x-3 cursor-pointer">
-                  <input
-                    type="radio"
-                    name="orgType"
-                    value={type}
-                    checked={formData.orgType === type}
-                    onChange={(e) => setFormData(prev => ({ ...prev, orgType: e.target.value }))}
-                    className="w-4 h-4 text-primary-blue border-gray-300 focus:ring-primary-blue"
-                  />
-                  <span className="text-gray-600">{type}</span>
-                </label>
-              ))}
-            </div>
-          </div>
-
-          {/* Problems */}
-          <div className="space-y-2">
-            <label htmlFor="problems" className="block text-sm font-medium text-gray-700">
-              What problems are you currently facing with quality measurement or improvement? <span className="text-red-500">*</span>
-            </label>
-            <p className="text-sm text-gray-400 font-light">
-              Examples: unclear logic, inconsistent data, missing feeds, lack of explainability,
-              difficulty diagnosing root cause, time spent reviewing charts, failing measures without clarity.
-            </p>
-            <textarea
-              id="problems"
-              value={formData.problems}
-              onChange={(e) => setFormData(prev => ({ ...prev, problems: e.target.value }))}
-              className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary-blue focus:ring-2 focus:ring-primary-blue/20 outline-none transition min-h-[120px]"
-              required
-            />
-          </div>
-
-          {/* Interests */}
-          <div className="space-y-3">
-            <label className="block text-sm font-medium text-gray-700">
-              What interests you about Open Quality?
-            </label>
-            <div className="space-y-2">
-              {INTERESTS.map((interest) => (
-                <label key={interest} className="flex items-center space-x-3 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={formData.interests.includes(interest)}
-                    onChange={(e) => handleInterestChange(interest, e.target.checked)}
-                    className="w-4 h-4 text-primary-blue border-gray-300 rounded focus:ring-primary-blue"
-                  />
-                  <span className="text-gray-600">{interest}</span>
-                </label>
-              ))}
-              <label className="flex items-center space-x-3 cursor-pointer pt-2">
-                <input
-                  type="checkbox"
-                  checked={formData.interests.length === INTERESTS.length}
-                  onChange={handleSelectAllInterests}
-                  className="w-4 h-4 text-primary-blue border-gray-300 rounded focus:ring-primary-blue"
-                />
-                <span className="text-gray-600">All of the above</span>
-              </label>
-            </div>
-          </div>
-
-          {/* Pilot Interest */}
-          <div className="space-y-3">
-            <label className="block text-sm font-medium text-gray-700">
-              Are you interested in pilot participation or early product testing?
-            </label>
-            <div className="space-y-2">
-              {PILOT_OPTIONS.map((option) => (
-                <label key={option.value} className="flex items-center space-x-3 cursor-pointer">
-                  <input
-                    type="radio"
-                    name="pilotInterest"
-                    value={option.value}
-                    checked={formData.pilotInterest === option.value}
-                    onChange={(e) => setFormData(prev => ({ ...prev, pilotInterest: e.target.value }))}
-                    className="w-4 h-4 text-primary-blue border-gray-300 focus:ring-primary-blue"
-                  />
-                  <span className="text-gray-600">{option.label}</span>
-                </label>
-              ))}
-            </div>
-          </div>
-
-          {/* Additional Info */}
-          <div className="space-y-2">
-            <label htmlFor="additionalInfo" className="block text-sm font-medium text-gray-700">
-              Anything else we should know?
-            </label>
-            <textarea
-              id="additionalInfo"
-              value={formData.additionalInfo}
-              onChange={(e) => setFormData(prev => ({ ...prev, additionalInfo: e.target.value }))}
-              className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary-blue focus:ring-2 focus:ring-primary-blue/20 outline-none transition min-h-[100px]"
-            />
-          </div>
-
-          {/* Consent */}
-          <div className="flex items-start space-x-3 bg-gray-50 p-4 rounded-xl">
-            <input
-              type="checkbox"
-              id="consent"
-              checked={formData.consent}
-              onChange={(e) => setFormData(prev => ({ ...prev, consent: e.target.checked }))}
-              className="w-4 h-4 mt-0.5 text-primary-blue border-gray-300 rounded focus:ring-primary-blue"
-            />
-            <label htmlFor="consent" className="text-gray-600 cursor-pointer leading-relaxed">
-              I consent to be contacted about early access, pilots, and product updates. <span className="text-red-500">*</span>
-            </label>
-          </div>
-
-          {/* Submit */}
-          <button
-            type="submit"
-            disabled={!isFormValid() || isSubmitting}
-            className="w-full bg-primary-blue hover:bg-blue-700 text-white px-8 py-4 rounded-xl font-semibold transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+      {/* Embedded Google Form */}
+      <section className="max-w-4xl mx-auto px-6 pb-20">
+        <div className="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
+          <iframe
+            src={GOOGLE_FORM_EMBED_URL}
+            width="100%"
+            height="1400"
+            frameBorder="0"
+            marginHeight={0}
+            marginWidth={0}
+            title="Early Access Application Form"
+            className="w-full"
           >
-            {isSubmitting ? (
-              "Submitting..."
-            ) : (
-              <>
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                </svg>
-                Join Early Access
-              </>
-            )}
-          </button>
-        </form>
+            Loading…
+          </iframe>
+        </div>
       </section>
 
       {/* Footer */}
