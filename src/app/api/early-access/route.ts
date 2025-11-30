@@ -98,17 +98,33 @@ export async function POST(request: NextRequest) {
 
       formData.append(GOOGLE_FORM_ENTRIES.additionalInfo, additionalInfo || '');
 
+      // Log the form data being sent
+      console.log('Submitting to Google Forms with data:', Object.fromEntries(formData));
+
       const googleResponse = await fetch(GOOGLE_FORM_URL, {
         method: 'POST',
         body: formData,
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
         },
+        redirect: 'follow',
       });
 
-      // Google Forms returns 200 even on success (it redirects to a thank you page)
-      // We consider it successful if we don't get a network error
-      console.log('Google Form submission status:', googleResponse.status);
+      // Log full response details
+      console.log('Google Form submission response:', {
+        status: googleResponse.status,
+        statusText: googleResponse.statusText,
+        url: googleResponse.url,
+        redirected: googleResponse.redirected,
+      });
+
+      // If we get a response (even a redirect), the submission likely worked
+      if (googleResponse.ok || googleResponse.redirected) {
+        console.log('Google Form submission appears successful');
+      } else {
+        const responseText = await googleResponse.text();
+        console.error('Google Form response body:', responseText.substring(0, 500));
+      }
     } catch (googleError) {
       // Log but don't fail - Google Forms submission is best-effort
       console.error('Google Forms submission error:', googleError);
