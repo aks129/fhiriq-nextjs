@@ -2,58 +2,11 @@
 
 import { useEffect, useState, useCallback } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import ChatBot from '../components/ChatBot';
-import FHIRSquireBanner from '../components/FHIRSquireBanner';
-import CQLBuilderBanner from '../components/CQLBuilderBanner';
-
-interface Product {
-  _id: string;
-  name: string;
-  description: string;
-  price: number;
-  originalPrice?: number;
-  currency: string;
-  image?: string;
-  category: string;
-  popular: boolean;
-  sku: string;
-}
-
-interface BlogPost {
-  _id: string;
-  title: string;
-  excerpt?: string;
-  content?: string;
-  featuredImage?: string;
-  publishedDate: string;
-  author?: string;
-  slug?: string;
-}
 
 export default function Home() {
-  const [featuredProducts, setFeaturedProducts] = useState<Product[]>([]);
-  const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
-  const [loading, setLoading] = useState(true);
   const [newsletterEmail, setNewsletterEmail] = useState('');
   const [newsletterLoading, setNewsletterLoading] = useState(false);
-
-  const initializePage = useCallback(async () => {
-    try {
-      console.log('Initializing FHIR IQ Home page...');
-
-      await Promise.all([
-        loadFeaturedProducts(),
-        loadRecentBlogPosts()
-      ]);
-
-      console.log('Home page initialization complete');
-    } catch (error) {
-      console.error('Home page initialization error:', error);
-    } finally {
-      setLoading(false);
-    }
-  }, []);
 
   const initializeAnalytics = useCallback(() => {
     try {
@@ -100,96 +53,9 @@ export default function Home() {
     }
   }, []);
 
-  async function loadFeaturedProducts() {
-    try {
-      // For now, use mock data - replace with actual API call
-      const mockProducts: Product[] = [
-        {
-          _id: '1',
-          name: 'FHIR Developer License - Professional',
-          description: 'Advanced FHIR validation and code generation tools for professional developers.',
-          price: 799,
-          originalPrice: 999,
-          currency: 'USD',
-          image: '/images/fhir-dev-license.jpg',
-          category: 'license',
-          popular: true,
-          sku: 'FHIR-DEV-PRO-1Y'
-        },
-        {
-          _id: '2',
-          name: 'FHIR Training - Fundamentals',
-          description: 'Comprehensive FHIR training course covering fundamentals and best practices.',
-          price: 299,
-          currency: 'USD',
-          image: '/images/fhir-training.jpg',
-          category: 'training',
-          popular: false,
-          sku: 'FHIR-TRN-FND'
-        },
-        {
-          _id: '3',
-          name: 'FHIR Consultation Package',
-          description: 'Expert consultation services for FHIR implementation and optimization.',
-          price: 1500,
-          currency: 'USD',
-          image: '/images/fhir-consultation.jpg',
-          category: 'consulting',
-          popular: true,
-          sku: 'FHIR-CON-PKG'
-        }
-      ];
-
-      setFeaturedProducts(mockProducts);
-    } catch (error) {
-      console.error('Error loading featured products:', error);
-    }
-  }
-
-  async function loadRecentBlogPosts() {
-    try {
-      // For now, use mock data - replace with actual API call
-      const mockBlogPosts: BlogPost[] = [
-        {
-          _id: '1',
-          title: 'Getting Started with FHIR R4',
-          excerpt: 'Learn the fundamentals of FHIR R4 and how to implement healthcare interoperability.',
-          featuredImage: '/images/blog-fhir-r4.jpg',
-          publishedDate: '2024-01-15',
-          author: 'FHIR IQ Team',
-          slug: 'getting-started-fhir-r4'
-        },
-        {
-          _id: '2',
-          title: 'AI-Powered FHIR Application Development',
-          excerpt: 'Discover how AI can accelerate your FHIR application development process.',
-          featuredImage: '/images/blog-ai-fhir.jpg',
-          publishedDate: '2024-01-10',
-          author: 'FHIR IQ Team',
-          slug: 'ai-powered-fhir-development'
-        },
-        {
-          _id: '3',
-          title: 'FHIR Security Best Practices',
-          excerpt: 'Essential security considerations when implementing FHIR-based healthcare systems.',
-          featuredImage: '/images/blog-fhir-security.jpg',
-          publishedDate: '2024-01-05',
-          author: 'FHIR IQ Team',
-          slug: 'fhir-security-best-practices'
-        }
-      ];
-
-      setBlogPosts(mockBlogPosts);
-    } catch (error) {
-      console.error('Error loading blog posts:', error);
-    }
-  }
-
-
   useEffect(() => {
-    initializePage();
     initializeAnalytics();
-  }, [initializePage, initializeAnalytics]);
+  }, [initializeAnalytics]);
 
   async function handleNewsletterSignup(e: React.FormEvent) {
     e.preventDefault();
@@ -236,12 +102,12 @@ export default function Home() {
     try {
       console.log('Track event:', eventName, properties);
 
-      // Example implementation for Google Analytics
+      // Google Analytics
       if (typeof window !== 'undefined' && 'gtag' in window) {
         (window as unknown as { gtag: (type: string, event: string, properties: unknown) => void }).gtag('event', eventName, properties);
       }
 
-      // Example implementation for PostHog
+      // PostHog
       if (typeof window !== 'undefined' && 'posthog' in window) {
         (window as unknown as { posthog: { capture: (event: string, properties: unknown) => void } }).posthog.capture(eventName, properties);
       }
@@ -250,41 +116,14 @@ export default function Home() {
     }
   }
 
-  function formatPrice(price: number, currency = 'USD') {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: currency
-    }).format(price);
-  }
-
-  function formatDate(date: string) {
-    return new Date(date).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    });
-  }
-
   function isValidEmail(email: string) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   }
 
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600"></div>
-      </div>
-    );
-  }
-
   return (
     <div className="min-h-screen bg-white">
-      {/* Announcement Banners */}
-      <CQLBuilderBanner />
-      <FHIRSquireBanner />
-
-      {/* Navigation - Updated per PRD IA specifications */}
+      {/* Navigation */}
       <nav className="bg-white shadow-lg">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between items-center py-4">
@@ -297,27 +136,17 @@ export default function Home() {
               <Link href="/solutions" className="text-neutral-gray hover:text-primary-blue font-medium">
                 Solutions
               </Link>
-              <Link href="/architectures" className="text-neutral-gray hover:text-primary-blue font-medium">
-                Architectures
+              <Link href="/library" className="text-neutral-gray hover:text-primary-blue font-medium">
+                Library
               </Link>
               <Link href="/tools" className="text-neutral-gray hover:text-primary-blue font-medium">
                 Tools
               </Link>
-              <Link href="/fhirsquire" className="text-accent-purple hover:text-primary-blue font-medium flex items-center gap-1">
-                FHIRSquire
-                <span className="bg-accent-purple text-white px-1.5 py-0.5 rounded text-xs font-bold">NEW</span>
+              <Link href="/services" className="text-neutral-gray hover:text-primary-blue font-medium">
+                Services
               </Link>
-              <Link href="/training" className="text-neutral-gray hover:text-primary-blue font-medium">
-                Training
-              </Link>
-              <Link href="/consulting" className="text-neutral-gray hover:text-primary-blue font-medium">
-                Consulting
-              </Link>
-              <Link href="/blog" className="text-neutral-gray hover:text-primary-blue font-medium">
-                Blog
-              </Link>
-              <Link href="/podcast" className="text-neutral-gray hover:text-primary-blue font-medium">
-                Podcast
+              <Link href="/resources" className="text-neutral-gray hover:text-primary-blue font-medium">
+                Resources
               </Link>
               <Link href="/about" className="text-neutral-gray hover:text-primary-blue font-medium">
                 About
@@ -330,497 +159,363 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* Hero Section - Updated per PRD value proposition */}
-      <section className="bg-gradient-to-r from-primary-blue to-accent-purple text-white py-20">
+      {/* Hero Section */}
+      <section className="bg-gradient-to-br from-primary-navy via-primary-blue to-accent-purple text-white py-20">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
-            <h1 className="text-5xl font-bold mb-6">
-              Accelerate FHIR Development with AI-Powered Tools
+            <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+              The Semantic Intelligence Layer<br />for Healthcare
             </h1>
-            <p className="text-xl mb-8 max-w-3xl mx-auto">
-              Build, validate, and deploy FHIR-compliant healthcare applications faster with our integrated platform and expert guidance.
+            <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto opacity-90">
+              Turn clinical logic into enterprise intelligence. Operationalize quality measures directly in your data warehouse.
             </p>
 
-            <div className="flex gap-4 justify-center mb-12">
+            <div className="flex gap-4 justify-center flex-wrap mb-12">
               <Link
-                href="/tools"
-                onClick={() => trackEvent('hero_cta_clicked', { button: 'try_tools' })}
-                className="bg-white text-primary-blue px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition"
+                href="/cql-to-sql"
+                onClick={() => trackEvent('hero_cta_clicked', { button: 'cql_to_sql' })}
+                className="bg-white text-primary-blue px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition text-lg"
               >
-                Try Our Tools
+                Explore CQL-to-SQL Engine
               </Link>
               <Link
-                href="/contact"
-                onClick={() => trackEvent('hero_cta_clicked', { button: 'get_demo' })}
-                className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-primary-blue transition"
+                href="/early-access"
+                onClick={() => trackEvent('hero_cta_clicked', { button: 'design_partner' })}
+                className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-primary-blue transition text-lg"
               >
-                Request Demo
+                Join Design Partner Program
               </Link>
-            </div>
-          </div>
-
-          {/* Trusted By Section */}
-          <div className="text-center border-t border-white/20 pt-8">
-            <p className="text-sm opacity-80 mb-6">Trusted by healthcare organizations building FHIR solutions</p>
-            <div className="flex justify-center items-center gap-12 flex-wrap">
-              <div className="text-white/60 font-semibold text-lg">Healthcare Startups</div>
-              <div className="text-white/60 font-semibold text-lg">Health Systems</div>
-              <div className="text-white/60 font-semibold text-lg">Payer Organizations</div>
-              <div className="text-white/60 font-semibold text-lg">Digital Health Companies</div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Platform Overview Section */}
-      <section className="py-16 bg-white">
+      {/* Solutions Grid */}
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Complete FHIR Development Platform</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Everything you need to build, validate, and scale FHIR-compliant healthcare applications
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Solutions</h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              AI-powered tools and services to accelerate healthcare data intelligence
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center p-6">
-              <div className="w-16 h-16 bg-accent-teal/10 rounded-lg flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-accent-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+            {/* CQL to SQL Engine - Primary */}
+            <Link href="/cql-to-sql" className="bg-gradient-to-br from-primary-blue to-accent-purple text-white rounded-2xl p-8 hover:shadow-xl transition group">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                </div>
+                <span className="bg-white/20 text-white text-xs px-2 py-1 rounded-full font-medium">
+                  Featured
+                </span>
+              </div>
+              <h3 className="text-2xl font-bold mb-3">CQL-to-SQL Engine</h3>
+              <p className="opacity-90 mb-4">
+                Compile Clinical Quality Language to native SQL. Run quality measures in Snowflake, Databricks, or BigQuery.
+              </p>
+              <div className="flex items-center gap-2 font-semibold group-hover:gap-3 transition-all">
+                Learn More
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold mb-3">Developer Tools</h3>
-              <p className="text-gray-600">
-                Code generators, validators, and testing tools built specifically for FHIR R4 development
-              </p>
-            </div>
+            </Link>
 
-            <div className="text-center p-6">
-              <div className="w-16 h-16 bg-accent-purple/10 rounded-lg flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-accent-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            {/* Data Quality */}
+            <Link href="/solutions" className="bg-white border-2 border-gray-200 rounded-2xl p-8 hover:border-primary-blue hover:shadow-lg transition group">
+              <div className="w-12 h-12 bg-primary-green/10 rounded-xl flex items-center justify-center mb-4">
+                <svg className="w-6 h-6 text-primary-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold mb-3">Compliance & Validation</h3>
-              <p className="text-gray-600">
-                Ensure conformance with US Core, CARIN BB, and other implementation guides
+              <h3 className="text-2xl font-bold text-gray-900 mb-3">Data Quality Audits</h3>
+              <p className="text-gray-600 mb-4">
+                Eliminate gray water data before it hits your analytics layer. Automated FHIR conformance and completeness checks.
               </p>
-            </div>
-
-            <div className="text-center p-6">
-              <div className="w-16 h-16 bg-accent-orange/10 rounded-lg flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-accent-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+              <div className="flex items-center gap-2 text-primary-blue font-semibold group-hover:gap-3 transition-all">
+                Explore
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold mb-3">Training & Support</h3>
-              <p className="text-gray-600">
-                Expert guidance, comprehensive training, and implementation support when you need it
+            </Link>
+
+            {/* Advisory */}
+            <Link href="/services" className="bg-white border-2 border-gray-200 rounded-2xl p-8 hover:border-primary-blue hover:shadow-lg transition group">
+              <div className="w-12 h-12 bg-accent-purple/10 rounded-xl flex items-center justify-center mb-4">
+                <svg className="w-6 h-6 text-accent-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+              </div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-3">Advisory & Architecture</h3>
+              <p className="text-gray-600 mb-4">
+                Enterprise enablement from FHIR experts. Strategic planning, architecture reviews, and implementation support.
               </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Use Cases Section */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Built for Your Healthcare Use Case</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              From payer platforms to clinical data exchange, our tools support the full spectrum of FHIR implementations
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition">
-              <div className="text-3xl mb-3">🏥</div>
-              <h3 className="text-lg font-semibold mb-2">Patient Portals</h3>
-              <p className="text-gray-600 text-sm">Enable patients to access their health records with SMART on FHIR</p>
-            </div>
-
-            <div className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition">
-              <div className="text-3xl mb-3">💳</div>
-              <h3 className="text-lg font-semibold mb-2">Payer Data Exchange</h3>
-              <p className="text-gray-600 text-sm">Build CARIN Blue Button compliant member access APIs</p>
-            </div>
-
-            <div className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition">
-              <div className="text-3xl mb-3">⚕️</div>
-              <h3 className="text-lg font-semibold mb-2">Clinical Decision Support</h3>
-              <p className="text-gray-600 text-sm">Integrate CDS Hooks and clinical logic into EHR workflows</p>
-            </div>
-
-            <div className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition">
-              <div className="text-3xl mb-3">📊</div>
-              <h3 className="text-lg font-semibold mb-2">Analytics & Reporting</h3>
-              <p className="text-gray-600 text-sm">Extract and analyze FHIR data for population health insights</p>
-            </div>
-          </div>
-
-          <div className="text-center mt-8">
-            <Link
-              href="/solutions"
-              className="inline-block text-primary-blue font-semibold hover:underline"
-            >
-              Explore All Use Cases →
+              <div className="flex items-center gap-2 text-primary-blue font-semibold group-hover:gap-3 transition-all">
+                Learn More
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </div>
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Popular Tools Section */}
-      <section className="py-16">
+      {/* CQL to SQL Highlight */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <div className="inline-block bg-primary-blue/10 text-primary-blue px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                Now in Development
+              </div>
+              <h2 className="text-4xl font-bold text-gray-900 mb-6">
+                From CQL to SQL in Seconds
+              </h2>
+              <p className="text-xl text-gray-600 mb-6">
+                Traditional Java-based CQL engines are slow, opaque, and require separate infrastructure. Our approach compiles CQL directly to optimized SQL that runs natively in your data warehouse.
+              </p>
+              <ul className="space-y-3 mb-8">
+                <li className="flex items-center gap-3 text-gray-700">
+                  <svg className="w-5 h-5 text-primary-green flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  Transparent, auditable SQL output
+                </li>
+                <li className="flex items-center gap-3 text-gray-700">
+                  <svg className="w-5 h-5 text-primary-green flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  Native warehouse performance (Snowflake, Databricks, BigQuery)
+                </li>
+                <li className="flex items-center gap-3 text-gray-700">
+                  <svg className="w-5 h-5 text-primary-green flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  Direct BI tool integration
+                </li>
+                <li className="flex items-center gap-3 text-gray-700">
+                  <svg className="w-5 h-5 text-primary-green flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  SQL on FHIR ViewDefinition compatible
+                </li>
+              </ul>
+              <Link href="/cql-to-sql" className="btn-primary inline-block">
+                Learn More About CQL-to-SQL
+              </Link>
+            </div>
+
+            <div className="bg-gray-900 rounded-2xl p-6 font-mono text-sm overflow-hidden">
+              <div className="flex items-center gap-2 mb-4 text-gray-400">
+                <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                <span className="ml-2 text-xs">CQL → SQL</span>
+              </div>
+              <div className="text-green-400 mb-4">
+                <span className="text-gray-500">{'// Input: CQL'}</span><br />
+                <span className="text-blue-400">define</span> <span className="text-white">&quot;Breast Cancer Screening&quot;</span>:<br />
+                <span className="pl-4">exists</span> [Observation: <span className="text-yellow-400">&quot;Mammography&quot;</span>]<br />
+                <span className="pl-4">where</span> effective during <span className="text-yellow-400">&quot;Measurement Period&quot;</span>
+              </div>
+              <div className="border-t border-gray-700 pt-4 text-blue-400">
+                <span className="text-gray-500">{'-- Output: SQL'}</span><br />
+                <span className="text-purple-400">SELECT</span> <span className="text-white">patient_id</span>,<br />
+                <span className="pl-4 text-purple-400">CASE WHEN</span> <span className="text-white">COUNT</span>(*) &gt; 0<br />
+                <span className="pl-4 text-purple-400">THEN</span> <span className="text-green-400">true</span> <span className="text-purple-400">ELSE</span> <span className="text-red-400">false</span> <span className="text-purple-400">END</span><br />
+                <span className="text-purple-400">FROM</span> <span className="text-white">fhir.observation</span><br />
+                <span className="text-purple-400">WHERE</span> <span className="text-white">code</span> <span className="text-purple-400">IN</span> (<span className="text-yellow-400">&apos;24606-6&apos;</span>, ...)<br />
+                <span className="pl-4 text-purple-400">AND</span> <span className="text-white">effective_date</span> <span className="text-purple-400">BETWEEN</span> ...
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Popular Tools */}
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Popular Tools</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Production-ready tools used by healthcare developers worldwide
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Developer Tools</h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Open source utilities for FHIR development and data engineering
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <Link href="/fhirsquire" className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition ring-2 ring-accent-purple">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <Link href="/library" className="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-lg hover:border-primary-blue transition">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-xl font-semibold">ViewDefinition Library</h3>
+                <span className="bg-primary-green/10 text-primary-green px-2 py-1 rounded text-sm font-medium">New</span>
+              </div>
+              <p className="text-gray-600 mb-4">
+                Pre-built SQL on FHIR ViewDefinitions for US Core 7.0. Copy JSON or SQL with one click.
+              </p>
+              <div className="text-primary-blue font-semibold">Browse Library →</div>
+            </Link>
+
+            <Link href="/fhirsquire" className="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-lg hover:border-primary-blue transition">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-xl font-semibold">FHIRSquire</h3>
-                <div className="flex gap-2">
-                  <span className="bg-green-100 text-green-800 px-2 py-1 rounded text-sm">Live</span>
-                  <span className="bg-accent-purple text-white px-2 py-1 rounded text-sm">New</span>
-                </div>
+                <span className="bg-primary-green/10 text-primary-green px-2 py-1 rounded text-sm font-medium">Live</span>
               </div>
               <p className="text-gray-600 mb-4">
-                AI-powered FHIR profile advisor providing instant guidance on profiles, implementation guides, and best practices
+                AI-powered FHIR profile advisor. Get instant guidance on profiles, IGs, and best practices.
               </p>
-              <div className="text-primary-blue font-semibold">Try it now →</div>
+              <div className="text-primary-blue font-semibold">Try FHIRSquire →</div>
             </Link>
 
-            <Link href="/tools" className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition">
+            <a href="https://fhirspective.vercel.app" target="_blank" rel="noopener noreferrer" className="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-lg hover:border-primary-blue transition">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-xl font-semibold">FHIR Validator</h3>
-                <span className="bg-green-100 text-green-800 px-2 py-1 rounded text-sm">Live</span>
+                <h3 className="text-xl font-semibold">FHIRspective</h3>
+                <span className="bg-primary-green/10 text-primary-green px-2 py-1 rounded text-sm font-medium">Live</span>
               </div>
               <p className="text-gray-600 mb-4">
-                Validate FHIR resources against implementation guides including US Core, CARIN BB, and Da Vinci
+                Data quality analyzer for FHIR resources. Assess completeness, conformance, and identify issues.
               </p>
-              <div className="text-primary-blue font-semibold">Free to use →</div>
-            </Link>
+              <div className="text-primary-blue font-semibold">Analyze Data →</div>
+            </a>
 
-            <Link href="/tools" className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition">
+            <a href="https://agent-inter-op.vercel.app" target="_blank" rel="noopener noreferrer" className="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-lg hover:border-primary-blue transition">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-xl font-semibold">Data Quality Analyzer</h3>
-                <span className="bg-green-100 text-green-800 px-2 py-1 rounded text-sm">Live</span>
+                <h3 className="text-xl font-semibold">FHIR Data Mapper</h3>
+                <span className="bg-primary-green/10 text-primary-green px-2 py-1 rounded text-sm font-medium">Live</span>
               </div>
               <p className="text-gray-600 mb-4">
-                Assess FHIR data completeness, conformance, and identify quality issues automatically
+                AI-assisted data mapping from source schemas to FHIR resources. Visual mapping editor.
               </p>
-              <div className="text-primary-blue font-semibold">Free to use →</div>
-            </Link>
+              <div className="text-primary-blue font-semibold">Start Mapping →</div>
+            </a>
 
-            <a href="https://s77.vercel.app" target="_blank" rel="noopener noreferrer" className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition ring-2 ring-blue-500">
+            <a href="https://s77.vercel.app" target="_blank" rel="noopener noreferrer" className="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-lg hover:border-primary-blue transition">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-xl font-semibold">CQL Builder</h3>
-                <div className="flex gap-2">
-                  <span className="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-sm">POC</span>
-                  <span className="bg-blue-500 text-white px-2 py-1 rounded text-sm">New</span>
-                </div>
+                <span className="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-sm font-medium">POC</span>
               </div>
               <p className="text-gray-600 mb-4">
-                Generate production-ready Clinical Quality Language (CQL) code using natural language with AI
+                Generate CQL from natural language descriptions. AI-powered clinical logic authoring.
               </p>
-              <div className="text-blue-600 font-semibold">Try the POC →</div>
+              <div className="text-primary-blue font-semibold">Try POC →</div>
             </a>
-          </div>
 
-          <div className="text-center mt-8">
-            <Link
-              href="/tools"
-              className="btn-primary inline-block"
-            >
-              View All Tools
+            <Link href="/tools" className="bg-gray-50 rounded-xl border border-gray-200 p-6 hover:shadow-lg transition flex flex-col justify-center items-center text-center">
+              <div className="text-4xl mb-3">🛠️</div>
+              <h3 className="text-xl font-semibold mb-2">View All Tools</h3>
+              <p className="text-gray-600">
+                Explore our full suite of FHIR development tools
+              </p>
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Why FHIR IQ Section */}
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Why Healthcare Teams Choose FHIR IQ</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Proven expertise and practical tools that accelerate your FHIR development
-            </p>
+      {/* Design Partner CTA */}
+      <section className="py-20 bg-gradient-to-br from-accent-purple to-primary-blue text-white">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <div className="inline-block bg-white/10 backdrop-blur px-4 py-2 rounded-full text-sm font-medium mb-6">
+            Limited to 3 Partners · Q1 2026
           </div>
-
-          <div className="grid md:grid-cols-2 gap-12">
-            <div className="space-y-6">
-              <div className="flex gap-4">
-                <div className="flex-shrink-0">
-                  <div className="w-12 h-12 bg-primary-blue/10 rounded-lg flex items-center justify-center">
-                    <svg className="w-6 h-6 text-primary-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                    </svg>
-                  </div>
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold mb-2">Faster Time to Market</h3>
-                  <p className="text-gray-600">
-                    Pre-built components and templates help you launch FHIR-compliant features in weeks instead of months
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex gap-4">
-                <div className="flex-shrink-0">
-                  <div className="w-12 h-12 bg-primary-blue/10 rounded-lg flex items-center justify-center">
-                    <svg className="w-6 h-6 text-primary-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                    </svg>
-                  </div>
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold mb-2">Standards Compliance</h3>
-                  <p className="text-gray-600">
-                    Built-in validation ensures your implementations meet US Core, CARIN BB, and other IG requirements
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex gap-4">
-                <div className="flex-shrink-0">
-                  <div className="w-12 h-12 bg-primary-blue/10 rounded-lg flex items-center justify-center">
-                    <svg className="w-6 h-6 text-primary-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                    </svg>
-                  </div>
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold mb-2">Expert Support</h3>
-                  <p className="text-gray-600">
-                    Access to FHIR specialists who understand both the technical and regulatory landscape
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-8">
-              <div className="space-y-6">
-                <div className="bg-white p-6 rounded-lg shadow-sm">
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="w-12 h-12 bg-gray-300 rounded-full"></div>
-                    <div>
-                      <div className="font-semibold">Healthcare Developer</div>
-                      <div className="text-sm text-gray-600">Digital Health Startup</div>
-                    </div>
-                  </div>
-                  <p className="text-gray-700 italic">
-                    "FHIR IQ's tools helped us pass our US Core validation on the first try. The data quality analyzer caught issues we would have missed."
-                  </p>
-                </div>
-
-                <div className="bg-white p-6 rounded-lg shadow-sm">
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="w-12 h-12 bg-gray-300 rounded-full"></div>
-                    <div>
-                      <div className="font-semibold">Technical Architect</div>
-                      <div className="text-sm text-gray-600">Regional Health System</div>
-                    </div>
-                  </div>
-                  <p className="text-gray-700 italic">
-                    "The comprehensive training and hands-on workshops brought our team up to speed on FHIR implementation best practices quickly."
-                  </p>
-                </div>
-              </div>
-            </div>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            Join the Inner Circle
+          </h2>
+          <p className="text-xl opacity-90 mb-8 max-w-2xl mx-auto">
+            Be one of three design partners shaping the future of CQL-to-SQL. Get early access, direct founder access, and influence the roadmap.
+          </p>
+          <div className="flex gap-4 justify-center flex-wrap">
+            <Link
+              href="/early-access"
+              className="bg-white text-accent-purple px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition text-lg"
+            >
+              Apply for Design Partner Program
+            </Link>
+            <Link
+              href="/cql-to-sql"
+              className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-accent-purple transition text-lg"
+            >
+              Learn About CQL-to-SQL
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* Resources Section */}
-      <section className="py-16 bg-gray-50">
+      {/* Resources */}
+      <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Latest Resources</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Stay current with FHIR best practices, implementation guides, and industry updates
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Resources</h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Guides, architectures, and best practices for FHIR implementation
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <Link href="/architectures" className="bg-white rounded-lg shadow-sm hover:shadow-md transition p-6 border-2 border-primary-blue">
-              <div className="text-primary-blue font-semibold text-sm mb-2">⭐ REFERENCE</div>
+            <Link href="/architectures" className="bg-white rounded-xl shadow-sm hover:shadow-lg transition p-6 border-2 border-primary-blue">
+              <div className="text-primary-blue font-semibold text-sm mb-2">REFERENCE</div>
               <h3 className="text-xl font-semibold mb-2">FHIR Architectures</h3>
-              <p className="text-gray-600 mb-4">Proven architecture patterns and implementation strategies for healthcare data platforms</p>
-              <div className="text-sm text-gray-500">8 architecture patterns</div>
+              <p className="text-gray-600 mb-4">Proven architecture patterns for healthcare data platforms</p>
+              <div className="text-sm text-gray-500">8 patterns</div>
             </Link>
 
-            <Link href="/profilingguide" className="bg-white rounded-lg shadow-sm hover:shadow-md transition p-6">
-              <div className="text-accent-orange font-semibold text-sm mb-2">GUIDE</div>
-              <h3 className="text-xl font-semibold mb-2">FHIR Profiling Design</h3>
-              <p className="text-gray-600 mb-4">Master FHIR data modeling and profiling using the Learn, Build, Use framework</p>
-              <div className="text-sm text-gray-500">Design guide</div>
-            </Link>
-
-            <Link href="/cqlguide" className="bg-white rounded-lg shadow-sm hover:shadow-md transition p-6">
+            <Link href="/cqlguide" className="bg-white rounded-xl shadow-sm hover:shadow-md transition p-6">
               <div className="text-accent-purple font-semibold text-sm mb-2">GUIDE</div>
               <h3 className="text-xl font-semibold mb-2">CQL Quality Measures</h3>
-              <p className="text-gray-600 mb-4">Learn to implement quality measures using CQL on FHIR with breast cancer screening example</p>
+              <p className="text-gray-600 mb-4">Implement quality measures using CQL on FHIR</p>
               <div className="text-sm text-gray-500">Implementation guide</div>
             </Link>
 
-            <Link href="/mappingguide" className="bg-white rounded-lg shadow-sm hover:shadow-md transition p-6">
+            <Link href="/profilingguide" className="bg-white rounded-xl shadow-sm hover:shadow-md transition p-6">
+              <div className="text-accent-orange font-semibold text-sm mb-2">GUIDE</div>
+              <h3 className="text-xl font-semibold mb-2">FHIR Profiling</h3>
+              <p className="text-gray-600 mb-4">Master FHIR data modeling and profiling</p>
+              <div className="text-sm text-gray-500">Design guide</div>
+            </Link>
+
+            <Link href="/mappingguide" className="bg-white rounded-xl shadow-sm hover:shadow-md transition p-6">
               <div className="text-primary-blue font-semibold text-sm mb-2">GUIDE</div>
-              <h3 className="text-xl font-semibold mb-2">FHIR IQ Mapping Wiki</h3>
-              <p className="text-gray-600 mb-4">Comprehensive guide to FHIR data mapping patterns and best practices</p>
+              <h3 className="text-xl font-semibold mb-2">Mapping Wiki</h3>
+              <p className="text-gray-600 mb-4">FHIR data mapping patterns and best practices</p>
               <div className="text-sm text-gray-500">Interactive guide</div>
             </Link>
           </div>
 
           <div className="text-center mt-8">
-            <Link
-              href="/resources"
-              className="inline-block text-primary-blue font-semibold hover:underline text-lg"
-            >
+            <Link href="/resources" className="text-primary-blue font-semibold hover:underline text-lg">
               View All Resources →
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Expert Consulting Section */}
+      {/* Newsletter CTA */}
       <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <div className="inline-block bg-primary-blue/10 text-primary-blue px-4 py-2 rounded-full text-sm font-semibold mb-4">
-                Expert Consulting Services
-              </div>
-              <h2 className="text-4xl font-bold text-gray-900 mb-6">
-                Get Strategic FHIR Guidance from an Expert
-              </h2>
-              <p className="text-xl text-gray-600 mb-6">
-                Don&apos;t waste months on trial and error. Partner with a consultant who has successfully
-                architected and implemented FHIR solutions for payers, providers, and digital health companies.
-              </p>
-              <div className="space-y-4 mb-8">
-                <div className="flex items-start gap-3">
-                  <div className="flex-shrink-0 w-6 h-6 bg-primary-green rounded-full flex items-center justify-center mt-1">
-                    <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900 mb-1">Strategic Planning & Architecture</h3>
-                    <p className="text-gray-600">Get a clear roadmap and technical architecture before writing a single line of code</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <div className="flex-shrink-0 w-6 h-6 bg-primary-green rounded-full flex items-center justify-center mt-1">
-                    <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900 mb-1">Hands-On Implementation Support</h3>
-                    <p className="text-gray-600">Code reviews, pair programming, and architecture guidance throughout your project</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <div className="flex-shrink-0 w-6 h-6 bg-primary-green rounded-full flex items-center justify-center mt-1">
-                    <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900 mb-1">Team Training & Knowledge Transfer</h3>
-                    <p className="text-gray-600">Ensure your team has the expertise to maintain and evolve your solution</p>
-                  </div>
-                </div>
-              </div>
-              <div className="flex gap-4">
-                <Link
-                  href="/consulting"
-                  className="btn-primary"
-                >
-                  View Consulting Services
-                </Link>
-                <a
-                  href="https://calendar.app.google/TMvRGiiYfbBKNd889"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-secondary"
-                >
-                  Schedule Discovery Call
-                </a>
-              </div>
-            </div>
-            <div className="bg-gradient-to-br from-primary-blue to-accent-purple rounded-2xl p-8 text-white">
-              <div className="mb-6">
-                <div className="text-5xl font-bold mb-2">60%</div>
-                <div className="text-white/90">Faster time to production vs. going it alone</div>
-              </div>
-              <div className="mb-6">
-                <div className="text-5xl font-bold mb-2">$500K+</div>
-                <div className="text-white/90">Average cost savings from avoiding costly mistakes</div>
-              </div>
-              <div className="mb-8">
-                <div className="text-5xl font-bold mb-2">100%</div>
-                <div className="text-white/90">First-time validation success for implementation guides</div>
-              </div>
-              <div className="border-t border-white/20 pt-6">
-                <p className="text-white/90 italic">
-                  &ldquo;Within 3 weeks of engaging with FHIR IQ, we had a clear path forward and avoided
-                  what would have been a complete rebuild. The ROI was immediate and obvious.&rdquo;
-                </p>
-                <p className="text-sm text-white/70 mt-3">- Sarah Chen, VP Engineering</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-primary-blue to-accent-purple text-white">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold mb-6">Ready to Accelerate Your FHIR Development?</h2>
-          <p className="text-xl mb-8 opacity-90">
-            Join healthcare organizations using FHIR IQ to build compliant, production-ready applications faster
+        <div className="max-w-2xl mx-auto px-4 text-center">
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">Stay Updated</h2>
+          <p className="text-gray-600 mb-8">
+            Get updates on CQL-to-SQL development, new tools, and healthcare data insights.
           </p>
-          <div className="flex gap-4 justify-center mb-8">
-            <Link
-              href="/tools"
-              className="bg-white text-primary-blue px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition text-lg"
+          <form onSubmit={handleNewsletterSignup} className="flex gap-3 max-w-md mx-auto">
+            <input
+              type="email"
+              value={newsletterEmail}
+              onChange={(e) => setNewsletterEmail(e.target.value)}
+              placeholder="your@email.com"
+              className="flex-1 px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-blue focus:border-transparent"
+              required
+            />
+            <button
+              type="submit"
+              disabled={newsletterLoading}
+              className="btn-primary whitespace-nowrap disabled:opacity-50"
             >
-              Explore Tools
-            </Link>
-            <Link
-              href="/contact"
-              className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-primary-blue transition text-lg"
-            >
-              Talk to an Expert
-            </Link>
-          </div>
-
-          <div className="border-t border-white/20 pt-8 mt-8">
-            <p className="text-sm opacity-80 mb-4">Stay updated with FHIR best practices and platform updates</p>
-            <form onSubmit={handleNewsletterSignup} className="flex gap-3 max-w-md mx-auto">
-              <input
-                type="email"
-                value={newsletterEmail}
-                onChange={(e) => setNewsletterEmail(e.target.value)}
-                placeholder="your@email.com"
-                className="flex-1 px-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-white"
-                required
-              />
-              <button
-                type="submit"
-                disabled={newsletterLoading}
-                className="bg-white text-primary-blue px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition disabled:opacity-50 whitespace-nowrap"
-              >
-                {newsletterLoading ? 'Subscribing...' : 'Subscribe'}
-              </button>
-            </form>
-          </div>
+              {newsletterLoading ? 'Subscribing...' : 'Subscribe'}
+            </button>
+          </form>
         </div>
       </section>
 
@@ -831,23 +526,24 @@ export default function Home() {
             <div>
               <h3 className="text-xl font-bold mb-4">FHIR IQ</h3>
               <p className="text-gray-400">
-                Leading healthcare interoperability solutions powered by AI and FHIR expertise.
+                The Semantic Intelligence Layer for Healthcare
               </p>
             </div>
             <div>
-              <h4 className="font-semibold mb-4">Products</h4>
+              <h4 className="font-semibold mb-4">Solutions</h4>
               <ul className="space-y-2 text-gray-400">
-                <li><Link href="/products" className="hover:text-white">Developer Licenses</Link></li>
-                <li><Link href="/products" className="hover:text-white">Training Courses</Link></li>
-                <li><Link href="/products" className="hover:text-white">Consulting</Link></li>
+                <li><Link href="/cql-to-sql" className="hover:text-white">CQL-to-SQL Engine</Link></li>
+                <li><Link href="/solutions" className="hover:text-white">Data Quality</Link></li>
+                <li><Link href="/services" className="hover:text-white">Advisory Services</Link></li>
               </ul>
             </div>
             <div>
               <h4 className="font-semibold mb-4">Resources</h4>
               <ul className="space-y-2 text-gray-400">
+                <li><Link href="/library" className="hover:text-white">ViewDefinition Library</Link></li>
+                <li><Link href="/tools" className="hover:text-white">Developer Tools</Link></li>
+                <li><Link href="/architectures" className="hover:text-white">Architectures</Link></li>
                 <li><Link href="/blog" className="hover:text-white">Blog</Link></li>
-                <li><Link href="/builder" className="hover:text-white">AI Builder</Link></li>
-                <li><Link href="/docs" className="hover:text-white">Documentation</Link></li>
               </ul>
             </div>
             <div>
@@ -855,17 +551,16 @@ export default function Home() {
               <ul className="space-y-2 text-gray-400">
                 <li><Link href="/about" className="hover:text-white">About</Link></li>
                 <li><Link href="/contact" className="hover:text-white">Contact</Link></li>
-                <li><Link href="/investor" className="hover:text-white">Invest in FHIR IQ</Link></li>
+                <li><Link href="/investor" className="hover:text-white">Investors</Link></li>
                 <li><Link href="/privacy" className="hover:text-white">Privacy Policy</Link></li>
-                <li><Link href="/security" className="hover:text-white">Security Policy</Link></li>
+                <li><Link href="/security" className="hover:text-white">Security</Link></li>
               </ul>
             </div>
           </div>
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-            <p className="mb-3">&copy; 2024 FHIR IQ. All rights reserved.</p>
+            <p className="mb-3">&copy; 2025 FHIR IQ. All rights reserved.</p>
             <p className="text-sm text-gray-500">
               FHIR® is a registered trademark of Health Level Seven International (HL7®) and is used with permission.
-              Use of this trademark does not constitute endorsement by HL7 or represent any official HL7 initiatives.
             </p>
           </div>
         </div>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import LinkedInInsight from "@/components/LinkedInInsight";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,9 +14,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "FHIR IQ - Healthcare Interoperability Solutions",
-  description: "Advanced FHIR tools, AI-powered code generation, and consulting services for healthcare interoperability. Build on FHIR with confidence.",
-  keywords: "FHIR, healthcare, interoperability, HL7, API, healthcare data, medical records, AI",
+  title: "FHIR IQ - The Semantic Intelligence Layer for Healthcare",
+  description: "Turn clinical logic into enterprise intelligence. CQL-to-SQL compilation, FHIR data quality, and healthcare AI solutions.",
+  keywords: "FHIR, CQL, SQL on FHIR, healthcare analytics, quality measures, HEDIS, HL7, interoperability, AI",
   authors: [{ name: "FHIR IQ" }],
   viewport: "width=device-width, initial-scale=1",
 };
@@ -31,6 +32,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
+        <LinkedInInsight />
       </body>
     </html>
   );
