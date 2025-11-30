@@ -67,11 +67,28 @@ export default function EarlyAccess() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission (replace with actual Google Forms integration)
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    try {
+      const response = await fetch('/api/early-access', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
 
-    setSubmitted(true);
-    setIsSubmitting(false);
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        setSubmitted(true);
+      } else {
+        alert(data.error || 'Failed to submit application. Please try again.');
+      }
+    } catch (error) {
+      console.error('Submission error:', error);
+      alert('Failed to submit application. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const isFormValid = () => {
