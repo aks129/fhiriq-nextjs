@@ -162,37 +162,37 @@ export default function Home() {
 
         <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#161B22] border border-[#38BDF8]/20 text-[#38BDF8] text-sm font-medium mb-8">
-            <span className="w-2 h-2 rounded-full bg-[#EF4444] animate-pulse" />
-            Now Recruiting Design Partners
+            <span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse" />
+            Building the Open Quality Coalition
           </div>
 
           <h1 className="text-5xl md:text-7xl font-light tracking-tight text-white mb-6 leading-[1.1]">
-            The <span className="text-[#38BDF8]">Semantic Intelligence</span><br />
-            Layer for Healthcare
+            <span className="text-[#38BDF8]">Healthcare Agents</span> &<br />
+            AI-Ready APIs
           </h1>
 
           <p className="text-xl md:text-2xl text-[#94A3B8] font-light max-w-3xl mx-auto mb-12 leading-relaxed">
-            Turn clinical logic into enterprise intelligence.<br className="hidden md:block" />
-            Operationalize quality measures directly in your data warehouse.
+            Open source tools empowering the HL7 FHIR community.<br className="hidden md:block" />
+            Advancing SQL on FHIR and transparent quality measurement.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/cql-to-sql"
-              onClick={() => trackEvent('hero_cta_clicked', { button: 'cql_to_sql' })}
+              href="/library"
+              onClick={() => trackEvent('hero_cta_clicked', { button: 'explore_tools' })}
               className="group px-8 py-4 bg-gradient-to-r from-[#0EA5E9] to-[#0284C7] text-white font-medium rounded-lg hover:shadow-[0_0_30px_rgba(14,165,233,0.4)] transition-all inline-flex items-center justify-center gap-2"
             >
-              Explore CQL-to-SQL Engine
+              Explore Open Source Tools
               <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
             </Link>
             <Link
               href="/early-access"
-              onClick={() => trackEvent('hero_cta_clicked', { button: 'design_partner' })}
+              onClick={() => trackEvent('hero_cta_clicked', { button: 'join_coalition' })}
               className="px-8 py-4 border border-[#38BDF8]/30 text-[#38BDF8] font-medium rounded-lg hover:bg-[#38BDF8]/10 hover:border-[#38BDF8]/50 transition-all"
             >
-              Join Design Partner Program
+              Join the Coalition
             </Link>
           </div>
         </div>
@@ -209,21 +209,21 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0C4A6E]/5 to-transparent" />
         <div className="max-w-7xl mx-auto px-6 relative">
           <div className="text-center mb-16">
-            <span className="text-[#38BDF8] text-sm font-medium tracking-widest uppercase mb-4 block">Solutions</span>
+            <span className="text-[#38BDF8] text-sm font-medium tracking-widest uppercase mb-4 block">What We&apos;re Building</span>
             <h2 className="text-4xl md:text-5xl font-light text-white mb-4">
-              AI-Powered Healthcare Intelligence
+              Open Quality Infrastructure
             </h2>
             <p className="text-xl text-[#94A3B8] font-light max-w-2xl mx-auto">
-              Transform your healthcare data infrastructure with cutting-edge AI solutions
+              Community-driven tools solving real problems in healthcare quality measurement
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
-            {/* CQL to SQL Engine - Primary */}
+            {/* Open Quality */}
             <Link href="/cql-to-sql" className="group relative bg-gradient-to-br from-[#161B22] to-[#0D1117] rounded-2xl p-8 border border-[#38BDF8]/20 hover:border-[#38BDF8]/50 transition-all hover:shadow-[0_0_40px_rgba(56,189,248,0.15)]">
               <div className="absolute top-4 right-4">
-                <span className="px-3 py-1 bg-[#EF4444]/10 border border-[#EF4444]/20 rounded-full text-[#F87171] text-xs font-medium tracking-wide">
-                  Featured
+                <span className="px-3 py-1 bg-[#10B981]/10 border border-[#10B981]/20 rounded-full text-[#34D399] text-xs font-medium tracking-wide">
+                  Open Source
                 </span>
               </div>
               <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#38BDF8]/20 to-[#0EA5E9]/20 flex items-center justify-center mb-6 group-hover:shadow-[0_0_20px_rgba(56,189,248,0.3)] transition-all">
@@ -231,9 +231,9 @@ export default function Home() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                 </svg>
               </div>
-              <h3 className="text-2xl font-medium text-white mb-3">CQL-to-SQL Engine</h3>
+              <h3 className="text-2xl font-medium text-white mb-3">Transparent Quality</h3>
               <p className="text-[#94A3B8] mb-6 leading-relaxed">
-                Compile Clinical Quality Language to native SQL. Run quality measures in Snowflake, Databricks, or BigQuery.
+                Open, auditable quality measure logic. No more black boxes. See exactly how measures are computed.
               </p>
               <div className="flex items-center gap-2 text-[#38BDF8] font-medium group-hover:gap-3 transition-all">
                 Learn More
@@ -243,38 +243,38 @@ export default function Home() {
               </div>
             </Link>
 
-            {/* Data Quality */}
-            <Link href="/solutions" className="group bg-[#161B22] rounded-2xl p-8 border border-[#38BDF8]/10 hover:border-[#38BDF8]/30 transition-all hover:shadow-[0_0_30px_rgba(56,189,248,0.1)]">
+            {/* SQL on FHIR */}
+            <Link href="/library" className="group bg-[#161B22] rounded-2xl p-8 border border-[#38BDF8]/10 hover:border-[#38BDF8]/30 transition-all hover:shadow-[0_0_30px_rgba(56,189,248,0.1)]">
               <div className="w-14 h-14 rounded-xl bg-[#10B981]/10 flex items-center justify-center mb-6">
                 <svg className="w-7 h-7 text-[#10B981]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4" />
                 </svg>
               </div>
-              <h3 className="text-2xl font-medium text-white mb-3">Data Quality Audits</h3>
+              <h3 className="text-2xl font-medium text-white mb-3">SQL on FHIR</h3>
               <p className="text-[#94A3B8] mb-6 leading-relaxed">
-                Eliminate gray water data before it hits your analytics layer. Automated FHIR conformance checks.
+                Supporting the HL7 SQL on FHIR work group. ViewDefinitions, flattening patterns, and best practices.
               </p>
               <div className="flex items-center gap-2 text-[#38BDF8] font-medium group-hover:gap-3 transition-all">
-                Explore
+                Explore Library
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </div>
             </Link>
 
-            {/* Advisory */}
-            <Link href="/services" className="group bg-[#161B22] rounded-2xl p-8 border border-[#38BDF8]/10 hover:border-[#38BDF8]/30 transition-all hover:shadow-[0_0_30px_rgba(56,189,248,0.1)]">
+            {/* Community */}
+            <Link href="/early-access" className="group bg-[#161B22] rounded-2xl p-8 border border-[#38BDF8]/10 hover:border-[#38BDF8]/30 transition-all hover:shadow-[0_0_30px_rgba(56,189,248,0.1)]">
               <div className="w-14 h-14 rounded-xl bg-[#8B5CF6]/10 flex items-center justify-center mb-6">
                 <svg className="w-7 h-7 text-[#8B5CF6]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
               </div>
-              <h3 className="text-2xl font-medium text-white mb-3">Advisory & Architecture</h3>
+              <h3 className="text-2xl font-medium text-white mb-3">Coalition Partners</h3>
               <p className="text-[#94A3B8] mb-6 leading-relaxed">
-                Enterprise enablement from FHIR experts. Strategic planning and implementation support.
+                Join healthcare organizations collaborating on open standards for quality measurement.
               </p>
               <div className="flex items-center gap-2 text-[#38BDF8] font-medium group-hover:gap-3 transition-all">
-                Learn More
+                Join Us
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
@@ -284,29 +284,29 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CQL to SQL Highlight */}
+      {/* The Problem We're Solving */}
       <section className="py-32 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_right,_rgba(239,68,68,0.08)_0%,_transparent_60%)]" />
         <div className="max-w-7xl mx-auto px-6 relative">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
-              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#EF4444]/10 border border-[#EF4444]/20 text-[#F87171] text-sm font-medium mb-6">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#EF4444] animate-pulse" />
-                In Development
+              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#38BDF8]/10 border border-[#38BDF8]/20 text-[#38BDF8] text-sm font-medium mb-6">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#38BDF8] animate-pulse" />
+                The Problem
               </span>
               <h2 className="text-4xl md:text-5xl font-light text-white mb-6 leading-tight">
-                From CQL to SQL<br />
-                <span className="text-[#38BDF8]">in Seconds</span>
+                Quality Measures Are<br />
+                <span className="text-[#EF4444]">Black Boxes</span>
               </h2>
               <p className="text-xl text-[#94A3B8] font-light mb-8 leading-relaxed">
-                Traditional Java-based CQL engines are slow, opaque, and require separate infrastructure. Our approach compiles CQL directly to optimized SQL.
+                Healthcare organizations struggle with opaque measure logic, inconsistent results, and no way to understand why patients pass or fail. We&apos;re changing that.
               </p>
               <ul className="space-y-4 mb-10">
                 {[
-                  'Transparent, auditable SQL output',
-                  'Native warehouse performance',
-                  'Direct BI tool integration',
-                  'SQL on FHIR compatible'
+                  'Open, transparent measure logic',
+                  'Community-validated implementations',
+                  'Works with your existing data warehouse',
+                  'HL7 FHIR & SQL on FHIR aligned'
                 ].map((item, i) => (
                   <li key={i} className="flex items-center gap-3 text-[#CBD5E1]">
                     <div className="w-5 h-5 rounded-full bg-[#10B981]/20 flex items-center justify-center flex-shrink-0">
@@ -319,7 +319,7 @@ export default function Home() {
                 ))}
               </ul>
               <Link href="/cql-to-sql" className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#0EA5E9] to-[#0284C7] text-white font-medium rounded-lg hover:shadow-[0_0_20px_rgba(14,165,233,0.4)] transition-all">
-                Explore the Engine
+                See How It Works
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
@@ -421,38 +421,43 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Design Partner CTA */}
+      {/* Coalition CTA */}
       <section className="py-32 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#0C4A6E]/20 via-transparent to-[#EF4444]/10" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0C4A6E]/20 via-transparent to-[#10B981]/10" />
         <div className="absolute inset-0 bg-[linear-gradient(rgba(56,189,248,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(56,189,248,0.02)_1px,transparent_1px)] bg-[size:40px_40px]" />
 
         <div className="max-w-4xl mx-auto px-6 text-center relative">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#EF4444]/10 border border-[#EF4444]/20 text-[#F87171] text-sm font-medium mb-8">
-            <span className="w-2 h-2 rounded-full bg-[#EF4444] animate-pulse" />
-            Limited to 3 Partners · Q1 2026
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#10B981]/10 border border-[#10B981]/20 text-[#34D399] text-sm font-medium mb-8">
+            <span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse" />
+            Open to All Organizations
           </div>
 
           <h2 className="text-4xl md:text-6xl font-light text-white mb-6">
-            Join the <span className="text-[#38BDF8]">Inner Circle</span>
+            Coalition for <span className="text-[#38BDF8]">Open Quality</span>
           </h2>
 
           <p className="text-xl text-[#94A3B8] font-light mb-12 max-w-2xl mx-auto leading-relaxed">
-            Be one of three design partners shaping the future of CQL-to-SQL. Get early access, direct founder access, and influence the roadmap.
+            We&apos;re building a community of healthcare organizations, vendors, and developers committed to transparent, open source quality measurement. Join us in solving this together.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/early-access"
-              className="px-8 py-4 bg-gradient-to-r from-[#EF4444] to-[#DC2626] text-white font-medium rounded-lg hover:shadow-[0_0_30px_rgba(239,68,68,0.4)] transition-all"
+              className="px-8 py-4 bg-gradient-to-r from-[#0EA5E9] to-[#0284C7] text-white font-medium rounded-lg hover:shadow-[0_0_30px_rgba(14,165,233,0.4)] transition-all"
             >
-              Apply for Design Partner Program
+              Join the Coalition
             </Link>
-            <Link
-              href="/cql-to-sql"
-              className="px-8 py-4 border border-[#38BDF8]/30 text-[#38BDF8] font-medium rounded-lg hover:bg-[#38BDF8]/10 transition-all"
+            <a
+              href="https://github.com/fhiriq"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-8 py-4 border border-[#38BDF8]/30 text-[#38BDF8] font-medium rounded-lg hover:bg-[#38BDF8]/10 transition-all inline-flex items-center justify-center gap-2"
             >
-              Learn About CQL-to-SQL
-            </Link>
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
+              </svg>
+              View on GitHub
+            </a>
           </div>
         </div>
       </section>
@@ -531,7 +536,7 @@ export default function Home() {
                 <span className="text-lg font-semibold text-white">FHIR IQ</span>
               </div>
               <p className="text-[#64748B] text-sm leading-relaxed">
-                The Semantic Intelligence Layer for Healthcare
+                Open source tools for the HL7 FHIR community
               </p>
             </div>
             <div>
