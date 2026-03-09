@@ -37,7 +37,7 @@ export default function AIAgentPage() {
                 Podcast
               </Link>
               <a
-                href="https://healthio-kappa.vercel.app/ai-agent"
+                href="https://healthio-kappa.vercel.app/agent-builder"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-4 py-2 bg-gradient-to-r from-[#8B5CF6] to-[#7C3AED] text-white text-sm font-medium rounded-lg hover:shadow-[0_0_20px_rgba(139,92,246,0.4)] transition-all"
@@ -94,7 +94,7 @@ export default function AIAgentPage() {
           </div>
 
           <a
-            href="https://healthio-kappa.vercel.app/ai-agent"
+            href="https://healthio-kappa.vercel.app/agent-builder"
             target="_blank"
             rel="noopener noreferrer"
             className="group px-10 py-5 bg-gradient-to-r from-[#8B5CF6] to-[#7C3AED] text-white font-semibold text-lg rounded-xl hover:shadow-[0_0_40px_rgba(139,92,246,0.5)] transition-all inline-flex items-center justify-center gap-3"
@@ -176,7 +176,7 @@ export default function AIAgentPage() {
 
           <div className="text-center mt-12">
             <a
-              href="https://healthio-kappa.vercel.app/ai-agent"
+              href="https://healthio-kappa.vercel.app/agent-builder"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-[#8B5CF6] to-[#7C3AED] text-white font-medium rounded-lg hover:shadow-[0_0_30px_rgba(139,92,246,0.4)] transition-all"
