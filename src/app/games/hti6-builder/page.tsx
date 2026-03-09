@@ -37,7 +37,7 @@ export default function HTI6BuilderPage() {
                 Podcast
               </Link>
               <a
-                href="https://healthio-kappa.vercel.app/hti6"
+                href="https://healthio-kappa.vercel.app/hti6-builder"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-4 py-2 bg-gradient-to-r from-[#10B981] to-[#059669] text-white text-sm font-medium rounded-lg hover:shadow-[0_0_20px_rgba(16,185,129,0.4)] transition-all"
@@ -94,7 +94,7 @@ export default function HTI6BuilderPage() {
           </div>
 
           <a
-            href="https://healthio-kappa.vercel.app/hti6"
+            href="https://healthio-kappa.vercel.app/hti6-builder"
             target="_blank"
             rel="noopener noreferrer"
             className="group px-10 py-5 bg-gradient-to-r from-[#10B981] to-[#059669] text-white font-semibold text-lg rounded-xl hover:shadow-[0_0_40px_rgba(16,185,129,0.5)] transition-all inline-flex items-center justify-center gap-3"
@@ -162,7 +162,7 @@ export default function HTI6BuilderPage() {
             your team is ready.
           </p>
           <a
-            href="https://healthio-kappa.vercel.app/hti6"
+            href="https://healthio-kappa.vercel.app/hti6-builder"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-[#10B981] to-[#059669] text-white font-medium rounded-lg hover:shadow-[0_0_30px_rgba(16,185,129,0.4)] transition-all"
