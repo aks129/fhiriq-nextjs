@@ -3,6 +3,7 @@
 import { useEffect, useState, useCallback } from 'react';
 import Link from 'next/link';
 import ChatBot from '../components/ChatBot';
+import HealthIOBanner from '../components/HealthIOBanner';
 
 export default function Home() {
   const [newsletterEmail, setNewsletterEmail] = useState('');
@@ -108,6 +109,9 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-[#0A0A0F]">
+      {/* HIMSS 2026 Banner */}
+      <HealthIOBanner />
+
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0A0A0F]/80 backdrop-blur-xl border-b border-[#38BDF8]/10">
         <div className="max-w-7xl mx-auto px-6">
