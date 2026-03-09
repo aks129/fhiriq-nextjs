@@ -259,7 +259,7 @@ export default function Investor() {
           <div className="bg-white rounded-xl p-8 shadow-md">
             <p className="text-xl font-semibold text-gray-900 mb-3">Founder: Eugene Vestel</p>
             <p className="text-gray-700 leading-relaxed">
-              FHIR data expert, NCQA collaborator, creator of CQL→SQL converter, host of "Out of the FHIR Podcast,"
+              Payer Interoperability Analytics &amp; AI Lead at Outcomes. FHIR data expert, NCQA collaborator, creator of CQL→SQL converter, host of &quot;Out of the FHIR Podcast,&quot;
               and leader in modern interoperability + quality models.
             </p>
           </div>
