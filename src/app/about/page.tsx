@@ -125,6 +125,21 @@ export default function About() {
               </p>
             </div>
 
+            {/* Outcomes */}
+            <div className="bg-white rounded-lg shadow-md p-6 border-l-4 border-orange-600">
+              <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-3">
+                <div>
+                  <h3 className="text-2xl font-bold text-gray-900">Payer Interoperability Analytics and AI Lead</h3>
+                  <p className="text-xl text-orange-600 font-semibold">Outcomes</p>
+                </div>
+                <span className="text-gray-600 mt-2 md:mt-0">2025 - Present</span>
+              </div>
+              <p className="text-gray-700">
+                Leading payer interoperability analytics and AI initiatives, driving data-driven strategies
+                to improve healthcare outcomes through advanced analytics, AI solutions, and interoperability standards.
+              </p>
+            </div>
+
             {/* NCQA */}
             <div className="bg-white rounded-lg shadow-md p-6 border-l-4 border-green-600">
               <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-3">
