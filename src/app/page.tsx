@@ -180,7 +180,7 @@ export default function Home() {
           </p>
 
           <p className="text-sm text-[#64748B] mb-10">
-            Former NCQA Advisor &middot; Ex-Director of Data &amp; Analytics at b.well &middot; 15+ years in healthcare data
+            Payer Interoperability Analytics &amp; AI Lead at Outcomes &middot; Former NCQA Advisor &middot; 15+ years in healthcare data
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -220,11 +220,11 @@ export default function Home() {
       <section className="py-12 border-y border-[#38BDF8]/10 relative">
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#0C4A6E]/5 to-transparent" />
         <div className="max-w-5xl mx-auto px-6 relative">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-8 text-center">
             {[
+              { label: 'Outcomes', detail: 'Payer Interoperability Analytics & AI Lead' },
               { label: 'NCQA Advisor', detail: 'Quality Measurement' },
               { label: 'b.well Connected Health', detail: 'Director of Data & Analytics' },
-              { label: 'HL7 Connectathon', detail: 'Active Participant' },
               { label: 'UPMC Health System', detail: '5 Years in Clinical Analytics' },
             ].map((item, i) => (
               <div key={i} className="space-y-1">
