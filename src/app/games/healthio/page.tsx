@@ -250,28 +250,24 @@ export default function HealthIOPage() {
         </div>
       </section>
 
-      {/* Also Check Out */}
+      {/* More HIMSS 2026 Games */}
       <section className="py-20 relative">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <p className="text-[#64748B] text-sm uppercase tracking-widest mb-6">From FHIR IQ</p>
+        <div className="max-w-4xl mx-auto px-6">
+          <p className="text-[#64748B] text-sm uppercase tracking-widest mb-6 text-center">More HIMSS 2026 Games</p>
           <div className="grid sm:grid-cols-2 gap-6">
-            <Link href="/podcast" className="group bg-[#161B22] rounded-xl p-6 border border-[#8B5CF6]/20 hover:border-[#8B5CF6]/40 transition-all text-left">
+            <Link href="/games/hti6-builder" className="group bg-[#161B22] rounded-xl p-6 border border-[#10B981]/20 hover:border-[#10B981]/40 transition-all">
               <div className="flex items-center gap-3 mb-3">
-                <svg className="w-5 h-5 text-[#8B5CF6]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
-                </svg>
-                <h3 className="text-white font-medium">Out of the FHIR Podcast</h3>
+                <span className="text-2xl">&#x1F3D7;</span>
+                <h3 className="text-white font-medium">HTI-6 Regulation Builder</h3>
               </div>
-              <p className="text-[#94A3B8] text-sm">Weekly conversations on FHIR, interoperability, and healthcare data.</p>
+              <p className="text-[#94A3B8] text-sm">Build the regulatory stack from HTI-1 to HTI-6. Earn your compliance badge.</p>
             </Link>
-            <Link href="/blog" className="group bg-[#161B22] rounded-xl p-6 border border-[#38BDF8]/20 hover:border-[#38BDF8]/40 transition-all text-left">
+            <Link href="/games/ai-agent" className="group bg-[#161B22] rounded-xl p-6 border border-[#8B5CF6]/20 hover:border-[#8B5CF6]/40 transition-all">
               <div className="flex items-center gap-3 mb-3">
-                <svg className="w-5 h-5 text-[#38BDF8]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
-                </svg>
-                <h3 className="text-white font-medium">The FHIR IQ Playbook</h3>
+                <span className="text-2xl">&#x1F916;</span>
+                <h3 className="text-white font-medium">AI Agent for Health</h3>
               </div>
-              <p className="text-[#94A3B8] text-sm">Weekly newsletter on FHIR implementation and quality measurement.</p>
+              <p className="text-[#94A3B8] text-sm">Deploy AI agents to solve healthcare scenarios. Earn your agent badge.</p>
             </Link>
           </div>
         </div>
