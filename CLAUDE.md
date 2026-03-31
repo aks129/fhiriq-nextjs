@@ -6,10 +6,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 FHIR IQ is a **pre-revenue healthcare AI startup** building "The Open Quality AI Layer" - an AI-powered semantic intelligence layer for healthcare data. The company is pivoting from a consulting/training portfolio site to a **product-centric startup site**.
 
-**Strategic Context (Q4 2024 - Q1 2025):**
+**Strategic Context (Q1 2026):**
 
-- Presenting "CQL to SQL Conversion" at Analytics on FHIR conference (December 5, 2025)
-- Recruiting 1-3 "Design Partners" for Q1 2026 pilot program
+- Presented "CQL to SQL Conversion" at Analytics on FHIR conference (December 5, 2025) — `/cql-to-sql` was the QR code destination
+- Actively recruiting Design Partners for Q1 2026 pilot program (3 slots)
 - Core product: CQL-to-SQL compilation engine for operationalizing HEDIS/quality measures in data warehouses
 - Consulting and training remain as secondary revenue streams, not primary focus
 
@@ -36,6 +36,8 @@ npm start                # Start production server
 npm run lint             # Run ESLint
 ```
 
+There is no test runner configured. The codebase has no unit or integration tests.
+
 ## Architecture
 
 ### Directory Structure
@@ -44,23 +46,51 @@ npm run lint             # Run ESLint
 src/
 ├── app/                 # Next.js App Router pages and layouts
 │   ├── api/            # API routes (Next.js route handlers)
-│   ├── cql-to-sql/     # Conference landing page (Analytics on FHIR 2025)
-│   ├── library/        # ViewDefinition library (SQL on FHIR resources)
-│   ├── early-access/   # Design Partner signup form
-│   ├── investor/       # "Idea Vision" investor one-pager
-│   ├── innovation-pilot-terms/  # Legal terms for pilot program
-│   ├── layout.tsx      # Root layout with fonts and metadata
 │   ├── page.tsx        # Homepage - "The Open Quality AI Layer"
-│   └── globals.css     # Global styles and CSS variables
+│   ├── layout.tsx      # Root layout with fonts and metadata
+│   ├── globals.css     # Global styles and CSS variables
+│   │
+│   ├── cql-to-sql/     # Conference landing page (Analytics on FHIR 2025) — primary priority
+│   ├── early-access/   # Design Partner application form
+│   ├── investor/       # "Idea Vision" investor one-pager
+│   ├── library/        # ViewDefinition library (SQL on FHIR resources)
+│   ├── innovation-pilot-terms/  # Legal terms for pilot program
+│   │
+│   ├── about/          # Company about page
+│   ├── architectures/  # Technical architecture pages
+│   ├── blog/           # Blog
+│   ├── builder/        # FHIR builder tool page
+│   ├── consulting/     # Consulting services
+│   ├── contact/        # Contact form
+│   ├── cqlguide/       # CQL guide (serves public/cqlguide/)
+│   ├── differentiation/# Competitive differentiation
+│   ├── fhirsquire/     # FHIRSquire product page
+│   ├── games/          # Interactive demos (healthio, ai-agent, hti6-builder)
+│   ├── mappingguide/   # Mapping guide (rewrites to public/mappingguide/index.html)
+│   ├── partners/       # Partners page
+│   ├── podcast/        # Podcast page with live metrics
+│   ├── portfolio/      # Portfolio showcase
+│   ├── privacy/        # Privacy policy
+│   ├── products/       # Products overview
+│   ├── profilingguide/ # Profiling guide
+│   ├── resources/      # Resources
+│   ├── security/       # Security page
+│   ├── services/       # Services overview
+│   ├── solutions/      # Solutions (fpas/ sub-route)
+│   ├── store/          # Store page
+│   ├── tools/          # Tools (fhir-builder/ sub-route)
+│   └── training/       # Training offerings
 ├── components/          # React components
-│   ├── ChatBot.tsx              # AI chatbot widget
+│   ├── ChatBot.tsx              # AI chatbot widget (+ /api/chat must stay in sync)
 │   ├── ArchitectureDiagram.tsx  # Technical diagrams
 │   ├── CQLBuilderBanner.tsx     # Product banners
 │   ├── FHIRSquireBanner.tsx
-│   ├── LinkedInInsight.tsx      # LinkedIn B2B tracking component
+│   ├── HealthIOBanner.tsx       # HealthIO product banner
+│   ├── LinkedInInsight.tsx      # LinkedIn B2B tracking (injected in root layout)
 │   └── LivePodcastMetrics.tsx
 ├── lib/                 # Utilities and configurations
-│   └── mongodb.ts       # MongoDB connection with caching
+│   ├── mongodb.ts       # MongoDB connection with caching
+│   └── licenseManager.ts  # License key generation scaffold (DB functions are stubs — not yet wired to MongoDB)
 └── models/              # Mongoose schemas
     ├── PodcastMetrics.ts
     └── PortfolioMetrics.ts
@@ -69,12 +99,31 @@ src/
 ### Key Landing Pages
 
 | Route | Purpose | Primary CTA |
-|-------|---------|-------------|
+| ----- | ------- | ----------- |
 | `/` | Homepage - "The Semantic Intelligence Layer for Healthcare" | Try Tools / Design Partner |
-| `/cql-to-sql` | Conference landing (QR code destination) | Download Guide / Apply for Pilot |
+| `/cql-to-sql` | Conference landing (QR code destination, highest priority) | Download Guide / Apply for Pilot |
 | `/library` | ViewDefinition library (developer hook) | Copy JSON/SQL |
 | `/early-access` | Design Partner application form | Join Early Access |
 | `/investor` | Investor one-pager ("Idea Vision") | Contact |
+
+There are ~30 additional routes in the app (see directory structure above) covering products, services, consulting, training, guides, games, and legal pages.
+
+### Personal Health AI (OpenClaw Community Projects)
+
+Three non-commercial, open-source personal passion projects featured on the homepage under "Personal Health AI":
+
+| Project | Status | Description |
+| ------- | ------ | ----------- |
+| **HealthClaw Guardrails** | Live | Security layer between AI agents and clinical data. 12 MCP tools, PHI redaction, FHIR R4/R6 — [healthclaw.io](https://healthclaw.io) · [GitHub](https://github.com/aks129/HealthClawGuardrails) |
+| **Smart Health Connect** | Open Source | SMART on FHIR patient records platform (Liara AI Health). Aggregates Epic/Cerner data with AI health insights — [GitHub](https://github.com/aks129/SmartHealthConnect) |
+| **Curatr Skills** | In Development | Data quality curation skill library for OpenClaw — validates/curates FHIR records for agent consumption |
+
+These projects are featured in two Substack posts:
+
+- "Building a New Empowered Health System" (evestel.substack.com)
+- "How I Build My Personal OpenClaw" (evestel.substack.com)
+
+**Important:** These have no commercial angle — frame them as community/personal projects, not FHIR IQ products.
 
 ### Key API Routes
 
@@ -109,7 +158,7 @@ All API routes are in `src/app/api/`:
 - Primary colors: Blue (#2563EB), Green (#059669), Navy (#1E293B)
 - Accent colors: Purple (#7C3AED), Orange (#EA580C)
 - Uses Tailwind CSS 4 with custom theme configuration
-- Font: Inter (Google Fonts)
+- Fonts: Geist and Geist_Mono (via `next/font/google`, loaded in root layout)
 
 **Utility Classes:**
 
@@ -148,6 +197,7 @@ SUBSTACK_PUBLICATION_ID=evestel    # Substack publication
 
 # Public
 NEXT_PUBLIC_SITE_URL=https://fhiriq.com
+NEXT_PUBLIC_LINKEDIN_PARTNER_ID=...  # LinkedIn Insight Tag partner ID
 ```
 
 **See:** `CLAUDE_API_SETUP.md` and `EMAIL_SETUP.md` for detailed setup instructions.
@@ -190,7 +240,7 @@ The `/mappingguide` path is rewritten to `/mappingguide/index.html` via `next.co
 
 ## Contact & Business Information
 
-- Primary contact: gene@fhiriq.com
+- Primary contact: <gene@fhiriq.com>
 - Booking link: <https://calendar.app.google/TMvRGiiYfbBKNd889>
 - Website: <https://fhiriq.com>
 
@@ -209,7 +259,7 @@ The `/mappingguide` path is rewritten to `/mappingguide/index.html` via `next.co
 **Key Messaging by Page:**
 
 | Page | Headline | Subhead |
-|------|----------|---------|
+| ---- | -------- | ------- |
 | Homepage | "FHIR IQ: The Semantic Intelligence Layer for Healthcare" | Solutions grid: CQL Engine, Data Quality, Advisory |
 | `/cql-to-sql` | "Turn Clinical Logic into Enterprise Intelligence" | "Operationalize HEDIS and Quality Measures directly in your Data Warehouse" |
 | `/library` | "Stop writing boilerplate" | "Use standard SQL on FHIR ViewDefinitions" |
@@ -237,7 +287,7 @@ The `/mappingguide` path is rewritten to `/mappingguide/index.html` via `next.co
 
 When working with this codebase:
 
-1. **Strategic Priority:** Conference landing page `/cql-to-sql` is highest priority - it's the QR code destination for Analytics on FHIR 2025.
+1. **Strategic Priority:** `/cql-to-sql` remains highest priority as the post-conference follow-up destination; `/early-access` is the active conversion funnel for Design Partners.
 
 2. **Email Service:** Resend requires domain verification for fhiriq.com before production use. Temporary workaround uses `onboarding@resend.dev`.
 

@@ -14,7 +14,7 @@ export default function HealthIOBanner() {
         <div className="flex items-center gap-3 flex-1 min-w-0">
           <span className="text-xl flex-shrink-0" aria-hidden="true">&#x1F3AE;</span>
           <p className="text-sm md:text-base font-medium truncate">
-            <span className="font-bold">HIMSS 2026 Games</span>
+            <span className="font-bold">Fun &amp; Games</span>
             <span className="hidden sm:inline"> &mdash; 3 challenges, 3 badges. How well do you know healthcare?</span>
           </p>
         </div>

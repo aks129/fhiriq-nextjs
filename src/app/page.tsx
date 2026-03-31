@@ -485,6 +485,129 @@ export default function Home() {
         </div>
       </section>
 
+      {/* HealthClaw - Personal Health AI */}
+      <section className="py-24 relative">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_right,_rgba(16,185,129,0.1)_0%,_transparent_60%)]" />
+        <div className="max-w-7xl mx-auto px-6 relative">
+          <div className="text-center mb-16">
+            <span className="text-[#10B981] text-sm font-medium tracking-widest uppercase mb-4 block">Open Source &middot; Community Project</span>
+            <h2 className="text-4xl md:text-5xl font-light text-white mb-4">
+              Building <span className="text-[#10B981]">HealthClaw</span>
+            </h2>
+            <p className="text-lg text-[#94A3B8] font-light max-w-2xl mx-auto mb-6">
+              A personal AI health agent stack I&apos;m building openly with the community &mdash;
+              no commercial angle. Exploring what happens when patients have the same processing
+              power as provider systems.
+            </p>
+            <div className="flex flex-wrap justify-center gap-6">
+              <a
+                href="https://open.substack.com/pub/evestel/p/building-a-new-empowered-health-system"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-[#10B981] hover:underline"
+              >
+                Building a New Empowered Health System ↗
+              </a>
+              <a
+                href="https://open.substack.com/pub/evestel/p/how-i-build-my-personal-openclaw"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-[#10B981] hover:underline"
+              >
+                How I Build My Personal OpenClaw ↗
+              </a>
+            </div>
+          </div>
+
+          {/* HealthClaw hero card */}
+          <a
+            href="https://healthclaw.io"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Visit HealthClaw Guardrails at healthclaw.io"
+            className="group block bg-[#0D1117] rounded-2xl p-8 md:p-10 border border-[#10B981]/30 hover:border-[#10B981]/60 transition-all hover:shadow-[0_0_40px_rgba(16,185,129,0.15)] mb-6"
+          >
+            <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
+              <div className="flex-1">
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="text-[#10B981] text-xs font-medium tracking-widest uppercase">Core Project</span>
+                  <span className="px-2 py-1 rounded text-xs font-medium bg-[#10B981]/15 text-[#34D399]">Live at healthclaw.io</span>
+                  <span className="px-2 py-1 rounded text-xs font-medium bg-[#161B22] text-[#64748B]">Open Source</span>
+                </div>
+                <h3 className="text-2xl md:text-3xl font-medium text-white mb-3">HealthClaw Guardrails</h3>
+                <p className="text-[#94A3B8] text-base mb-6 max-w-2xl leading-relaxed">
+                  A security layer between AI agents and clinical data. Redacts PHI on every read,
+                  enforces multi-step human approval for clinical writes (proposal → permission evaluation → HMAC confirmation → immutable audit log),
+                  and keeps your health agent interactions HIPAA-compliant.
+                </p>
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {['12 MCP Tools', 'PHI Redaction', 'FHIR R4/R6', 'US Core v9', 'Fasten Connect', 'Local SQLite'].map((tag) => (
+                    <span key={tag} className="px-3 py-1 rounded-full text-xs bg-[#10B981]/10 text-[#34D399] border border-[#10B981]/20">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <div className="flex items-center gap-6">
+                  <span className="text-[#10B981] font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
+                    Visit healthclaw.io ↗
+                  </span>
+                  <a
+                    href="https://github.com/aks129/HealthClawGuardrails"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                    className="text-[#64748B] hover:text-[#94A3B8] text-sm flex items-center gap-1 transition"
+                  >
+                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                      <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
+                    </svg>
+                    GitHub
+                  </a>
+                </div>
+              </div>
+            </div>
+          </a>
+
+          {/* Satellite projects */}
+          <div className="grid md:grid-cols-2 gap-6">
+            <a
+              href="https://github.com/aks129/SmartHealthConnect"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group bg-[#161B22] rounded-xl p-6 border border-[#10B981]/20 hover:border-[#10B981]/40 transition-all hover:shadow-[0_0_20px_rgba(16,185,129,0.1)]"
+            >
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-[#10B981] text-xs font-medium tracking-widest uppercase">Patient Records</span>
+                <span className="px-2 py-1 rounded text-xs font-medium bg-[#10B981]/10 text-[#34D399]">Open Source</span>
+              </div>
+              <h3 className="text-lg font-medium text-white mb-2">Smart Health Connect</h3>
+              <p className="text-[#94A3B8] text-sm mb-4">
+                SMART on FHIR patient records platform. Aggregates data from Epic, Cerner, and other EHRs into
+                a single interface with AI-powered health insights. The data layer OpenClaw works with.
+              </p>
+              <div className="text-[#10B981] text-sm font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
+                View on GitHub ↗
+              </div>
+            </a>
+
+            <div className="bg-[#161B22] rounded-xl p-6 border border-[#10B981]/10">
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-[#10B981] text-xs font-medium tracking-widest uppercase">Data Quality</span>
+                <span className="px-2 py-1 rounded text-xs font-medium bg-[#FBBF24]/10 text-[#FBBF24]">In Development</span>
+              </div>
+              <h3 className="text-lg font-medium text-white mb-2">Curatr Skills</h3>
+              <p className="text-[#94A3B8] text-sm mb-4">
+                Data quality curation skills for OpenClaw. Detects anomalies, validates FHIR resources,
+                and curates your health record for reliable agent consumption.
+              </p>
+              <div className="text-[#64748B] text-sm">
+                OpenClaw skill library
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Resources & Guides */}
       <section className="py-24 relative">
         <div className="max-w-7xl mx-auto px-6">
@@ -519,6 +642,43 @@ export default function Home() {
             <Link href="/resources" className="text-[#38BDF8] font-medium hover:underline">
               View All Resources →
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Fun & Games */}
+      <section className="py-24 relative">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(245,158,11,0.06)_0%,_transparent_60%)]" />
+        <div className="max-w-7xl mx-auto px-6 relative">
+          <div className="text-center mb-16">
+            <span className="text-[#F59E0B] text-sm font-medium tracking-widest uppercase mb-4 block">Fun &amp; Games</span>
+            <h2 className="text-4xl md:text-5xl font-light text-white mb-4">
+              Test Your Healthcare Knowledge
+            </h2>
+            <p className="text-lg text-[#94A3B8] font-light max-w-2xl mx-auto">
+              Three challenges, three badges. Built for the HIMSS 2026 community &mdash;
+              because learning FHIR, regulations, and AI agents should actually be fun.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              { href: '/games/healthio', label: 'FHIR Quiz', title: 'FHIR IQ Badge Challenge', desc: 'Test your knowledge of FHIR R4, US Core, CQL, and quality measures. Earn Bronze, Silver, or Gold.', labelClass: 'text-[#F59E0B]', icon: '🏆' },
+              { href: '/games/hti6-builder', label: 'Regulation', title: 'HTI-6 Builder', desc: 'Master the regulatory stack from HTI-1 through HTI-6. Earn your Policy Architect badge.', labelClass: 'text-[#10B981]', icon: '🏛️' },
+              { href: '/games/ai-agent', label: 'AI Agents', title: 'AI Agent for Health', desc: 'Deploy AI agents against real clinical scenarios — prior auth, quality gaps, guardrails, and more.', labelClass: 'text-[#8B5CF6]', icon: '🤖' },
+            ].map((game, i) => (
+              <Link key={i} href={game.href} className="group bg-[#161B22] rounded-xl p-6 border border-[#38BDF8]/10 hover:border-[#38BDF8]/30 transition-all hover:shadow-[0_0_20px_rgba(56,189,248,0.1)]">
+                <div className="flex items-center justify-between mb-4">
+                  <span className="text-2xl">{game.icon}</span>
+                  <span className={`text-xs font-medium tracking-widest uppercase ${game.labelClass}`}>{game.label}</span>
+                </div>
+                <h3 className="text-lg font-medium text-white mb-2">{game.title}</h3>
+                <p className="text-[#94A3B8] text-sm mb-4">{game.desc}</p>
+                <div className="text-[#38BDF8] text-sm font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
+                  Play now →
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
@@ -617,12 +777,12 @@ export default function Home() {
                 Helping healthcare organizations navigate FHIR, AI, and quality measurement.
               </p>
               <div className="flex gap-4 mt-4">
-                <a href="https://www.linkedin.com/in/evestel/" target="_blank" rel="noopener noreferrer" className="text-[#64748B] hover:text-[#38BDF8] transition">
+                <a href="https://www.linkedin.com/in/evestel/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile" className="text-[#64748B] hover:text-[#38BDF8] transition">
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
                   </svg>
                 </a>
-                <a href="https://github.com/fhiriq" target="_blank" rel="noopener noreferrer" className="text-[#64748B] hover:text-[#38BDF8] transition">
+                <a href="https://github.com/fhiriq" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile" className="text-[#64748B] hover:text-[#38BDF8] transition">
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                     <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
                   </svg>
@@ -643,6 +803,15 @@ export default function Home() {
                 <li><Link href="/library" className="hover:text-[#38BDF8] transition">ViewDefinition Library</Link></li>
                 <li><Link href="/tools" className="hover:text-[#38BDF8] transition">The Lab</Link></li>
                 <li><Link href="/cql-to-sql" className="hover:text-[#38BDF8] transition">CQL-to-SQL</Link></li>
+                <li><a href="https://healthclaw.io" target="_blank" rel="noopener noreferrer" className="hover:text-[#38BDF8] transition">HealthClaw</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-medium text-white mb-4 text-sm tracking-wider uppercase">Fun &amp; Games</h4>
+              <ul className="space-y-3 text-[#94A3B8] text-sm">
+                <li><Link href="/games/healthio" className="hover:text-[#38BDF8] transition">FHIR IQ Badge Challenge</Link></li>
+                <li><Link href="/games/hti6-builder" className="hover:text-[#38BDF8] transition">HTI-6 Builder</Link></li>
+                <li><Link href="/games/ai-agent" className="hover:text-[#38BDF8] transition">AI Agent for Health</Link></li>
               </ul>
             </div>
             <div>
