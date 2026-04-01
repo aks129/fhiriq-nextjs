@@ -519,91 +519,102 @@ export default function Home() {
             </div>
           </div>
 
-          {/* HealthClaw hero card */}
+          {/* HealthClaw Guardrails — primary card */}
           <a
             href="https://healthclaw.io"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Visit HealthClaw Guardrails at healthclaw.io"
-            className="group block bg-[#0D1117] rounded-2xl p-8 md:p-10 border border-[#10B981]/30 hover:border-[#10B981]/60 transition-all hover:shadow-[0_0_40px_rgba(16,185,129,0.15)] mb-6"
+            className="group block bg-[#0D1117] rounded-2xl p-8 md:p-10 border border-[#10B981]/30 hover:border-[#10B981]/60 transition-all hover:shadow-[0_0_50px_rgba(16,185,129,0.2)] mb-5"
           >
-            <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
-              <div className="flex-1">
-                <div className="flex items-center gap-3 mb-4">
-                  <span className="text-[#10B981] text-xs font-medium tracking-widest uppercase">Core Project</span>
-                  <span className="px-2 py-1 rounded text-xs font-medium bg-[#10B981]/15 text-[#34D399]">Live at healthclaw.io</span>
-                  <span className="px-2 py-1 rounded text-xs font-medium bg-[#161B22] text-[#64748B]">Open Source</span>
-                </div>
-                <h3 className="text-2xl md:text-3xl font-medium text-white mb-3">HealthClaw Guardrails</h3>
-                <p className="text-[#94A3B8] text-base mb-6 max-w-2xl leading-relaxed">
-                  A security layer between AI agents and clinical data. Redacts PHI on every read,
-                  enforces multi-step human approval for clinical writes (proposal → permission evaluation → HMAC confirmation → immutable audit log),
-                  and keeps your health agent interactions HIPAA-compliant.
-                </p>
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {['12 MCP Tools', 'PHI Redaction', 'FHIR R4/R6', 'US Core v9', 'Fasten Connect', 'Local SQLite'].map((tag) => (
-                    <span key={tag} className="px-3 py-1 rounded-full text-xs bg-[#10B981]/10 text-[#34D399] border border-[#10B981]/20">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-                <div className="flex items-center gap-6">
-                  <span className="text-[#10B981] font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
-                    Visit healthclaw.io ↗
-                  </span>
-                  <a
-                    href="https://github.com/aks129/HealthClawGuardrails"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={(e) => e.stopPropagation()}
-                    className="text-[#64748B] hover:text-[#94A3B8] text-sm flex items-center gap-1 transition"
-                  >
-                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                      <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
-                    </svg>
-                    GitHub
-                  </a>
-                </div>
-              </div>
+            <div className="flex items-center gap-3 mb-5">
+              <span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse" />
+              <span className="text-[#10B981] text-xs font-medium tracking-widest uppercase">Live</span>
+              <span className="px-2 py-1 rounded text-xs font-medium bg-[#10B981]/15 text-[#34D399]">healthclaw.io</span>
+              <span className="px-2 py-1 rounded text-xs font-medium bg-[#161B22] text-[#64748B]">Open Source</span>
+            </div>
+            <h3 className="text-2xl md:text-3xl font-medium text-white mb-3">HealthClaw Guardrails</h3>
+            <p className="text-[#94A3B8] text-base mb-6 max-w-3xl leading-relaxed">
+              A security layer between AI agents and clinical data. Redacts PHI on every read,
+              enforces multi-step human approval for clinical writes — proposal → permission evaluation →
+              HMAC confirmation → immutable audit log — and keeps your health agent interactions HIPAA-compliant.
+            </p>
+            <div className="flex flex-wrap gap-2 mb-7">
+              {['12 MCP Tools', 'PHI Redaction', 'FHIR R4/R6', 'US Core v9', 'Fasten Connect', 'Local SQLite'].map((tag) => (
+                <span key={tag} className="px-3 py-1 rounded-full text-xs bg-[#10B981]/10 text-[#34D399] border border-[#10B981]/20">
+                  {tag}
+                </span>
+              ))}
+            </div>
+            <div className="flex items-center gap-6">
+              <span className="text-[#10B981] font-medium flex items-center gap-2 group-hover:gap-3 transition-all">
+                Visit healthclaw.io
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </span>
+              <a
+                href="https://github.com/aks129/HealthClawGuardrails"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                className="text-[#64748B] hover:text-[#94A3B8] text-sm flex items-center gap-1.5 transition"
+              >
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
+                </svg>
+                View on GitHub
+              </a>
             </div>
           </a>
 
-          {/* Satellite projects */}
-          <div className="grid md:grid-cols-2 gap-6">
+          {/* Smart Health Connect — secondary card, same weight */}
+          <a
+            href="https://github.com/aks129/SmartHealthConnect"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Smart Health Connect on GitHub"
+            className="group block bg-[#0D1117] rounded-2xl p-8 md:p-10 border border-[#38BDF8]/20 hover:border-[#38BDF8]/50 transition-all hover:shadow-[0_0_50px_rgba(56,189,248,0.12)] mb-8"
+          >
+            <div className="flex items-center gap-3 mb-5">
+              <span className="text-[#38BDF8] text-xs font-medium tracking-widest uppercase">SMART on FHIR</span>
+              <span className="px-2 py-1 rounded text-xs font-medium bg-[#38BDF8]/10 text-[#38BDF8]">Open Source</span>
+            </div>
+            <h3 className="text-2xl md:text-3xl font-medium text-white mb-3">Smart Health Connect</h3>
+            <p className="text-[#94A3B8] text-base mb-6 max-w-3xl leading-relaxed">
+              A SMART on FHIR patient records platform that aggregates your health data from Epic, Cerner,
+              and other EHRs into a single secure interface. Provides curated health visualizations and MCP tools —
+              the data layer that HealthClaw agents work with.
+            </p>
+            <div className="flex flex-wrap gap-2 mb-7">
+              {['SMART on FHIR R4', 'React + TypeScript', 'MCP Tools', 'AI Health Insights', 'Multi-EHR', 'PostgreSQL'].map((tag) => (
+                <span key={tag} className="px-3 py-1 rounded-full text-xs bg-[#38BDF8]/10 text-[#38BDF8] border border-[#38BDF8]/20">
+                  {tag}
+                </span>
+              ))}
+            </div>
+            <span className="text-[#38BDF8] font-medium flex items-center gap-2 group-hover:gap-3 transition-all">
+              View on GitHub
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </span>
+          </a>
+
+          {/* More work */}
+          <div className="text-center">
+            <p className="text-[#64748B] text-sm mb-2">More experiments in progress — Curatr Skills and others</p>
             <a
-              href="https://github.com/aks129/SmartHealthConnect"
+              href="https://github.com/aks129"
               target="_blank"
               rel="noopener noreferrer"
-              className="group bg-[#161B22] rounded-xl p-6 border border-[#10B981]/20 hover:border-[#10B981]/40 transition-all hover:shadow-[0_0_20px_rgba(16,185,129,0.1)]"
+              className="text-[#94A3B8] hover:text-white text-sm font-medium transition flex items-center gap-1.5 justify-center"
             >
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-[#10B981] text-xs font-medium tracking-widest uppercase">Patient Records</span>
-                <span className="px-2 py-1 rounded text-xs font-medium bg-[#10B981]/10 text-[#34D399]">Open Source</span>
-              </div>
-              <h3 className="text-lg font-medium text-white mb-2">Smart Health Connect</h3>
-              <p className="text-[#94A3B8] text-sm mb-4">
-                SMART on FHIR patient records platform. Aggregates data from Epic, Cerner, and other EHRs into
-                a single interface with AI-powered health insights. The data layer OpenClaw works with.
-              </p>
-              <div className="text-[#10B981] text-sm font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
-                View on GitHub ↗
-              </div>
+              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
+              </svg>
+              See all projects on GitHub →
             </a>
-
-            <div className="bg-[#161B22] rounded-xl p-6 border border-[#10B981]/10">
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-[#10B981] text-xs font-medium tracking-widest uppercase">Data Quality</span>
-                <span className="px-2 py-1 rounded text-xs font-medium bg-[#FBBF24]/10 text-[#FBBF24]">In Development</span>
-              </div>
-              <h3 className="text-lg font-medium text-white mb-2">Curatr Skills</h3>
-              <p className="text-[#94A3B8] text-sm mb-4">
-                Data quality curation skills for OpenClaw. Detects anomalies, validates FHIR resources,
-                and curates your health record for reliable agent consumption.
-              </p>
-              <div className="text-[#64748B] text-sm">
-                OpenClaw skill library
-              </div>
-            </div>
           </div>
         </div>
       </section>
