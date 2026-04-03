@@ -520,14 +520,8 @@ export default function Home() {
           </div>
 
           {/* HealthClaw Guardrails — primary card */}
-          <a
-            href="https://healthclaw.io"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Visit HealthClaw Guardrails at healthclaw.io"
-            className="group block bg-[#0D1117] rounded-2xl p-8 md:p-10 border border-[#10B981]/30 hover:border-[#10B981]/60 transition-all hover:shadow-[0_0_50px_rgba(16,185,129,0.2)] mb-5"
-          >
-            <div className="flex items-center gap-3 mb-5">
+          <div className="group bg-[#0D1117] rounded-2xl p-8 md:p-10 border border-[#10B981]/30 hover:border-[#10B981]/60 transition-all hover:shadow-[0_0_50px_rgba(16,185,129,0.2)] mb-5">
+            <div className="flex flex-wrap items-center gap-3 mb-5">
               <span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse" />
               <span className="text-[#10B981] text-xs font-medium tracking-widest uppercase">Live</span>
               <span className="px-2 py-1 rounded text-xs font-medium bg-[#10B981]/15 text-[#34D399]">healthclaw.io</span>
@@ -547,17 +541,21 @@ export default function Home() {
               ))}
             </div>
             <div className="flex items-center gap-6">
-              <span className="text-[#10B981] font-medium flex items-center gap-2 group-hover:gap-3 transition-all">
+              <a
+                href="https://healthclaw.io"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#10B981] font-medium flex items-center gap-2 hover:gap-3 transition-all"
+              >
                 Visit healthclaw.io
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
-              </span>
+              </a>
               <a
                 href="https://github.com/aks129/HealthClawGuardrails"
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={(e) => e.stopPropagation()}
                 className="text-[#64748B] hover:text-[#94A3B8] text-sm flex items-center gap-1.5 transition"
               >
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -566,7 +564,7 @@ export default function Home() {
                 View on GitHub
               </a>
             </div>
-          </a>
+          </div>
 
           {/* Smart Health Connect — secondary card, same weight */}
           <a
@@ -776,7 +774,7 @@ export default function Home() {
       {/* Footer */}
       <footer className="border-t border-[#38BDF8]/10 py-16">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid md:grid-cols-4 gap-12 mb-12">
+          <div className="grid sm:grid-cols-2 md:grid-cols-5 gap-8 mb-12">
             <div>
               <div className="flex items-center gap-2 mb-4">
                 <div className="w-8 h-8 rounded bg-gradient-to-br from-[#38BDF8] to-[#0EA5E9] flex items-center justify-center">
