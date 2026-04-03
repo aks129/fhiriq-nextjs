@@ -1,6 +1,18 @@
-'use client';
-
+import type { Metadata } from 'next';
 import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: 'Open Quality — Investor Overview',
+  description:
+    'Open Quality: explainable AI for healthcare quality improvement. Pre-seed investment opportunity building the first AI that explains why quality measures pass or fail.',
+  openGraph: {
+    title: 'Open Quality — Investor Overview | FHIR IQ',
+    description:
+      'Explainable AI for healthcare quality improvement. Pre-seed investment opportunity.',
+    url: 'https://fhiriq.com/investor',
+  },
+  robots: { index: false, follow: false },
+};
 
 export default function Investor() {
   return (

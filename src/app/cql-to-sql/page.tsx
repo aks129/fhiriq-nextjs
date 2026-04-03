@@ -1,5 +1,4 @@
-import { redirect } from 'next/navigation';
-
+// Handled by next.config.ts permanent redirect → /
 export default function CQLToSQL() {
-  redirect('/');
+  return null;
 }

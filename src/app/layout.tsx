@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import LinkedInInsight from "@/components/LinkedInInsight";
@@ -13,12 +13,50 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
+
 export const metadata: Metadata = {
-  title: "FHIR IQ - The Semantic Intelligence Layer for Healthcare",
-  description: "Turn clinical logic into enterprise intelligence. CQL-to-SQL compilation, FHIR data quality, and healthcare AI solutions.",
-  keywords: "FHIR, CQL, SQL on FHIR, healthcare analytics, quality measures, HEDIS, HL7, interoperability, AI",
-  authors: [{ name: "FHIR IQ" }],
-  viewport: "width=device-width, initial-scale=1",
+  metadataBase: new URL("https://fhiriq.com"),
+  title: {
+    default: "FHIR IQ — Eugene Vestel",
+    template: "%s | FHIR IQ",
+  },
+  description:
+    "Eugene Vestel helps healthcare organizations navigate FHIR, AI, and quality measurement. Host of Out of the FHIR podcast. NCQA advisor, 15+ years in healthcare data.",
+  keywords:
+    "FHIR, SQL on FHIR, healthcare analytics, quality measures, HEDIS, HL7, interoperability, healthcare AI, CQL, Out of the FHIR podcast, Eugene Vestel",
+  authors: [{ name: "Eugene Vestel", url: "https://fhiriq.com" }],
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://fhiriq.com",
+    siteName: "FHIR IQ",
+    title: "FHIR IQ — Eugene Vestel",
+    description:
+      "Healthcare interoperability, FHIR, AI, and quality measurement. Host of Out of the FHIR podcast.",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "FHIR IQ — Eugene Vestel" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "FHIR IQ — Eugene Vestel",
+    description:
+      "Healthcare interoperability, FHIR, AI, and quality measurement. Host of Out of the FHIR podcast.",
+    images: ["/og-image.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default function RootLayout({
