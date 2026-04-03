@@ -207,11 +207,7 @@ export default function Investor() {
           </div>
           <div className="bg-white rounded-xl p-8 shadow-md">
             <p className="text-xl text-gray-900 font-semibold mb-6">SaaS Subscription</p>
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="bg-gray-50 rounded-xl p-6 text-center">
-                <p className="text-sm text-gray-500 mb-2">Pilot Pricing</p>
-                <p className="text-3xl font-bold text-gray-900">$8–12k/month</p>
-              </div>
+            <div className="grid md:grid-cols-1 gap-6 max-w-xs">
               <div className="bg-gray-50 rounded-xl p-6 text-center">
                 <p className="text-sm text-gray-500 mb-2">Enterprise Pricing</p>
                 <p className="text-3xl font-bold text-gray-900">$150k–500k/year</p>
@@ -236,7 +232,7 @@ export default function Investor() {
               "Data platform distribution",
               "FHIR community & LinkedIn thought leadership",
               "Podcast exposure",
-              "Direct pilots with quality & analytics teams"
+              "Direct partnerships with quality & analytics teams"
             ].map((item, i) => (
               <div key={i} className="flex items-start gap-3">
                 <span className="text-cyan-600 text-xl">→</span>
@@ -259,7 +255,7 @@ export default function Investor() {
           <div className="bg-white rounded-xl p-8 shadow-md">
             <p className="text-xl font-semibold text-gray-900 mb-3">Founder: Eugene Vestel</p>
             <p className="text-gray-700 leading-relaxed">
-              Payer Interoperability Analytics &amp; AI Lead at Outcomes. FHIR data expert, NCQA collaborator, creator of CQL→SQL converter, host of &quot;Out of the FHIR Podcast,&quot;
+              Payer Interoperability Analytics &amp; AI Lead at Outcomes. FHIR data expert, NCQA collaborator, host of &quot;Out of the FHIR Podcast,&quot;
               and leader in modern interoperability + quality models.
             </p>
           </div>
@@ -282,7 +278,7 @@ export default function Investor() {
             $1.5M – $2M
           </p>
           <p className="text-blue-100 mb-10 max-w-xl mx-auto">
-            to accelerate product, expand measure coverage, and onboard pilot partners.
+            to accelerate product and expand measure coverage.
           </p>
           <Link
             href="/contact"
@@ -311,7 +307,7 @@ export default function Investor() {
             </div>
           </div>
           <div className="mt-8 pt-8 border-t border-gray-700 text-center">
-            <p className="text-gray-400">&copy; 2025 FHIR IQ. All rights reserved.</p>
+            <p className="text-gray-400">&copy; 2026 FHIR IQ. All rights reserved.</p>
           </div>
         </div>
       </footer>

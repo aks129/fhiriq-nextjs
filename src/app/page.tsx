@@ -226,6 +226,7 @@ export default function Home() {
               { label: 'NCQA Advisor', detail: 'Quality Measurement' },
               { label: 'b.well Connected Health', detail: 'Director of Data & Analytics' },
               { label: 'UPMC Health System', detail: '5 Years in Clinical Analytics' },
+              { label: 'Analytics on FHIR', detail: 'Conference Speaker · 2025' },
             ].map((item, i) => (
               <div key={i} className="space-y-1">
                 <p className="text-white font-medium text-sm">{item.label}</p>
@@ -368,7 +369,7 @@ export default function Home() {
           </p>
 
           <p className="text-sm text-[#64748B] mb-10">
-            Trusted by 450+ healthcare data professionals
+            Read by 450+ healthcare data professionals &middot; Presented at Analytics on FHIR 2025
           </p>
 
           <form onSubmit={handleNewsletterSignup} className="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto mb-8">
@@ -495,9 +496,8 @@ export default function Home() {
               Building <span className="text-[#10B981]">HealthClaw</span>
             </h2>
             <p className="text-lg text-[#94A3B8] font-light max-w-2xl mx-auto mb-6">
-              A personal AI health agent stack I&apos;m building openly with the community &mdash;
-              no commercial angle. Exploring what happens when patients have the same processing
-              power as provider systems.
+              An open-source AI health agent stack built on MCP, FHIR R4, and SMART on FHIR &mdash;
+              exploring what happens when patients have the same processing power as provider systems.
             </p>
             <div className="flex flex-wrap justify-center gap-6">
               <a
@@ -632,13 +632,13 @@ export default function Home() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { href: '/architectures', label: 'Reference', title: 'FHIR Architectures', desc: 'Proven architecture patterns for FHIR systems', color: '#38BDF8' },
-              { href: '/cqlguide', label: 'Guide', title: 'CQL Quality Measures', desc: 'Implement quality measures using CQL', color: '#8B5CF6' },
-              { href: '/profilingguide', label: 'Guide', title: 'FHIR Profiling', desc: 'Data modeling and profiling best practices', color: '#FB923C' },
-              { href: '/mappingguide', label: 'Guide', title: 'Mapping Wiki', desc: 'Data mapping patterns and techniques', color: '#38BDF8' },
+              { href: '/architectures', label: 'Reference', title: 'FHIR Architectures', desc: 'Proven architecture patterns for FHIR systems', labelClass: 'text-[#38BDF8]' },
+              { href: '/cqlguide', label: 'Guide', title: 'CQL Quality Measures', desc: 'Implement quality measures using CQL', labelClass: 'text-[#8B5CF6]' },
+              { href: '/profilingguide', label: 'Guide', title: 'FHIR Profiling', desc: 'Data modeling and profiling best practices', labelClass: 'text-[#FB923C]' },
+              { href: '/mappingguide', label: 'Guide', title: 'Mapping Wiki', desc: 'Data mapping patterns and techniques', labelClass: 'text-[#38BDF8]' },
             ].map((resource, i) => (
               <Link key={i} href={resource.href} className="group bg-[#161B22] rounded-xl p-6 border border-[#38BDF8]/10 hover:border-[#38BDF8]/30 transition-all">
-                <span className="text-xs font-medium tracking-widest uppercase mb-3 block" style={{ color: resource.color }}>
+                <span className={`text-xs font-medium tracking-widest uppercase mb-3 block ${resource.labelClass}`}>
                   {resource.label}
                 </span>
                 <h3 className="text-lg font-medium text-white mb-2">{resource.title}</h3>
@@ -749,7 +749,7 @@ export default function Home() {
         <div className="max-w-2xl mx-auto px-6 text-center">
           <h2 className="text-3xl font-light text-white mb-4">Stay in the Loop</h2>
           <p className="text-[#94A3B8] mb-8">
-            Join 450+ healthcare data professionals getting weekly insights on FHIR, AI, and quality measurement.
+            Join 450+ healthcare data professionals getting weekly insights on FHIR, AI, and quality measurement. Read by engineers, architects, and analysts at health systems, payers, and vendors.
           </p>
           <form onSubmit={handleNewsletterSignup} className="flex gap-3 max-w-md mx-auto">
             <input
@@ -811,7 +811,6 @@ export default function Home() {
               <ul className="space-y-3 text-[#94A3B8] text-sm">
                 <li><Link href="/library" className="hover:text-[#38BDF8] transition">ViewDefinition Library</Link></li>
                 <li><Link href="/tools" className="hover:text-[#38BDF8] transition">The Lab</Link></li>
-                <li><Link href="/cql-to-sql" className="hover:text-[#38BDF8] transition">CQL-to-SQL</Link></li>
                 <li><a href="https://healthclaw.io" target="_blank" rel="noopener noreferrer" className="hover:text-[#38BDF8] transition">HealthClaw</a></li>
               </ul>
             </div>
@@ -835,7 +834,7 @@ export default function Home() {
           </div>
           <div className="pt-8 border-t border-[#38BDF8]/10 flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-[#64748B] text-sm">
-              © 2025 FHIR IQ. All rights reserved.
+              © 2026 FHIR IQ. All rights reserved.
             </p>
             <p className="text-[#475569] text-xs">
               FHIR® is a registered trademark of HL7® and is used with permission.
