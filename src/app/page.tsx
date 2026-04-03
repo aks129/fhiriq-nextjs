@@ -655,43 +655,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Fun & Games */}
-      <section className="py-24 relative">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(245,158,11,0.06)_0%,_transparent_60%)]" />
-        <div className="max-w-7xl mx-auto px-6 relative">
-          <div className="text-center mb-16">
-            <span className="text-[#F59E0B] text-sm font-medium tracking-widest uppercase mb-4 block">Fun &amp; Games</span>
-            <h2 className="text-4xl md:text-5xl font-light text-white mb-4">
-              Test Your Healthcare Knowledge
-            </h2>
-            <p className="text-lg text-[#94A3B8] font-light max-w-2xl mx-auto">
-              Three challenges, three badges. Built for the HIMSS 2026 community &mdash;
-              because learning FHIR, regulations, and AI agents should actually be fun.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            {[
-              { href: '/games/healthio', label: 'FHIR Quiz', title: 'FHIR IQ Badge Challenge', desc: 'Test your knowledge of FHIR R4, US Core, CQL, and quality measures. Earn Bronze, Silver, or Gold.', labelClass: 'text-[#F59E0B]', icon: '🏆' },
-              { href: '/games/hti6-builder', label: 'Regulation', title: 'HTI-6 Builder', desc: 'Master the regulatory stack from HTI-1 through HTI-6. Earn your Policy Architect badge.', labelClass: 'text-[#10B981]', icon: '🏛️' },
-              { href: '/games/ai-agent', label: 'AI Agents', title: 'AI Agent for Health', desc: 'Deploy AI agents against real clinical scenarios — prior auth, quality gaps, guardrails, and more.', labelClass: 'text-[#8B5CF6]', icon: '🤖' },
-            ].map((game, i) => (
-              <Link key={i} href={game.href} className="group bg-[#161B22] rounded-xl p-6 border border-[#38BDF8]/10 hover:border-[#38BDF8]/30 transition-all hover:shadow-[0_0_20px_rgba(56,189,248,0.1)]">
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-2xl">{game.icon}</span>
-                  <span className={`text-xs font-medium tracking-widest uppercase ${game.labelClass}`}>{game.label}</span>
-                </div>
-                <h3 className="text-lg font-medium text-white mb-2">{game.title}</h3>
-                <p className="text-[#94A3B8] text-sm mb-4">{game.desc}</p>
-                <div className="text-[#38BDF8] text-sm font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
-                  Play now →
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Work With Me */}
       <section className="py-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_right,_rgba(56,189,248,0.08)_0%,_transparent_60%)]" />
@@ -774,7 +737,7 @@ export default function Home() {
       {/* Footer */}
       <footer className="border-t border-[#38BDF8]/10 py-16">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid sm:grid-cols-2 md:grid-cols-5 gap-8 mb-12">
+          <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-8 mb-12">
             <div>
               <div className="flex items-center gap-2 mb-4">
                 <div className="w-8 h-8 rounded bg-gradient-to-br from-[#38BDF8] to-[#0EA5E9] flex items-center justify-center">
@@ -815,19 +778,12 @@ export default function Home() {
               </ul>
             </div>
             <div>
-              <h4 className="font-medium text-white mb-4 text-sm tracking-wider uppercase">Fun &amp; Games</h4>
-              <ul className="space-y-3 text-[#94A3B8] text-sm">
-                <li><Link href="/games/healthio" className="hover:text-[#38BDF8] transition">FHIR IQ Badge Challenge</Link></li>
-                <li><Link href="/games/hti6-builder" className="hover:text-[#38BDF8] transition">HTI-6 Builder</Link></li>
-                <li><Link href="/games/ai-agent" className="hover:text-[#38BDF8] transition">AI Agent for Health</Link></li>
-              </ul>
-            </div>
-            <div>
               <h4 className="font-medium text-white mb-4 text-sm tracking-wider uppercase">Connect</h4>
               <ul className="space-y-3 text-[#94A3B8] text-sm">
                 <li><Link href="/about" className="hover:text-[#38BDF8] transition">About Eugene</Link></li>
                 <li><Link href="/contact" className="hover:text-[#38BDF8] transition">Contact</Link></li>
                 <li><a href="https://calendar.app.google/TMvRGiiYfbBKNd889" target="_blank" rel="noopener noreferrer" className="hover:text-[#38BDF8] transition">Book a Call</a></li>
+                <li><Link href="/games" className="hover:text-[#38BDF8] transition">Fun &amp; Games</Link></li>
                 <li><Link href="/privacy" className="hover:text-[#38BDF8] transition">Privacy</Link></li>
               </ul>
             </div>
