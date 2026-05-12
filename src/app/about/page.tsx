@@ -1,6 +1,17 @@
-'use client';
-
+import type { Metadata } from 'next';
 import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: 'About Eugene Vestel',
+  description:
+    'Eugene Vestel is a healthcare data expert, NCQA advisor, and host of the Out of the FHIR podcast. 15+ years helping health systems, payers, and vendors navigate FHIR and quality measurement.',
+  openGraph: {
+    title: 'About Eugene Vestel | FHIR IQ',
+    description:
+      'Healthcare data expert, NCQA advisor, and host of the Out of the FHIR podcast.',
+    url: 'https://fhiriq.com/about',
+  },
+};
 
 export default function About() {
   return (

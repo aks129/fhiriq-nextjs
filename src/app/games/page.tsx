@@ -22,7 +22,7 @@ export default function Games() {
                 AI Builder
               </Link>
               <Link href="/games" className="text-blue-600 font-semibold">
-                Games
+                Fun &amp; Games
               </Link>
               <Link href="/blog" className="text-gray-700 hover:text-blue-600">
                 Blog
@@ -41,7 +41,7 @@ export default function Games() {
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 text-center">
-          <h1 className="text-5xl font-bold mb-6">Interop Quest</h1>
+          <h1 className="text-5xl font-bold mb-6">Fun &amp; Games</h1>
           <p className="text-xl mb-4 max-w-3xl mx-auto">
             Master healthcare interoperability through multiplayer gameplay
           </p>
