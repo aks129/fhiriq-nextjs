@@ -23,7 +23,9 @@
       "Bash(git ls-tree -r HEAD --name-only)",
       "Bash(cat .gitignore)",
       "Bash(npx tsc --noEmit src/app/api/newsletter/route.ts)",
-      "Bash(git pull:*)"
+      "Bash(git clean:*)",
+      "Bash(git pull:*)",
+      "Bash(git stash:*)"
     ],
     "deny": [],
     "ask": []
