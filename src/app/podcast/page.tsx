@@ -235,6 +235,12 @@ export default function Podcast() {
               🍎 Apple Podcasts
             </a>
           </div>
+          <div className="mt-6 text-sm text-white/75">
+            Sponsoring or partnering?{' '}
+            <Link href="/media-kit" className="underline underline-offset-2 hover:text-white">
+              See the media kit &amp; reach report →
+            </Link>
+          </div>
         </div>
       </section>
 
