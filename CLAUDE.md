@@ -53,6 +53,7 @@ src/
 │   ├── cql-to-sql/     # Conference landing page (Analytics on FHIR 2025) — primary priority
 │   ├── early-access/   # Design Partner application form
 │   ├── investor/       # "Idea Vision" investor one-pager
+│   ├── lab/            # "The Lab" — public-facing showcase of open-source FHIR tools (ViewDefinition Library, FHIRSquire, etc.)
 │   ├── library/        # ViewDefinition library (SQL on FHIR resources)
 │   ├── media-kit/      # Out of the FHIR sponsor/advisory/coaching media kit (3-tab dashboard, outbound-shareable)
 │   ├── innovation-pilot-terms/  # Legal terms for pilot program
@@ -107,18 +108,21 @@ src/
 | `/early-access` | Design Partner application form | Join Early Access |
 | `/investor` | Investor one-pager ("Idea Vision") | Contact |
 | `/media-kit` | Out of the FHIR podcast media kit — sponsor/advisory/coaching tabs, outbound-shareable | <gene@fhiriq.com> / book intro |
+| `/lab` | "The Lab" — open-source FHIR tools showcase (linked from homepage nav as "Lab", and the footer "The Lab") | Try / View on GitHub |
 
 There are ~30 additional routes in the app (see directory structure above) covering products, services, consulting, training, guides, games, and legal pages.
 
 ### Personal Health AI (OpenClaw Community Projects)
 
-Three non-commercial, open-source personal passion projects featured on the homepage under "Personal Health AI":
+Three non-commercial, open-source projects featured on the homepage under "Building HealthClaw" / Personal Health AI, in this card order:
 
 | Project | Status | Description |
 | ------- | ------ | ----------- |
 | **HealthClaw Guardrails** | Live | Security layer between AI agents and clinical data. 12 MCP tools, PHI redaction, FHIR R4/R6 — [healthclaw.io](https://healthclaw.io) · [GitHub](https://github.com/aks129/HealthClawGuardrails) |
 | **Smart Health Connect** | Open Source | SMART on FHIR patient records platform (Liara AI Health). Aggregates Epic/Cerner data with AI health insights — [GitHub](https://github.com/aks129/SmartHealthConnect) |
-| **Curatr Skills** | In Development | Data quality curation skill library for OpenClaw — validates/curates FHIR records for agent consumption |
+| **AINPI** | Ecosystem Analysis | Analysis of the CMS health tech ecosystem and the national provider directory modernization effort. Mapping players, standards, and FHIR-based architecture — [ainpi.dev](https://ainpi.dev) · [GitHub](https://github.com/FHIR-IQ/AINPI) |
+
+A "More experiments in progress — Curatr Skills and others" footer on the homepage links to the broader project list on GitHub (`github.com/aks129`).
 
 These projects are featured in two Substack posts:
 
@@ -252,6 +256,15 @@ The `/mappingguide` path is rewritten to `/mappingguide/index.html` via `next.co
 - FHIR Quiz Training Platform: <https://fhirquiz.vercel.app>
 - FHIR ViewDefinition Builder: <https://fhir-viewdefinition-builder.vercel.app>
 - CQL Builder POC: <https://s77.vercel.app>
+
+## GitHub Orgs
+
+Two GitHub accounts are both active and intentional — don't conflate them:
+
+- **`github.com/aks129`** — Eugene's personal account. Hosts the personal/community projects (HealthClawGuardrails, SmartHealthConnect, fhirquiz, fhirspective, agent-inter-op, etc.). The homepage **footer GitHub social icon points here**.
+- **`github.com/FHIR-IQ`** — the FHIR-IQ organization. Hosts org-owned product repos (e.g., AINPI).
+
+When linking to a project's repo, use whichever org actually owns it — there's no fallback "default org" to assume. If a new project's home is uncertain, ask.
 
 ## Product Messaging & Positioning
 
