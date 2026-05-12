@@ -9,7 +9,6 @@ import {
   audienceSeniority,
   audienceIndustry,
   companySize,
-  namedAccountFollowers,
   substackStats,
   substackTopPosts,
   substackGrowthSources,
@@ -290,24 +289,6 @@ function SponsorView() {
           <div className="mt-3.5"><StackedBar data={companySize} /></div>
         </Card>
       </div>
-
-      <Card>
-        <SectionHeader colorKey="blue">Named-account reach</SectionHeader>
-        <div className="flex flex-col gap-3 mt-3.5">
-          {namedAccountFollowers.map((n) => (
-            <div key={n.tier}>
-              <div className="text-[10px] font-mono text-slate-400 uppercase tracking-widest mb-1.5">{n.tier}</div>
-              <div className="flex flex-wrap gap-1.5">
-                {n.names.map((name) => (
-                  <span key={name} className="text-[11px] px-2 py-0.5 rounded bg-slate-50 text-slate-800 border border-slate-200">
-                    {name}
-                  </span>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      </Card>
 
       <div>
         <div className="px-0.5 mb-2.5">

@@ -79,12 +79,6 @@ export const companySize: Bar[] = [
   { role: "Other", pct: 30.7, colorKey: "dim" },
 ];
 
-export const namedAccountFollowers = [
-  { tier: "Provider systems", names: ["UPMC", "UPMC Health Plan", "Allegheny Health Network", "Highmark Health"] },
-  { tier: "FHIR + interop platforms", names: ["b.well Connected Health", "Health Samurai (Aidbox)", "Outcomes®"] },
-  { tier: "Top geographies", names: ["Pittsburgh (18.9%)", "NYC (9.5%)", "DC-Baltimore (5.4%)", "SF Bay (4%)", "Boston (3.5%)"] },
-];
-
 export const substackStats: Stat[] = [
   { value: "554", label: "Subscribers", colorKey: "teal", sub: "543 free · 10 paid · 1 comp" },
   { value: "48.2%", label: "Avg open rate", colorKey: "purple", sub: "72 posts published" },
