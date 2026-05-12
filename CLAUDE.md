@@ -36,7 +36,7 @@ npm start                # Start production server
 npm run lint             # Run ESLint
 ```
 
-There is no test runner configured. The codebase has no unit or integration tests.
+There is no test runner configured. The codebase has no unit or integration tests. For UI changes, verify by running the dev server and either hitting the page in a browser or using the Playwright MCP tools (`mcp__plugin_playwright_playwright__*`) — Playwright MCP is wired up in this repo and is the project's de-facto QA loop.
 
 ## Architecture
 
@@ -54,6 +54,7 @@ src/
 │   ├── early-access/   # Design Partner application form
 │   ├── investor/       # "Idea Vision" investor one-pager
 │   ├── library/        # ViewDefinition library (SQL on FHIR resources)
+│   ├── media-kit/      # Out of the FHIR sponsor/advisory/coaching media kit (3-tab dashboard, outbound-shareable)
 │   ├── innovation-pilot-terms/  # Legal terms for pilot program
 │   │
 │   ├── about/          # Company about page
@@ -105,6 +106,7 @@ src/
 | `/library` | ViewDefinition library (developer hook) | Copy JSON/SQL |
 | `/early-access` | Design Partner application form | Join Early Access |
 | `/investor` | Investor one-pager ("Idea Vision") | Contact |
+| `/media-kit` | Out of the FHIR podcast media kit — sponsor/advisory/coaching tabs, outbound-shareable | <gene@fhiriq.com> / book intro |
 
 There are ~30 additional routes in the app (see directory structure above) covering products, services, consulting, training, guides, games, and legal pages.
 
@@ -152,19 +154,18 @@ All API routes are in `src/app/api/`:
 
 ### Styling System
 
-**Design System:**
+**The reality:** Most content pages use `min-h-screen bg-white` + Tailwind utility classes (25+ of ~36 pages). The dark "Blade Runner" theme in `globals.css` defines a full color system, but in practice it's used primarily for gradient hero sections (`bg-gradient-to-r from-accent-purple via-primary-blue to-primary-navy`) layered on light pages, not as a full page background. When adding a page, **copy the nav + container pattern from a stylistically-similar existing page** (e.g., `/podcast` for content pages, `/cql-to-sql` or `/investor` for landing/marketing pages) rather than starting blank or strictly applying `globals.css` tokens.
 
-- Brand colors defined in `src/app/globals.css` with CSS variables
-- Primary colors: Blue (#2563EB), Green (#059669), Navy (#1E293B)
-- Accent colors: Purple (#7C3AED), Orange (#EA580C)
-- Uses Tailwind CSS 4 with custom theme configuration
-- Fonts: Geist and Geist_Mono (via `next/font/google`, loaded in root layout)
+**Available:**
 
-**Utility Classes:**
+- CSS variables in `src/app/globals.css` — full Blade Runner palette (void-black, electric-blue, laser-red, steel-N, etc.) plus legacy mappings (`--primary-blue`, `--accent-purple`, etc.)
+- Tailwind CSS 4 with `@theme inline` token bindings — `text-primary-blue`, `bg-primary-green`, `text-neutral-gray`, etc.
+- Utility classes from globals.css: `.btn-primary`, `.btn-secondary`, `.btn-cta`, `.card`, `.card-glass`, `.badge-blue`/`-red`/`-green`
+- Fonts: Geist + Geist_Mono + Inter, loaded via `next/font/google` in root layout
 
-- `.btn-primary`, `.btn-secondary` - Button styles
-- `.card` - Card component pattern
-- Custom color utilities: `.text-primary-blue`, `.bg-primary-green`, etc.
+### Page composition
+
+**There is no shared Nav or Footer component.** ~22 pages inline their own nav (typically `<nav class="bg-white shadow-lg">` with the `FHIR IQ` brand link + section links). When adding a page, copy the nav block from the closest matching existing page rather than expecting a `<Nav>` import — `src/components/` only contains feature components (ChatBot, banners, LinkedInInsight, etc.), not chrome.
 
 ### AI Chatbot Architecture
 
@@ -220,7 +221,7 @@ NEXT_PUBLIC_LINKEDIN_PARTNER_ID=...  # LinkedIn Insight Tag partner ID
 
 ### CORS Configuration
 
-API routes have CORS enabled via `vercel.json` headers for cross-origin requests.
+`vercel.json` contains only API CORS headers (`/api/(.*)` → `Access-Control-Allow-Origin: *` and friends). All path rewrites live in `next.config.ts`, not `vercel.json`.
 
 ### Route Rewrite
 
@@ -297,6 +298,6 @@ When working with this codebase:
 
 5. **Static Assets:** Guides are served from `public/` directory (e.g., `public/mappingguide/`, `public/cqlguide/`).
 
-6. **Brand Consistency:** Always use CSS variables from `globals.css` for colors, not hardcoded hex values.
+6. **Visual conventions:** Match the conventions of a stylistically-similar existing page (e.g., `/podcast` for light-theme content pages, `/cql-to-sql` for marketing landing pages with gradient heros). The `globals.css` token system is available but the codebase is not strict about it — many pages use raw Tailwind utilities and `bg-white`. Don't introduce a new visual language unless asked.
 
 7. **Homepage Pivot:** The homepage should emphasize "Platform" positioning over "Freelancer/Consultant" - use the Solutions grid pattern with CQL Engine as primary, Data Quality as secondary, and Advisory/Consulting as tertiary.
