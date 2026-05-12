@@ -129,7 +129,7 @@ export default function Home() {
               <Link href="/blog" className="text-[#94A3B8] hover:text-[#38BDF8] text-sm font-medium tracking-wide transition">
                 Newsletter
               </Link>
-              <Link href="/tools" className="text-[#94A3B8] hover:text-[#38BDF8] text-sm font-medium tracking-wide transition">
+              <Link href="/lab" className="text-[#94A3B8] hover:text-[#38BDF8] text-sm font-medium tracking-wide transition">
                 Lab
               </Link>
               <Link href="/resources" className="text-[#94A3B8] hover:text-[#38BDF8] text-sm font-medium tracking-wide transition">
@@ -414,78 +414,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* The Lab - Open Source Tools */}
-      <section className="py-24 relative">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <span className="text-[#38BDF8] text-sm font-medium tracking-widest uppercase mb-4 block">The Lab</span>
-            <h2 className="text-4xl md:text-5xl font-light text-white mb-4">
-              Things I&apos;m Building &amp; Exploring
-            </h2>
-            <p className="text-lg text-[#94A3B8] font-light max-w-2xl mx-auto">
-              Open source tools for the FHIR community. Some are production-ready,
-              some are experiments. All are free to use.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              { href: '/library', title: 'ViewDefinition Library', desc: 'Pre-built SQL on FHIR ViewDefinitions for US Core 7.0. Copy-paste ready.', badge: 'Ready to use' },
-              { href: '/fhirsquire', title: 'FHIRSquire', desc: 'AI-powered FHIR profile advisor. Ask questions, get instant guidance.' },
-              { href: 'https://fhirspective.vercel.app', title: 'FHIRspective', desc: 'Analyze and validate FHIR resources for data quality issues.', external: true },
-              { href: 'https://agent-inter-op.vercel.app', title: 'FHIR Data Mapper', desc: 'AI-assisted data mapping with a visual editor.', external: true },
-              { href: 'https://s77.vercel.app', title: 'CQL Builder', desc: 'Generate CQL from natural language. Early experiment.', badge: 'Experiment', external: true },
-            ].map((tool, i) => (
-              tool.external ? (
-                <a key={i} href={tool.href} target="_blank" rel="noopener noreferrer" className="group bg-[#161B22] rounded-xl p-6 border border-[#38BDF8]/10 hover:border-[#38BDF8]/30 transition-all hover:shadow-[0_0_20px_rgba(56,189,248,0.1)]">
-                  <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-lg font-medium text-white">{tool.title}</h3>
-                    {tool.badge && (
-                      <span className="px-2 py-1 rounded text-xs font-medium bg-[#FBBF24]/10 text-[#FBBF24]">
-                        {tool.badge}
-                      </span>
-                    )}
-                  </div>
-                  <p className="text-[#94A3B8] text-sm mb-4">{tool.desc}</p>
-                  <div className="text-[#38BDF8] text-sm font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
-                    Try it <span className="opacity-50">↗</span>
-                  </div>
-                </a>
-              ) : (
-                <Link key={i} href={tool.href} className="group bg-[#161B22] rounded-xl p-6 border border-[#38BDF8]/10 hover:border-[#38BDF8]/30 transition-all hover:shadow-[0_0_20px_rgba(56,189,248,0.1)]">
-                  <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-lg font-medium text-white">{tool.title}</h3>
-                    {tool.badge && (
-                      <span className="px-2 py-1 rounded text-xs font-medium bg-[#10B981]/10 text-[#34D399]">
-                        {tool.badge}
-                      </span>
-                    )}
-                  </div>
-                  <p className="text-[#94A3B8] text-sm mb-4">{tool.desc}</p>
-                  <div className="text-[#38BDF8] text-sm font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
-                    Explore →
-                  </div>
-                </Link>
-              )
-            ))}
-            <a
-              href="https://github.com/fhiriq"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group bg-[#0D1117] rounded-xl p-6 border border-dashed border-[#38BDF8]/20 hover:border-[#38BDF8]/40 transition-all flex flex-col items-center justify-center text-center"
-            >
-              <div className="w-12 h-12 rounded-full bg-[#38BDF8]/10 flex items-center justify-center mb-4 group-hover:bg-[#38BDF8]/20 transition-all">
-                <svg className="w-6 h-6 text-[#38BDF8]" fill="currentColor" viewBox="0 0 24 24">
-                  <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
-                </svg>
-              </div>
-              <h3 className="text-lg font-medium text-white mb-2">View on GitHub</h3>
-              <p className="text-[#64748B] text-sm">All projects are open source</p>
-            </a>
-          </div>
-        </div>
-      </section>
-
       {/* HealthClaw - Personal Health AI */}
       <section className="py-24 relative">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_right,_rgba(16,185,129,0.1)_0%,_transparent_60%)]" />
@@ -598,6 +526,52 @@ export default function Home() {
               </svg>
             </span>
           </a>
+
+          {/* AINPI — ecosystem analysis */}
+          <div className="group bg-[#0D1117] rounded-2xl p-8 md:p-10 border border-[#8B5CF6]/25 hover:border-[#8B5CF6]/55 transition-all hover:shadow-[0_0_50px_rgba(139,92,246,0.15)] mb-8">
+            <div className="flex flex-wrap items-center gap-3 mb-5">
+              <span className="text-[#8B5CF6] text-xs font-medium tracking-widest uppercase">Ecosystem Analysis</span>
+              <span className="px-2 py-1 rounded text-xs font-medium bg-[#8B5CF6]/15 text-[#A78BFA]">ainpi.dev</span>
+              <span className="px-2 py-1 rounded text-xs font-medium bg-[#161B22] text-[#64748B]">Open Source</span>
+            </div>
+            <h3 className="text-2xl md:text-3xl font-medium text-white mb-3">AINPI</h3>
+            <p className="text-[#94A3B8] text-base mb-6 max-w-3xl leading-relaxed">
+              An ongoing analysis of the CMS health tech ecosystem and the national provider directory
+              modernization effort. Mapping the players, the standards, and the FHIR-based architecture
+              behind the next-generation healthcare directory.
+            </p>
+            <div className="flex flex-wrap gap-2 mb-7">
+              {['CMS Ecosystem', 'National Provider Directory', 'NPPES', 'FHIR', 'Policy Analysis'].map((tag) => (
+                <span key={tag} className="px-3 py-1 rounded-full text-xs bg-[#8B5CF6]/10 text-[#A78BFA] border border-[#8B5CF6]/20">
+                  {tag}
+                </span>
+              ))}
+            </div>
+            <div className="flex items-center gap-6">
+              <a
+                href="https://ainpi.dev"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#A78BFA] font-medium flex items-center gap-2 hover:gap-3 transition-all"
+              >
+                Visit ainpi.dev
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </a>
+              <a
+                href="https://github.com/aks129/ainpi"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#64748B] hover:text-[#94A3B8] text-sm flex items-center gap-1.5 transition"
+              >
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
+                </svg>
+                View on GitHub
+              </a>
+            </div>
+          </div>
 
           {/* More work */}
           <div className="text-center">
@@ -754,7 +728,7 @@ export default function Home() {
                     <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
                   </svg>
                 </a>
-                <a href="https://github.com/fhiriq" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile" className="text-[#64748B] hover:text-[#38BDF8] transition">
+                <a href="https://github.com/aks129" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile" className="text-[#64748B] hover:text-[#38BDF8] transition">
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                     <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
                   </svg>
@@ -773,7 +747,7 @@ export default function Home() {
               <h4 className="font-medium text-white mb-4 text-sm tracking-wider uppercase">Tools</h4>
               <ul className="space-y-3 text-[#94A3B8] text-sm">
                 <li><Link href="/library" className="hover:text-[#38BDF8] transition">ViewDefinition Library</Link></li>
-                <li><Link href="/tools" className="hover:text-[#38BDF8] transition">The Lab</Link></li>
+                <li><Link href="/lab" className="hover:text-[#38BDF8] transition">The Lab</Link></li>
                 <li><a href="https://healthclaw.io" target="_blank" rel="noopener noreferrer" className="hover:text-[#38BDF8] transition">HealthClaw</a></li>
               </ul>
             </div>
