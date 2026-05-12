@@ -560,7 +560,7 @@ export default function Home() {
                 </svg>
               </a>
               <a
-                href="https://github.com/aks129/ainpi"
+                href="https://github.com/FHIR-IQ/AINPI"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-[#64748B] hover:text-[#94A3B8] text-sm flex items-center gap-1.5 transition"
