@@ -14,6 +14,7 @@ import {
   substackGrowthSources,
   substackCountriesLine,
   podcastStats,
+  substackPodcastStats,
   podcastGeo,
   podcastTopEpisodes,
   notableGuests,
@@ -217,6 +218,26 @@ function PodcastTruthCard() {
   );
 }
 
+function SubstackPodcastCard() {
+  return (
+    <Card accent="amber">
+      <div className="flex justify-between items-center mb-3 flex-wrap gap-2">
+        <SectionHeader colorKey="amber">Substack RSS — episode download durability</SectionHeader>
+        <Pill colorKey="amber" size="sm">LONG-TAIL</Pill>
+      </div>
+      <p className="text-xs text-slate-600 leading-relaxed mb-3.5">{copy.substackPodcastFraming}</p>
+      <div className="grid grid-cols-[repeat(auto-fit,minmax(140px,1fr))] gap-3.5">
+        {substackPodcastStats.map((s, i) => (
+          <BigStat key={i} {...s} />
+        ))}
+      </div>
+      <div className="mt-3.5 px-3 py-2.5 rounded-lg bg-amber-50 text-xs text-amber-700 leading-relaxed">
+        Translation: a mid-roll sponsor placement keeps earning impressions for 90+ days post-publish.
+      </div>
+    </Card>
+  );
+}
+
 function GuestRosterCard() {
   return (
     <Card>
@@ -274,6 +295,7 @@ function SponsorView() {
       <SubstackCard />
       <GuestRosterCard />
       <PodcastTruthCard />
+      <SubstackPodcastCard />
 
       <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-3">
         <Card>
@@ -362,6 +384,7 @@ function AdvisoryView() {
       </Card>
 
       <PodcastTruthCard />
+      <SubstackPodcastCard />
 
       <div>
         <div className="px-0.5 mb-2.5">

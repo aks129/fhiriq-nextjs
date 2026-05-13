@@ -111,6 +111,14 @@ export const podcastStats: Stat[] = [
   { value: "91+64", label: "Engaged + Spotify follows", colorKey: "amber", sub: "Loyal core" },
 ];
 
+// Substack RSS-side downloads — the feed-distribution stats
+export const substackPodcastStats: Stat[] = [
+  { value: "3.16k", label: "Total Substack downloads", colorKey: "amber", sub: "Mar 2025 – May 2026 · all 27 eps" },
+  { value: "45.7", label: "Avg downloads · first 7 days", colorKey: "teal", sub: "Per new episode" },
+  { value: "63.7", label: "Avg downloads · first 30 days", colorKey: "purple", sub: "+39% past day-7" },
+  { value: "81.2", label: "Avg downloads · first 90 days", colorKey: "coral", sub: "+78% past day-7 — long tail" },
+];
+
 export const podcastGeo = [
   { city: "New York City", listeners: 15, colorKey: "teal" as ColorKey },
   { city: "Chicago", listeners: 6, colorKey: "purple" as ColorKey },
@@ -205,6 +213,8 @@ export const copy = {
     "Executive coaching for healthcare AI founders, CTOs, and product leaders navigating the move from prototype to production. Drawing on FHIR + AI + agent infrastructure experience and an active operator community of senior healthcare leaders.",
   podcastFraming:
     "Not a reach play. The value is the guest roster and the concentrated audience. ~90 plays per episode across platforms, all from US healthcare-interop hub cities. Sponsors buy association with the ecosystem's leading voices.",
+  substackPodcastFraming:
+    "Substack RSS feed — distinct from Apple + Spotify play counts. Episodes keep accumulating downloads for 90+ days post-publish (45.7 → 81.2, a 78% lift). A mid-roll placement keeps earning impressions long after the episode ships.",
   substackFraming:
     "Long-form healthcare interop publication. 48.2% open rate (above industry average), 15.4% engagement. The funnel: LinkedIn + Substack network → newsletter → paid + advisory.",
   guestFraming:
