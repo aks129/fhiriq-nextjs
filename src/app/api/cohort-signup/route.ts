@@ -48,6 +48,7 @@ export async function POST(request: NextRequest) {
     console.log('Cohort signup:', { name, email, role, build, timestamp, source });
 
     const resendApiKey = process.env.RESEND_API_KEY;
+    const fromAddress = process.env.RESEND_FROM || 'FHIR IQ Cohort <notifications@healthclaw.io>';
 
     if (resendApiKey) {
       const subject = `New Healthcare AI Builders signup: ${name} (${role})`;
@@ -83,7 +84,7 @@ export async function POST(request: NextRequest) {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            from: 'FHIR IQ Cohort <notifications@fhiriq.com>',
+            from: fromAddress,
             to: ['gene@fhiriq.com'],
             reply_to: email,
             subject,
