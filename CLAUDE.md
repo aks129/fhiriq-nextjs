@@ -62,6 +62,7 @@ src/
 │   ├── architectures/  # Technical architecture pages
 │   ├── blog/           # Blog
 │   ├── builder/        # FHIR builder tool page
+│   ├── builders/       # "Healthcare AI Builders" cohort signup (Cohort 01) — scoped CSS, custom paper/serif aesthetic, posts to /api/cohort-signup
 │   ├── consulting/     # Consulting services
 │   ├── contact/        # Contact form
 │   ├── cqlguide/       # CQL guide (serves public/cqlguide/)
@@ -109,6 +110,7 @@ src/
 | `/investor` | Investor one-pager ("Idea Vision") | Contact |
 | `/media-kit` | Out of the FHIR podcast media kit — sponsor/advisory/coaching tabs, outbound-shareable | <gene@fhiriq.com> / book intro |
 | `/lab` | "The Lab" — open-source FHIR tools showcase (linked from homepage nav as "Lab", and the footer "The Lab") | Try / View on GitHub |
+| `/builders` | "Healthcare AI Builders" cohort landing — Cohort 01 signup funnel | Book free intro call (form → `/api/cohort-signup`) |
 
 There are ~30 additional routes in the app (see directory structure above) covering products, services, consulting, training, guides, games, and legal pages.
 
@@ -137,6 +139,7 @@ All API routes are in `src/app/api/`:
 
 - `/api/chat` - AI chatbot using Claude API (fallback responses if API key not set)
 - `/api/contact` - Contact form submission with Resend email service
+- `/api/cohort-signup` - Healthcare AI Builders cohort signup. Sends notification to `gene@fhiriq.com` via Resend; sender configurable via `RESEND_FROM` (default `notifications@healthclaw.io`); submitter's email is set as `Reply-To` so replies route directly to the lead. User-facing request still succeeds if Resend fails — capture survives in server logs.
 - `/api/subscribe` - Newsletter subscription (Substack integration)
 - `/api/builder` - AI-powered FHIR builder endpoint
 - `/api/fhir/capabilities` - FHIR server capabilities metadata
@@ -167,6 +170,8 @@ All API routes are in `src/app/api/`:
 - Utility classes from globals.css: `.btn-primary`, `.btn-secondary`, `.btn-cta`, `.card`, `.card-glass`, `.badge-blue`/`-red`/`-green`
 - Fonts: Geist + Geist_Mono + Inter, loaded via `next/font/google` in root layout
 
+**Pages with bespoke visual identity** (e.g., `/builders` Healthcare AI Builders cohort page — paper/serif aesthetic with Fraunces + Newsreader + JetBrains Mono): use a **scoped CSS file** (e.g., `src/app/builders/builders.css`) with every rule prefixed by a unique wrapper class (e.g., `.builders-page`) so the bespoke theme can't leak. CSS variables go on the wrapper, not `:root`. The wrapper class also doubles as the body-equivalent element (e.g., `body::before` → `.builders-page::before`). Match this pattern for future one-off landing pages.
+
 ### Page composition
 
 **There is no shared Nav or Footer component.** ~22 pages inline their own nav (typically `<nav class="bg-white shadow-lg">` with the `FHIR IQ` brand link + section links). When adding a page, copy the nav block from the closest matching existing page rather than expecting a `<Nav>` import — `src/components/` only contains feature components (ChatBot, banners, LinkedInInsight, etc.), not chrome.
@@ -195,7 +200,8 @@ ANTHROPIC_API_KEY=sk-...           # Claude API key (optional - has fallback)
 MONGODB_URI=mongodb+srv://...       # MongoDB connection string
 
 # Email Service
-RESEND_API_KEY=re_...              # Resend API key for contact forms
+RESEND_API_KEY=re_...              # Resend API key for contact / subscribe / cohort-signup
+RESEND_FROM=FHIR Builders <notifications@fhirbuilders.com>  # Sender for /api/cohort-signup (per-route opt-in; default healthclaw.io). Must use a verified Resend domain.
 
 # Newsletter
 SUBSTACK_PUBLICATION_ID=evestel    # Substack publication
@@ -303,7 +309,7 @@ When working with this codebase:
 
 1. **Strategic Priority:** `/cql-to-sql` remains highest priority as the post-conference follow-up destination; `/early-access` is the active conversion funnel for Design Partners.
 
-2. **Email Service:** Resend requires domain verification for fhiriq.com before production use. Temporary workaround uses `onboarding@resend.dev`.
+2. **Email Service:** Resend sender is per-route configurable via `RESEND_FROM`. The verified domain currently in use for cohort signup is `fhirbuilders.com` (production). `healthclaw.io` is also verified on the same account. **`fhiriq.com` is NOT verified yet** — don't hardcode `@fhiriq.com` sender addresses in new routes; route the sender through `RESEND_FROM` or use one of the verified domains above.
 
 3. **Chatbot Context:** The chatbot system prompt in `ChatBot.tsx` and `/api/chat/route.ts` should stay synchronized. Any product updates need to be reflected in both files.
 
