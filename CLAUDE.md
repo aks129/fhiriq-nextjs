@@ -82,7 +82,8 @@ src/
 │   ├── solutions/      # Solutions (fpas/ sub-route)
 │   ├── store/          # Store page
 │   ├── tools/          # Tools (fhir-builder/ sub-route)
-│   └── training/       # Training offerings
+│   ├── training/       # Training offerings
+│   └── workshop/       # Free "Building Healthcare AI with Claude Code" workshop landing (Cohort 00) — entry funnel to /builders; same scoped-CSS pattern; posts to /api/workshop-signup
 ├── components/          # React components
 │   ├── ChatBot.tsx              # AI chatbot widget (+ /api/chat must stay in sync)
 │   ├── ArchitectureDiagram.tsx  # Technical diagrams
@@ -111,6 +112,16 @@ src/
 | `/media-kit` | Out of the FHIR podcast media kit — sponsor/advisory/coaching tabs, outbound-shareable | <gene@fhiriq.com> / book intro |
 | `/lab` | "The Lab" — open-source FHIR tools showcase (linked from homepage nav as "Lab", and the footer "The Lab") | Try / View on GitHub |
 | `/builders` | "Healthcare AI Builders" cohort landing — Cohort 01 signup funnel | Book free intro call (form → `/api/cohort-signup`) |
+| `/workshop` | Free "Building Healthcare AI with Claude Code" workshop — Cohort 00 entry funnel, capped at 20 | Save my seat (form → `/api/workshop-signup`) |
+
+### Cohort funnel
+
+The cohort signup pages are a two-stage funnel with mutual cross-links — don't treat them as independent pages:
+
+- **`/workshop`** = **Cohort 00** = the free entry funnel. 5-session workshop, capped at 20, first session free. Promoted via LinkedIn/Substack carousels.
+- **`/builders`** = **Cohort 01** = the paid ongoing program. $29 first month, $99/mo after.
+- Cross-links: `/builders` hero CTA row + signup-section meta both link to `/workshop` ("try the free workshop first"). `/workshop` has an upgrade block + footer link to `/builders`.
+- When editing copy, pricing, seat caps, or the session list on one, **mirror the substantive change on the other** so the two-stage story stays coherent.
 
 There are ~30 additional routes in the app (see directory structure above) covering products, services, consulting, training, guides, games, and legal pages.
 
@@ -140,6 +151,7 @@ All API routes are in `src/app/api/`:
 - `/api/chat` - AI chatbot using Claude API (fallback responses if API key not set)
 - `/api/contact` - Contact form submission with Resend email service
 - `/api/cohort-signup` - Healthcare AI Builders cohort signup. Sends notification to `gene@fhiriq.com` via Resend; sender configurable via `RESEND_FROM` (default `notifications@healthclaw.io`); submitter's email is set as `Reply-To` so replies route directly to the lead. User-facing request still succeeds if Resend fails — capture survives in server logs.
+- `/api/workshop-signup` - Free workshop (Cohort 00) signup. Same Resend pattern as `/api/cohort-signup` (notification to `gene@fhiriq.com`, `RESEND_FROM` sender, submitter as `Reply-To`, Resend-failure-safe). Accepts optional `linkedin` URL and `build` description fields in addition to name/email.
 - `/api/subscribe` - Newsletter subscription (Substack integration)
 - `/api/builder` - AI-powered FHIR builder endpoint
 - `/api/fhir/capabilities` - FHIR server capabilities metadata
@@ -170,7 +182,7 @@ All API routes are in `src/app/api/`:
 - Utility classes from globals.css: `.btn-primary`, `.btn-secondary`, `.btn-cta`, `.card`, `.card-glass`, `.badge-blue`/`-red`/`-green`
 - Fonts: Geist + Geist_Mono + Inter, loaded via `next/font/google` in root layout
 
-**Pages with bespoke visual identity** (e.g., `/builders` Healthcare AI Builders cohort page — paper/serif aesthetic with Fraunces + Newsreader + JetBrains Mono): use a **scoped CSS file** (e.g., `src/app/builders/builders.css`) with every rule prefixed by a unique wrapper class (e.g., `.builders-page`) so the bespoke theme can't leak. CSS variables go on the wrapper, not `:root`. The wrapper class also doubles as the body-equivalent element (e.g., `body::before` → `.builders-page::before`). Match this pattern for future one-off landing pages.
+**Pages with bespoke visual identity** (e.g., the cohort funnel pages `/builders` and `/workshop` — paper/serif aesthetic with Fraunces + Newsreader + JetBrains Mono): use a **scoped CSS file** (e.g., `src/app/builders/builders.css`, `src/app/workshop/workshop.css`) with every rule prefixed by a unique wrapper class (e.g., `.builders-page`, `.workshop-page`) so the bespoke theme can't leak. CSS variables go on the wrapper, not `:root`. The wrapper class also doubles as the body-equivalent element (e.g., `body::before` → `.builders-page::before`). Match this pattern for future one-off landing pages.
 
 ### Page composition
 
