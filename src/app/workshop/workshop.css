@@ -1,0 +1,501 @@
+/* Healthcare AI workshop landing — scoped under .workshop-page */
+
+.workshop-page {
+  --paper: #F4EFE6;
+  --paper-light: #FAF6EE;
+  --ink: #1A1714;
+  --ink-soft: #2D2825;
+  --muted: #6B6358;
+  --hairline: #D8CFBE;
+  --ember: #E63A1F;
+  --ember-deep: #B82914;
+  --highlight: #F4D44A;
+
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Newsreader', Georgia, serif;
+  font-size: 18px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+}
+
+.workshop-page * { box-sizing: border-box; }
+
+/* Paper grain texture */
+.workshop-page::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.35;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.09 0 0 0 0 0.08 0 0 0 0 0.08 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.workshop-page .wrap { max-width: 880px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 2; }
+@media (max-width: 640px) { .workshop-page .wrap { padding: 0 20px; } }
+
+/* ===== NAV ===== */
+.workshop-page nav {
+  padding: 24px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.workshop-page .logo {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 22px;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  text-decoration: none;
+}
+.workshop-page .logo span { color: var(--ember); }
+.workshop-page .nav-back {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: var(--muted);
+  text-decoration: none;
+  border-bottom: 1px dashed var(--muted);
+  padding-bottom: 2px;
+}
+.workshop-page .nav-back:hover { color: var(--ember); border-color: var(--ember); }
+
+/* ===== HERO ===== */
+.workshop-page .hero { padding: 64px 0 56px; }
+.workshop-page .eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ember);
+  margin-bottom: 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+.workshop-page .eyebrow::before {
+  content: '';
+  width: 28px;
+  height: 1px;
+  background: var(--ember);
+}
+.workshop-page h1 {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-size: clamp(40px, 6.5vw, 80px);
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+  margin-bottom: 28px;
+}
+.workshop-page h1 .italic { font-style: italic; font-weight: 300; color: var(--ember); }
+.workshop-page .hero-sub {
+  font-size: clamp(19px, 2vw, 23px);
+  line-height: 1.45;
+  max-width: 640px;
+  color: var(--ink-soft);
+  margin-bottom: 36px;
+}
+.workshop-page .hero-cta-row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 32px;
+}
+.workshop-page .btn-primary {
+  background: var(--ink);
+  color: var(--paper-light);
+  padding: 16px 28px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 2px solid var(--ink);
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+}
+.workshop-page .btn-primary:hover {
+  background: var(--ember);
+  border-color: var(--ember);
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0 var(--ink);
+}
+.workshop-page .btn-primary::after {
+  content: '→';
+  font-family: 'Fraunces', serif;
+  font-size: 18px;
+}
+.workshop-page .btn-secondary {
+  color: var(--ink);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  text-decoration: none;
+  border-bottom: 1px solid var(--ink);
+  padding-bottom: 3px;
+}
+.workshop-page .btn-secondary:hover { color: var(--ember); border-color: var(--ember); }
+
+.workshop-page .stamps {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.workshop-page .stamp {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--ink-soft);
+  padding: 6px 12px;
+  border: 1px solid var(--hairline);
+  border-radius: 100px;
+}
+.workshop-page .stamp.featured {
+  background: var(--ember);
+  color: var(--paper-light);
+  border-color: var(--ember);
+  text-transform: uppercase;
+}
+
+/* ===== SECTION HEADERS ===== */
+.workshop-page section { padding: 56px 0; }
+.workshop-page .section-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--ember);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+.workshop-page h2 {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-size: clamp(32px, 4.2vw, 48px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-bottom: 24px;
+  max-width: 720px;
+}
+.workshop-page h2 .italic { font-style: italic; color: var(--ember); }
+.workshop-page .lede {
+  font-size: 19px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  max-width: 640px;
+  margin-bottom: 40px;
+}
+
+/* ===== PROOF QUOTES ===== */
+.workshop-page .quote-block {
+  border-left: 3px solid var(--ember);
+  padding: 4px 0 4px 28px;
+  margin-bottom: 32px;
+}
+.workshop-page .quote-block:last-child { margin-bottom: 0; }
+.workshop-page .quote {
+  font-family: 'Newsreader', serif;
+  font-style: italic;
+  font-size: 23px;
+  line-height: 1.4;
+  color: var(--ink);
+  margin-bottom: 14px;
+}
+.workshop-page .quote-attr {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+.workshop-page .quote-attr strong {
+  color: var(--ember);
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* ===== SESSIONS LIST ===== */
+.workshop-page .session-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4px;
+  margin-top: 24px;
+}
+.workshop-page .session {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 24px;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--hairline);
+  align-items: start;
+}
+.workshop-page .session:last-child { border-bottom: none; }
+.workshop-page .session-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--ember);
+  padding-top: 6px;
+  letter-spacing: 0.06em;
+}
+.workshop-page .session-title {
+  font-family: 'Fraunces', serif;
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 1.15;
+  margin-bottom: 8px;
+}
+.workshop-page .session-title .italic { font-style: italic; }
+.workshop-page .session-desc {
+  font-size: 16px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+/* ===== WALK AWAY ===== */
+.workshop-page .walkaway {
+  background: var(--ink);
+  color: var(--paper-light);
+  padding: 56px 48px;
+  border-radius: 4px;
+}
+@media (max-width: 640px) { .workshop-page .walkaway { padding: 40px 28px; } }
+.workshop-page .walkaway .section-label { color: var(--highlight); }
+.workshop-page .walkaway h2 { color: var(--paper-light); }
+.workshop-page .walkaway-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 16px;
+}
+.workshop-page .walkaway-list li {
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  gap: 14px;
+  font-size: 18px;
+  line-height: 1.45;
+  color: rgba(244, 239, 230, 0.92);
+}
+.workshop-page .walkaway-list li::before {
+  content: '✓';
+  color: var(--highlight);
+  font-weight: 600;
+}
+
+/* ===== SIGNUP FORM ===== */
+.workshop-page .signup {
+  background: var(--ember);
+  margin-top: 32px;
+  position: relative;
+}
+.workshop-page .signup .section-label { color: var(--highlight); }
+.workshop-page .signup h2 { color: var(--paper-light); }
+.workshop-page .signup .lede { color: rgba(244, 239, 230, 0.92); }
+
+.workshop-page form.signup-form {
+  background: var(--paper-light);
+  padding: 36px;
+  color: var(--ink);
+  box-shadow: 8px 8px 0 var(--ink);
+}
+.workshop-page .form-row { margin-bottom: 18px; }
+.workshop-page .form-row label {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+  margin-bottom: 6px;
+}
+.workshop-page .form-row label .optional {
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--muted);
+  font-style: italic;
+  margin-left: 6px;
+}
+.workshop-page .form-row input,
+.workshop-page .form-row textarea {
+  width: 100%;
+  padding: 13px 14px;
+  border: 1.5px solid var(--hairline);
+  background: var(--paper);
+  font-family: 'Newsreader', serif;
+  font-size: 16px;
+  color: var(--ink);
+  transition: border-color 0.2s;
+}
+.workshop-page .form-row input:focus,
+.workshop-page .form-row textarea:focus {
+  outline: none;
+  border-color: var(--ember);
+}
+.workshop-page .form-row textarea { resize: vertical; min-height: 72px; }
+.workshop-page button.submit-btn {
+  width: 100%;
+  background: var(--ink);
+  color: var(--paper-light);
+  padding: 16px;
+  border: none;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-top: 6px;
+  transition: background 0.2s;
+}
+.workshop-page button.submit-btn:hover { background: var(--ember-deep); }
+.workshop-page button.submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+.workshop-page .form-foot {
+  margin-top: 14px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  text-align: center;
+}
+.workshop-page .form-error {
+  margin-top: 12px;
+  padding: 11px 13px;
+  background: rgba(230, 58, 31, 0.12);
+  border-left: 3px solid var(--ember);
+  color: var(--ember-deep);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+}
+.workshop-page .form-success {
+  background: var(--paper-light);
+  padding: 44px 36px;
+  color: var(--ink);
+  text-align: center;
+  box-shadow: 8px 8px 0 var(--ink);
+}
+.workshop-page .form-success .check {
+  font-size: 44px;
+  color: var(--ember);
+  margin-bottom: 12px;
+}
+.workshop-page .form-success h3 {
+  font-family: 'Fraunces', serif;
+  font-size: 28px;
+  margin-bottom: 12px;
+}
+.workshop-page .form-success p { color: var(--ink-soft); line-height: 1.55; }
+
+/* ===== NEXT STEPS ===== */
+.workshop-page .next-steps {
+  background: var(--paper-light);
+  border-left: 3px solid var(--ink);
+  padding: 28px 32px;
+  margin-top: 32px;
+}
+.workshop-page .next-steps h3 {
+  font-family: 'Fraunces', serif;
+  font-size: 22px;
+  font-weight: 500;
+  margin-bottom: 14px;
+}
+.workshop-page .next-steps ol {
+  margin: 0;
+  padding-left: 22px;
+  color: var(--ink-soft);
+}
+.workshop-page .next-steps li {
+  font-size: 16px;
+  line-height: 1.55;
+  margin-bottom: 8px;
+}
+.workshop-page .next-steps li:last-child { margin-bottom: 0; }
+
+/* ===== CROSS-LINK TO /builders ===== */
+.workshop-page .upgrade {
+  border: 1.5px dashed var(--ink);
+  padding: 28px 32px;
+  margin-top: 32px;
+  background: transparent;
+}
+.workshop-page .upgrade-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--ember);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.workshop-page .upgrade h3 {
+  font-family: 'Fraunces', serif;
+  font-size: 26px;
+  font-weight: 500;
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
+.workshop-page .upgrade h3 .italic { font-style: italic; color: var(--ember); }
+.workshop-page .upgrade p {
+  color: var(--ink-soft);
+  font-size: 16px;
+  line-height: 1.55;
+  margin-bottom: 18px;
+}
+.workshop-page .upgrade-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1.5px solid var(--ink);
+  padding-bottom: 3px;
+  transition: all 0.2s;
+}
+.workshop-page .upgrade-link:hover { color: var(--ember); border-color: var(--ember); }
+
+/* ===== FOOTER ===== */
+.workshop-page .footer-section {
+  padding: 48px 0 32px;
+  margin-top: 40px;
+  border-top: 1px solid var(--hairline);
+}
+.workshop-page .footer-grid {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--muted);
+}
+.workshop-page .footer-grid a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--hairline);
+  padding-bottom: 2px;
+}
+.workshop-page .footer-grid a:hover { color: var(--ember); border-color: var(--ember); }
+
+/* ===== ANIMATIONS ===== */
+@keyframes workshop-fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.workshop-page .hero > * {
+  animation: workshop-fadeUp 0.6s ease forwards;
+  opacity: 0;
+}
+.workshop-page .hero .eyebrow { animation-delay: 0.04s; }
+.workshop-page .hero h1 { animation-delay: 0.12s; }
+.workshop-page .hero .hero-sub { animation-delay: 0.24s; }
+.workshop-page .hero .hero-cta-row { animation-delay: 0.36s; }
+.workshop-page .hero .stamps { animation-delay: 0.48s; }

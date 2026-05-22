@@ -518,6 +518,8 @@
   padding-top: 24px;
   border-top: 1px solid rgba(244, 239, 230, 0.2);
 }
+.builders-page .signup-left .meta strong { color: inherit; }
+.builders-page .signup-left .meta a { color: inherit; text-decoration: underline; }
 
 .builders-page form.signup-form {
   background: var(--paper-light);

@@ -68,6 +68,7 @@ export default function BuildersPage() {
             <div className="hero-cta-row">
               <a href="#signup" className="btn-primary">Book your free intro call</a>
               <a href="#how" className="btn-secondary">how it works</a>
+              <Link href="/workshop" className="btn-secondary">or try the free workshop first →</Link>
             </div>
 
             <div className="stamps">
@@ -257,6 +258,9 @@ export default function BuildersPage() {
                 <div className="meta">
                   Questions before signing up?<br />
                   DM me on LinkedIn or reply to any Substack post.
+                  <br /><br />
+                  <strong>Want to try before you commit?</strong>{' '}
+                  <Link href="/workshop">Cohort 00 is free — start there →</Link>
                 </div>
               </div>
 
