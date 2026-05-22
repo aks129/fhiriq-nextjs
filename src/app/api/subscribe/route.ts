@@ -51,7 +51,7 @@ Source: ${request.headers.get('referer') || 'Direct'}
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            from: 'FHIR IQ Newsletter <notifications@fhiriq.com>',
+            from: 'FHIR IQ Newsletter <notifications@fhirbuilders.com>',
             to: ['gene@fhiriq.com'],
             subject: emailSubject,
             html: emailHtml,

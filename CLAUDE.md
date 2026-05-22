@@ -321,7 +321,7 @@ When working with this codebase:
 
 1. **Strategic Priority:** `/cql-to-sql` remains highest priority as the post-conference follow-up destination; `/early-access` is the active conversion funnel for Design Partners.
 
-2. **Email Service:** Resend sender is per-route configurable via `RESEND_FROM`. The verified domain currently in use for cohort signup is `fhirbuilders.com` (production). `healthclaw.io` is also verified on the same account. **`fhiriq.com` is NOT verified yet** — don't hardcode `@fhiriq.com` sender addresses in new routes; route the sender through `RESEND_FROM` or use one of the verified domains above.
+2. **Email Service:** Resend sender is per-route configurable via `RESEND_FROM`. **Verified Resend domains** (sender-eligible): `fhirbuilders.com`, `healthclaw.io`, `ainpi.dev`. **`fhiriq.com` is hosted on Wix** — DNS is controlled by Wix's nameservers, so we can't add the SPF/DKIM records Resend requires. Treat `@fhiriq.com` as a **receive-only** address: `gene@fhiriq.com` is fine as a `to:` recipient (Eugene's inbox is hosted elsewhere), but never as a Resend `from:`. Any new email-sending route must use one of the verified domains via `RESEND_FROM` or a hardcoded verified sender. As of 2026-05-22 all three sending routes (`/api/cohort-signup`, `/api/workshop-signup`, `/api/subscribe`) send from `notifications@fhirbuilders.com`.
 
 3. **Chatbot Context:** The chatbot system prompt in `ChatBot.tsx` and `/api/chat/route.ts` should stay synchronized. Any product updates need to be reflected in both files.
 
