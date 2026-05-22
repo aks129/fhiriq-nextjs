@@ -323,6 +323,13 @@ When working with this codebase:
 
 2. **Email Service:** Resend sender is per-route configurable via `RESEND_FROM`. **Verified Resend domains** (sender-eligible): `fhirbuilders.com`, `healthclaw.io`, `ainpi.dev`. **`fhiriq.com` is hosted on Wix** — DNS is controlled by Wix's nameservers, so we can't add the SPF/DKIM records Resend requires. Treat `@fhiriq.com` as a **receive-only** address: `gene@fhiriq.com` is fine as a `to:` recipient (Eugene's inbox is hosted elsewhere), but never as a Resend `from:`. Any new email-sending route must use one of the verified domains via `RESEND_FROM` or a hardcoded verified sender. As of 2026-05-22 all three sending routes (`/api/cohort-signup`, `/api/workshop-signup`, `/api/subscribe`) send from `notifications@fhirbuilders.com`.
 
+   **Debugging Resend pipeline issues** — every sending route's `try/catch` swallows Resend errors so the user-facing form still returns success. That means failures are invisible from the user side and Vercel logs are slow to surface them. Use the Resend REST API directly for ground truth:
+   - `curl -H "Authorization: Bearer $KEY" https://api.resend.com/domains` — verified domain status
+   - `curl -H "Authorization: Bearer $KEY" "https://api.resend.com/emails?limit=10"` — recent sends with `last_event` (`delivered`, `bounced`, etc.)
+   - If a `[PROD TEST]` send returns `200` from `/api/...` but doesn't appear in Resend's `/emails` list, the API call never reached Resend (likely 4xx from auth/domain — see next bullet).
+
+   **Rotating `RESEND_API_KEY` requires a redeploy** — Vercel updates the env value at the platform level immediately, but warm Next.js serverless instances keep the old `process.env.RESEND_API_KEY` in memory until they cycle. After `vercel env add RESEND_API_KEY production --force`, run `vercel redeploy <latest-prod-url> --target production` to force fresh instances. Without the redeploy, signups continue silently 403'ing at Resend even though the env var "looks right" in `vercel env ls`.
+
 3. **Chatbot Context:** The chatbot system prompt in `ChatBot.tsx` and `/api/chat/route.ts` should stay synchronized. Any product updates need to be reflected in both files.
 
 4. **MongoDB Connection:** Always use the connection helper from `src/lib/mongodb.ts` - never create direct connections to avoid connection pool exhaustion.
