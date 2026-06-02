@@ -1,0 +1,668 @@
+/* Workshop Agenda — scoped under .workshop-agenda-page
+   Implements the FHIR IQ paper/serif system from /workshop and
+   the visual DNA of the Workshop Carousel (tone-paper, tone-paperLight,
+   tone-ink, tone-ember sections with scribble underlines and numbered rows). */
+
+.workshop-agenda-page {
+  --paper: #F4EFE6;
+  --paper-light: #FAF6EE;
+  --paper-dark: #E8E0CF;
+  --ink: #1A1714;
+  --ink-soft: #2D2825;
+  --muted: #6B6358;
+  --hairline: #D8CFBE;
+  --ember: #E63A1F;
+  --ember-deep: #B82914;
+  --highlight: #F4D44A;
+  --forest: #2D5F3F;
+
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Newsreader', Georgia, serif;
+  font-size: 18px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+}
+
+.workshop-agenda-page * { box-sizing: border-box; }
+
+/* Paper grain texture (fixed, page-wide) */
+.workshop-agenda-page::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.32;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.09 0 0 0 0 0.08 0 0 0 0 0.08 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.workshop-agenda-page .wrap { max-width: 920px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 2; }
+@media (max-width: 640px) { .workshop-agenda-page .wrap { padding: 0 20px; } }
+
+/* ===== NAV ===== */
+.workshop-agenda-page nav.top {
+  padding: 24px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.workshop-agenda-page .logo {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 22px;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  text-decoration: none;
+}
+.workshop-agenda-page .logo span { color: var(--ember); }
+.workshop-agenda-page .nav-links {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+}
+.workshop-agenda-page .nav-links a {
+  color: var(--muted);
+  text-decoration: none;
+  border-bottom: 1px dashed var(--muted);
+  padding-bottom: 2px;
+}
+.workshop-agenda-page .nav-links a:hover {
+  color: var(--ember);
+  border-color: var(--ember);
+}
+.workshop-agenda-page .nav-links a.active {
+  color: var(--ink);
+  border-bottom-style: solid;
+}
+
+/* ===== TYPE PRIMITIVES ===== */
+.workshop-agenda-page .eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ember);
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+.workshop-agenda-page .eyebrow::before {
+  content: '';
+  width: 36px;
+  height: 1px;
+  background: var(--ember);
+}
+
+.workshop-agenda-page h1.display {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-size: clamp(44px, 7vw, 88px);
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+  margin: 0 0 28px;
+}
+.workshop-agenda-page h1.display .em,
+.workshop-agenda-page h2 .em {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--ember);
+}
+
+.workshop-agenda-page h2 {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-size: clamp(32px, 4.4vw, 52px);
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  margin: 0 0 22px;
+  max-width: 760px;
+}
+
+.workshop-agenda-page h3 {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 1.2;
+  margin: 0 0 14px;
+}
+
+.workshop-agenda-page p,
+.workshop-agenda-page .lede {
+  font-size: 19px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  max-width: 700px;
+  margin: 0 0 22px;
+}
+.workshop-agenda-page .lede { font-size: 22px; line-height: 1.45; max-width: 720px; }
+
+/* Hand-drawn underline scribble accent */
+.workshop-agenda-page .scrib {
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+}
+.workshop-agenda-page .scrib::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  right: 0;
+  height: 14px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 14'%3E%3Cpath d='M2 8 Q 50 2, 100 6 T 200 7 T 298 5' stroke='%23E63A1F' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+/* ===== SECTION TONES ===== */
+.workshop-agenda-page section { padding: 64px 0; position: relative; }
+.workshop-agenda-page section.tone-paper-light { background: var(--paper-light); }
+.workshop-agenda-page section.tone-ink { background: var(--ink); color: var(--paper); }
+.workshop-agenda-page section.tone-ink .eyebrow { color: var(--highlight); }
+.workshop-agenda-page section.tone-ink .eyebrow::before { background: var(--highlight); }
+.workshop-agenda-page section.tone-ink h2 { color: var(--paper); }
+.workshop-agenda-page section.tone-ink h2 .em { color: var(--highlight); }
+.workshop-agenda-page section.tone-ink h3 { color: var(--paper); }
+.workshop-agenda-page section.tone-ink p,
+.workshop-agenda-page section.tone-ink .lede { color: rgba(244, 239, 230, 0.82); }
+.workshop-agenda-page section.tone-ink .scrib::after {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 14'%3E%3Cpath d='M2 8 Q 50 2, 100 6 T 200 7 T 298 5' stroke='%23F4D44A' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+.workshop-agenda-page section.tone-ember { background: var(--ember); color: var(--paper); }
+.workshop-agenda-page section.tone-ember .eyebrow { color: var(--highlight); }
+.workshop-agenda-page section.tone-ember .eyebrow::before { background: var(--highlight); }
+.workshop-agenda-page section.tone-ember h2 { color: var(--paper); }
+.workshop-agenda-page section.tone-ember h2 .em { color: var(--highlight); }
+.workshop-agenda-page section.tone-ember p,
+.workshop-agenda-page section.tone-ember .lede { color: rgba(244, 239, 230, 0.92); }
+
+/* ===== HERO ===== */
+.workshop-agenda-page .hero { padding: 56px 0 48px; }
+.workshop-agenda-page .hero .stamps {
+  margin-top: 12px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.workshop-agenda-page .stamp {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+  padding: 6px 12px;
+  border: 1px solid var(--hairline);
+  border-radius: 100px;
+}
+.workshop-agenda-page .stamp.featured {
+  background: var(--ember);
+  color: var(--paper-light);
+  border-color: var(--ember);
+  text-transform: uppercase;
+}
+.workshop-agenda-page .stamp.outline-ink {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+/* Stamper (rotated print-style badge) */
+.workshop-agenda-page .stamper {
+  display: inline-block;
+  border: 2.5px solid currentColor;
+  padding: 6px 14px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ember);
+  transform: rotate(-3deg);
+  border-radius: 2px;
+}
+
+/* ===== CAROUSEL TEASER STRIP ===== */
+.workshop-agenda-page .teaser-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-top: 36px;
+}
+@media (max-width: 720px) {
+  .workshop-agenda-page .teaser-strip { grid-template-columns: repeat(2, 1fr); }
+}
+.workshop-agenda-page .teaser {
+  background: #fff;
+  border: 1px solid var(--hairline);
+  padding: 18px 16px;
+  position: relative;
+}
+.workshop-agenda-page .teaser .teaser-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--ember);
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  text-transform: uppercase;
+}
+.workshop-agenda-page .teaser .teaser-num span:last-child { color: var(--muted); }
+.workshop-agenda-page .teaser h4 {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 19px;
+  line-height: 1.2;
+  margin: 0 0 8px;
+}
+.workshop-agenda-page .teaser p {
+  font-size: 14px;
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+/* ===== NUMBERED ROW LIST (carousel slide-03 style) ===== */
+.workshop-agenda-page .rows { display: grid; gap: 0; margin-top: 28px; }
+.workshop-agenda-page .row {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 24px;
+  padding: 22px 0;
+  border-bottom: 1px dotted var(--hairline);
+  align-items: baseline;
+}
+.workshop-agenda-page .row:last-child { border-bottom: none; }
+.workshop-agenda-page .row .n {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  color: var(--ember);
+  letter-spacing: 0.08em;
+  padding-top: 6px;
+}
+.workshop-agenda-page .row .t {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(22px, 2.4vw, 30px);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin: 0 0 6px;
+}
+.workshop-agenda-page .row .t .em { font-style: italic; font-weight: 300; color: var(--ember); }
+.workshop-agenda-page .row .d {
+  font-family: 'Newsreader', serif;
+  font-size: 16px;
+  color: var(--ink-soft);
+  line-height: 1.5;
+  margin: 0;
+  max-width: 600px;
+}
+.workshop-agenda-page section.tone-ink .row { border-color: rgba(244, 239, 230, 0.18); }
+.workshop-agenda-page section.tone-ink .row .t { color: var(--paper); }
+.workshop-agenda-page section.tone-ink .row .t .em { color: var(--highlight); }
+.workshop-agenda-page section.tone-ink .row .d { color: rgba(244, 239, 230, 0.78); }
+
+/* ===== AUTHOR / BIO CARD ===== */
+.workshop-agenda-page .author {
+  display: grid;
+  grid-template-columns: 88px 1fr;
+  gap: 24px;
+  align-items: center;
+  margin-bottom: 24px;
+}
+.workshop-agenda-page .author .av {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--paper);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Fraunces', serif;
+  font-size: 36px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+.workshop-agenda-page .author .who .name {
+  font-family: 'Fraunces', serif;
+  font-size: 28px;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+.workshop-agenda-page .author .who .role {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+
+.workshop-agenda-page .bio-links {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+}
+.workshop-agenda-page .bio-links a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--ink);
+  padding-bottom: 2px;
+}
+.workshop-agenda-page .bio-links a:hover { color: var(--ember); border-color: var(--ember); }
+
+/* ===== SURFACE TABLE ===== */
+.workshop-agenda-page .surface-table {
+  margin-top: 28px;
+  border-top: 2px solid var(--ink);
+}
+.workshop-agenda-page .surface {
+  display: grid;
+  grid-template-columns: 1.2fr 2.2fr 1fr;
+  gap: 24px;
+  padding: 22px 0;
+  border-bottom: 1px dotted var(--hairline);
+  align-items: baseline;
+}
+@media (max-width: 720px) {
+  .workshop-agenda-page .surface {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+}
+.workshop-agenda-page .surface .surface-name {
+  font-family: 'Fraunces', serif;
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+.workshop-agenda-page .surface .surface-purpose {
+  font-family: 'Newsreader', serif;
+  font-size: 16px;
+  color: var(--ink-soft);
+  line-height: 1.45;
+  margin: 0;
+}
+.workshop-agenda-page .surface .surface-rule {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  line-height: 1.4;
+  margin: 0;
+}
+.workshop-agenda-page .surface .surface-rule strong { color: var(--ember); font-weight: 600; }
+
+/* ===== INTRO CALL CARDS ===== */
+.workshop-agenda-page .calls {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-top: 28px;
+}
+@media (max-width: 720px) { .workshop-agenda-page .calls { grid-template-columns: 1fr; } }
+
+.workshop-agenda-page .call {
+  background: var(--paper-light);
+  border: 1px solid var(--hairline);
+  padding: 26px 28px;
+  position: relative;
+}
+.workshop-agenda-page .call .call-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ember);
+  margin-bottom: 12px;
+}
+.workshop-agenda-page .call h3 {
+  font-family: 'Fraunces', serif;
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1.15;
+  margin: 0 0 10px;
+}
+.workshop-agenda-page .call .call-time {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: var(--ink-soft);
+  letter-spacing: 0.04em;
+  margin-bottom: 18px;
+}
+.workshop-agenda-page .call .call-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--ink);
+  color: var(--paper-light);
+  padding: 12px 18px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 2px solid var(--ink);
+  transition: all 0.2s ease;
+}
+.workshop-agenda-page .call .call-link:hover {
+  background: var(--ember);
+  border-color: var(--ember);
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0 var(--ink);
+}
+.workshop-agenda-page .call .call-link::after { content: '→'; font-family: 'Fraunces', serif; font-size: 16px; }
+
+/* ===== PROOF QUOTES (carousel slide-02 style) ===== */
+.workshop-agenda-page .quote-block {
+  border-left: 5px solid var(--ember);
+  background: var(--paper-light);
+  padding: 22px 28px;
+  margin-bottom: 18px;
+}
+.workshop-agenda-page section.tone-paper-light .quote-block { background: var(--paper); }
+.workshop-agenda-page .quote-block.alt {
+  border-left-color: var(--ink);
+  background: var(--paper);
+}
+.workshop-agenda-page .quote {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 22px;
+  line-height: 1.4;
+  color: var(--ink);
+  margin: 0 0 14px;
+  font-weight: 400;
+}
+.workshop-agenda-page .quote-attr {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.workshop-agenda-page .quote-attr strong { color: var(--ember); font-weight: 600; }
+
+/* ===== TERMS LIST (reciprocal commitments) ===== */
+.workshop-agenda-page .terms {
+  list-style: none;
+  padding: 0;
+  margin: 28px 0 0;
+  display: grid;
+  gap: 18px;
+}
+.workshop-agenda-page .terms li {
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: 16px;
+  font-size: 17px;
+  line-height: 1.5;
+  color: rgba(244, 239, 230, 0.92);
+}
+.workshop-agenda-page .terms li .check {
+  color: var(--highlight);
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 1;
+  padding-top: 2px;
+}
+.workshop-agenda-page .terms li strong {
+  color: var(--paper);
+  font-weight: 500;
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 19px;
+}
+
+/* ===== CTA STRIP (carousel slide-04 style chips) ===== */
+.workshop-agenda-page .chip-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 28px;
+}
+.workshop-agenda-page .chip {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 12px 20px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 999px;
+}
+.workshop-agenda-page section.tone-ember .chip { background: var(--ink); color: var(--paper); }
+.workshop-agenda-page .chip.outline {
+  background: transparent;
+  border: 2px solid currentColor;
+  color: var(--paper);
+}
+
+.workshop-agenda-page .cta-buttons {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 32px;
+}
+.workshop-agenda-page .btn-primary {
+  background: var(--ink);
+  color: var(--paper-light);
+  padding: 16px 28px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 2px solid var(--ink);
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+}
+.workshop-agenda-page .btn-primary:hover {
+  background: var(--ember);
+  border-color: var(--ember);
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0 var(--ink);
+}
+.workshop-agenda-page .btn-primary::after {
+  content: '→';
+  font-family: 'Fraunces', serif;
+  font-size: 18px;
+}
+.workshop-agenda-page section.tone-ember .btn-primary {
+  background: var(--paper);
+  color: var(--ink);
+  border-color: var(--paper);
+}
+.workshop-agenda-page section.tone-ember .btn-primary:hover {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+  box-shadow: 4px 4px 0 var(--paper);
+}
+.workshop-agenda-page .btn-ghost {
+  color: var(--paper);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  text-decoration: none;
+  border-bottom: 1px solid var(--paper);
+  padding-bottom: 3px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  align-self: center;
+}
+.workshop-agenda-page .btn-ghost:hover { color: var(--highlight); border-color: var(--highlight); }
+
+/* ===== BIO DRAFT MARKER ===== */
+.workshop-agenda-page .verify-note {
+  background: rgba(244, 212, 74, 0.16);
+  border-left: 3px solid var(--highlight);
+  padding: 14px 18px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--ink-soft);
+  margin: 0 0 28px;
+  line-height: 1.55;
+}
+.workshop-agenda-page .verify-note strong {
+  color: var(--ember);
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+}
+
+/* ===== FOOTER ===== */
+.workshop-agenda-page .footer-section {
+  padding: 48px 0 32px;
+  border-top: 1px solid var(--hairline);
+}
+.workshop-agenda-page .footer-grid {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--muted);
+}
+.workshop-agenda-page .footer-grid a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--hairline);
+  padding-bottom: 2px;
+}
+.workshop-agenda-page .footer-grid a:hover { color: var(--ember); border-color: var(--ember); }
+
+/* ===== ANIMATIONS ===== */
+@keyframes wa-fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.workshop-agenda-page .hero > * {
+  animation: wa-fadeUp 0.55s ease forwards;
+  opacity: 0;
+}
+.workshop-agenda-page .hero .eyebrow { animation-delay: 0.04s; }
+.workshop-agenda-page .hero h1.display { animation-delay: 0.12s; }
+.workshop-agenda-page .hero .lede { animation-delay: 0.22s; }
+.workshop-agenda-page .hero .stamps { animation-delay: 0.32s; }
+.workshop-agenda-page .hero .teaser-strip { animation-delay: 0.42s; }
