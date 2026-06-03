@@ -207,12 +207,6 @@ export default function WorkshopAgendaPage() {
             <div className="eyebrow">Who&apos;s running this</div>
             <h2>One operator, <span className="em">not a course platform.</span></h2>
 
-            <div className="verify-note">
-              <strong>Verify before publishing.</strong> Bio drafted from public signals (FHIR IQ, Out of the FHIR
-              podcast, Substack, Vercel projects, conference activity). Replace with your canonical bio from
-              eugenevestel.com when ready — bullet points are placeholders.
-            </div>
-
             <div className="author">
               <div className="av">EV</div>
               <div className="who">
@@ -223,14 +217,21 @@ export default function WorkshopAgendaPage() {
 
             <p>
               Healthcare interoperability operator. Founder of FHIR IQ — the semantic intelligence layer for healthcare
-              data — and host of <em>Out of the FHIR</em>, the HL7®-registered podcast covering FHIR adoption, payer/provider
-              data flows, and the move from CQL toward native SQL-on-FHIR. Recent work: CQL-to-SQL compilation engine
-              presented at Analytics on FHIR (December 2025), HealthClaw — a security layer between AI agents and clinical
-              data — and an ongoing build-in-public stream of FHIR tools shipped to <a href="https://github.com/aks129" target="_blank" rel="noopener noreferrer">github.com/aks129</a>.
+              data — and host of <em>Out of the FHIR®</em>, the podcast covering FHIR adoption, payer/provider data flows,
+              and the move from CQL toward native SQL-on-FHIR. Recently presented CQL-to-SQL compilation at Analytics on
+              FHIR (December 2025); recruiting Q1 2026 design partners for the engine now.
             </p>
 
             <p>
-              I run this workshop the way I run my own projects: live, in the IDE, with someone watching. Cohort 00 is small
+              Building in public: <strong>HealthClaw</strong> — a security layer between AI agents and clinical data —
+              plus AINPI (national provider directory analysis), FHIRspective, FHIR ViewDefinition Builder, and a steady
+              stream of FHIR tools at <a href="https://github.com/aks129" target="_blank" rel="noopener noreferrer">github.com/aks129</a>{" "}
+              and <a href="https://github.com/FHIR-IQ" target="_blank" rel="noopener noreferrer">github.com/FHIR-IQ</a>.
+              Also runs DevDays FHIR Side Chats with Firely.
+            </p>
+
+            <p>
+              I run cohorts the way I run my own projects: live, in the IDE, with someone watching. Cohort 00 is small
               by design because I want to know every builder&apos;s problem well enough to unstick them in real time.
             </p>
 
@@ -329,6 +330,22 @@ export default function WorkshopAgendaPage() {
                   <p className="surface-rule">{s.rule}</p>
                 </div>
               ))}
+            </div>
+
+            <div className="call" style={{ marginTop: 36, maxWidth: 720 }}>
+              <div className="call-label">Slack — join now</div>
+              <h3>Cohort 00 workspace</h3>
+              <div className="call-time" style={{ wordBreak: "break-all" }}>
+                join.slack.com/t/fhirbuilders/shared_invite/zt-405j5tykg-T9v8~nNaX9tFZZgzaj37Ow
+              </div>
+              <a
+                className="call-link"
+                href="https://join.slack.com/t/fhirbuilders/shared_invite/zt-405j5tykg-T9v8~nNaX9tFZZgzaj37Ow"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Join the Slack
+              </a>
             </div>
           </div>
         </section>

@@ -258,19 +258,23 @@ export default function PresentPage() {
                 <span className="em">not a course platform.</span>
               </h1>
               <div className="lede" style={{ maxWidth: 940 }}>
-                Healthcare interoperability operator. Founder of <strong>FHIR IQ</strong> — the semantic
-                intelligence layer for healthcare data — and host of <em>Out of the FHIR®</em>.
-                Building HealthClaw (security layer between AI agents and clinical data) and
-                publishing FHIR tools in public at github.com/aks129.
+                Healthcare interoperability operator. Founder of <strong>FHIR IQ</strong> — the
+                semantic intelligence layer for healthcare data — and host of{" "}
+                <em>Out of the FHIR®</em>. Recently presented CQL-to-SQL at Analytics on FHIR.
+                Building in public: HealthClaw (security layer between AI agents and clinical data),
+                AINPI (national provider directory analysis), FHIRspective, FHIR ViewDefinition
+                Builder, and a stream of FHIR tools at github.com/aks129.
               </div>
               <div className="lede" style={{ marginTop: 16, maxWidth: 940 }}>
-                Run cohorts the way I run projects: live, IDE-open, someone watching.
+                I run cohorts the way I run projects: live, IDE-open, someone watching.
+                Cohort 00 is small by design — I want to know every builder&apos;s problem well
+                enough to unstick them in real time.
               </div>
               <div className="author">
                 <div className="av">EV</div>
                 <div>
                   <div className="who-name">Eugene Vestel</div>
-                  <div className="who-role">fhiriq.com · evestel.substack.com · linkedin.com/in/evestel</div>
+                  <div className="who-role">eugenevestel.com · fhiriq.com · evestel.substack.com · linkedin.com/in/evestel</div>
                 </div>
               </div>
             </div>
@@ -437,6 +441,26 @@ export default function PresentPage() {
                     <div className="surface-rule">{s.rule}</div>
                   </div>
                 ))}
+              </div>
+              <div style={{ marginTop: 32, display: "flex", gap: 24, alignItems: "flex-end", flexWrap: "wrap" }}>
+                <div className="qr-box" style={{ maxWidth: 520 }}>
+                  <div className="qr-label">Slack — join now</div>
+                  <div className="qr-url" style={{ fontSize: 13, wordBreak: "break-all" }}>
+                    join.slack.com/t/fhirbuilders/shared_invite/zt-405j5tykg-T9v8~nNaX9tFZZgzaj37Ow
+                  </div>
+                </div>
+                <div
+                  style={{
+                    fontFamily: "'JetBrains Mono', monospace",
+                    fontSize: "clamp(11px, 1vw, 14px)",
+                    letterSpacing: "0.08em",
+                    color: "var(--muted)",
+                    lineHeight: 1.5,
+                    maxWidth: 360,
+                  }}
+                >
+                  WhatsApp + Cal.com booking link arrive within 24h of this call.
+                </div>
               </div>
             </div>
           </Slide>
