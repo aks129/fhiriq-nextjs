@@ -88,6 +88,32 @@ export default function WorkshopPage() {
             <Link href="/" className="nav-back">← fhiriq.com</Link>
           </nav>
 
+          {/* COHORT 00 STATUS BANNER */}
+          <div
+            style={{
+              marginTop: 24,
+              padding: "10px 14px",
+              border: "1px solid var(--ember)",
+              background: "rgba(230, 58, 31, 0.06)",
+              color: "var(--ember-deep)",
+              fontFamily: "'JetBrains Mono', monospace",
+              fontSize: 12,
+              letterSpacing: "0.06em",
+              display: "flex",
+              alignItems: "center",
+              gap: 10,
+              flexWrap: "wrap",
+            }}
+          >
+            <span style={{ background: "var(--ember)", color: "var(--paper-light)", padding: "3px 8px", borderRadius: 3, fontWeight: 600 }}>
+              COHORT 00 · LIVE
+            </span>
+            <span>Intro calls running this week · 14 of 20 seats filled · last signups close Fri Jun 5</span>
+            <a href="#cohort-01" style={{ marginLeft: "auto", color: "var(--ember)", textDecoration: "underline", whiteSpace: "nowrap" }}>
+              Cohort 01 waitlist →
+            </a>
+          </div>
+
           {/* HERO */}
           <section className="hero">
             <div className="eyebrow">By popular demand · Free workshop</div>
@@ -253,6 +279,28 @@ export default function WorkshopPage() {
                 <li>We meet live. You leave Session 1 with the dev environment running and a clear sketch of what you&apos;ll ship.</li>
                 <li>If the workshop isn&apos;t for you after Session 1, no pressure. You keep the setup and the prep doc either way.</li>
               </ol>
+            </div>
+          </section>
+
+          {/* COHORT 01 WAITLIST */}
+          <section id="cohort-01">
+            <div className="upgrade" style={{ borderColor: "var(--ember)" }}>
+              <div className="upgrade-eyebrow">Cohort 00 closes Friday</div>
+              <h3>
+                Missed it? <span className="italic">Cohort 01 starts Aug 17.</span>
+              </h3>
+              <p>
+                Same format, paid program — $29 first month, $99/mo after.
+                Cohort 00 graduates set the curriculum, the mentors, and the
+                ship-or-refund standard. Cohort 01 spots open after Demo Day
+                (Fri Jul 3); waitlist gets first invite + a discounted founding rate.
+              </p>
+              <a
+                href="mailto:gene@fhiriq.com?subject=Cohort%2001%20waitlist&body=Hi%20Eugene%2C%0A%0AAdd%20me%20to%20the%20Cohort%2001%20waitlist.%20%0A%0AWhat%20I%27d%20build%3A%20%5Boptional%2C%20one%20line%5D%0A%0AThanks%2C%0A"
+                className="upgrade-link"
+              >
+                Email me to join the waitlist →
+              </a>
             </div>
           </section>
 
