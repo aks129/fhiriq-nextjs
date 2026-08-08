@@ -1,72 +1,161 @@
 @import "tailwindcss";
 
+/*
+  ============================================================================
+  SPECIMEN
+  ----------------------------------------------------------------------------
+  fhiriq.com runs on the vernacular of a printed clinical spec: paper stock,
+  hairline rules, figure numbers, marginalia, and one loud spot colour. The
+  technical material (CQL, SQL, codes, rates) sits inset as dark plates the
+  way a figure sits on a journal page.
+
+  Two colours, which is what every current award-winning site actually runs:
+  one ground plus one accent. The ground is a picked neutral pulled toward
+  the accent hue (45) so nothing on the page is ever a dead grey. The accent
+  is vermillion — a printed spot colour, not a UI blue.
+
+  Every value below is checked against WCAG AA for the job it does. The
+  accent exists in three weights on purpose:
+    --verm        loud, structural. Rules, fills, figure numbers, display
+                  type. 4.02:1 on paper — large text and non-text only.
+    --verm-text   small text and links on paper. 5.95:1.
+    --verm-lift   accent inside dark surfaces (plates, dark mode). 6.34:1.
+  Using the wrong one is the only way to fail contrast here.
+  ============================================================================
+*/
+
 :root {
-  /* FHIR IQ Brand Colors - Blade Runner / Futuristic Theme */
+  /* ---- ground ---- */
+  --paper: oklch(0.973 0.004 45);
+  --paper-2: oklch(0.949 0.006 45);
 
-  /* Primary: Deep space blues */
-  --void-black: #0A0A0F;
-  --space-dark: #0D1117;
-  --deep-space: #161B22;
-  --nebula-dark: #1C2128;
+  /* ---- ink ---- */
+  --ink: oklch(0.205 0.014 45); /* body            16.60:1 */
+  --ink-2: oklch(0.462 0.017 45); /* secondary        6.57:1 */
+  --ink-3: oklch(0.54 0.016 45); /* captions         4.70:1 */
 
-  /* Cool Blues: Ice to electric */
-  --ice-blue: #7DD3FC;
-  --electric-blue: #38BDF8;
-  --neon-blue: #0EA5E9;
-  --deep-blue: #0284C7;
-  --midnight-blue: #0C4A6E;
+  /* ---- hairline structure ---- */
+  --rule: oklch(0.872 0.008 45); /* decorative rules        */
+  --rule-2: oklch(0.775 0.011 45); /* emphasised rules        */
+  --rule-3: oklch(0.63 0.015 45); /* interactive     3.25:1 */
 
-  /* Accent: Laser red / Supernova */
-  --laser-red: #EF4444;
-  --neon-red: #F87171;
-  --supernova-orange: #FB923C;
-  --plasma-pink: #F472B6;
+  /* ---- accent ---- */
+  --verm: oklch(0.6 0.207 33);
+  --verm-text: oklch(0.505 0.185 33);
+  --verm-lift: oklch(0.695 0.188 33);
 
-  /* Neutral: Steel grays */
-  --steel-100: #F1F5F9;
-  --steel-200: #E2E8F0;
-  --steel-300: #CBD5E1;
-  --steel-400: #94A3B8;
-  --steel-500: #64748B;
-  --steel-600: #475569;
-  --steel-700: #334155;
+  /* ---- the plate: dark inset figures, fixed in both themes ---- */
+  --plate: oklch(0.185 0.016 45);
+  --plate-fg: oklch(0.93 0.006 45); /* 15.18:1 */
+  --plate-dim: oklch(0.66 0.014 45); /*  5.98:1 */
+  --plate-rule: oklch(0.315 0.016 45);
 
-  /* Legacy mappings for compatibility */
-  --primary-blue: var(--neon-blue);
-  --primary-green: #10B981;
-  --primary-navy: var(--deep-space);
-  --accent-purple: #8B5CF6;
-  --accent-orange: var(--supernova-orange);
-  --neutral-gray: var(--steel-500);
+  --radius: 2px;
+  --measure: 68ch;
 
-  /* Status */
-  --success: #10B981;
-  --warning: #FBBF24;
-  --error: var(--laser-red);
-  --info: var(--electric-blue);
+  /* Laid paper: a barely-there horizontal tooth. Not a dot lattice. */
+  --tooth: oklch(0.205 0.014 45 / 0.028);
+}
 
-  /* Backgrounds */
-  --bg-primary: var(--void-black);
-  --bg-secondary: var(--space-dark);
-  --bg-tertiary: var(--deep-space);
-  --bg-accent: var(--nebula-dark);
-  --bg-dark: var(--void-black);
+/*
+  Dark. Paper becomes ink, ink becomes paper, the accent lifts so it still
+  reads as a signal. Follows the OS — the previous system declared a .dark
+  block that nothing ever applied, so dark mode was dead code.
+*/
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) {
+    --paper: oklch(0.176 0.014 45);
+    --paper-2: oklch(0.215 0.014 45);
+    --ink: oklch(0.945 0.005 45); /* 16.13:1 */
+    --ink-2: oklch(0.735 0.013 45); /*  8.05:1 */
+    --ink-3: oklch(0.615 0.014 45); /*  5.08:1 */
+    --rule: oklch(0.312 0.014 45);
+    --rule-2: oklch(0.4 0.016 45);
+    --rule-3: oklch(0.515 0.017 45); /*  3.02:1 */
+    --verm-text: var(--verm-lift); /*  6.44:1 */
+    --tooth: oklch(0.945 0.005 45 / 0.03);
+  }
+}
 
-  /* Text */
-  --text-primary: var(--steel-100);
-  --text-secondary: var(--steel-400);
-  --text-accent: var(--electric-blue);
-  --text-muted: var(--steel-500);
+.dark {
+  --paper: oklch(0.176 0.014 45);
+  --paper-2: oklch(0.215 0.014 45);
+  --ink: oklch(0.945 0.005 45);
+  --ink-2: oklch(0.735 0.013 45);
+  --ink-3: oklch(0.615 0.014 45);
+  --rule: oklch(0.312 0.014 45);
+  --rule-2: oklch(0.4 0.016 45);
+  --rule-3: oklch(0.515 0.017 45);
+  --verm-text: var(--verm-lift);
+  --tooth: oklch(0.945 0.005 45 / 0.03);
+}
 
-  /* Borders & Glows */
-  --border-subtle: rgba(56, 189, 248, 0.1);
-  --border-default: rgba(56, 189, 248, 0.2);
-  --border-strong: rgba(56, 189, 248, 0.4);
-  --glow-blue: 0 0 20px rgba(56, 189, 248, 0.3);
-  --glow-red: 0 0 20px rgba(239, 68, 68, 0.3);
-  --glow-intense: 0 0 40px rgba(56, 189, 248, 0.5);
+/*
+  ----------------------------------------------------------------------------
+  COMPATIBILITY LAYER
+  ~40 routes outside this pass reference the old Blade Runner variable and
+  utility names. Rather than break them or edit 40 files, every legacy name
+  stays declared and is remapped onto SPECIMEN. Those pages inherit the new
+  palette for free and get retired route by route.
+  ----------------------------------------------------------------------------
+*/
+:root {
+  --void-black: var(--paper);
+  --space-dark: var(--paper);
+  --deep-space: var(--paper-2);
+  --nebula-dark: var(--paper-2);
 
-  /* Spacing */
+  --ice-blue: var(--verm-text);
+  --electric-blue: var(--verm-text);
+  --neon-blue: var(--verm-text);
+  --deep-blue: var(--verm-text);
+  --midnight-blue: var(--ink);
+
+  --laser-red: var(--verm);
+  --neon-red: var(--verm-text);
+  --supernova-orange: var(--verm);
+  --plasma-pink: var(--verm-text);
+
+  --steel-100: var(--paper);
+  --steel-200: var(--paper-2);
+  --steel-300: var(--rule);
+  --steel-400: var(--ink-3);
+  --steel-500: var(--ink-3);
+  --steel-600: var(--ink-2);
+  --steel-700: var(--ink);
+
+  --primary-blue: var(--verm-text);
+  --primary-green: oklch(0.46 0.083 158);
+  --primary-navy: var(--ink);
+  --accent-purple: var(--verm);
+  --accent-orange: var(--verm);
+  --neutral-gray: var(--ink-2);
+
+  --success: oklch(0.46 0.083 158);
+  --warning: oklch(0.55 0.11 75);
+  --error: var(--verm-text);
+  --info: var(--verm-text);
+
+  --bg-primary: var(--paper);
+  --bg-secondary: var(--paper);
+  --bg-tertiary: var(--paper-2);
+  --bg-accent: var(--paper-2);
+  --bg-dark: var(--plate);
+
+  --text-primary: var(--ink);
+  --text-secondary: var(--ink-2);
+  --text-accent: var(--verm-text);
+  --text-muted: var(--ink-3);
+
+  --border-subtle: var(--rule);
+  --border-default: var(--rule-2);
+  --border-strong: var(--rule-3);
+  /* Glow is gone. These stay declared so old shadow references resolve to
+     something restrained instead of a 60px neon bloom. */
+  --glow-blue: 0 1px 0 0 var(--rule);
+  --glow-red: 0 1px 0 0 var(--rule);
+  --glow-intense: 0 1px 0 0 var(--rule-2);
+
   --space-1: 0.25rem;
   --space-2: 0.5rem;
   --space-3: 0.75rem;
@@ -82,335 +171,462 @@
 }
 
 @theme inline {
-  --color-primary-blue: var(--neon-blue);
+  /* Three faces, three jobs. None of them Inter, Geist, or a grotesk default.
+       display — Instrument Serif. One weight, sharp serifs, a real italic for
+                 figure captions. The editorial voice.
+       body    — Hanken Grotesk. Warm workhorse, variable, holds at 13px.
+       mono    — JetBrains Mono. Codes, rates, measure IDs, line numbers.
+                 The old stylesheet named it but never loaded it, so every
+                 `.font-mono` on the site was silently falling back. */
+  --font-display: var(--ff-display);
+  --font-sans: var(--ff-body);
+  --font-mono: var(--ff-mono);
+
+  /* Type scale, ~1.25 through the middle, tightening tracking as it grows.
+     Deliberately close to the sizes the other 40 routes already assume so
+     retuning does not reflow pages outside this pass. */
+  --text-micro: 0.6875rem;
+  --text-micro--line-height: 1.15;
+  --text-xs: 0.75rem;
+  --text-xs--line-height: 1.45;
+  --text-sm: 0.8438rem;
+  --text-sm--line-height: 1.55;
+  --text-base: 1.0313rem;
+  --text-base--line-height: 1.65;
+  --text-lg: 1.1875rem;
+  --text-lg--line-height: 1.6;
+  --text-xl: 1.375rem;
+  --text-xl--line-height: 1.45;
+  --text-2xl: 1.6875rem;
+  --text-2xl--line-height: 1.25;
+  --text-3xl: 2.0625rem;
+  --text-3xl--line-height: 1.15;
+  --text-4xl: 2.5625rem;
+  --text-4xl--line-height: 1.08;
+  --text-5xl: 3.1875rem;
+  --text-5xl--line-height: 1.02;
+  --text-6xl: 4rem;
+  --text-6xl--line-height: 0.98;
+  --text-7xl: 5rem;
+  --text-7xl--line-height: 0.94;
+  --text-title: clamp(2rem, 4.2vw, 3.25rem);
+  --text-title--line-height: 1.04;
+  --text-display: clamp(2.6rem, 6.4vw, 5.5rem);
+  --text-display--line-height: 0.94;
+
+  --color-paper: var(--paper);
+  --color-paper-2: var(--paper-2);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-rule: var(--rule);
+  --color-rule-2: var(--rule-2);
+  --color-rule-3: var(--rule-3);
+  --color-verm: var(--verm);
+  --color-verm-text: var(--verm-text);
+  --color-verm-lift: var(--verm-lift);
+  --color-plate: var(--plate);
+  --color-plate-fg: var(--plate-fg);
+  --color-plate-dim: var(--plate-dim);
+  --color-plate-rule: var(--plate-rule);
+
+  /* legacy token names, new values */
+  --color-primary-blue: var(--primary-blue);
   --color-primary-green: var(--success);
-  --color-primary-navy: var(--deep-space);
-  --color-accent-purple: var(--accent-purple);
-  --color-accent-orange: var(--supernova-orange);
-  --color-neutral-gray: var(--steel-500);
-  --color-bg-primary: var(--bg-primary);
-  --color-bg-secondary: var(--bg-secondary);
-  --color-bg-accent: var(--bg-accent);
-  --color-text-primary: var(--text-primary);
-  --color-text-secondary: var(--text-secondary);
-  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --color-primary-navy: var(--ink);
+  --color-accent-purple: var(--verm);
+  --color-accent-orange: var(--verm);
+  --color-neutral-gray: var(--ink-2);
+  --color-bg-primary: var(--paper);
+  --color-bg-secondary: var(--paper);
+  --color-bg-accent: var(--paper-2);
+  --color-text-primary: var(--ink);
+  --color-text-secondary: var(--ink-2);
 }
 
-/* Base Styles */
+/* ---------------------------------------------------------------- base ---- */
+
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  background: var(--bg-primary);
-  color: var(--text-primary);
-  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
-  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
-  line-height: 1.6;
-  font-weight: 300;
-  letter-spacing: 0.01em;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--ff-body), ui-sans-serif, system-ui, sans-serif;
+  font-size: 1.0313rem;
+  line-height: 1.65;
+  font-weight: 400;
+  letter-spacing: 0;
+  /* Laid paper tooth. Horizontal, 3px, 2.8% — visible as texture, never as
+     a pattern. Replaces the 50px cyan grid. */
+  background-image: repeating-linear-gradient(
+    0deg,
+    var(--tooth) 0px,
+    var(--tooth) 1px,
+    transparent 1px,
+    transparent 3px
+  );
 }
 
-/* Futuristic selection */
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--ff-display), Georgia, serif;
+  font-weight: 400;
+  letter-spacing: -0.018em;
+  text-wrap: balance;
+}
+
 ::selection {
-  background: var(--electric-blue);
-  color: var(--void-black);
+  background: var(--verm);
+  color: var(--paper);
 }
 
-/* Utility classes for brand colors */
-.text-primary-blue { color: var(--neon-blue); }
-.text-primary-green { color: var(--success); }
-.text-primary-navy { color: var(--deep-space); }
-.text-accent-purple { color: var(--accent-purple); }
-.text-accent-orange { color: var(--supernova-orange); }
-.text-neutral-gray { color: var(--steel-500); }
-.text-ice { color: var(--ice-blue); }
-.text-laser { color: var(--laser-red); }
+/* One focus treatment, in the accent, offset clear of the target. */
+*:focus-visible {
+  outline: 2px solid var(--verm);
+  outline-offset: 3px;
+  border-radius: 1px;
+}
 
-.bg-primary-blue { background-color: var(--neon-blue); }
-.bg-primary-green { background-color: var(--success); }
-.bg-primary-navy { background-color: var(--deep-space); }
-.bg-accent-purple { background-color: var(--accent-purple); }
-.bg-accent-orange { background-color: var(--supernova-orange); }
-.bg-void { background-color: var(--void-black); }
-.bg-space { background-color: var(--space-dark); }
-.bg-deep-space { background-color: var(--deep-space); }
+a {
+  transition: color 0.18s ease, border-color 0.18s ease;
+}
 
-.border-primary-blue { border-color: var(--neon-blue); }
-.border-primary-green { border-color: var(--success); }
-.border-glow { border-color: var(--border-default); }
+input,
+textarea,
+select {
+  background: var(--paper);
+  border: 1px solid var(--rule-3);
+  color: var(--ink);
+  border-radius: var(--radius);
+  font-family: inherit;
+  transition: border-color 0.18s ease;
+}
 
-/* Futuristic Card */
+input:focus,
+textarea:focus,
+select:focus {
+  outline: 2px solid var(--verm);
+  outline-offset: 2px;
+  border-color: var(--verm);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--ink-3);
+}
+
+code,
+pre {
+  font-family: var(--ff-mono), ui-monospace, monospace;
+  background: var(--paper-2);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--paper-2);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--rule-2);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--rule-3);
+}
+
+/* ------------------------------------------------------ specimen parts ---- */
+
+/* Mono micro-label. Wayfinding, figure numbers, dimensions, dates. */
+.label {
+  font-family: var(--ff-mono), ui-monospace, monospace;
+  font-size: var(--text-micro);
+  line-height: 1.15;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--ink-3);
+}
+
+.label-accent {
+  color: var(--verm-text);
+}
+
+/* Hairline structure. The layout is built from rules, not from cards. */
+.rule-t {
+  border-top: 1px solid var(--rule);
+}
+.rule-b {
+  border-bottom: 1px solid var(--rule);
+}
+.rule-l {
+  border-left: 1px solid var(--rule);
+}
+.rule-heavy {
+  border-top: 2px solid var(--ink);
+}
+
+/* Reading measure for editorial body copy. */
+.measure {
+  max-width: var(--measure);
+}
+.measure-tight {
+  max-width: 54ch;
+}
+
+/*
+  The plate. A dark inset figure on the paper — the one place the technical
+  material lives. Fixed ink values in both themes: a figure printed on a page
+  does not change colour when the room does.
+*/
+.plate {
+  background: var(--plate);
+  color: var(--plate-fg);
+  border-radius: var(--radius);
+  position: relative;
+  isolation: isolate;
+}
+
+.plate::after {
+  /* Ink tooth on the plate. Inline SVG turbulence, no network request. */
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.35;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+}
+
+.plate > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Figure caption. Instrument Serif italic is the whole reason for the face. */
+.caption {
+  font-family: var(--ff-display), Georgia, serif;
+  font-style: italic;
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  color: var(--ink-3);
+}
+
+/* Corner ticks — crop marks on the figure. */
+.ticks::before,
+.ticks::after {
+  content: "";
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  border-color: var(--verm);
+  pointer-events: none;
+}
+.ticks::before {
+  top: -1px;
+  left: -1px;
+  border-top: 1px solid;
+  border-left: 1px solid;
+}
+.ticks::after {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 1px solid;
+  border-right: 1px solid;
+}
+
+/* -------------------------------------------------------- legacy parts ---- */
+/* Same class names the other 40 routes use. New implementations. */
+
 .card {
-  background: linear-gradient(135deg, var(--deep-space) 0%, var(--space-dark) 100%);
-  border-radius: 12px;
+  background: var(--paper);
+  border-radius: var(--radius);
   padding: var(--space-6);
-  border: 1px solid var(--border-subtle);
-  box-shadow: var(--glow-blue);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
+  border: 1px solid var(--rule);
+  box-shadow: none;
+  transition: border-color 0.18s ease;
 }
-
 .card:hover {
-  border-color: var(--border-strong);
-  box-shadow: var(--glow-intense);
-  transform: translateY(-2px);
+  border-color: var(--rule-3);
 }
 
-/* Glass effect card */
 .card-glass {
-  background: rgba(13, 17, 23, 0.8);
-  -webkit-backdrop-filter: blur(20px);
-  backdrop-filter: blur(20px);
-  border: 1px solid var(--border-subtle);
-  border-radius: 16px;
+  background: var(--paper-2);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
 }
 
-/* Primary Button - Neon Blue */
-.btn-primary {
-  background: linear-gradient(135deg, var(--neon-blue) 0%, var(--deep-blue) 100%);
-  color: white;
-  padding: var(--space-3) var(--space-6);
-  border-radius: 8px;
-  font-weight: 500;
-  font-size: 0.9rem;
-  letter-spacing: 0.02em;
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 0 20px rgba(14, 165, 233, 0.3);
-  text-transform: uppercase;
-}
-
-.btn-primary:hover {
-  box-shadow: 0 0 30px rgba(14, 165, 233, 0.5), 0 0 60px rgba(14, 165, 233, 0.2);
-  transform: translateY(-1px);
-}
-
-/* Secondary Button - Outline */
-.btn-secondary {
-  background: transparent;
-  color: var(--electric-blue);
-  padding: var(--space-3) var(--space-6);
-  border-radius: 8px;
-  font-weight: 500;
-  font-size: 0.9rem;
-  letter-spacing: 0.02em;
-  border: 1px solid var(--border-default);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-transform: uppercase;
-}
-
-.btn-secondary:hover {
-  background: rgba(56, 189, 248, 0.1);
-  border-color: var(--electric-blue);
-  box-shadow: var(--glow-blue);
-}
-
-/* Danger/CTA Button - Laser Red */
+.btn-primary,
 .btn-danger,
 .btn-cta {
-  background: linear-gradient(135deg, var(--laser-red) 0%, #DC2626 100%);
-  color: white;
-  padding: var(--space-3) var(--space-6);
-  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: var(--verm-text);
+  color: var(--paper);
+  padding: 0.8rem 1.4rem;
+  border-radius: var(--radius);
   font-weight: 500;
-  font-size: 0.9rem;
-  letter-spacing: 0.02em;
-  border: none;
+  font-size: var(--text-sm);
+  letter-spacing: 0.01em;
+  border: 1px solid var(--verm-text);
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
-  text-transform: uppercase;
+  text-transform: none;
+  transition: background-color 0.18s ease, border-color 0.18s ease;
 }
-
+.btn-primary:hover,
 .btn-danger:hover,
 .btn-cta:hover {
-  box-shadow: 0 0 30px rgba(239, 68, 68, 0.5), 0 0 60px rgba(239, 68, 68, 0.2);
-  transform: translateY(-1px);
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+  box-shadow: none;
+  transform: none;
 }
 
-/* Futuristic Input */
-input, textarea, select {
-  background: var(--deep-space);
-  border: 1px solid var(--border-subtle);
-  color: var(--text-primary);
-  border-radius: 8px;
-  transition: all 0.3s ease;
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: transparent;
+  color: var(--ink);
+  padding: 0.8rem 1.4rem;
+  border-radius: var(--radius);
+  font-weight: 500;
+  font-size: var(--text-sm);
+  letter-spacing: 0.01em;
+  border: 1px solid var(--rule-3);
+  cursor: pointer;
+  text-transform: none;
+  transition: border-color 0.18s ease, background-color 0.18s ease;
+}
+.btn-secondary:hover {
+  border-color: var(--ink);
+  background: var(--paper-2);
+  box-shadow: none;
 }
 
-input:focus, textarea:focus, select:focus {
-  outline: none;
-  border-color: var(--electric-blue);
-  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.1), var(--glow-blue);
-}
-
-input::placeholder, textarea::placeholder {
-  color: var(--steel-500);
-}
-
-/* Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--space-dark);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--steel-600);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--steel-500);
-}
-
-/* Animated gradient background */
-.bg-gradient-animated {
-  background: linear-gradient(
-    135deg,
-    var(--void-black) 0%,
-    var(--deep-space) 25%,
-    var(--midnight-blue) 50%,
-    var(--deep-space) 75%,
-    var(--void-black) 100%
-  );
-  background-size: 400% 400%;
-  animation: gradientShift 15s ease infinite;
-}
-
-@keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* Scan line effect */
-.scanlines::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 2px,
-    rgba(0, 0, 0, 0.1) 2px,
-    rgba(0, 0, 0, 0.1) 4px
-  );
-  pointer-events: none;
-  opacity: 0.3;
-}
-
-/* Glow text */
-.text-glow {
-  text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
-}
-
-.text-glow-subtle {
-  text-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
-}
-
-/* Neon border animation */
-@keyframes neonPulse {
-  0%, 100% { box-shadow: 0 0 5px var(--electric-blue), 0 0 10px var(--electric-blue); }
-  50% { box-shadow: 0 0 20px var(--electric-blue), 0 0 30px var(--electric-blue); }
-}
-
-.neon-border {
-  animation: neonPulse 2s ease-in-out infinite;
-}
-
-/* Grid pattern overlay */
-.grid-pattern {
-  background-image:
-    linear-gradient(rgba(56, 189, 248, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(56, 189, 248, 0.03) 1px, transparent 1px);
-  background-size: 50px 50px;
-}
-
-/* Radial glow */
-.radial-glow {
-  background: radial-gradient(
-    ellipse at center,
-    rgba(56, 189, 248, 0.15) 0%,
-    transparent 70%
-  );
-}
-
-/* Code/Terminal styling */
-.font-mono {
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
-}
-
-code, pre {
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
-  background: var(--deep-space);
-  border: 1px solid var(--border-subtle);
-  border-radius: 6px;
-}
-
-/* Badge styles */
 .badge {
   display: inline-flex;
   align-items: center;
-  padding: 0.25rem 0.75rem;
-  border-radius: 9999px;
-  font-size: 0.75rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius);
+  font-family: var(--ff-mono), ui-monospace, monospace;
+  font-size: var(--text-micro);
   font-weight: 500;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
-
-.badge-blue {
-  background: rgba(56, 189, 248, 0.1);
-  color: var(--electric-blue);
-  border: 1px solid rgba(56, 189, 248, 0.2);
-}
-
+.badge-blue,
 .badge-red {
-  background: rgba(239, 68, 68, 0.1);
-  color: var(--neon-red);
-  border: 1px solid rgba(239, 68, 68, 0.2);
+  background: transparent;
+  color: var(--verm-text);
+  border: 1px solid var(--verm-text);
 }
-
 .badge-green {
-  background: rgba(16, 185, 129, 0.1);
-  color: #34D399;
-  border: 1px solid rgba(16, 185, 129, 0.2);
+  background: transparent;
+  color: var(--ink-2);
+  border: 1px solid var(--rule-3);
 }
 
-/* Divider with glow */
+.text-primary-blue { color: var(--primary-blue); }
+.text-primary-green { color: var(--success); }
+.text-primary-navy { color: var(--ink); }
+.text-accent-purple { color: var(--verm-text); }
+.text-accent-orange { color: var(--verm-text); }
+.text-neutral-gray { color: var(--ink-2); }
+.text-ice { color: var(--verm-text); }
+.text-laser { color: var(--verm-text); }
+
+.bg-primary-blue { background-color: var(--primary-blue); }
+.bg-primary-green { background-color: var(--success); }
+.bg-primary-navy { background-color: var(--ink); }
+.bg-accent-purple { background-color: var(--verm); }
+.bg-accent-orange { background-color: var(--verm); }
+.bg-void { background-color: var(--paper); }
+.bg-space { background-color: var(--paper); }
+.bg-deep-space { background-color: var(--paper-2); }
+
+.border-primary-blue { border-color: var(--verm-text); }
+.border-primary-green { border-color: var(--success); }
+.border-glow { border-color: var(--rule); }
+
 .divider-glow {
   height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--electric-blue),
-    transparent
-  );
-  opacity: 0.5;
+  background: var(--rule);
+  opacity: 1;
 }
 
-/* Link styling */
-a {
-  transition: all 0.2s ease;
+/* Glow, scanlines and neon are retired. The class names stay so old markup
+   resolves, but they no longer paint anything. */
+.text-glow,
+.text-glow-subtle {
+  text-shadow: none;
+}
+.neon-border {
+  animation: none;
+}
+.scanlines::after {
+  content: none;
+}
+.grid-pattern,
+.radial-glow,
+.bg-gradient-animated {
+  background-image: none;
 }
 
-a:hover {
-  color: var(--electric-blue);
+.font-mono {
+  font-family: var(--ff-mono), ui-monospace, monospace;
 }
 
-/* Focus states */
-*:focus-visible {
-  outline: 2px solid var(--electric-blue);
-  outline-offset: 2px;
+/* ------------------------------------------------------------ motion ----- */
+
+/*
+  Scroll reveal that CANNOT hide content, and cannot flash either.
+
+  Default state is fully visible. The hidden state requires .is-armed, which
+  JS adds at runtime and ONLY to elements that are already below the viewport
+  — so on-screen content is never hidden and then re-shown, which is the flash
+  most scroll-reveals ship with. With JS off, in a screenshot, in a
+  non-scrolling render, or under reduced motion, nothing is ever armed and
+  every .reveal is painted. The observer also carries a failsafe timeout that
+  disarms everything regardless of intersection.
+*/
+.reveal {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.is-armed:not(.is-in) {
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal.is-armed:not(.is-in) {
+    opacity: 1;
+    transform: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
 }

@@ -3,56 +3,71 @@
 import { useState } from 'react';
 import Link from 'next/link';
 
+const GAMES = [
+  { href: '/games/healthio', label: 'FHIR Quiz' },
+  { href: '/games/hti6-builder', label: 'HTI-6' },
+  { href: '/games/ai-agent', label: 'AI Agent' },
+] as const;
+
+/**
+ * Promo strip for /games. Now an ink bar in normal document flow above the
+ * nav, rather than a fixed amber-to-purple gradient pinned at top-16 — which
+ * assumed a 64px nav and overlapped anything taller.
+ */
 export default function HealthIOBanner() {
   const [isVisible, setIsVisible] = useState(true);
 
   if (!isVisible) return null;
 
   return (
-    <div className="fixed top-16 left-0 right-0 z-40 bg-gradient-to-r from-[#F59E0B] via-[#EF4444] to-[#8B5CF6] text-white py-3 px-4 shadow-lg">
-      <div className="max-w-7xl mx-auto flex items-center justify-between">
-        <div className="flex items-center gap-3 flex-1 min-w-0">
-          <span className="text-xl flex-shrink-0" aria-hidden="true">&#x1F3AE;</span>
-          <p className="text-sm md:text-base font-medium truncate">
-            <span className="font-bold">Fun &amp; Games</span>
-            <span className="hidden sm:inline"> &mdash; 3 challenges, 3 badges. How well do you know healthcare?</span>
-          </p>
+    <div className="plate border-b border-plate-rule">
+      <div className="mx-auto flex max-w-[78rem] items-center gap-4 px-6 py-2.5">
+        <p className="flex min-w-0 flex-1 items-baseline gap-3 text-sm">
+          <span className="label text-verm-lift shrink-0">Fun &amp; Games</span>
+          <span className="truncate text-plate-fg/85">
+            Three challenges, three badges. How well do you know healthcare?
+          </span>
+        </p>
+
+        <div className="hidden shrink-0 items-center gap-1.5 md:flex">
+          {GAMES.map((g) => (
+            <Link
+              key={g.href}
+              href={g.href}
+              className="label border border-plate-rule px-2.5 py-1 text-plate-dim transition-colors hover:border-verm-lift hover:text-verm-lift"
+            >
+              {g.label}
+            </Link>
+          ))}
         </div>
-        <div className="flex items-center gap-2 ml-4 flex-shrink-0">
-          <Link
-            href="/games/healthio"
-            className="hidden md:inline-flex bg-white/20 backdrop-blur-sm text-white px-3 py-1.5 rounded-lg font-medium hover:bg-white/30 transition text-xs whitespace-nowrap"
+
+        <Link
+          href="/games/healthio"
+          className="label shrink-0 border border-verm-lift px-2.5 py-1 text-verm-lift md:hidden"
+        >
+          Play
+        </Link>
+
+        <button
+          onClick={() => setIsVisible(false)}
+          className="shrink-0 p-1 text-plate-dim transition-colors hover:text-plate-fg"
+          aria-label="Dismiss banner"
+        >
+          <svg
+            className="h-4 w-4"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
           >
-            &#x1F3C6; FHIR Quiz
-          </Link>
-          <Link
-            href="/games/hti6-builder"
-            className="hidden md:inline-flex bg-white/20 backdrop-blur-sm text-white px-3 py-1.5 rounded-lg font-medium hover:bg-white/30 transition text-xs whitespace-nowrap"
-          >
-            &#x1F3D7; HTI-6
-          </Link>
-          <Link
-            href="/games/ai-agent"
-            className="hidden md:inline-flex bg-white/20 backdrop-blur-sm text-white px-3 py-1.5 rounded-lg font-medium hover:bg-white/30 transition text-xs whitespace-nowrap"
-          >
-            &#x1F916; AI Agent
-          </Link>
-          <Link
-            href="/games/healthio"
-            className="md:hidden bg-white text-[#EF4444] px-4 py-1.5 rounded-lg font-semibold hover:bg-gray-100 transition text-sm whitespace-nowrap"
-          >
-            Play Now
-          </Link>
-          <button
-            onClick={() => setIsVisible(false)}
-            className="text-white/80 hover:text-white transition p-1"
-            aria-label="Dismiss banner"
-          >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
-        </div>
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={1.5}
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
       </div>
     </div>
   );

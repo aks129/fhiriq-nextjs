@@ -177,7 +177,7 @@ export default function ChatBot({ className = '' }: ChatBotProps) {
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="bg-primary-blue hover:bg-blue-700 text-white rounded-full p-4 shadow-lg transition-all duration-200 hover:scale-105"
+          className="bg-primary-blue hover:bg-primary-navy text-white rounded-full p-4 shadow-lg transition-all duration-200 hover:scale-105"
           aria-label="Open chat"
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -275,7 +275,7 @@ export default function ChatBot({ className = '' }: ChatBotProps) {
               <button
                 type="submit"
                 disabled={isLoading || !inputValue.trim()}
-                className="bg-primary-blue hover:bg-blue-700 disabled:bg-gray-400 text-white p-2 rounded-lg transition-colors"
+                className="bg-primary-blue hover:bg-primary-navy disabled:bg-gray-400 text-white p-2 rounded-lg transition-colors"
                 aria-label="Send message"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
