@@ -1,21 +1,33 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono, Inter } from "next/font/google";
+import { Instrument_Serif, Hanken_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import LinkedInInsight from "@/components/LinkedInInsight";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+// SPECIMEN type. Three faces, three jobs.
+// Display: Instrument Serif. One weight, sharp serifs, and an italic that
+// carries every figure caption. The editorial voice of the whole system.
+const display = Instrument_Serif({
+  variable: "--ff-display",
   subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+// Body: Hanken Grotesk. Variable, warm, holds up at 13px in a dense table.
+const body = Hanken_Grotesk({
+  variable: "--ff-body",
   subsets: ["latin"],
+  display: "swap",
 });
 
-const inter = Inter({
+// Mono: JetBrains Mono. Codes, rates, measure IDs, line numbers. globals.css
+// named this face for years but never loaded it, so every .font-mono on the
+// site was silently falling back to the system monospace.
+const mono = JetBrains_Mono({
+  variable: "--ff-mono",
   subsets: ["latin"],
-  variable: "--font-inter",
+  display: "swap",
 });
 
 export const viewport: Viewport = {
@@ -72,7 +84,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} antialiased font-sans`}
+        className={`${display.variable} ${body.variable} ${mono.variable} antialiased font-sans`}
       >
         {children}
         <LinkedInInsight />
