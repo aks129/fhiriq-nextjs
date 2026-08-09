@@ -129,32 +129,32 @@ export default function Podcast() {
       platform: "Substack",
       url: "https://evestel.substack.com/podcast",
       icon: "📡",
-      color: "bg-orange-500 hover:bg-orange-600"
+      color: "bg-bg-3 hover:bg-bg-3"
     },
     {
       platform: "Spotify",
       url: "https://open.spotify.com/show/6GBZT7KA1Ug8xMZ4l5LThU?si=441a0a7d66f74d52",
       icon: "🎵",
-      color: "bg-green-500 hover:bg-green-600"
+      color: "bg-bg-3 hover:bg-bg-3"
     },
     {
       platform: "Apple Podcasts",
       url: "https://podcasts.apple.com/us/podcast/out-of-the-fhir-podcast/id1822845248",
       icon: "🎧",
-      color: "bg-purple-500 hover:bg-purple-600"
+      color: "bg-bg-3 hover:bg-bg-3"
     },
     {
       platform: "YouTube",
       url: "https://www.youtube.com/@OutoftheFHIRPodcast",
       icon: "📺",
-      color: "bg-red-500 hover:bg-red-600"
+      color: "bg-bg-3 hover:bg-bg-3"
     }
   ];
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-bg">
       {/* Navigation */}
-      <nav className="bg-white shadow-lg">
+      <nav className="bg-bg shadow-lg">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center">
@@ -193,7 +193,7 @@ export default function Podcast() {
       </nav>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-accent-purple via-primary-blue to-primary-navy text-white py-24">
+      <section className="bg-gradient-to-r from-accent-purple via-primary-blue to-primary-navy text-fg py-24">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <div className="mb-8">
             <div className="inline-flex items-center bg-white/20 backdrop-blur-sm px-6 py-3 rounded-full mb-6">
@@ -201,7 +201,7 @@ export default function Podcast() {
               <span className="font-semibold text-lg">Out of the FHIR Podcast</span>
             </div>
           </div>
-          <h1 className="text-6xl font-bold mb-6 bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent">
+          <h1 className="text-6xl font-bold mb-6 bg-gradient-to-r from-white to-bg-2 bg-clip-text text-transparent">
             Out of the FHIR Podcast
           </h1>
           <p className="text-xl mb-8 max-w-4xl mx-auto leading-relaxed">
@@ -214,7 +214,7 @@ export default function Podcast() {
               href="https://evestel.substack.com/podcast"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-white text-primary-blue px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-all duration-200 transform hover:scale-105 shadow-lg"
+              className="bg-bg text-primary-blue px-8 py-4 rounded-lg font-semibold hover:bg-bg-2 transition-all duration-200 transform hover:scale-105 shadow-lg"
             >
               🎧 Listen on Substack
             </a>
@@ -222,7 +222,7 @@ export default function Podcast() {
               href="https://open.spotify.com/show/6GBZT7KA1Ug8xMZ4l5LThU"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-green-500 text-white px-8 py-4 rounded-lg font-semibold hover:bg-green-600 transition-all duration-200 transform hover:scale-105 shadow-lg"
+              className="bg-bg-3 text-fg px-8 py-4 rounded-lg font-semibold hover:bg-bg-3 transition-all duration-200 transform hover:scale-105 shadow-lg"
             >
               🎵 Spotify
             </a>
@@ -230,14 +230,14 @@ export default function Podcast() {
               href="https://podcasts.apple.com/us/podcast/out-of-the-fhir-podcast/id1822845248"
               target="_blank"
               rel="noopener noreferrer"
-              className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-primary-blue transition-all duration-200 transform hover:scale-105"
+              className="border-2 border-white text-fg px-8 py-4 rounded-lg font-semibold hover:bg-bg hover:text-primary-blue transition-all duration-200 transform hover:scale-105"
             >
               🍎 Apple Podcasts
             </a>
           </div>
           <div className="mt-6 text-sm text-white/75">
             Sponsoring or partnering?{' '}
-            <Link href="/media-kit" className="underline underline-offset-2 hover:text-white">
+            <Link href="/media-kit" className="underline underline-offset-2 hover:text-fg">
               See the media kit &amp; reach report →
             </Link>
           </div>
@@ -261,7 +261,7 @@ export default function Podcast() {
 
       {/* Latest Episode Highlight */}
       {!loading && !error && episodes.length > 0 && (
-        <section className="py-20 bg-white">
+        <section className="py-20 bg-bg">
           <div className="max-w-6xl mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-4xl font-bold mb-4 text-primary-navy">
@@ -272,17 +272,17 @@ export default function Podcast() {
               </p>
             </div>
 
-            <div className="bg-gradient-to-br from-primary-blue to-primary-navy rounded-2xl p-8 text-white shadow-2xl">
+            <div className="bg-gradient-to-br from-primary-blue to-primary-navy rounded-2xl p-8 text-fg shadow-2xl">
               <div className="grid lg:grid-cols-3 gap-8 items-center">
                 <div className="lg:col-span-2">
                   <div className="flex items-center gap-4 mb-6">
-                    <span className="bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-semibold">
+                    <span className="bg-white/20 backdrop-blur-sm text-fg px-4 py-2 rounded-full text-sm font-semibold">
                       Latest Episode
                     </span>
                     {episodes[0].duration && (
-                      <span className="text-blue-100">{episodes[0].duration}</span>
+                      <span className="text-fg-2">{episodes[0].duration}</span>
                     )}
-                    <span className="text-blue-100">
+                    <span className="text-fg-2">
                       {new Date(episodes[0].pubDate).toLocaleDateString()}
                     </span>
                   </div>
@@ -290,7 +290,7 @@ export default function Podcast() {
                     {episodes[0].title}
                   </h3>
                   <div
-                    className="text-blue-100 mb-8 text-lg leading-relaxed"
+                    className="text-fg-2 mb-8 text-lg leading-relaxed"
                     dangerouslySetInnerHTML={{
                       __html: episodes[0].description.substring(0, 300) + (episodes[0].description.length > 300 ? '...' : '')
                     }}
@@ -313,7 +313,7 @@ export default function Podcast() {
                         href={episodes[0].link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="block w-full bg-white text-primary-navy py-3 px-6 rounded-lg font-semibold hover:bg-gray-100 transition transform hover:scale-105"
+                        className="block w-full bg-bg text-primary-navy py-3 px-6 rounded-lg font-semibold hover:bg-bg-2 transition transform hover:scale-105"
                       >
                         📡 View on Substack
                       </a>
@@ -321,7 +321,7 @@ export default function Podcast() {
                         href="https://open.spotify.com/show/6GBZT7KA1Ug8xMZ4l5LThU"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="block w-full bg-green-500 text-white py-3 px-6 rounded-lg font-semibold hover:bg-green-600 transition transform hover:scale-105"
+                        className="block w-full bg-bg-3 text-fg py-3 px-6 rounded-lg font-semibold hover:bg-bg-3 transition transform hover:scale-105"
                       >
                         🎵 Open in Spotify
                       </a>
@@ -350,19 +350,19 @@ export default function Podcast() {
           {loading && (
             <div className="text-center py-20">
               <div className="inline-block animate-spin rounded-full h-16 w-16 border-b-4 border-primary-blue"></div>
-              <p className="mt-6 text-xl text-gray-600">Loading episodes...</p>
+              <p className="mt-6 text-xl text-fg-2">Loading episodes...</p>
             </div>
           )}
 
           {error && (
             <div className="text-center py-20">
               <div className="text-6xl mb-6">😕</div>
-              <p className="text-xl text-red-600 mb-6">{error}</p>
+              <p className="text-xl text-fg mb-6">{error}</p>
               <a
                 href="https://evestel.substack.com/podcast"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block bg-primary-blue text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition font-semibold"
+                className="inline-block bg-primary-blue text-fg px-8 py-3 rounded-lg hover:bg-fg transition font-semibold"
               >
                 Visit Substack Podcast Page
               </a>
@@ -374,7 +374,7 @@ export default function Podcast() {
               {episodes.slice(1).map((episode, index) => (
                 <article key={episode.guid} className="card hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 group">
                   <div className="flex items-center gap-3 mb-4">
-                    <span className="bg-gradient-to-r from-primary-blue to-primary-navy text-white px-3 py-1 rounded-full text-sm font-semibold">
+                    <span className="bg-gradient-to-r from-primary-blue to-primary-navy text-fg px-3 py-1 rounded-full text-sm font-semibold">
                       Episode {episodes.length - index - 1}
                     </span>
                     {episode.duration && (
@@ -399,7 +399,7 @@ export default function Podcast() {
                       })}
                     </span>
                     {episode.enclosure && (
-                      <span className="bg-primary-green text-white px-2 py-1 rounded text-xs">
+                      <span className="bg-primary-green text-fg px-2 py-1 rounded text-xs">
                         🎧 Audio Available
                       </span>
                     )}
@@ -409,7 +409,7 @@ export default function Podcast() {
                       href={episode.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-1 btn-primary text-center text-sm py-2 hover:bg-blue-700 transition"
+                      className="flex-1 btn-primary text-center text-sm py-2 hover:bg-fg transition"
                     >
                       Listen
                     </a>
@@ -417,7 +417,7 @@ export default function Podcast() {
                       href={episode.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-1 btn-secondary text-center text-sm py-2 hover:bg-gray-300 transition"
+                      className="flex-1 btn-secondary text-center text-sm py-2 hover:bg-bg-3 transition"
                     >
                       Show Notes
                     </a>
@@ -430,12 +430,12 @@ export default function Podcast() {
           {!loading && !error && episodes.length === 0 && (
             <div className="text-center py-20">
               <div className="text-6xl mb-6">🎙️</div>
-              <p className="text-xl text-gray-600 mb-6">No episodes found at the moment.</p>
+              <p className="text-xl text-fg-2 mb-6">No episodes found at the moment.</p>
               <a
                 href="https://evestel.substack.com/podcast"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-primary-blue text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition font-semibold"
+                className="bg-primary-blue text-fg px-8 py-3 rounded-lg hover:bg-fg transition font-semibold"
               >
                 Visit Substack Podcast Page
               </a>
@@ -445,7 +445,7 @@ export default function Podcast() {
       </section>
 
       {/* Subscribe Section */}
-      <section id="subscribe" className="py-20 bg-gradient-to-r from-primary-blue via-primary-navy to-accent-purple text-white">
+      <section id="subscribe" className="py-20 bg-gradient-to-r from-primary-blue via-primary-navy to-accent-purple text-fg">
         <div className="max-w-6xl mx-auto px-4 text-center">
           <h2 className="text-4xl font-bold mb-6">
             🔔 Never Miss an Episode
@@ -462,7 +462,7 @@ export default function Podcast() {
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`${link.color} text-white p-6 rounded-xl font-semibold transition-all duration-200 transform hover:scale-105 shadow-lg flex flex-col items-center gap-3 group`}
+                className={`${link.color} text-fg p-6 rounded-xl font-semibold transition-all duration-200 transform hover:scale-105 shadow-lg flex flex-col items-center gap-3 group`}
               >
                 <span className="text-4xl group-hover:scale-110 transition-transform">{link.icon}</span>
                 <span className="text-lg">{link.platform}</span>
@@ -483,7 +483,7 @@ export default function Podcast() {
                 href="https://evestel.substack.com/subscribe"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-orange-500 text-white px-8 py-4 rounded-lg font-semibold hover:bg-orange-600 transition-all duration-200 transform hover:scale-105 shadow-lg"
+                className="bg-bg-3 text-fg px-8 py-4 rounded-lg font-semibold hover:bg-bg-3 transition-all duration-200 transform hover:scale-105 shadow-lg"
               >
                 📡 Subscribe to Substack
               </a>
@@ -491,7 +491,7 @@ export default function Podcast() {
                 href="https://api.substack.com/feed/podcast/4334682.rss"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-primary-blue transition-all duration-200"
+                className="border-2 border-white text-fg px-8 py-4 rounded-lg font-semibold hover:bg-bg hover:text-primary-blue transition-all duration-200"
               >
                 📡 RSS Feed
               </a>
@@ -501,7 +501,7 @@ export default function Podcast() {
       </section>
 
       {/* Podcast Topics */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-bg">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4 text-primary-navy">
@@ -566,7 +566,7 @@ export default function Podcast() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-primary-navy text-white">
+      <section className="py-20 bg-primary-navy text-fg">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-4xl font-bold mb-6">
             🎙️ Join the Conversation
@@ -579,7 +579,7 @@ export default function Podcast() {
           <div className="flex flex-wrap gap-6 justify-center">
             <Link
               href="/contact"
-              className="bg-white text-primary-navy px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-all duration-200 transform hover:scale-105 shadow-lg"
+              className="bg-bg text-primary-navy px-8 py-4 rounded-lg font-semibold hover:bg-bg-2 transition-all duration-200 transform hover:scale-105 shadow-lg"
             >
               🎯 Pitch Your Story
             </Link>
@@ -587,7 +587,7 @@ export default function Podcast() {
               href="https://evestel.substack.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-primary-navy transition-all duration-200 transform hover:scale-105"
+              className="border-2 border-white text-fg px-8 py-4 rounded-lg font-semibold hover:bg-bg hover:text-primary-navy transition-all duration-200 transform hover:scale-105"
             >
               📰 Read Our Newsletter
             </a>
@@ -595,7 +595,7 @@ export default function Podcast() {
               href="https://www.youtube.com/@OutoftheFHIRPodcast"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-red-500 text-white px-8 py-4 rounded-lg font-semibold hover:bg-red-600 transition-all duration-200 transform hover:scale-105 shadow-lg"
+              className="bg-bg-3 text-fg px-8 py-4 rounded-lg font-semibold hover:bg-bg-3 transition-all duration-200 transform hover:scale-105 shadow-lg"
             >
               📺 Watch on YouTube
             </a>
@@ -604,45 +604,45 @@ export default function Podcast() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-primary-navy text-white py-16">
+      <footer className="bg-primary-navy text-fg py-16">
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8">
             <div>
               <h3 className="text-xl font-bold mb-4">Out of the FHIR Podcast</h3>
-              <p className="text-gray-400 leading-relaxed">
+              <p className="text-fg-3 leading-relaxed">
                 Your trusted source for FHIR expertise, implementation insights,
                 and healthcare interoperability conversations.
               </p>
             </div>
             <div>
               <h4 className="font-semibold mb-4">Listen & Subscribe</h4>
-              <ul className="space-y-3 text-gray-400">
-                <li><a href="https://evestel.substack.com/podcast" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">📡 Substack</a></li>
-                <li><a href="https://open.spotify.com/show/6GBZT7KA1Ug8xMZ4l5LThU" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">🎵 Spotify</a></li>
-                <li><a href="https://podcasts.apple.com/us/podcast/out-of-the-fhir-podcast/id1822845248" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">🍎 Apple Podcasts</a></li>
-                <li><a href="https://www.youtube.com/@OutoftheFHIRPodcast" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">📺 YouTube</a></li>
+              <ul className="space-y-3 text-fg-3">
+                <li><a href="https://evestel.substack.com/podcast" target="_blank" rel="noopener noreferrer" className="hover:text-fg transition">📡 Substack</a></li>
+                <li><a href="https://open.spotify.com/show/6GBZT7KA1Ug8xMZ4l5LThU" target="_blank" rel="noopener noreferrer" className="hover:text-fg transition">🎵 Spotify</a></li>
+                <li><a href="https://podcasts.apple.com/us/podcast/out-of-the-fhir-podcast/id1822845248" target="_blank" rel="noopener noreferrer" className="hover:text-fg transition">🍎 Apple Podcasts</a></li>
+                <li><a href="https://www.youtube.com/@OutoftheFHIRPodcast" target="_blank" rel="noopener noreferrer" className="hover:text-fg transition">📺 YouTube</a></li>
               </ul>
             </div>
             <div>
               <h4 className="font-semibold mb-4">Resources</h4>
-              <ul className="space-y-3 text-gray-400">
-                <li><Link href="/blog" className="hover:text-white transition">Blog</Link></li>
-                <li><Link href="/tools" className="hover:text-white transition">Tools</Link></li>
-                <li><Link href="/training" className="hover:text-white transition">Training</Link></li>
-                <li><a href="https://api.substack.com/feed/podcast/4334682.rss" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">RSS Feed</a></li>
+              <ul className="space-y-3 text-fg-3">
+                <li><Link href="/blog" className="hover:text-fg transition">Blog</Link></li>
+                <li><Link href="/tools" className="hover:text-fg transition">Tools</Link></li>
+                <li><Link href="/training" className="hover:text-fg transition">Training</Link></li>
+                <li><a href="https://api.substack.com/feed/podcast/4334682.rss" target="_blank" rel="noopener noreferrer" className="hover:text-fg transition">RSS Feed</a></li>
               </ul>
             </div>
             <div>
               <h4 className="font-semibold mb-4">Connect</h4>
-              <ul className="space-y-3 text-gray-400">
-                <li><Link href="/about" className="hover:text-white transition">About</Link></li>
-                <li><Link href="/contact" className="hover:text-white transition">Be a Guest</Link></li>
-                <li><Link href="/partners" className="hover:text-white transition">Partners</Link></li>
-                <li><a href="https://evestel.substack.com/subscribe" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">Newsletter</a></li>
+              <ul className="space-y-3 text-fg-3">
+                <li><Link href="/about" className="hover:text-fg transition">About</Link></li>
+                <li><Link href="/contact" className="hover:text-fg transition">Be a Guest</Link></li>
+                <li><Link href="/partners" className="hover:text-fg transition">Partners</Link></li>
+                <li><a href="https://evestel.substack.com/subscribe" target="_blank" rel="noopener noreferrer" className="hover:text-fg transition">Newsletter</a></li>
               </ul>
             </div>
           </div>
-          <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+          <div className="border-t border-line-2 mt-12 pt-8 text-center text-fg-3">
             <p>&copy; 2024 FHIR IQ. All rights reserved. | Out of the FHIR Podcast</p>
           </div>
         </div>

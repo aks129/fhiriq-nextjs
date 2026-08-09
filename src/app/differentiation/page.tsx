@@ -230,20 +230,20 @@ const StatusIcon = ({ status }: { status: CapabilityStatus }) => {
   switch (status) {
     case "full":
       return (
-        <div className="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center">
-          <span className="text-green-600 font-bold">✓</span>
+        <div className="w-8 h-8 rounded-full bg-bg-2 flex items-center justify-center">
+          <span className="text-fg font-bold">✓</span>
         </div>
       );
     case "partial":
       return (
-        <div className="w-8 h-8 rounded-full bg-yellow-100 flex items-center justify-center">
-          <span className="text-yellow-600 font-bold">⚠</span>
+        <div className="w-8 h-8 rounded-full bg-bg-2 flex items-center justify-center">
+          <span className="text-fg font-bold">⚠</span>
         </div>
       );
     case "none":
       return (
-        <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center">
-          <span className="text-gray-400 font-bold">✗</span>
+        <div className="w-8 h-8 rounded-full bg-bg-2 flex items-center justify-center">
+          <span className="text-fg-3 font-bold">✗</span>
         </div>
       );
   }
@@ -262,9 +262,9 @@ export default function Differentiation() {
     : VENDORS;
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-bg">
       {/* Navigation */}
-      <nav className="bg-white shadow-lg">
+      <nav className="bg-bg shadow-lg">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center">
@@ -297,52 +297,52 @@ export default function Differentiation() {
       </nav>
 
       {/* Header */}
-      <section className="bg-gradient-to-br from-primary-blue via-purple-700 to-indigo-800 text-white py-16">
+      <section className="bg-gradient-to-br from-primary-blue via-bg-3 to-bg-3 text-fg py-16">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Differentiation Matrix</h1>
-          <p className="text-xl text-blue-100 font-light">
+          <p className="text-xl text-fg-2 font-light">
             Open Quality vs. Pop Health Vendors
           </p>
         </div>
       </section>
 
       {/* Legend */}
-      <section className="py-8 bg-gray-50 border-b">
+      <section className="py-8 bg-bg-2 border-b">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex flex-wrap items-center justify-center gap-8 text-sm">
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center">
-                <span className="text-green-600 font-bold">✓</span>
+              <div className="w-8 h-8 rounded-full bg-bg-2 flex items-center justify-center">
+                <span className="text-fg font-bold">✓</span>
               </div>
-              <span className="text-gray-700">Full capability</span>
+              <span className="text-fg-2">Full capability</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-full bg-yellow-100 flex items-center justify-center">
-                <span className="text-yellow-600 font-bold">⚠</span>
+              <div className="w-8 h-8 rounded-full bg-bg-2 flex items-center justify-center">
+                <span className="text-fg font-bold">⚠</span>
               </div>
-              <span className="text-gray-700">Partial / limited</span>
+              <span className="text-fg-2">Partial / limited</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center">
-                <span className="text-gray-400 font-bold">✗</span>
+              <div className="w-8 h-8 rounded-full bg-bg-2 flex items-center justify-center">
+                <span className="text-fg-3 font-bold">✗</span>
               </div>
-              <span className="text-gray-700">No capability</span>
+              <span className="text-fg-2">No capability</span>
             </div>
           </div>
         </div>
       </section>
 
       {/* Compare Filter */}
-      <section className="py-6 bg-white border-b">
+      <section className="py-6 bg-bg border-b">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex flex-wrap items-center justify-center gap-2">
-            <span className="text-sm text-gray-600 mr-3">Compare with:</span>
+            <span className="text-sm text-fg-2 mr-3">Compare with:</span>
             <button
               onClick={() => setSelectedVendor(null)}
               className={`px-4 py-2 rounded-full text-sm font-medium transition ${
                 selectedVendor === null
-                  ? 'bg-primary-blue text-white'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  ? 'bg-primary-blue text-fg'
+                  : 'bg-bg-2 text-fg-2 hover:bg-bg-2'
               }`}
             >
               All
@@ -353,8 +353,8 @@ export default function Differentiation() {
                 onClick={() => setSelectedVendor(selectedVendor === vendor.name ? null : vendor.name)}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition ${
                   selectedVendor === vendor.name
-                    ? 'bg-primary-blue text-white'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    ? 'bg-primary-blue text-fg'
+                    : 'bg-bg-2 text-fg-2 hover:bg-bg-2'
                 }`}
               >
                 {vendor.shortName}
@@ -370,8 +370,8 @@ export default function Differentiation() {
           <div className="overflow-x-auto">
             <table className="w-full border-collapse">
               <thead>
-                <tr className="border-b-2 border-gray-200">
-                  <th className="text-left py-4 px-4 font-semibold text-gray-900 min-w-[220px]">
+                <tr className="border-b-2 border-line">
+                  <th className="text-left py-4 px-4 font-semibold text-fg min-w-[220px]">
                     Capability
                   </th>
                   {filteredVendors.map(vendor => (
@@ -379,8 +379,8 @@ export default function Differentiation() {
                       key={vendor.name}
                       className={`py-4 px-3 font-semibold text-center min-w-[90px] ${
                         vendor.name === "Open Quality"
-                          ? 'text-primary-blue bg-blue-50'
-                          : 'text-gray-700'
+                          ? 'text-primary-blue bg-bg-2'
+                          : 'text-fg-2'
                       }`}
                     >
                       <span className="hidden lg:inline">{vendor.name}</span>
@@ -394,15 +394,15 @@ export default function Differentiation() {
                   <>
                     <tr
                       key={cap.name}
-                      className={`border-b border-gray-100 hover:bg-gray-50 cursor-pointer transition ${
-                        i % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'
+                      className={`border-b border-line hover:bg-bg-2 cursor-pointer transition ${
+                        i % 2 === 0 ? 'bg-bg' : 'bg-bg-2'
                       }`}
                       onClick={() => toggleRow(cap.name)}
                     >
                       <td className="py-4 px-4">
                         <div className="flex items-center gap-3">
-                          <span className="text-gray-700">{cap.name}</span>
-                          <span className="text-gray-400 text-sm">
+                          <span className="text-fg-2">{cap.name}</span>
+                          <span className="text-fg-3 text-sm">
                             {expandedRow === cap.name ? '▲' : '▼'}
                           </span>
                         </div>
@@ -411,7 +411,7 @@ export default function Differentiation() {
                         <td
                           key={vendor.name}
                           className={`py-4 px-3 text-center ${
-                            vendor.name === "Open Quality" ? 'bg-blue-50' : ''
+                            vendor.name === "Open Quality" ? 'bg-bg-2' : ''
                           }`}
                         >
                           <div className="flex justify-center">
@@ -421,16 +421,16 @@ export default function Differentiation() {
                       ))}
                     </tr>
                     {expandedRow === cap.name && (
-                      <tr className="bg-gray-100">
+                      <tr className="bg-bg-2">
                         <td colSpan={filteredVendors.length + 1} className="py-6 px-6">
                           <div className="max-w-3xl">
-                            <p className="text-gray-700 mb-3">
+                            <p className="text-fg-2 mb-3">
                               {cap.description}
                             </p>
                             {cap.example && (
-                              <div className="bg-white rounded-lg p-4 border border-gray-200">
-                                <span className="text-gray-500 text-sm">Example: </span>
-                                <span className="text-gray-700 italic">{cap.example}</span>
+                              <div className="bg-bg rounded-lg p-4 border border-line">
+                                <span className="text-fg-3 text-sm">Example: </span>
+                                <span className="text-fg-2 italic">{cap.example}</span>
                               </div>
                             )}
                           </div>
@@ -446,32 +446,32 @@ export default function Differentiation() {
       </section>
 
       {/* What This Means */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-bg-2">
         <div className="max-w-5xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12 text-gray-900">
+          <h2 className="text-3xl font-bold text-center mb-12 text-fg">
             What This Means for Teams
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-white rounded-xl p-8 shadow-md">
+            <div className="bg-bg rounded-xl p-8 shadow-md">
               <div className="text-4xl mb-4">📋</div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">For Quality Teams</h3>
-              <p className="text-gray-600">
+              <h3 className="text-xl font-bold text-fg mb-3">For Quality Teams</h3>
+              <p className="text-fg-2">
                 Stop manually reviewing charts to understand why measures fail.
                 Get instant, evidence-based explanations.
               </p>
             </div>
-            <div className="bg-white rounded-xl p-8 shadow-md">
+            <div className="bg-bg rounded-xl p-8 shadow-md">
               <div className="text-4xl mb-4">🗃️</div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">For Data Teams</h3>
-              <p className="text-gray-600">
+              <h3 className="text-xl font-bold text-fg mb-3">For Data Teams</h3>
+              <p className="text-fg-2">
                 Identify missing feeds and mapping issues before they impact performance.
                 SQL-on-FHIR native for portable analytics.
               </p>
             </div>
-            <div className="bg-white rounded-xl p-8 shadow-md">
+            <div className="bg-bg rounded-xl p-8 shadow-md">
               <div className="text-4xl mb-4">📊</div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">For Leadership</h3>
-              <p className="text-gray-600">
+              <h3 className="text-xl font-bold text-fg mb-3">For Leadership</h3>
+              <p className="text-fg-2">
                 Understand root causes of performance drops.
                 Make data-driven decisions with transparent AI.
               </p>
@@ -481,15 +481,15 @@ export default function Differentiation() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-gradient-to-br from-primary-blue via-purple-700 to-indigo-800 text-white">
+      <section className="py-20 bg-gradient-to-br from-primary-blue via-bg-3 to-bg-3 text-fg">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-4">See the Difference</h2>
-          <p className="text-xl text-blue-100 mb-10">
+          <p className="text-xl text-fg-2 mb-10">
             Request a demo to see explainable quality in action.
           </p>
           <Link
             href="/contact"
-            className="inline-block bg-white text-primary-blue px-8 py-4 rounded-xl font-semibold hover:bg-blue-50 transition text-lg"
+            className="inline-block bg-bg text-primary-blue px-8 py-4 rounded-xl font-semibold hover:bg-bg-2 transition text-lg"
           >
             Request Demo
           </Link>
@@ -497,24 +497,24 @@ export default function Differentiation() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-800 text-white py-12">
+      <footer className="bg-bg-2 text-fg py-12">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-            <p className="text-gray-400">Open Quality · Differentiation Matrix</p>
+            <p className="text-fg-3">Open Quality · Differentiation Matrix</p>
             <div className="flex gap-8">
-              <Link href="/investor" className="text-gray-400 hover:text-white transition">
+              <Link href="/investor" className="text-fg-3 hover:text-fg transition">
                 Investor One-Pager
               </Link>
-              <Link href="/contact" className="text-gray-400 hover:text-white transition">
+              <Link href="/contact" className="text-fg-3 hover:text-fg transition">
                 Contact
               </Link>
-              <Link href="/about" className="text-gray-400 hover:text-white transition">
+              <Link href="/about" className="text-fg-3 hover:text-fg transition">
                 About
               </Link>
             </div>
           </div>
-          <div className="mt-8 pt-8 border-t border-gray-700 text-center">
-            <p className="text-gray-400">&copy; 2025 FHIR IQ. All rights reserved.</p>
+          <div className="mt-8 pt-8 border-t border-line-2 text-center">
+            <p className="text-fg-3">&copy; 2025 FHIR IQ. All rights reserved.</p>
           </div>
         </div>
       </footer>

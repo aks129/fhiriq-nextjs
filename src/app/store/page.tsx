@@ -281,25 +281,25 @@ export default function Store() {
     : products.filter(p => p.category === selectedCategory);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-bg-2 to-white">
       {/* Navigation */}
-      <nav className="bg-white shadow-lg">
+      <nav className="bg-bg shadow-lg">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between items-center py-4">
             <Link href="/" className="text-2xl font-bold text-accent-teal">
               FHIR IQ
             </Link>
             <div className="hidden md:flex space-x-8 items-center">
-              <Link href="/solutions" className="text-gray-600 hover:text-accent-teal font-medium">
+              <Link href="/solutions" className="text-fg-2 hover:text-accent-teal font-medium">
                 Solutions
               </Link>
-              <Link href="/tools" className="text-gray-600 hover:text-accent-teal font-medium">
+              <Link href="/tools" className="text-fg-2 hover:text-accent-teal font-medium">
                 Tools
               </Link>
               <Link href="/store" className="text-accent-teal font-semibold">
                 Store
               </Link>
-              <Link href="/contact" className="px-6 py-2 bg-accent-teal text-white rounded-lg font-semibold hover:bg-accent-teal-dark transition-colors">
+              <Link href="/contact" className="px-6 py-2 bg-accent-teal text-fg rounded-lg font-semibold hover:bg-accent-teal-dark transition-colors">
                 Contact
               </Link>
             </div>
@@ -308,7 +308,7 @@ export default function Store() {
       </nav>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-accent-teal to-accent-purple text-white py-20">
+      <section className="bg-gradient-to-r from-accent-teal to-accent-purple text-fg py-20">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <h1 className="text-5xl font-bold mb-6">FHIR Resources Store</h1>
           <p className="text-xl mb-8 max-w-3xl mx-auto">
@@ -333,7 +333,7 @@ export default function Store() {
       </section>
 
       {/* Categories */}
-      <section className="py-8 bg-white border-b border-gray-200">
+      <section className="py-8 bg-bg border-b border-line">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex gap-3 overflow-x-auto pb-2">
             {categories.map((category) => (
@@ -342,8 +342,8 @@ export default function Store() {
                 onClick={() => setSelectedCategory(category.id)}
                 className={`px-6 py-3 rounded-lg font-semibold whitespace-nowrap transition-all ${
                   selectedCategory === category.id
-                    ? 'bg-accent-teal text-white shadow-lg'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    ? 'bg-accent-teal text-fg shadow-lg'
+                    : 'bg-bg-2 text-fg-2 hover:bg-bg-2'
                 }`}
               >
                 <span className="mr-2">{category.icon}</span>
@@ -359,21 +359,21 @@ export default function Store() {
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredProducts.map((product) => (
-              <div key={product.id} className="bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden hover:shadow-xl transition-shadow">
+              <div key={product.id} className="bg-bg rounded-lg shadow-lg border border-line overflow-hidden hover:shadow-xl transition-shadow">
                 {product.popular && (
-                  <div className="bg-accent-orange text-white text-center py-1 text-sm font-semibold">
+                  <div className="bg-accent-orange text-fg text-center py-1 text-sm font-semibold">
                     ⭐ Popular
                   </div>
                 )}
                 <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">{product.name}</h3>
-                  <p className="text-gray-600 mb-4">{product.description}</p>
+                  <h3 className="text-xl font-bold text-fg mb-3">{product.name}</h3>
+                  <p className="text-fg-2 mb-4">{product.description}</p>
 
                   <div className="mb-4">
-                    <div className="text-sm font-semibold text-gray-700 mb-2">Features:</div>
+                    <div className="text-sm font-semibold text-fg-2 mb-2">Features:</div>
                     <ul className="space-y-1">
                       {product.features.slice(0, 3).map((feature, idx) => (
-                        <li key={idx} className="text-sm text-gray-600 flex items-start gap-2">
+                        <li key={idx} className="text-sm text-fg-2 flex items-start gap-2">
                           <svg className="w-4 h-4 text-accent-teal mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                           </svg>
@@ -382,25 +382,25 @@ export default function Store() {
                       ))}
                     </ul>
                     {product.features.length > 3 && (
-                      <div className="text-xs text-gray-500 mt-1">
+                      <div className="text-xs text-fg-3 mt-1">
                         +{product.features.length - 3} more features
                       </div>
                     )}
                   </div>
 
-                  <div className="border-t border-gray-200 pt-4 mt-4">
+                  <div className="border-t border-line pt-4 mt-4">
                     <div className="flex items-baseline justify-between mb-4">
                       <div>
-                        <span className="text-3xl font-bold text-gray-900">${product.price}</span>
+                        <span className="text-3xl font-bold text-fg">${product.price}</span>
                         {product.recurring && (
-                          <span className="text-sm text-gray-600 ml-2">/{product.recurring}</span>
+                          <span className="text-sm text-fg-2 ml-2">/{product.recurring}</span>
                         )}
                         {product.oneTime && !product.recurring && (
-                          <span className="text-sm text-gray-600 ml-2">one-time</span>
+                          <span className="text-sm text-fg-2 ml-2">one-time</span>
                         )}
                       </div>
                       {product.downloadable && (
-                        <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded">
+                        <span className="text-xs bg-bg-2 text-fg px-2 py-1 rounded">
                           Instant Download
                         </span>
                       )}
@@ -408,7 +408,7 @@ export default function Store() {
 
                     <Link
                       href={`/contact?product=${product.id}`}
-                      className="block w-full text-center px-6 py-3 bg-accent-teal text-white rounded-lg font-semibold hover:bg-accent-teal-dark transition-colors"
+                      className="block w-full text-center px-6 py-3 bg-accent-teal text-fg rounded-lg font-semibold hover:bg-accent-teal-dark transition-colors"
                     >
                       Purchase Now
                     </Link>
@@ -421,9 +421,9 @@ export default function Store() {
       </section>
 
       {/* Value Props */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-bg-2">
         <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12 text-gray-900">
+          <h2 className="text-3xl font-bold text-center mb-12 text-fg">
             Why Choose FHIR IQ Resources?
           </h2>
           <div className="grid md:grid-cols-4 gap-8">
@@ -433,8 +433,8 @@ export default function Store() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
-              <h3 className="font-bold text-gray-900 mb-2">Production Ready</h3>
-              <p className="text-sm text-gray-600">Battle-tested in enterprise healthcare environments</p>
+              <h3 className="font-bold text-fg mb-2">Production Ready</h3>
+              <p className="text-sm text-fg-2">Battle-tested in enterprise healthcare environments</p>
             </div>
             <div className="text-center">
               <div className="w-16 h-16 bg-accent-purple/10 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -442,8 +442,8 @@ export default function Store() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
-              <h3 className="font-bold text-gray-900 mb-2">Save Time</h3>
-              <p className="text-sm text-gray-600">Accelerate development by months with pre-built assets</p>
+              <h3 className="font-bold text-fg mb-2">Save Time</h3>
+              <p className="text-sm text-fg-2">Accelerate development by months with pre-built assets</p>
             </div>
             <div className="text-center">
               <div className="w-16 h-16 bg-accent-orange/10 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -451,8 +451,8 @@ export default function Store() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
               </div>
-              <h3 className="font-bold text-gray-900 mb-2">Documentation</h3>
-              <p className="text-sm text-gray-600">Complete docs and implementation guides included</p>
+              <h3 className="font-bold text-fg mb-2">Documentation</h3>
+              <p className="text-sm text-fg-2">Complete docs and implementation guides included</p>
             </div>
             <div className="text-center">
               <div className="w-16 h-16 bg-accent-teal/10 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -460,15 +460,15 @@ export default function Store() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
                 </svg>
               </div>
-              <h3 className="font-bold text-gray-900 mb-2">Support</h3>
-              <p className="text-sm text-gray-600">Expert support and customization available</p>
+              <h3 className="font-bold text-fg mb-2">Support</h3>
+              <p className="text-sm text-fg-2">Expert support and customization available</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* Enterprise Section */}
-      <section className="py-16 bg-gradient-to-r from-accent-teal to-accent-purple text-white">
+      <section className="py-16 bg-gradient-to-r from-accent-teal to-accent-purple text-fg">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-4xl font-bold mb-6">
             Need Custom Solutions?
@@ -480,13 +480,13 @@ export default function Store() {
           <div className="flex gap-4 justify-center">
             <Link
               href="/contact"
-              className="px-8 py-4 bg-white text-accent-teal font-bold rounded-lg hover:bg-gray-100 transition-colors"
+              className="px-8 py-4 bg-bg text-accent-teal font-bold rounded-lg hover:bg-bg-2 transition-colors"
             >
               Contact Sales
             </Link>
             <Link
               href="/solutions"
-              className="px-8 py-4 bg-accent-purple text-white font-bold rounded-lg hover:bg-purple-700 transition-colors border-2 border-white"
+              className="px-8 py-4 bg-accent-purple text-fg font-bold rounded-lg hover:bg-bg-3 transition-colors border-2 border-white"
             >
               View Solutions
             </Link>
@@ -495,36 +495,36 @@ export default function Store() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-bg">
         <div className="max-w-4xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12 text-gray-900">
+          <h2 className="text-3xl font-bold text-center mb-12 text-fg">
             Frequently Asked Questions
           </h2>
           <div className="space-y-6">
-            <div className="border-b border-gray-200 pb-6">
-              <h3 className="text-lg font-bold text-gray-900 mb-2">What format are the mappings delivered in?</h3>
-              <p className="text-gray-600">
+            <div className="border-b border-line pb-6">
+              <h3 className="text-lg font-bold text-fg mb-2">What format are the mappings delivered in?</h3>
+              <p className="text-fg-2">
                 All mappings are provided in industry-standard formats including FHIR StructureMap,
                 ConceptMap resources, and documentation in JSON, XML, and human-readable formats.
               </p>
             </div>
-            <div className="border-b border-gray-200 pb-6">
-              <h3 className="text-lg font-bold text-gray-900 mb-2">Are updates included?</h3>
-              <p className="text-gray-600">
+            <div className="border-b border-line pb-6">
+              <h3 className="text-lg font-bold text-fg mb-2">Are updates included?</h3>
+              <p className="text-fg-2">
                 One-time purchases include 12 months of updates. Annual subscriptions include all updates
                 for the duration of the subscription period.
               </p>
             </div>
-            <div className="border-b border-gray-200 pb-6">
-              <h3 className="text-lg font-bold text-gray-900 mb-2">Can I customize the products?</h3>
-              <p className="text-gray-600">
+            <div className="border-b border-line pb-6">
+              <h3 className="text-lg font-bold text-fg mb-2">Can I customize the products?</h3>
+              <p className="text-fg-2">
                 Yes! All products can be customized for your specific use case. Contact us for custom
                 development, additional mappings, or enterprise licensing options.
               </p>
             </div>
-            <div className="border-b border-gray-200 pb-6">
-              <h3 className="text-lg font-bold text-gray-900 mb-2">What support is included?</h3>
-              <p className="text-gray-600">
+            <div className="border-b border-line pb-6">
+              <h3 className="text-lg font-bold text-fg mb-2">What support is included?</h3>
+              <p className="text-fg-2">
                 All purchases include email support for 30 days. Extended support packages and implementation
                 assistance are available for enterprise customers.
               </p>

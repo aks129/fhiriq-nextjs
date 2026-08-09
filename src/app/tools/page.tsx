@@ -104,13 +104,13 @@ export default function Tools() {
   const getStatusBadge = (status: string) => {
     switch (status) {
       case 'live':
-        return 'bg-primary-green text-white';
+        return 'bg-primary-green text-fg';
       case 'poc':
-        return 'bg-yellow-500 text-white';
+        return 'bg-bg-3 text-fg';
       case 'beta':
-        return 'bg-accent-orange text-white';
+        return 'bg-accent-orange text-fg';
       default:
-        return 'bg-neutral-gray text-white';
+        return 'bg-neutral-gray text-fg';
     }
   };
 
@@ -123,14 +123,14 @@ export default function Tools() {
       case 'development':
         return 'bg-primary-green/10 text-primary-green';
       default:
-        return 'bg-gray-100 text-gray-600';
+        return 'bg-bg-2 text-fg-2';
     }
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-bg">
       {/* Navigation */}
-      <nav className="bg-white shadow-lg">
+      <nav className="bg-bg shadow-lg">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center">
@@ -166,7 +166,7 @@ export default function Tools() {
       </nav>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-primary-green to-primary-blue text-white py-20">
+      <section className="bg-gradient-to-r from-primary-green to-primary-blue text-fg py-20">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <h1 className="text-5xl font-bold mb-6">Developer Tools</h1>
           <p className="text-xl mb-8 max-w-3xl mx-auto">
@@ -175,13 +175,13 @@ export default function Tools() {
           <div className="flex gap-4 justify-center">
             <Link
               href="/library"
-              className="bg-white text-primary-blue px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition"
+              className="bg-bg text-primary-blue px-8 py-3 rounded-lg font-semibold hover:bg-bg-2 transition"
             >
               ViewDefinition Library
             </Link>
             <Link
               href="/cql-to-sql"
-              className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-primary-blue transition"
+              className="border-2 border-white text-fg px-8 py-3 rounded-lg font-semibold hover:bg-bg hover:text-primary-blue transition"
             >
               CQL-to-SQL Engine
             </Link>
@@ -190,14 +190,14 @@ export default function Tools() {
       </section>
 
       {/* CQL-to-SQL Banner */}
-      <section className="bg-gradient-to-r from-accent-purple to-primary-blue text-white py-8">
+      <section className="bg-gradient-to-r from-accent-purple to-primary-blue text-fg py-8">
         <div className="max-w-5xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
           <div>
             <div className="text-sm font-medium opacity-80 mb-1">Coming Q1 2026</div>
             <h3 className="text-2xl font-bold">CQL-to-SQL Compilation Engine</h3>
             <p className="opacity-90">Compile Clinical Quality Language to native SQL for your data warehouse</p>
           </div>
-          <Link href="/cql-to-sql" className="bg-white text-accent-purple px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition whitespace-nowrap">
+          <Link href="/cql-to-sql" className="bg-bg text-accent-purple px-6 py-3 rounded-lg font-semibold hover:bg-bg-2 transition whitespace-nowrap">
             Learn More
           </Link>
         </div>
@@ -207,10 +207,10 @@ export default function Tools() {
       <section id="tools-catalog" className="py-16">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl font-bold text-fg mb-4">
               Available Tools
             </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+            <p className="text-lg text-fg-2 max-w-3xl mx-auto">
               Free and open source tools for FHIR development and healthcare data engineering
             </p>
           </div>
@@ -219,7 +219,7 @@ export default function Tools() {
             {tools.map((tool) => (
               <div
                 key={tool.id}
-                className="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-lg hover:border-primary-blue transition"
+                className="bg-bg rounded-xl border border-line p-6 hover:shadow-lg hover:border-primary-blue transition"
               >
                 <div className="flex items-center justify-between mb-4">
                   <span className={`px-2 py-1 rounded text-xs font-medium ${getCategoryColor(tool.category)}`}>
@@ -230,21 +230,21 @@ export default function Tools() {
                   </span>
                 </div>
 
-                <h3 className="text-xl font-bold text-gray-900 mb-1">
+                <h3 className="text-xl font-bold text-fg mb-1">
                   {tool.name}
                 </h3>
                 <p className="text-sm text-primary-blue font-medium mb-3">
                   {tool.tagline}
                 </p>
 
-                <p className="text-gray-600 text-sm mb-4">
+                <p className="text-fg-2 text-sm mb-4">
                   {tool.description}
                 </p>
 
                 <div className="mb-6">
                   <ul className="space-y-1">
                     {tool.features.slice(0, 4).map((feature, index) => (
-                      <li key={index} className="flex items-center text-sm text-gray-600">
+                      <li key={index} className="flex items-center text-sm text-fg-2">
                         <span className="text-primary-green mr-2">✓</span>
                         {feature}
                       </li>
@@ -267,47 +267,47 @@ export default function Tools() {
       </section>
 
       {/* Value Proposition */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-bg-2">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl font-bold text-fg mb-4">
               Why Use Our Tools
             </h2>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            <div className="bg-white p-6 rounded-xl shadow-sm">
+            <div className="bg-bg p-6 rounded-xl shadow-sm">
               <div className="w-12 h-12 bg-primary-blue/10 rounded-xl flex items-center justify-center mb-4">
                 <svg className="w-6 h-6 text-primary-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold mb-3 text-gray-900">Standards Compliant</h3>
-              <p className="text-gray-600">
+              <h3 className="text-xl font-semibold mb-3 text-fg">Standards Compliant</h3>
+              <p className="text-fg-2">
                 Built for US Core, CARIN BB, Da Vinci, and SQL on FHIR implementation guides
               </p>
             </div>
 
-            <div className="bg-white p-6 rounded-xl shadow-sm">
+            <div className="bg-bg p-6 rounded-xl shadow-sm">
               <div className="w-12 h-12 bg-primary-green/10 rounded-xl flex items-center justify-center mb-4">
                 <svg className="w-6 h-6 text-primary-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold mb-3 text-gray-900">Open Source First</h3>
-              <p className="text-gray-600">
+              <h3 className="text-xl font-semibold mb-3 text-fg">Open Source First</h3>
+              <p className="text-fg-2">
                 Free tools for the community. Use them, extend them, contribute back
               </p>
             </div>
 
-            <div className="bg-white p-6 rounded-xl shadow-sm">
+            <div className="bg-bg p-6 rounded-xl shadow-sm">
               <div className="w-12 h-12 bg-accent-purple/10 rounded-xl flex items-center justify-center mb-4">
                 <svg className="w-6 h-6 text-accent-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold mb-3 text-gray-900">AI-Powered</h3>
-              <p className="text-gray-600">
+              <h3 className="text-xl font-semibold mb-3 text-fg">AI-Powered</h3>
+              <p className="text-fg-2">
                 Leverage AI for code generation, mapping suggestions, and quality recommendations
               </p>
             </div>
@@ -316,7 +316,7 @@ export default function Tools() {
       </section>
 
       {/* Design Partner CTA */}
-      <section className="py-16 bg-gradient-to-r from-accent-purple to-primary-blue text-white">
+      <section className="py-16 bg-gradient-to-r from-accent-purple to-primary-blue text-fg">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-6">
             Want Early Access to the CQL-to-SQL Engine?
@@ -327,13 +327,13 @@ export default function Tools() {
           <div className="flex gap-4 justify-center flex-wrap">
             <Link
               href="/early-access"
-              className="bg-white text-accent-purple px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition"
+              className="bg-bg text-accent-purple px-8 py-3 rounded-lg font-semibold hover:bg-bg-2 transition"
             >
               Apply for Design Partner Program
             </Link>
             <Link
               href="/cql-to-sql"
-              className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-accent-purple transition"
+              className="border-2 border-white text-fg px-8 py-3 rounded-lg font-semibold hover:bg-bg hover:text-accent-purple transition"
             >
               Learn More
             </Link>
@@ -342,41 +342,41 @@ export default function Tools() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12">
+      <footer className="bg-bg-2 text-fg py-12">
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8">
             <div>
               <h3 className="text-xl font-bold mb-4">FHIR IQ</h3>
-              <p className="text-gray-400">
+              <p className="text-fg-3">
                 The Semantic Intelligence Layer for Healthcare
               </p>
             </div>
             <div>
               <h4 className="font-semibold mb-4">Solutions</h4>
-              <ul className="space-y-2 text-gray-400">
-                <li><Link href="/cql-to-sql" className="hover:text-white">CQL-to-SQL Engine</Link></li>
-                <li><Link href="/solutions" className="hover:text-white">Data Quality</Link></li>
-                <li><Link href="/services" className="hover:text-white">Advisory Services</Link></li>
+              <ul className="space-y-2 text-fg-3">
+                <li><Link href="/cql-to-sql" className="hover:text-fg">CQL-to-SQL Engine</Link></li>
+                <li><Link href="/solutions" className="hover:text-fg">Data Quality</Link></li>
+                <li><Link href="/services" className="hover:text-fg">Advisory Services</Link></li>
               </ul>
             </div>
             <div>
               <h4 className="font-semibold mb-4">Resources</h4>
-              <ul className="space-y-2 text-gray-400">
-                <li><Link href="/library" className="hover:text-white">ViewDefinition Library</Link></li>
-                <li><Link href="/tools" className="hover:text-white">Developer Tools</Link></li>
-                <li><Link href="/architectures" className="hover:text-white">Architectures</Link></li>
+              <ul className="space-y-2 text-fg-3">
+                <li><Link href="/library" className="hover:text-fg">ViewDefinition Library</Link></li>
+                <li><Link href="/tools" className="hover:text-fg">Developer Tools</Link></li>
+                <li><Link href="/architectures" className="hover:text-fg">Architectures</Link></li>
               </ul>
             </div>
             <div>
               <h4 className="font-semibold mb-4">Company</h4>
-              <ul className="space-y-2 text-gray-400">
-                <li><Link href="/about" className="hover:text-white">About</Link></li>
-                <li><Link href="/contact" className="hover:text-white">Contact</Link></li>
-                <li><Link href="/investor" className="hover:text-white">Investors</Link></li>
+              <ul className="space-y-2 text-fg-3">
+                <li><Link href="/about" className="hover:text-fg">About</Link></li>
+                <li><Link href="/contact" className="hover:text-fg">Contact</Link></li>
+                <li><Link href="/investor" className="hover:text-fg">Investors</Link></li>
               </ul>
             </div>
           </div>
-          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+          <div className="border-t border-line-2 mt-8 pt-8 text-center text-fg-3">
             <p>&copy; 2025 FHIR IQ. All rights reserved.</p>
           </div>
         </div>

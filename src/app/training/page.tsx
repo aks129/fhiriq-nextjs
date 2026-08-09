@@ -89,9 +89,9 @@ export default function Training() {
   ];
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-bg">
       {/* Navigation */}
-      <nav className="bg-white shadow-lg">
+      <nav className="bg-bg shadow-lg">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center">
@@ -130,7 +130,7 @@ export default function Training() {
       </nav>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-accent-purple to-primary-blue text-white py-20">
+      <section className="bg-gradient-to-r from-accent-purple to-primary-blue text-fg py-20">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <h1 className="text-5xl font-bold mb-6">FHIR Training & Certification</h1>
           <p className="text-xl mb-8 max-w-3xl mx-auto">
@@ -140,13 +140,13 @@ export default function Training() {
           <div className="flex gap-4 justify-center">
             <Link
               href="#quiz-sampler"
-              className="bg-white text-primary-blue px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition"
+              className="bg-bg text-primary-blue px-8 py-3 rounded-lg font-semibold hover:bg-bg-2 transition"
             >
               Try FHIR Quiz
             </Link>
             <Link
               href="#courses"
-              className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-primary-blue transition"
+              className="border-2 border-white text-fg px-8 py-3 rounded-lg font-semibold hover:bg-bg hover:text-primary-blue transition"
             >
               Browse Courses
             </Link>
@@ -158,12 +158,12 @@ export default function Training() {
       <section className="py-8 bg-bg-secondary">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-center">
-            <div className="flex bg-white rounded-lg p-1 shadow">
+            <div className="flex bg-bg rounded-lg p-1 shadow">
               <button
                 onClick={() => setSelectedTab('courses')}
                 className={`px-6 py-2 rounded-md font-medium transition ${
                   selectedTab === 'courses'
-                    ? 'bg-primary-blue text-white'
+                    ? 'bg-primary-blue text-fg'
                     : 'text-neutral-gray hover:text-primary-blue'
                 }`}
               >
@@ -173,7 +173,7 @@ export default function Training() {
                 onClick={() => setSelectedTab('quiz')}
                 className={`px-6 py-2 rounded-md font-medium transition ${
                   selectedTab === 'quiz'
-                    ? 'bg-primary-blue text-white'
+                    ? 'bg-primary-blue text-fg'
                     : 'text-neutral-gray hover:text-primary-blue'
                 }`}
               >
@@ -183,7 +183,7 @@ export default function Training() {
                 onClick={() => setSelectedTab('certification')}
                 className={`px-6 py-2 rounded-md font-medium transition ${
                   selectedTab === 'certification'
-                    ? 'bg-primary-blue text-white'
+                    ? 'bg-primary-blue text-fg'
                     : 'text-neutral-gray hover:text-primary-blue'
                 }`}
               >
@@ -210,7 +210,7 @@ export default function Training() {
                   }`}
                 >
                   {course.popular && (
-                    <div className="bg-primary-blue text-white px-3 py-1 rounded-full text-sm mb-4 w-fit">
+                    <div className="bg-primary-blue text-fg px-3 py-1 rounded-full text-sm mb-4 w-fit">
                       Most Popular
                     </div>
                   )}
@@ -238,7 +238,7 @@ export default function Training() {
                     </ul>
                   </div>
 
-                  <div className="border-t border-gray-200 pt-4 mb-6">
+                  <div className="border-t border-line pt-4 mb-6">
                     <div className="flex justify-between items-center mb-2">
                       <span className="text-sm text-neutral-gray">Next cohort:</span>
                       <span className="font-semibold text-primary-navy">
@@ -399,7 +399,7 @@ export default function Training() {
       )}
 
       {/* CTA Section */}
-      <section className="py-16 bg-primary-blue text-white">
+      <section className="py-16 bg-primary-blue text-fg">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-6">
             Ready to Master FHIR?
@@ -411,13 +411,13 @@ export default function Training() {
           <div className="flex gap-4 justify-center">
             <Link
               href="/contact"
-              className="bg-white text-primary-blue px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition"
+              className="bg-bg text-primary-blue px-8 py-3 rounded-lg font-semibold hover:bg-bg-2 transition"
             >
               Enroll Today
             </Link>
             <Link
               href="/training/corporate"
-              className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-primary-blue transition"
+              className="border-2 border-white text-fg px-8 py-3 rounded-lg font-semibold hover:bg-bg hover:text-primary-blue transition"
             >
               Corporate Training
             </Link>
@@ -426,42 +426,42 @@ export default function Training() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-primary-navy text-white py-12">
+      <footer className="bg-primary-navy text-fg py-12">
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8">
             <div>
               <h3 className="text-xl font-bold mb-4">FHIR IQ</h3>
-              <p className="text-gray-400">
+              <p className="text-fg-3">
                 Expert FHIR training and certification for healthcare professionals.
               </p>
             </div>
             <div>
               <h4 className="font-semibold mb-4">Training</h4>
-              <ul className="space-y-2 text-gray-400">
-                <li><Link href="/training#fundamentals" className="hover:text-white">FHIR Fundamentals</Link></li>
-                <li><Link href="/training#advanced-api" className="hover:text-white">Advanced API Development</Link></li>
-                <li><Link href="/training#ai-workshop" className="hover:text-white">AI Workshop</Link></li>
-                <li><Link href="/training/quiz" className="hover:text-white">FHIR Quiz</Link></li>
+              <ul className="space-y-2 text-fg-3">
+                <li><Link href="/training#fundamentals" className="hover:text-fg">FHIR Fundamentals</Link></li>
+                <li><Link href="/training#advanced-api" className="hover:text-fg">Advanced API Development</Link></li>
+                <li><Link href="/training#ai-workshop" className="hover:text-fg">AI Workshop</Link></li>
+                <li><Link href="/training/quiz" className="hover:text-fg">FHIR Quiz</Link></li>
               </ul>
             </div>
             <div>
               <h4 className="font-semibold mb-4">Resources</h4>
-              <ul className="space-y-2 text-gray-400">
-                <li><Link href="/blog" className="hover:text-white">Blog</Link></li>
-                <li><Link href="/tools" className="hover:text-white">Tools</Link></li>
-                <li><Link href="/docs" className="hover:text-white">Documentation</Link></li>
+              <ul className="space-y-2 text-fg-3">
+                <li><Link href="/blog" className="hover:text-fg">Blog</Link></li>
+                <li><Link href="/tools" className="hover:text-fg">Tools</Link></li>
+                <li><Link href="/docs" className="hover:text-fg">Documentation</Link></li>
               </ul>
             </div>
             <div>
               <h4 className="font-semibold mb-4">Company</h4>
-              <ul className="space-y-2 text-gray-400">
-                <li><Link href="/about" className="hover:text-white">About</Link></li>
-                <li><Link href="/contact" className="hover:text-white">Contact</Link></li>
-                <li><Link href="/partners" className="hover:text-white">Partners</Link></li>
+              <ul className="space-y-2 text-fg-3">
+                <li><Link href="/about" className="hover:text-fg">About</Link></li>
+                <li><Link href="/contact" className="hover:text-fg">Contact</Link></li>
+                <li><Link href="/partners" className="hover:text-fg">Partners</Link></li>
               </ul>
             </div>
           </div>
-          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+          <div className="border-t border-line-2 mt-8 pt-8 text-center text-fg-3">
             <p>&copy; 2024 FHIR IQ. All rights reserved.</p>
           </div>
         </div>

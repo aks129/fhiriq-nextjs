@@ -109,13 +109,25 @@
   --radius-xl: var(--r-lg);
   --radius-2xl: var(--r-lg);
 
-  /* legacy token names, monochrome values (see compatibility layer) */
-  --color-primary-blue: var(--fg);
-  --color-primary-green: var(--fg-2);
+  /*
+    Legacy accent token names.
+
+    These resolve to a DARK surface, not to --fg, because the utilities they
+    feed are fills and gradient stops (`bg-primary-blue`,
+    `from-accent-purple via-primary-blue`, `border-accent-orange`). Pointing
+    them at --fg turned every legacy gradient hero into a near-white band
+    with white text on it.
+
+    Their TEXT usage is handled separately by the explicit `.text-primary-blue`
+    / `.text-accent-purple` rules further down, which map to --fg. So text
+    stays bright and fills go dark, which is what both cases actually want.
+  */
+  --color-primary-blue: var(--bg-3);
+  --color-primary-green: var(--bg-3);
   --color-primary-navy: var(--bg);
-  --color-accent-purple: var(--fg);
-  --color-accent-orange: var(--fg);
-  --color-neutral-gray: var(--fg-2);
+  --color-accent-purple: var(--bg-3);
+  --color-accent-orange: var(--bg-3);
+  --color-neutral-gray: var(--bg-3);
   --color-bg-primary: var(--bg);
   --color-bg-secondary: var(--bg);
   --color-bg-accent: var(--bg-2);
@@ -357,6 +369,25 @@ pre {
   color: var(--fg-3);
 }
 
+/*
+  Light-fill safety rule.
+
+  In a monochrome system the one unrecoverable mistake is a light fill that
+  inherits light text: --fg on --fg is 1:1 and completely invisible. It
+  happens whenever the fill and the text sit on different elements, which no
+  amount of class-set analysis can catch at build time.
+
+  So the invariant is enforced here instead: anything filled with --fg carries
+  dark content, and its descendants inherit that. Buttons that already declare
+  `text-bg` are unaffected — they resolve to the same value.
+*/
+[class~='bg-fg'] {
+  color: var(--bg);
+}
+[class~='bg-fg'] :where(*):not(svg):not(path) {
+  color: inherit;
+}
+
 /* -------------------------------------------------------- legacy parts ---- */
 /* Same class names the other ~40 routes use. Monochrome implementations. */
 
@@ -454,14 +485,18 @@ pre {
 .text-primary-navy { color: var(--fg); }
 .text-neutral-gray { color: var(--fg-2); }
 
+/* Legacy accent FILLS resolve dark, for the same reason the theme tokens do:
+   they carry light text (`bg-accent-orange text-white` badges everywhere), so
+   a light fill makes them invisible. The matching `.text-*` rules above keep
+   accent TEXT bright. */
 .bg-primary-blue,
 .bg-accent-purple,
-.bg-accent-orange { background-color: var(--fg); }
-.bg-primary-green { background-color: var(--fg-2); }
+.bg-accent-orange,
+.bg-primary-green,
+.bg-deep-space { background-color: var(--bg-3); }
 .bg-primary-navy,
 .bg-void,
 .bg-space { background-color: var(--bg); }
-.bg-deep-space { background-color: var(--bg-2); }
 
 .border-primary-blue { border-color: var(--fg); }
 .border-primary-green { border-color: var(--line-3); }

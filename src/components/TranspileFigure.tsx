@@ -118,7 +118,7 @@ function Pane({
                 <span
                   aria-hidden="true"
                   className={`w-4 shrink-0 select-none text-right tabular-nums ${
-                    on ? 'text-fg' : 'text-fg-3/50'
+                    on ? 'text-fg' : 'text-fg-3'
                   }`}
                 >
                   {n}

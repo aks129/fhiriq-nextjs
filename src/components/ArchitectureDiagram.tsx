@@ -58,9 +58,9 @@ export default function ArchitectureDiagram({
   };
 
   return (
-    <div className="bg-gradient-to-br from-gray-50 to-blue-50 rounded-xl p-6 mb-6 border border-gray-200">
-      <h4 className="text-lg font-semibold mb-4 text-gray-900">{title}</h4>
-      <div className="bg-white rounded-lg p-4 shadow-sm overflow-x-auto">
+    <div className="bg-gradient-to-br from-bg-2 to-bg-2 rounded-xl p-6 mb-6 border border-line-2">
+      <h4 className="text-lg font-semibold mb-4 text-fg">{title}</h4>
+      <div className="bg-bg-2 border border-line-2 rounded-lg p-4 overflow-x-auto">
         <svg
           width={width}
           height={height}
@@ -78,7 +78,7 @@ export default function ArchitectureDiagram({
               refY="3"
               orient="auto"
             >
-              <polygon points="0 0, 10 3, 0 6" fill="#3B82F6" />
+              <polygon points="0 0, 10 3, 0 6" fill="var(--fg-2)" />
             </marker>
             <marker
               id="arrowhead-bidirectional"
@@ -88,7 +88,7 @@ export default function ArchitectureDiagram({
               refY="3"
               orient="auto"
             >
-              <polygon points="10 0, 0 3, 10 6" fill="#3B82F6" />
+              <polygon points="10 0, 0 3, 10 6" fill="var(--fg-2)" />
             </marker>
           </defs>
 
@@ -107,7 +107,7 @@ export default function ArchitectureDiagram({
                   y1={fromCenter.y}
                   x2={toCenter.x}
                   y2={toCenter.y}
-                  stroke="#3B82F6"
+                  stroke="var(--fg-3)"
                   strokeWidth="2"
                   strokeDasharray={conn.style === 'dashed' ? '5,5' : '0'}
                   markerEnd="url(#arrowhead)"
@@ -123,8 +123,8 @@ export default function ArchitectureDiagram({
                       y={midY - 12}
                       width="80"
                       height="24"
-                      fill="white"
-                      stroke="#E5E7EB"
+                      fill="var(--bg-3)"
+                      stroke="var(--line-2)"
                       strokeWidth="1"
                       rx="4"
                     />
@@ -133,7 +133,7 @@ export default function ArchitectureDiagram({
                       y={midY + 4}
                       textAnchor="middle"
                       className="text-xs font-medium"
-                      fill="#6B7280"
+                      fill="var(--fg-3)"
                     >
                       {conn.label}
                     </text>
@@ -165,7 +165,7 @@ export default function ArchitectureDiagram({
                   width={w}
                   height={h}
                   fill={`url(#grad-${node.id})`}
-                  stroke="#E5E7EB"
+                  stroke="var(--line-2)"
                   strokeWidth="2"
                   rx="8"
                   className="hover:stroke-blue-500 transition-colors cursor-pointer"
@@ -189,7 +189,7 @@ export default function ArchitectureDiagram({
                   y={node.y + (node.icon ? 45 : 35)}
                   textAnchor="middle"
                   className="text-sm font-bold"
-                  fill="white"
+                  fill="var(--fg)"
                 >
                   {node.label.length > 16 ? (
                     <>
@@ -208,7 +208,7 @@ export default function ArchitectureDiagram({
                     y={node.y + h - 12}
                     textAnchor="middle"
                     className="text-xs"
-                    fill="white"
+                    fill="var(--fg)"
                     opacity="0.9"
                   >
                     {node.sublabel}

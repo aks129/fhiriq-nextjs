@@ -4,17 +4,17 @@ import Link from 'next/link';
 
 export default function CQLGuide() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-bg-2">
       {/* Navigation */}
-      <nav className="bg-white shadow-lg sticky top-0 z-50">
+      <nav className="bg-bg shadow-lg sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center">
               <Link href="/" className="text-2xl font-bold text-primary-blue">
                 FHIR IQ
               </Link>
-              <span className="ml-4 text-gray-400">|</span>
-              <span className="ml-4 text-lg font-semibold text-gray-700">CQL Quality Measures Guide</span>
+              <span className="ml-4 text-fg-3">|</span>
+              <span className="ml-4 text-lg font-semibold text-fg-2">CQL Quality Measures Guide</span>
             </div>
             <Link href="/" className="text-primary-blue hover:text-primary-navy font-medium">
               ← Back to Home
@@ -24,7 +24,7 @@ export default function CQLGuide() {
       </nav>
 
       {/* GitHub Contribution Banner */}
-      <div className="bg-gradient-to-r from-green-600 to-teal-600 text-white">
+      <div className="bg-gradient-to-r from-bg-3 to-bg-3 text-fg">
         <div className="max-w-7xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between flex-wrap gap-4">
             <div className="flex items-center gap-3">
@@ -39,7 +39,7 @@ export default function CQLGuide() {
                 href="https://github.com/aks129/fhiriq-nextjs/blob/master/docs/guides/cql-guide.md"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-white text-green-700 px-4 py-2 rounded-lg font-semibold hover:bg-green-50 transition inline-flex items-center gap-2"
+                className="bg-bg text-fg px-4 py-2 rounded-lg font-semibold hover:bg-bg-2 transition inline-flex items-center gap-2"
               >
                 <span>📖</span> View on GitHub
               </a>
@@ -47,7 +47,7 @@ export default function CQLGuide() {
                 href="https://github.com/aks129/fhiriq-nextjs/edit/master/docs/guides/cql-guide.md"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-white/10 text-white border-2 border-white px-4 py-2 rounded-lg font-semibold hover:bg-white/20 transition inline-flex items-center gap-2"
+                className="bg-white/10 text-fg border-2 border-white px-4 py-2 rounded-lg font-semibold hover:bg-white/20 transition inline-flex items-center gap-2"
               >
                 <span>✏️</span> Contribute
               </a>
@@ -57,7 +57,7 @@ export default function CQLGuide() {
       </div>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-primary-blue to-accent-purple text-white py-16">
+      <section className="bg-gradient-to-r from-primary-blue to-accent-purple text-fg py-16">
         <div className="max-w-7xl mx-auto px-4">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
             Clinical Quality Language (CQL) for FHIR Quality Measures
@@ -73,19 +73,19 @@ export default function CQLGuide() {
       <main className="max-w-7xl mx-auto px-4 py-12">
 
         {/* Introduction Section */}
-        <section className="bg-white rounded-lg shadow-sm p-8 mb-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">Introduction to CQL on FHIR</h2>
+        <section className="bg-bg rounded-lg shadow-sm p-8 mb-8">
+          <h2 className="text-3xl font-bold text-fg mb-6">Introduction to CQL on FHIR</h2>
 
           <div className="prose prose-lg max-w-none">
-            <p className="text-gray-700 mb-4">
+            <p className="text-fg-2 mb-4">
               Clinical Quality Language (CQL) is a high-level, domain-specific language focused on clinical quality
               and is designed to be both human-readable and machine-processable. When combined with FHIR, CQL enables
               the expression of clinical knowledge in a way that can be executed against FHIR data sources.
             </p>
 
-            <div className="bg-blue-50 border-l-4 border-primary-blue p-6 my-6">
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Why CQL + FHIR?</h3>
-              <ul className="space-y-2 text-gray-700">
+            <div className="bg-bg-2 border-l-4 border-primary-blue p-6 my-6">
+              <h3 className="text-xl font-semibold text-fg mb-2">Why CQL + FHIR?</h3>
+              <ul className="space-y-2 text-fg-2">
                 <li><strong>Standardization:</strong> CQL provides a standard way to express clinical logic</li>
                 <li><strong>Interoperability:</strong> Works seamlessly with FHIR data models</li>
                 <li><strong>Quality Measures:</strong> Essential for eCQMs (electronic Clinical Quality Measures)</li>
@@ -93,40 +93,40 @@ export default function CQLGuide() {
               </ul>
             </div>
 
-            <h3 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Key Components</h3>
+            <h3 className="text-2xl font-bold text-fg mt-8 mb-4">Key Components</h3>
             <div className="grid md:grid-cols-3 gap-6 my-6">
-              <div className="border border-gray-200 rounded-lg p-6">
+              <div className="border border-line rounded-lg p-6">
                 <h4 className="font-bold text-lg mb-2 text-primary-blue">CQL Libraries</h4>
-                <p className="text-gray-600">Reusable collections of CQL expressions and functions</p>
+                <p className="text-fg-2">Reusable collections of CQL expressions and functions</p>
               </div>
-              <div className="border border-gray-200 rounded-lg p-6">
+              <div className="border border-line rounded-lg p-6">
                 <h4 className="font-bold text-lg mb-2 text-accent-purple">FHIR Resources</h4>
-                <p className="text-gray-600">Patient data represented as FHIR resources (Patient, Observation, etc.)</p>
+                <p className="text-fg-2">Patient data represented as FHIR resources (Patient, Observation, etc.)</p>
               </div>
-              <div className="border border-gray-200 rounded-lg p-6">
+              <div className="border border-line rounded-lg p-6">
                 <h4 className="font-bold text-lg mb-2 text-primary-green">Measure Resources</h4>
-                <p className="text-gray-600">FHIR Measure resources that define quality measures</p>
+                <p className="text-fg-2">FHIR Measure resources that define quality measures</p>
               </div>
             </div>
           </div>
         </section>
 
         {/* Breast Cancer Screening Example */}
-        <section className="bg-white rounded-lg shadow-sm p-8 mb-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">
+        <section className="bg-bg rounded-lg shadow-sm p-8 mb-8">
+          <h2 className="text-3xl font-bold text-fg mb-6">
             Example: Breast Cancer Screening Quality Measure
           </h2>
 
           <div className="prose prose-lg max-w-none">
-            <p className="text-gray-700 mb-6">
+            <p className="text-fg-2 mb-6">
               Let&apos;s explore a real-world example: measuring breast cancer screening rates. This is based on
               the CMS 125 measure - women ages 50-74 who had a mammogram within the past 27 months.
             </p>
 
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">1. Measure Definition</h3>
-            <div className="bg-gray-50 p-6 rounded-lg mb-6">
+            <h3 className="text-2xl font-bold text-fg mb-4">1. Measure Definition</h3>
+            <div className="bg-bg-2 p-6 rounded-lg mb-6">
               <h4 className="font-semibold mb-2">Clinical Criteria:</h4>
-              <ul className="list-disc pl-6 space-y-2 text-gray-700">
+              <ul className="list-disc pl-6 space-y-2 text-fg-2">
                 <li><strong>Population:</strong> Women ages 50-74</li>
                 <li><strong>Denominator:</strong> All women in the age range</li>
                 <li><strong>Numerator:</strong> Women who had a mammogram in the past 27 months</li>
@@ -134,8 +134,8 @@ export default function CQLGuide() {
               </ul>
             </div>
 
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">2. CQL Library Structure</h3>
-            <pre className="bg-gray-900 text-gray-100 p-6 rounded-lg overflow-x-auto mb-6">
+            <h3 className="text-2xl font-bold text-fg mb-4">2. CQL Library Structure</h3>
+            <pre className="bg-bg-2 text-fg p-6 rounded-lg overflow-x-auto mb-6">
               <code>{`library BreastCancerScreening version '1.0.0'
 
 using FHIR version '4.0.1'
@@ -183,8 +183,8 @@ define "Denominator Exclusions":
   )`}</code>
             </pre>
 
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">3. FHIR Measure Resource</h3>
-            <pre className="bg-gray-900 text-gray-100 p-6 rounded-lg overflow-x-auto mb-6">
+            <h3 className="text-2xl font-bold text-fg mb-4">3. FHIR Measure Resource</h3>
+            <pre className="bg-bg-2 text-fg p-6 rounded-lg overflow-x-auto mb-6">
               <code>{`{
   "resourceType": "Measure",
   "id": "breast-cancer-screening",
@@ -271,11 +271,11 @@ define "Denominator Exclusions":
 }`}</code>
             </pre>
 
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">4. Sample FHIR Data</h3>
-            <p className="text-gray-700 mb-4">
+            <h3 className="text-2xl font-bold text-fg mb-4">4. Sample FHIR Data</h3>
+            <p className="text-fg-2 mb-4">
               Example patient data that would be evaluated by this measure:
             </p>
-            <pre className="bg-gray-900 text-gray-100 p-6 rounded-lg overflow-x-auto mb-6">
+            <pre className="bg-bg-2 text-fg p-6 rounded-lg overflow-x-auto mb-6">
               <code>{`// Patient Resource
 {
   "resourceType": "Patient",
@@ -307,42 +307,42 @@ define "Denominator Exclusions":
         </section>
 
         {/* Implementation Guide */}
-        <section className="bg-white rounded-lg shadow-sm p-8 mb-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">Implementation Steps</h2>
+        <section className="bg-bg rounded-lg shadow-sm p-8 mb-8">
+          <h2 className="text-3xl font-bold text-fg mb-6">Implementation Steps</h2>
 
           <div className="space-y-6">
             <div className="border-l-4 border-primary-blue pl-6">
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Step 1: Set Up CQL Execution Engine</h3>
-              <p className="text-gray-700 mb-4">
+              <h3 className="text-xl font-bold text-fg mb-2">Step 1: Set Up CQL Execution Engine</h3>
+              <p className="text-fg-2 mb-4">
                 Choose and configure a CQL execution engine. Popular options include:
               </p>
-              <ul className="list-disc pl-6 space-y-2 text-gray-700">
+              <ul className="list-disc pl-6 space-y-2 text-fg-2">
                 <li><strong>cql-execution:</strong> JavaScript-based CQL engine by MITRE</li>
                 <li><strong>CQL Evaluator:</strong> Java-based engine integrated with HAPI FHIR</li>
                 <li><strong>Clinical Quality Framework (CQF):</strong> Reference implementation</li>
               </ul>
-              <pre className="bg-gray-900 text-gray-100 p-4 rounded-lg mt-4 overflow-x-auto">
+              <pre className="bg-bg-2 text-fg p-4 rounded-lg mt-4 overflow-x-auto">
                 <code>{`npm install cql-execution cql-exec-fhir`}</code>
               </pre>
             </div>
 
             <div className="border-l-4 border-accent-purple pl-6">
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Step 2: Translate CQL to ELM</h3>
-              <p className="text-gray-700 mb-4">
+              <h3 className="text-xl font-bold text-fg mb-2">Step 2: Translate CQL to ELM</h3>
+              <p className="text-fg-2 mb-4">
                 CQL must be translated to Expression Logical Model (ELM) JSON for execution:
               </p>
-              <pre className="bg-gray-900 text-gray-100 p-4 rounded-lg mt-4 overflow-x-auto">
+              <pre className="bg-bg-2 text-fg p-4 rounded-lg mt-4 overflow-x-auto">
                 <code>{`npm install -g cql-to-elm
 cql-to-elm --input BreastCancerScreening.cql --output BreastCancerScreening.json`}</code>
               </pre>
             </div>
 
             <div className="border-l-4 border-primary-green pl-6">
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Step 3: Execute Measure Evaluation</h3>
-              <p className="text-gray-700 mb-4">
+              <h3 className="text-xl font-bold text-fg mb-2">Step 3: Execute Measure Evaluation</h3>
+              <p className="text-fg-2 mb-4">
                 Use the $evaluate-measure operation on a FHIR server:
               </p>
-              <pre className="bg-gray-900 text-gray-100 p-4 rounded-lg mt-4 overflow-x-auto">
+              <pre className="bg-bg-2 text-fg p-4 rounded-lg mt-4 overflow-x-auto">
                 <code>{`POST [base]/Measure/breast-cancer-screening/$evaluate-measure
 Content-Type: application/fhir+json
 
@@ -366,11 +366,11 @@ Content-Type: application/fhir+json
             </div>
 
             <div className="border-l-4 border-accent-orange pl-6">
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Step 4: Process MeasureReport</h3>
-              <p className="text-gray-700 mb-4">
+              <h3 className="text-xl font-bold text-fg mb-2">Step 4: Process MeasureReport</h3>
+              <p className="text-fg-2 mb-4">
                 The server returns a MeasureReport resource with evaluation results:
               </p>
-              <pre className="bg-gray-900 text-gray-100 p-4 rounded-lg mt-4 overflow-x-auto">
+              <pre className="bg-bg-2 text-fg p-4 rounded-lg mt-4 overflow-x-auto">
                 <code>{`{
   "resourceType": "MeasureReport",
   "status": "complete",
@@ -419,13 +419,13 @@ Content-Type: application/fhir+json
         </section>
 
         {/* Best Practices */}
-        <section className="bg-white rounded-lg shadow-sm p-8 mb-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">Best Practices</h2>
+        <section className="bg-bg rounded-lg shadow-sm p-8 mb-8">
+          <h2 className="text-3xl font-bold text-fg mb-6">Best Practices</h2>
 
           <div className="grid md:grid-cols-2 gap-6">
-            <div className="border border-gray-200 rounded-lg p-6">
+            <div className="border border-line rounded-lg p-6">
               <h3 className="text-xl font-bold text-primary-blue mb-4">✓ Do&apos;s</h3>
-              <ul className="space-y-3 text-gray-700">
+              <ul className="space-y-3 text-fg-2">
                 <li>✅ Use standard value sets from VSAC (Value Set Authority Center)</li>
                 <li>✅ Include version numbers in library declarations</li>
                 <li>✅ Write comprehensive unit tests for CQL logic</li>
@@ -435,9 +435,9 @@ Content-Type: application/fhir+json
               </ul>
             </div>
 
-            <div className="border border-gray-200 rounded-lg p-6">
-              <h3 className="text-xl font-bold text-red-600 mb-4">✗ Don&apos;ts</h3>
-              <ul className="space-y-3 text-gray-700">
+            <div className="border border-line rounded-lg p-6">
+              <h3 className="text-xl font-bold text-fg mb-4">✗ Don&apos;ts</h3>
+              <ul className="space-y-3 text-fg-2">
                 <li>❌ Hardcode codes instead of using value sets</li>
                 <li>❌ Ignore data quality and completeness issues</li>
                 <li>❌ Create overly complex nested logic</li>
@@ -450,16 +450,16 @@ Content-Type: application/fhir+json
         </section>
 
         {/* Testing & Validation */}
-        <section className="bg-white rounded-lg shadow-sm p-8 mb-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">Testing & Validation</h2>
+        <section className="bg-bg rounded-lg shadow-sm p-8 mb-8">
+          <h2 className="text-3xl font-bold text-fg mb-6">Testing & Validation</h2>
 
           <div className="prose prose-lg max-w-none">
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">CQL Test Framework</h3>
-            <p className="text-gray-700 mb-4">
+            <h3 className="text-2xl font-bold text-fg mb-4">CQL Test Framework</h3>
+            <p className="text-fg-2 mb-4">
               The CQL Framework provides comprehensive testing capabilities:
             </p>
 
-            <div className="bg-blue-50 border-l-4 border-primary-blue p-6 mb-6">
+            <div className="bg-bg-2 border-l-4 border-primary-blue p-6 mb-6">
               <h4 className="font-semibold mb-2">Latest Testing Resources:</h4>
               <ul className="space-y-2">
                 <li>
@@ -471,7 +471,7 @@ Content-Type: application/fhir+json
                   >
                     CQL Tests Results Repository →
                   </a>
-                  <p className="text-sm text-gray-600 mt-1">
+                  <p className="text-sm text-fg-2 mt-1">
                     Comprehensive test suite with expected results for CQL implementations
                   </p>
                 </li>
@@ -484,15 +484,15 @@ Content-Type: application/fhir+json
                   >
                     CQ Framework GitHub Organization →
                   </a>
-                  <p className="text-sm text-gray-600 mt-1">
+                  <p className="text-sm text-fg-2 mt-1">
                     Official CQL specifications, tools, and reference implementations
                   </p>
                 </li>
               </ul>
             </div>
 
-            <h4 className="text-xl font-bold text-gray-900 mb-3">Example Test Case</h4>
-            <pre className="bg-gray-900 text-gray-100 p-6 rounded-lg overflow-x-auto mb-6">
+            <h4 className="text-xl font-bold text-fg mb-3">Example Test Case</h4>
+            <pre className="bg-bg-2 text-fg p-6 rounded-lg overflow-x-auto mb-6">
               <code>{`{
   "name": "Patient Meets Numerator - Recent Mammogram",
   "description": "55-year-old female with mammogram 6 months ago should be in numerator",
@@ -529,13 +529,13 @@ Content-Type: application/fhir+json
         </section>
 
         {/* Common Patterns */}
-        <section className="bg-white rounded-lg shadow-sm p-8 mb-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">Common CQL Patterns</h2>
+        <section className="bg-bg rounded-lg shadow-sm p-8 mb-8">
+          <h2 className="text-3xl font-bold text-fg mb-6">Common CQL Patterns</h2>
 
           <div className="space-y-6">
             <div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Date Range Queries</h3>
-              <pre className="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto">
+              <h3 className="text-xl font-bold text-fg mb-3">Date Range Queries</h3>
+              <pre className="bg-bg-2 text-fg p-4 rounded-lg overflow-x-auto">
                 <code>{`define "Observations in Measurement Period":
   [Observation] O
     where O.effective during "Measurement Period"
@@ -544,8 +544,8 @@ Content-Type: application/fhir+json
             </div>
 
             <div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Value Set Membership</h3>
-              <pre className="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto">
+              <h3 className="text-xl font-bold text-fg mb-3">Value Set Membership</h3>
+              <pre className="bg-bg-2 text-fg p-4 rounded-lg overflow-x-auto">
                 <code>{`define "Diabetes Diagnoses":
   [Condition: "Diabetes"] DiabetesCondition
     where DiabetesCondition.clinicalStatus ~ "active"
@@ -554,8 +554,8 @@ Content-Type: application/fhir+json
             </div>
 
             <div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Age Calculations</h3>
-              <pre className="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto">
+              <h3 className="text-xl font-bold text-fg mb-3">Age Calculations</h3>
+              <pre className="bg-bg-2 text-fg p-4 rounded-lg overflow-x-auto">
                 <code>{`define "Patient Age at Start":
   AgeInYearsAt(start of "Measurement Period")
 
@@ -565,8 +565,8 @@ define "Eligible Age Range":
             </div>
 
             <div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Exists vs Count</h3>
-              <pre className="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto">
+              <h3 className="text-xl font-bold text-fg mb-3">Exists vs Count</h3>
+              <pre className="bg-bg-2 text-fg p-4 rounded-lg overflow-x-auto">
                 <code>{`// Use exists for boolean checks (more efficient)
 define "Has Recent Lab":
   exists ([Observation: "Lab Test"] O where O.effective during "Recent Period")
@@ -580,7 +580,7 @@ define "Number of Encounters":
         </section>
 
         {/* Resources Section */}
-        <section className="bg-gradient-to-r from-primary-blue to-accent-purple text-white rounded-lg shadow-lg p-8 mb-8">
+        <section className="bg-gradient-to-r from-primary-blue to-accent-purple text-fg rounded-lg shadow-lg p-8 mb-8">
           <h2 className="text-3xl font-bold mb-6">Additional Resources</h2>
 
           <div className="grid md:grid-cols-2 gap-6">
@@ -592,7 +592,7 @@ define "Number of Encounters":
                     href="https://cql.hl7.org/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-white hover:text-gray-200 underline"
+                    className="text-fg hover:text-fg-2 underline"
                   >
                     HL7 CQL Specification
                   </a>
@@ -602,7 +602,7 @@ define "Number of Encounters":
                     href="https://ecqi.healthit.gov/cql"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-white hover:text-gray-200 underline"
+                    className="text-fg hover:text-fg-2 underline"
                   >
                     eCQI Resource Center - CQL
                   </a>
@@ -612,7 +612,7 @@ define "Number of Encounters":
                     href="https://build.fhir.org/ig/HL7/cqf-measures/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-white hover:text-gray-200 underline"
+                    className="text-fg hover:text-fg-2 underline"
                   >
                     Quality Measure Implementation Guide
                   </a>
@@ -628,7 +628,7 @@ define "Number of Encounters":
                     href="https://github.com/cqframework"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-white hover:text-gray-200 underline"
+                    className="text-fg hover:text-fg-2 underline"
                   >
                     CQ Framework on GitHub
                   </a>
@@ -638,7 +638,7 @@ define "Number of Encounters":
                     href="https://github.com/cqframework/cql-tests-results"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-white hover:text-gray-200 underline"
+                    className="text-fg hover:text-fg-2 underline"
                   >
                     CQL Test Results Repository
                   </a>
@@ -648,7 +648,7 @@ define "Number of Encounters":
                     href="https://github.com/cqframework/clinical_quality_language"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-white hover:text-gray-200 underline"
+                    className="text-fg hover:text-fg-2 underline"
                   >
                     CQL Language Specification
                   </a>
@@ -659,23 +659,23 @@ define "Number of Encounters":
         </section>
 
         {/* CTA Section */}
-        <section className="bg-white rounded-lg shadow-sm p-8 text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">
+        <section className="bg-bg rounded-lg shadow-sm p-8 text-center">
+          <h2 className="text-3xl font-bold text-fg mb-4">
             Need Help Implementing CQL Quality Measures?
           </h2>
-          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+          <p className="text-xl text-fg-2 mb-8 max-w-2xl mx-auto">
             Our experts can help you design, implement, and validate CQL-based quality measures for your organization.
           </p>
           <div className="flex gap-4 justify-center flex-wrap">
             <Link
               href="/consulting"
-              className="bg-primary-blue text-white px-8 py-4 rounded-lg font-semibold hover:bg-primary-navy transition"
+              className="bg-primary-blue text-fg px-8 py-4 rounded-lg font-semibold hover:bg-primary-navy transition"
             >
               Consult with an Expert
             </Link>
             <Link
               href="/contact"
-              className="border-2 border-primary-blue text-primary-blue px-8 py-4 rounded-lg font-semibold hover:bg-primary-blue hover:text-white transition"
+              className="border-2 border-primary-blue text-primary-blue px-8 py-4 rounded-lg font-semibold hover:bg-primary-blue hover:text-fg transition"
             >
               Contact Us
             </Link>
@@ -685,12 +685,12 @@ define "Number of Encounters":
       </main>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-8 mt-12">
+      <footer className="bg-bg-2 text-fg py-8 mt-12">
         <div className="max-w-7xl mx-auto px-4 text-center">
-          <p className="text-gray-400">
+          <p className="text-fg-3">
             &copy; 2025 FHIR IQ. CQL Guide for Quality Measures on FHIR.
           </p>
-          <p className="text-gray-500 text-sm mt-2">
+          <p className="text-fg-3 text-sm mt-2">
             Last updated: January 2025
           </p>
         </div>

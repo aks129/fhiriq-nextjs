@@ -23,13 +23,13 @@ export default function FHIRSquireBanner() {
         <div className="flex items-center gap-4 ml-4">
           <Link
             href="/fhirsquire"
-            className="bg-white text-primary-blue px-4 py-2 rounded-lg font-semibold hover:bg-gray-100 transition text-sm whitespace-nowrap"
+            className="bg-white text-primary-blue px-4 py-2 rounded-lg font-semibold hover:bg-bg-2 transition text-sm whitespace-nowrap"
           >
             Try It Now
           </Link>
           <button
             onClick={() => setIsVisible(false)}
-            className="text-white hover:text-gray-200 transition"
+            className="text-white hover:text-fg-2 transition"
             aria-label="Close banner"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

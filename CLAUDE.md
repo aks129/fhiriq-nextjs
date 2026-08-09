@@ -52,9 +52,16 @@ Adapted from [agencidev.com](https://www.agencidev.com). A monochrome dark syste
 
 Three values are deliberately adapted from the reference and should not be "corrected" back: ground is `#0A0A0A` not pure `#000`, text is `#EDEDED` not pure `#fff` (16.9:1 rather than 21:1 — pure white on pure black halates over long-form copy), and body is 16px not 14px. The reference gets away with its values because its first screen carries six links and one sentence.
 
-**Compatibility layer.** ~35 routes still reference the old Blade Runner names (`--electric-blue`, `.btn-primary`, `.card`, `.badge-blue`, `text-primary-blue`, …). Every legacy name stays declared in `globals.css`, remapped onto MONO.
+**Compatibility layer.** Legacy Blade Runner names (`--electric-blue`, `.btn-primary`, `.card`, `.badge-blue`, `text-primary-blue`, …) stay declared in `globals.css`, remapped onto MONO, so anything still referencing them resolves.
 
-**Known gap:** 25 of those routes set the literal Tailwind class `bg-white` with dark body text. Those cannot be remapped from CSS without making their text unreadable, so **they are still light while the homepage is dark.** Converting them is the next pass.
+Two invariants in that layer are load-bearing, and reversing either one reintroduces invisible text:
+
+- **Legacy accent names resolve to a DARK surface** (`--bg-3`), not to `--fg`. They feed fills and gradient stops (`bg-accent-orange`, `from-accent-purple via-primary-blue`), and those fills almost always carry light text. Accent *text* stays bright via the separate explicit `.text-primary-blue` / `.text-accent-purple` rules.
+- **`[class~='bg-fg']` forces dark content.** A light fill inheriting light text is 1:1 and completely invisible, and it happens whenever the fill and the text sit on different elements — which no build-time class analysis can catch.
+
+**All 41 routes are converted.** There is no light page left. When touching an old route, use MONO tokens directly rather than the legacy aliases.
+
+**Verifying a colour change:** contrast bugs here are invisible in a diff and easy to miss by eye across 41 routes. Drive the site with the Playwright MCP tools and compute contrast in the page: resolve colours by painting them to a 1×1 canvas rather than parsing the string, because Chrome returns `oklab(...)`/`lab(...)` for these tokens and a naive `rgb()` parser silently reports garbage. Compositing the text colour over its resolved background also handles alpha correctly.
 
 **Building blocks** in `globals.css`: `.label` / `.label-bright` (mono micro-label), `.chip` (raised panel, the system's only container), `.panel` (deeper surface for the code figure), `.rule-t/-b` (hairlines), `.serif`, `.caption`, `.measure` / `.measure-tight`, `.reveal` (see Motion).
 

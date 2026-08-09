@@ -16,9 +16,9 @@ export const metadata: Metadata = {
 
 export default function Investor() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-bg">
       {/* Navigation */}
-      <nav className="bg-white shadow-lg">
+      <nav className="bg-bg shadow-lg">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center">
@@ -51,13 +51,13 @@ export default function Investor() {
       </nav>
 
       {/* Header */}
-      <section className="bg-gradient-to-br from-primary-blue via-purple-700 to-indigo-800 text-white py-20">
+      <section className="bg-gradient-to-br from-primary-blue via-bg-3 to-bg-3 text-fg py-20">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <p className="text-sm uppercase tracking-wider text-blue-200 mb-4">
+          <p className="text-sm uppercase tracking-wider text-fg-2 mb-4">
             Idea Vision
           </p>
           <h1 className="text-5xl font-bold mb-4">Open Quality</h1>
-          <p className="text-2xl text-blue-100 font-light">
+          <p className="text-2xl text-fg-2 font-light">
             Explainable AI for Healthcare Quality & Improvement
           </p>
         </div>
@@ -67,30 +67,30 @@ export default function Investor() {
       <section className="py-16">
         <div className="max-w-4xl mx-auto px-4">
           <div className="flex items-center gap-3 mb-6">
-            <div className="w-12 h-12 rounded-xl bg-red-100 flex items-center justify-center">
+            <div className="w-12 h-12 rounded-xl bg-bg-2 flex items-center justify-center">
               <span className="text-2xl">⚠️</span>
             </div>
-            <h2 className="text-3xl font-bold text-gray-900">The Problem</h2>
+            <h2 className="text-3xl font-bold text-fg">The Problem</h2>
           </div>
-          <p className="text-xl text-gray-700 mb-8 leading-relaxed">
+          <p className="text-xl text-fg-2 mb-8 leading-relaxed">
             Healthcare organizations know what failed in quality — but almost never why.
           </p>
           <div className="grid md:grid-cols-2 gap-4 mb-8">
-            <div className="bg-gray-50 rounded-xl p-5">
-              <p className="text-gray-700">Quality measures are opaque.</p>
+            <div className="bg-bg-2 rounded-xl p-5">
+              <p className="text-fg-2">Quality measures are opaque.</p>
             </div>
-            <div className="bg-gray-50 rounded-xl p-5">
-              <p className="text-gray-700">Data is inconsistent.</p>
+            <div className="bg-bg-2 rounded-xl p-5">
+              <p className="text-fg-2">Data is inconsistent.</p>
             </div>
-            <div className="bg-gray-50 rounded-xl p-5">
-              <p className="text-gray-700">Guidelines are complex.</p>
+            <div className="bg-bg-2 rounded-xl p-5">
+              <p className="text-fg-2">Guidelines are complex.</p>
             </div>
-            <div className="bg-gray-50 rounded-xl p-5">
-              <p className="text-gray-700">Pop health tools generate gap lists, not clarity.</p>
+            <div className="bg-bg-2 rounded-xl p-5">
+              <p className="text-fg-2">Pop health tools generate gap lists, not clarity.</p>
             </div>
           </div>
-          <div className="bg-red-50 rounded-xl p-6 border border-red-100">
-            <p className="text-gray-700 leading-relaxed">
+          <div className="bg-bg-2 rounded-xl p-6 border border-line-2">
+            <p className="text-fg-2 leading-relaxed">
               The result: <strong>tens of millions in penalties</strong>, poor patient outcomes,
               slow improvement, and endless manual review. The entire system lacks explainability.
             </p>
@@ -99,21 +99,21 @@ export default function Investor() {
       </section>
 
       {/* The Solution */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-bg-2">
         <div className="max-w-4xl mx-auto px-4">
           <div className="flex items-center gap-3 mb-6">
-            <div className="w-12 h-12 rounded-xl bg-green-100 flex items-center justify-center">
+            <div className="w-12 h-12 rounded-xl bg-bg-2 flex items-center justify-center">
               <span className="text-2xl">💡</span>
             </div>
-            <h2 className="text-3xl font-bold text-gray-900">The Solution</h2>
+            <h2 className="text-3xl font-bold text-fg">The Solution</h2>
           </div>
-          <p className="text-xl text-gray-700 mb-6 leading-relaxed">
+          <p className="text-xl text-fg-2 mb-6 leading-relaxed">
             Open Quality is the first AI that explains healthcare quality. It interprets clinical logic,
             identifies missing or incorrect data, and shows teams how to fix issues with transparent,
             evidence-based reasoning.
           </p>
-          <div className="bg-blue-50 rounded-xl p-6 border border-blue-100">
-            <p className="text-lg text-gray-700 italic">
+          <div className="bg-bg-2 rounded-xl p-6 border border-line-2">
+            <p className="text-lg text-fg-2 italic">
               Think of it as: "OpenEvidence for quality improvement."
             </p>
           </div>
@@ -124,10 +124,10 @@ export default function Investor() {
       <section className="py-16">
         <div className="max-w-4xl mx-auto px-4">
           <div className="flex items-center gap-3 mb-8">
-            <div className="w-12 h-12 rounded-xl bg-purple-100 flex items-center justify-center">
+            <div className="w-12 h-12 rounded-xl bg-bg-2 flex items-center justify-center">
               <span className="text-2xl">🤖</span>
             </div>
-            <h2 className="text-3xl font-bold text-gray-900">What Our AI Does</h2>
+            <h2 className="text-3xl font-bold text-fg">What Our AI Does</h2>
           </div>
           <div className="grid md:grid-cols-2 gap-4">
             {[
@@ -140,9 +140,9 @@ export default function Investor() {
               { icon: "💡", text: "Generates root cause insights" },
               { icon: "🗃️", text: "Integrates with SQL-on-FHIR workflows" }
             ].map((item, i) => (
-              <div key={i} className="flex items-center gap-4 bg-gray-50 rounded-xl p-5">
+              <div key={i} className="flex items-center gap-4 bg-bg-2 rounded-xl p-5">
                 <span className="text-2xl">{item.icon}</span>
-                <p className="text-gray-700">{item.text}</p>
+                <p className="text-fg-2">{item.text}</p>
               </div>
             ))}
           </div>
@@ -150,13 +150,13 @@ export default function Investor() {
       </section>
 
       {/* Why Now */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-bg-2">
         <div className="max-w-4xl mx-auto px-4">
           <div className="flex items-center gap-3 mb-8">
-            <div className="w-12 h-12 rounded-xl bg-orange-100 flex items-center justify-center">
+            <div className="w-12 h-12 rounded-xl bg-bg-2 flex items-center justify-center">
               <span className="text-2xl">⚡</span>
             </div>
-            <h2 className="text-3xl font-bold text-gray-900">Why Now</h2>
+            <h2 className="text-3xl font-bold text-fg">Why Now</h2>
           </div>
           <div className="grid md:grid-cols-2 gap-4 mb-6">
             {[
@@ -168,13 +168,13 @@ export default function Investor() {
               "Data quality problems are growing"
             ].map((item, i) => (
               <div key={i} className="flex items-start gap-3">
-                <span className="text-green-600 text-xl">✓</span>
-                <p className="text-gray-700">{item}</p>
+                <span className="text-fg text-xl">✓</span>
+                <p className="text-fg-2">{item}</p>
               </div>
             ))}
           </div>
-          <div className="bg-orange-50 rounded-xl p-6 border border-orange-100">
-            <p className="text-gray-700 italic">
+          <div className="bg-bg-2 rounded-xl p-6 border border-line-2">
+            <p className="text-fg-2 italic">
               This is a category-defining moment — just as OpenEvidence was for clinical reasoning.
             </p>
           </div>
@@ -185,10 +185,10 @@ export default function Investor() {
       <section className="py-16">
         <div className="max-w-4xl mx-auto px-4">
           <div className="flex items-center gap-3 mb-8">
-            <div className="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center">
+            <div className="w-12 h-12 rounded-xl bg-bg-2 flex items-center justify-center">
               <span className="text-2xl">🛡️</span>
             </div>
-            <h2 className="text-3xl font-bold text-gray-900">Moat</h2>
+            <h2 className="text-3xl font-bold text-fg">Moat</h2>
           </div>
           <div className="space-y-3">
             {[
@@ -199,9 +199,9 @@ export default function Investor() {
               "Partnerships with data platforms (Firemetrics, Particle, Fasten, etc.)",
               "Founder expertise across NCQA, dQMs, SQL-on-FHIR, FHIR data quality"
             ].map((item, i) => (
-              <div key={i} className="flex items-start gap-4 bg-gray-50 rounded-xl p-5">
-                <span className="text-blue-600 text-xl">🛡️</span>
-                <p className="text-gray-700">{item}</p>
+              <div key={i} className="flex items-start gap-4 bg-bg-2 rounded-xl p-5">
+                <span className="text-fg text-xl">🛡️</span>
+                <p className="text-fg-2">{item}</p>
               </div>
             ))}
           </div>
@@ -209,20 +209,20 @@ export default function Investor() {
       </section>
 
       {/* Business Model */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-bg-2">
         <div className="max-w-4xl mx-auto px-4">
           <div className="flex items-center gap-3 mb-8">
-            <div className="w-12 h-12 rounded-xl bg-green-100 flex items-center justify-center">
+            <div className="w-12 h-12 rounded-xl bg-bg-2 flex items-center justify-center">
               <span className="text-2xl">💰</span>
             </div>
-            <h2 className="text-3xl font-bold text-gray-900">Business Model</h2>
+            <h2 className="text-3xl font-bold text-fg">Business Model</h2>
           </div>
-          <div className="bg-white rounded-xl p-8 shadow-md">
-            <p className="text-xl text-gray-900 font-semibold mb-6">SaaS Subscription</p>
+          <div className="bg-bg rounded-xl p-8 shadow-md">
+            <p className="text-xl text-fg font-semibold mb-6">SaaS Subscription</p>
             <div className="grid md:grid-cols-1 gap-6 max-w-xs">
-              <div className="bg-gray-50 rounded-xl p-6 text-center">
-                <p className="text-sm text-gray-500 mb-2">Enterprise Pricing</p>
-                <p className="text-3xl font-bold text-gray-900">$150k–500k/year</p>
+              <div className="bg-bg-2 rounded-xl p-6 text-center">
+                <p className="text-sm text-fg-3 mb-2">Enterprise Pricing</p>
+                <p className="text-3xl font-bold text-fg">$150k–500k/year</p>
               </div>
             </div>
           </div>
@@ -233,10 +233,10 @@ export default function Investor() {
       <section className="py-16">
         <div className="max-w-4xl mx-auto px-4">
           <div className="flex items-center gap-3 mb-8">
-            <div className="w-12 h-12 rounded-xl bg-cyan-100 flex items-center justify-center">
+            <div className="w-12 h-12 rounded-xl bg-bg-2 flex items-center justify-center">
               <span className="text-2xl">🚀</span>
             </div>
-            <h2 className="text-3xl font-bold text-gray-900">Go-to-Market</h2>
+            <h2 className="text-3xl font-bold text-fg">Go-to-Market</h2>
           </div>
           <div className="grid md:grid-cols-2 gap-4">
             {[
@@ -247,8 +247,8 @@ export default function Investor() {
               "Direct partnerships with quality & analytics teams"
             ].map((item, i) => (
               <div key={i} className="flex items-start gap-3">
-                <span className="text-cyan-600 text-xl">→</span>
-                <p className="text-gray-700">{item}</p>
+                <span className="text-fg text-xl">→</span>
+                <p className="text-fg-2">{item}</p>
               </div>
             ))}
           </div>
@@ -256,17 +256,17 @@ export default function Investor() {
       </section>
 
       {/* Team */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-bg-2">
         <div className="max-w-4xl mx-auto px-4">
           <div className="flex items-center gap-3 mb-8">
-            <div className="w-12 h-12 rounded-xl bg-indigo-100 flex items-center justify-center">
+            <div className="w-12 h-12 rounded-xl bg-bg-2 flex items-center justify-center">
               <span className="text-2xl">👥</span>
             </div>
-            <h2 className="text-3xl font-bold text-gray-900">Team</h2>
+            <h2 className="text-3xl font-bold text-fg">Team</h2>
           </div>
-          <div className="bg-white rounded-xl p-8 shadow-md">
-            <p className="text-xl font-semibold text-gray-900 mb-3">Founder: Eugene Vestel</p>
-            <p className="text-gray-700 leading-relaxed">
+          <div className="bg-bg rounded-xl p-8 shadow-md">
+            <p className="text-xl font-semibold text-fg mb-3">Founder: Eugene Vestel</p>
+            <p className="text-fg-2 leading-relaxed">
               Payer Interoperability Analytics &amp; AI Lead at Outcomes. FHIR data expert, NCQA collaborator, host of &quot;Out of the FHIR Podcast,&quot;
               and leader in modern interoperability + quality models.
             </p>
@@ -275,7 +275,7 @@ export default function Investor() {
       </section>
 
       {/* Ask */}
-      <section className="py-20 bg-gradient-to-br from-primary-blue via-purple-700 to-indigo-800 text-white">
+      <section className="py-20 bg-gradient-to-br from-primary-blue via-bg-3 to-bg-3 text-fg">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <div className="flex items-center justify-center gap-3 mb-8">
             <div className="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center">
@@ -283,18 +283,18 @@ export default function Investor() {
             </div>
             <h2 className="text-3xl font-bold">Ask</h2>
           </div>
-          <p className="text-xl text-blue-100 mb-2">
+          <p className="text-xl text-fg-2 mb-2">
             Exploring pre-seed conversations
           </p>
           <p className="text-5xl font-bold mb-4">
             $1.5M – $2M
           </p>
-          <p className="text-blue-100 mb-10 max-w-xl mx-auto">
+          <p className="text-fg-2 mb-10 max-w-xl mx-auto">
             to accelerate product and expand measure coverage.
           </p>
           <Link
             href="/contact"
-            className="inline-block bg-white text-primary-blue px-8 py-4 rounded-xl font-semibold hover:bg-blue-50 transition text-lg"
+            className="inline-block bg-bg text-primary-blue px-8 py-4 rounded-xl font-semibold hover:bg-bg-2 transition text-lg"
           >
             Get in Touch
           </Link>
@@ -302,24 +302,24 @@ export default function Investor() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-800 text-white py-12">
+      <footer className="bg-bg-2 text-fg py-12">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-            <p className="text-gray-400">Open Quality · Idea Vision</p>
+            <p className="text-fg-3">Open Quality · Idea Vision</p>
             <div className="flex gap-8">
-              <Link href="/differentiation" className="text-gray-400 hover:text-white transition">
+              <Link href="/differentiation" className="text-fg-3 hover:text-fg transition">
                 Differentiation Matrix
               </Link>
-              <Link href="/contact" className="text-gray-400 hover:text-white transition">
+              <Link href="/contact" className="text-fg-3 hover:text-fg transition">
                 Contact
               </Link>
-              <Link href="/about" className="text-gray-400 hover:text-white transition">
+              <Link href="/about" className="text-fg-3 hover:text-fg transition">
                 About
               </Link>
             </div>
           </div>
-          <div className="mt-8 pt-8 border-t border-gray-700 text-center">
-            <p className="text-gray-400">&copy; 2026 FHIR IQ. All rights reserved.</p>
+          <div className="mt-8 pt-8 border-t border-line-2 text-center">
+            <p className="text-fg-3">&copy; 2026 FHIR IQ. All rights reserved.</p>
           </div>
         </div>
       </footer>
