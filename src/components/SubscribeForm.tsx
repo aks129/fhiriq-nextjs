@@ -90,7 +90,7 @@ export default function SubscribeForm({
         role="status"
         aria-live="polite"
         className={`mt-2 min-h-[1.25rem] text-sm ${
-          status?.kind === 'error' ? 'text-verm-text' : 'text-ink-2'
+          status?.kind === 'error' ? 'text-fg' : 'text-fg-2'
         }`}
       >
         {status?.message ?? ''}

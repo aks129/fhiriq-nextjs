@@ -63,7 +63,7 @@ function Tokenized({ line }: { line: string }) {
       {parts.map((part, i) =>
         // split() with a capturing group puts the delimiters at odd indices.
         i % 2 === 1 ? (
-          <span key={i} className="text-plate-dim">
+          <span key={i} className="text-fg-3">
             {part}
           </span>
         ) : (
@@ -89,9 +89,9 @@ function Pane({
 }) {
   return (
     <div className="min-w-0">
-      <div className="flex items-baseline justify-between gap-3 border-b border-plate-rule px-4 py-2.5 sm:px-5">
-        <span className="label text-plate-fg">{label}</span>
-        <span className="label text-plate-dim normal-case tracking-normal">
+      <div className="flex items-baseline justify-between gap-3 border-b border-line-2 px-4 py-2.5 sm:px-5">
+        <span className="label text-fg">{label}</span>
+        <span className="label text-fg-3 normal-case tracking-normal">
           {sublabel}
         </span>
       </div>
@@ -103,26 +103,29 @@ function Pane({
             return (
               <span
                 key={n}
+                // Monochrome, so the pass reads through tone and a rule
+                // rather than colour. Source is marked, target is filled —
+                // the asymmetry is what makes the direction legible.
                 className={[
                   'flex gap-3 border-l-2 pl-2 pr-3 transition-colors duration-300 sm:pl-3',
                   on
                     ? tone === 'source'
-                      ? 'border-verm-lift bg-white/[0.05]'
-                      : 'border-verm-lift bg-verm-lift/[0.10]'
+                      ? 'border-fg-3 bg-white/[0.03]'
+                      : 'border-fg bg-white/[0.07]'
                     : 'border-transparent',
                 ].join(' ')}
               >
                 <span
                   aria-hidden="true"
                   className={`w-4 shrink-0 select-none text-right tabular-nums ${
-                    on ? 'text-verm-lift' : 'text-plate-dim/60'
+                    on ? 'text-fg' : 'text-fg-3/50'
                   }`}
                 >
                   {n}
                 </span>
                 <span
                   className={`whitespace-pre ${
-                    on ? 'text-plate-fg' : 'text-plate-fg/85'
+                    on ? 'text-fg' : 'text-fg/70'
                   }`}
                 >
                   <Tokenized line={line} />
@@ -201,12 +204,12 @@ export default function TranspileFigure() {
     // min-width:auto, which lets the <pre> push its track wider than the
     // viewport instead of scrolling inside it.
     <figure ref={hostRef} className="relative min-w-0">
-      <div className="ticks plate relative min-w-0 border border-plate-rule">
+      <div className="panel relative min-w-0 border border-line-2">
         {/* Figure rail */}
-        <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 border-b border-plate-rule px-4 py-3 sm:px-5">
+        <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 border-b border-line-2 px-4 py-3 sm:px-5">
           <div className="flex items-baseline gap-3">
-            <span className="label text-verm-lift">Fig. 1</span>
-            <span className="label text-plate-dim normal-case tracking-normal">
+            <span className="label text-fg">Fig. 1</span>
+            <span className="label text-fg-3 normal-case tracking-normal">
               CBP · Controlling High Blood Pressure
             </span>
           </div>
@@ -214,7 +217,7 @@ export default function TranspileFigure() {
             <button
               type="button"
               onClick={play}
-              className="label border border-plate-rule px-2.5 py-1 text-plate-dim transition-colors hover:border-verm-lift hover:text-verm-lift"
+              className="label border border-line-2 px-2.5 py-1 text-fg-3 transition-colors hover:border-fg hover:text-fg"
             >
               Run the pass
             </button>
@@ -224,7 +227,7 @@ export default function TranspileFigure() {
         {/* Side by side only from xl. The longest SQL line needs ~492px; at
             md the two panes get ~292px each and the code is unreadable, so
             below xl they stack and each gets the full column. */}
-        <div className="grid min-w-0 xl:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] xl:divide-x xl:divide-plate-rule">
+        <div className="grid min-w-0 xl:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] xl:divide-x xl:divide-line-2">
           <Pane
             label="Source"
             sublabel="CQL"
@@ -232,7 +235,7 @@ export default function TranspileFigure() {
             active={activeCql}
             tone="source"
           />
-          <div className="min-w-0 border-t border-plate-rule xl:border-t-0">
+          <div className="min-w-0 border-t border-line-2 xl:border-t-0">
             <Pane
               label="Compiled"
               sublabel="ANSI SQL"
@@ -244,7 +247,7 @@ export default function TranspileFigure() {
         </div>
 
         {/* Readout. Structural facts about the figure, not a benchmark. */}
-        <dl className="flex flex-wrap gap-x-6 gap-y-1.5 border-t border-plate-rule px-4 py-3 sm:px-5">
+        <dl className="flex flex-wrap gap-x-6 gap-y-1.5 border-t border-line-2 px-4 py-3 sm:px-5">
           {[
             ['Measure', '1'],
             ['Value sets', '1'],
@@ -252,8 +255,8 @@ export default function TranspileFigure() {
             ['Target lines', String(SQL.length)],
           ].map(([k, v]) => (
             <div key={k} className="flex items-baseline gap-2">
-              <dt className="label text-plate-dim">{k}</dt>
-              <dd className="font-mono text-xs tabular-nums text-plate-fg">
+              <dt className="label text-fg-3">{k}</dt>
+              <dd className="font-mono text-xs tabular-nums text-fg">
                 {v}
               </dd>
             </div>
