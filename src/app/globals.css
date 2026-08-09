@@ -2,159 +2,196 @@
 
 /*
   ============================================================================
-  SPECIMEN
+  MONO — adapted from agencidev.com
   ----------------------------------------------------------------------------
-  fhiriq.com runs on the vernacular of a printed clinical spec: paper stock,
-  hairline rules, figure numbers, marginalia, and one loud spot colour. The
-  technical material (CQL, SQL, codes, rates) sits inset as dark plates the
-  way a figure sits on a journal page.
+  The reference is a studio portfolio: pure #000 / #fff, 14px, zero accent
+  colour, one hairline at white/0.2, a variable sans plus a mono, and a
+  full-viewport WebGL scene doing the heavy lifting. It works there because
+  the first screen carries six links and one sentence.
 
-  Two colours, which is what every current award-winning site actually runs:
-  one ground plus one accent. The ground is a picked neutral pulled toward
-  the accent hue (45) so nothing on the page is ever a dead grey. The accent
-  is vermillion — a printed spot colour, not a UI blue.
+  This site is content-heavy, so three values are deliberately adapted:
+    ground  #0A0A0A instead of pure #000
+    text    #EDEDED instead of pure #fff   (16.9:1, not the reference's 21:1
+                                            — pure white on pure black
+                                            halates over long-form copy)
+    body    16px instead of 14px
 
-  Every value below is checked against WCAG AA for the job it does. The
-  accent exists in three weights on purpose:
-    --verm        loud, structural. Rules, fills, figure numbers, display
-                  type. 4.02:1 on paper — large text and non-text only.
-    --verm-text   small text and links on paper. 5.95:1.
-    --verm-lift   accent inside dark surfaces (plates, dark mode). 6.34:1.
-  Using the wrong one is the only way to fail contrast here.
+  Everything else is faithful: monochrome with NO accent colour, hierarchy
+  built only from tone and weight, one hairline, 8px/6px/pill radii.
+
+  Dark is a deliberate commitment, not a default. There is no light theme —
+  the reference has none, and a monochrome system that flips ground is two
+  systems. Every value below is verified against WCAG AA.
   ============================================================================
 */
 
 :root {
   /* ---- ground ---- */
-  --paper: oklch(0.973 0.004 45);
-  --paper-2: oklch(0.949 0.006 45);
+  --bg: #0a0a0a;
+  --bg-2: #131313; /* raised surface  */
+  --bg-3: #1b1b1b; /* pressed / inset */
 
   /* ---- ink ---- */
-  --ink: oklch(0.205 0.014 45); /* body            16.60:1 */
-  --ink-2: oklch(0.462 0.017 45); /* secondary        6.57:1 */
-  --ink-3: oklch(0.54 0.016 45); /* captions         4.70:1 */
+  --fg: #ededed; /* body            16.91:1 */
+  --fg-2: #a8a8a8; /* secondary        8.33:1 */
+  --fg-3: #8a8a8a; /* captions, labels 5.73:1 */
 
-  /* ---- hairline structure ---- */
-  --rule: oklch(0.872 0.008 45); /* decorative rules        */
-  --rule-2: oklch(0.775 0.011 45); /* emphasised rules        */
-  --rule-3: oklch(0.63 0.015 45); /* interactive     3.25:1 */
+  /* ---- hairlines. The reference ships exactly one; we need three. ---- */
+  --line: #242424; /* decorative rules        */
+  --line-2: #333333; /* emphasised, = ref 0.2  */
+  --line-3: #5e5e5e; /* interactive      3.05:1 */
 
-  /* ---- accent ---- */
-  --verm: oklch(0.6 0.207 33);
-  --verm-text: oklch(0.505 0.185 33);
-  --verm-lift: oklch(0.695 0.188 33);
+  /* Radii, measured off the reference. */
+  --r: 6px;
+  --r-lg: 8px;
+  --r-pill: 999px;
 
-  /* ---- the plate: dark inset figures, fixed in both themes ---- */
-  --plate: oklch(0.185 0.016 45);
-  --plate-fg: oklch(0.93 0.006 45); /* 15.18:1 */
-  --plate-dim: oklch(0.66 0.014 45); /*  5.98:1 */
-  --plate-rule: oklch(0.315 0.016 45);
-
-  --radius: 2px;
   --measure: 68ch;
-
-  /* Laid paper: a barely-there horizontal tooth. Not a dot lattice. */
-  --tooth: oklch(0.205 0.014 45 / 0.028);
+  --shell: 84rem;
 }
 
-/*
-  Dark. Paper becomes ink, ink becomes paper, the accent lifts so it still
-  reads as a signal. Follows the OS — the previous system declared a .dark
-  block that nothing ever applied, so dark mode was dead code.
-*/
-@media (prefers-color-scheme: dark) {
-  :root:not(.light) {
-    --paper: oklch(0.176 0.014 45);
-    --paper-2: oklch(0.215 0.014 45);
-    --ink: oklch(0.945 0.005 45); /* 16.13:1 */
-    --ink-2: oklch(0.735 0.013 45); /*  8.05:1 */
-    --ink-3: oklch(0.615 0.014 45); /*  5.08:1 */
-    --rule: oklch(0.312 0.014 45);
-    --rule-2: oklch(0.4 0.016 45);
-    --rule-3: oklch(0.515 0.017 45); /*  3.02:1 */
-    --verm-text: var(--verm-lift); /*  6.44:1 */
-    --tooth: oklch(0.945 0.005 45 / 0.03);
-  }
-}
+@theme inline {
+  /* Two faces doing the work, exactly as the reference does.
+       sans — Schibsted Grotesk. Free variable grotesk standing in for the
+              reference's licensed Sana Sans Variable.
+       mono — Geist Mono. The same face the reference uses for its clock,
+              BUILD counter and micro-labels.
+     Instrument Serif is retained for one job only: the credential wall,
+     where the reference sets each client name in a different typeface. */
+  --font-sans: var(--ff-body);
+  --font-mono: var(--ff-mono);
+  --font-serif: var(--ff-serif);
 
-.dark {
-  --paper: oklch(0.176 0.014 45);
-  --paper-2: oklch(0.215 0.014 45);
-  --ink: oklch(0.945 0.005 45);
-  --ink-2: oklch(0.735 0.013 45);
-  --ink-3: oklch(0.615 0.014 45);
-  --rule: oklch(0.312 0.014 45);
-  --rule-2: oklch(0.4 0.016 45);
-  --rule-3: oklch(0.515 0.017 45);
-  --verm-text: var(--verm-lift);
-  --tooth: oklch(0.945 0.005 45 / 0.03);
+  /* Scale. Tighter than SPECIMEN's and much closer to the reference, which
+     runs almost everything at 14px. Display sizes stay fluid. */
+  --text-micro: 0.6875rem;
+  --text-micro--line-height: 1.15;
+  --text-xs: 0.75rem;
+  --text-xs--line-height: 1.45;
+  --text-sm: 0.8125rem;
+  --text-sm--line-height: 1.55;
+  --text-base: 1rem;
+  --text-base--line-height: 1.65;
+  --text-lg: 1.125rem;
+  --text-lg--line-height: 1.6;
+  --text-xl: 1.3125rem;
+  --text-xl--line-height: 1.45;
+  --text-2xl: 1.625rem;
+  --text-2xl--line-height: 1.25;
+  --text-3xl: 2rem;
+  --text-3xl--line-height: 1.15;
+  --text-4xl: 2.5rem;
+  --text-4xl--line-height: 1.08;
+  --text-5xl: 3.125rem;
+  --text-5xl--line-height: 1.02;
+  --text-6xl: 3.875rem;
+  --text-6xl--line-height: 0.98;
+  --text-7xl: 4.75rem;
+  --text-7xl--line-height: 0.94;
+  --text-title: clamp(1.75rem, 3.4vw, 2.75rem);
+  --text-title--line-height: 1.08;
+  --text-display: clamp(2.25rem, 5vw, 4.25rem);
+  --text-display--line-height: 1;
+
+  --color-bg: var(--bg);
+  --color-bg-2: var(--bg-2);
+  --color-bg-3: var(--bg-3);
+  --color-fg: var(--fg);
+  --color-fg-2: var(--fg-2);
+  --color-fg-3: var(--fg-3);
+  --color-line: var(--line);
+  --color-line-2: var(--line-2);
+  --color-line-3: var(--line-3);
+
+  --radius-sm: var(--r);
+  --radius-md: var(--r);
+  --radius-lg: var(--r-lg);
+  --radius-xl: var(--r-lg);
+  --radius-2xl: var(--r-lg);
+
+  /* legacy token names, monochrome values (see compatibility layer) */
+  --color-primary-blue: var(--fg);
+  --color-primary-green: var(--fg-2);
+  --color-primary-navy: var(--bg);
+  --color-accent-purple: var(--fg);
+  --color-accent-orange: var(--fg);
+  --color-neutral-gray: var(--fg-2);
+  --color-bg-primary: var(--bg);
+  --color-bg-secondary: var(--bg);
+  --color-bg-accent: var(--bg-2);
+  --color-text-primary: var(--fg);
+  --color-text-secondary: var(--fg-2);
 }
 
 /*
   ----------------------------------------------------------------------------
   COMPATIBILITY LAYER
-  ~40 routes outside this pass reference the old Blade Runner variable and
-  utility names. Rather than break them or edit 40 files, every legacy name
-  stays declared and is remapped onto SPECIMEN. Those pages inherit the new
-  palette for free and get retired route by route.
+  ~40 routes outside this pass still reference the old Blade Runner variable
+  and utility names. Every legacy name stays declared and is remapped onto
+  MONO so nothing 404s on a missing custom property.
+
+  KNOWN GAP: 25 of those routes set the literal Tailwind class `bg-white`
+  with dark body text. Those cannot be remapped from here without making
+  their text unreadable, so they stay light until they are converted. This
+  reintroduces a light/dark split across the site; converting them is the
+  next pass, not this one.
   ----------------------------------------------------------------------------
 */
 :root {
-  --void-black: var(--paper);
-  --space-dark: var(--paper);
-  --deep-space: var(--paper-2);
-  --nebula-dark: var(--paper-2);
+  --void-black: var(--bg);
+  --space-dark: var(--bg);
+  --deep-space: var(--bg-2);
+  --nebula-dark: var(--bg-2);
 
-  --ice-blue: var(--verm-text);
-  --electric-blue: var(--verm-text);
-  --neon-blue: var(--verm-text);
-  --deep-blue: var(--verm-text);
-  --midnight-blue: var(--ink);
+  --ice-blue: var(--fg);
+  --electric-blue: var(--fg);
+  --neon-blue: var(--fg);
+  --deep-blue: var(--fg-2);
+  --midnight-blue: var(--bg-3);
 
-  --laser-red: var(--verm);
-  --neon-red: var(--verm-text);
-  --supernova-orange: var(--verm);
-  --plasma-pink: var(--verm-text);
+  --laser-red: var(--fg);
+  --neon-red: var(--fg-2);
+  --supernova-orange: var(--fg);
+  --plasma-pink: var(--fg-2);
 
-  --steel-100: var(--paper);
-  --steel-200: var(--paper-2);
-  --steel-300: var(--rule);
-  --steel-400: var(--ink-3);
-  --steel-500: var(--ink-3);
-  --steel-600: var(--ink-2);
-  --steel-700: var(--ink);
+  --steel-100: var(--fg);
+  --steel-200: var(--fg-2);
+  --steel-300: var(--fg-3);
+  --steel-400: var(--fg-3);
+  --steel-500: var(--fg-3);
+  --steel-600: var(--line-3);
+  --steel-700: var(--line-2);
 
-  --primary-blue: var(--verm-text);
-  --primary-green: oklch(0.46 0.083 158);
-  --primary-navy: var(--ink);
-  --accent-purple: var(--verm);
-  --accent-orange: var(--verm);
-  --neutral-gray: var(--ink-2);
+  --primary-blue: var(--fg);
+  --primary-green: var(--fg-2);
+  --primary-navy: var(--bg);
+  --accent-purple: var(--fg);
+  --accent-orange: var(--fg);
+  --neutral-gray: var(--fg-2);
 
-  --success: oklch(0.46 0.083 158);
-  --warning: oklch(0.55 0.11 75);
-  --error: var(--verm-text);
-  --info: var(--verm-text);
+  --success: var(--fg-2);
+  --warning: var(--fg-2);
+  --error: var(--fg);
+  --info: var(--fg-2);
 
-  --bg-primary: var(--paper);
-  --bg-secondary: var(--paper);
-  --bg-tertiary: var(--paper-2);
-  --bg-accent: var(--paper-2);
-  --bg-dark: var(--plate);
+  --bg-primary: var(--bg);
+  --bg-secondary: var(--bg);
+  --bg-tertiary: var(--bg-2);
+  --bg-accent: var(--bg-2);
+  --bg-dark: var(--bg);
 
-  --text-primary: var(--ink);
-  --text-secondary: var(--ink-2);
-  --text-accent: var(--verm-text);
-  --text-muted: var(--ink-3);
+  --text-primary: var(--fg);
+  --text-secondary: var(--fg-2);
+  --text-accent: var(--fg);
+  --text-muted: var(--fg-3);
 
-  --border-subtle: var(--rule);
-  --border-default: var(--rule-2);
-  --border-strong: var(--rule-3);
-  /* Glow is gone. These stay declared so old shadow references resolve to
-     something restrained instead of a 60px neon bloom. */
-  --glow-blue: 0 1px 0 0 var(--rule);
-  --glow-red: 0 1px 0 0 var(--rule);
-  --glow-intense: 0 1px 0 0 var(--rule-2);
+  --border-subtle: var(--line);
+  --border-default: var(--line-2);
+  --border-strong: var(--line-3);
+  /* Glow is gone. Declared so old shadow references resolve to nothing loud. */
+  --glow-blue: 0 0 0 1px var(--line);
+  --glow-red: 0 0 0 1px var(--line);
+  --glow-intense: 0 0 0 1px var(--line-2);
 
   --space-1: 0.25rem;
   --space-2: 0.5rem;
@@ -170,139 +207,57 @@
   --space-24: 6rem;
 }
 
-@theme inline {
-  /* Three faces, three jobs. None of them Inter, Geist, or a grotesk default.
-       display — Instrument Serif. One weight, sharp serifs, a real italic for
-                 figure captions. The editorial voice.
-       body    — Hanken Grotesk. Warm workhorse, variable, holds at 13px.
-       mono    — JetBrains Mono. Codes, rates, measure IDs, line numbers.
-                 The old stylesheet named it but never loaded it, so every
-                 `.font-mono` on the site was silently falling back. */
-  --font-display: var(--ff-display);
-  --font-sans: var(--ff-body);
-  --font-mono: var(--ff-mono);
-
-  /* Type scale, ~1.25 through the middle, tightening tracking as it grows.
-     Deliberately close to the sizes the other 40 routes already assume so
-     retuning does not reflow pages outside this pass. */
-  --text-micro: 0.6875rem;
-  --text-micro--line-height: 1.15;
-  --text-xs: 0.75rem;
-  --text-xs--line-height: 1.45;
-  --text-sm: 0.8438rem;
-  --text-sm--line-height: 1.55;
-  --text-base: 1.0313rem;
-  --text-base--line-height: 1.65;
-  --text-lg: 1.1875rem;
-  --text-lg--line-height: 1.6;
-  --text-xl: 1.375rem;
-  --text-xl--line-height: 1.45;
-  --text-2xl: 1.6875rem;
-  --text-2xl--line-height: 1.25;
-  --text-3xl: 2.0625rem;
-  --text-3xl--line-height: 1.15;
-  --text-4xl: 2.5625rem;
-  --text-4xl--line-height: 1.08;
-  --text-5xl: 3.1875rem;
-  --text-5xl--line-height: 1.02;
-  --text-6xl: 4rem;
-  --text-6xl--line-height: 0.98;
-  --text-7xl: 5rem;
-  --text-7xl--line-height: 0.94;
-  --text-title: clamp(2rem, 4.2vw, 3.25rem);
-  --text-title--line-height: 1.04;
-  --text-display: clamp(2.6rem, 6.4vw, 5.5rem);
-  --text-display--line-height: 0.94;
-
-  --color-paper: var(--paper);
-  --color-paper-2: var(--paper-2);
-  --color-ink: var(--ink);
-  --color-ink-2: var(--ink-2);
-  --color-ink-3: var(--ink-3);
-  --color-rule: var(--rule);
-  --color-rule-2: var(--rule-2);
-  --color-rule-3: var(--rule-3);
-  --color-verm: var(--verm);
-  --color-verm-text: var(--verm-text);
-  --color-verm-lift: var(--verm-lift);
-  --color-plate: var(--plate);
-  --color-plate-fg: var(--plate-fg);
-  --color-plate-dim: var(--plate-dim);
-  --color-plate-rule: var(--plate-rule);
-
-  /* legacy token names, new values */
-  --color-primary-blue: var(--primary-blue);
-  --color-primary-green: var(--success);
-  --color-primary-navy: var(--ink);
-  --color-accent-purple: var(--verm);
-  --color-accent-orange: var(--verm);
-  --color-neutral-gray: var(--ink-2);
-  --color-bg-primary: var(--paper);
-  --color-bg-secondary: var(--paper);
-  --color-bg-accent: var(--paper-2);
-  --color-text-primary: var(--ink);
-  --color-text-secondary: var(--ink-2);
-}
-
 /* ---------------------------------------------------------------- base ---- */
 
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
+  background: var(--bg);
+  color-scheme: dark;
 }
 
 body {
-  background: var(--paper);
-  color: var(--ink);
+  background: var(--bg);
+  color: var(--fg);
   font-family: var(--ff-body), ui-sans-serif, system-ui, sans-serif;
-  font-size: 1.0313rem;
+  font-size: 1rem;
   line-height: 1.65;
   font-weight: 400;
-  letter-spacing: 0;
-  /* Laid paper tooth. Horizontal, 3px, 2.8% — visible as texture, never as
-     a pattern. Replaces the 50px cyan grid. */
-  background-image: repeating-linear-gradient(
-    0deg,
-    var(--tooth) 0px,
-    var(--tooth) 1px,
-    transparent 1px,
-    transparent 3px
-  );
 }
 
 h1,
 h2,
 h3,
 h4 {
-  font-family: var(--ff-display), Georgia, serif;
+  font-family: var(--ff-body), ui-sans-serif, system-ui, sans-serif;
   font-weight: 400;
-  letter-spacing: -0.018em;
+  letter-spacing: -0.02em;
   text-wrap: balance;
 }
 
 ::selection {
-  background: var(--verm);
-  color: var(--paper);
+  background: var(--fg);
+  color: var(--bg);
 }
 
-/* One focus treatment, in the accent, offset clear of the target. */
+/* Monochrome system, so focus is a light ring rather than an accent one. */
 *:focus-visible {
-  outline: 2px solid var(--verm);
+  outline: 2px solid var(--fg);
   outline-offset: 3px;
-  border-radius: 1px;
+  border-radius: 2px;
 }
 
 a {
-  transition: color 0.18s ease, border-color 0.18s ease;
+  transition: color 0.18s ease, border-color 0.18s ease, opacity 0.18s ease;
 }
 
 input,
 textarea,
 select {
-  background: var(--paper);
-  border: 1px solid var(--rule-3);
-  color: var(--ink);
-  border-radius: var(--radius);
+  background: var(--bg-2);
+  border: 1px solid var(--line-3);
+  color: var(--fg);
+  border-radius: var(--r);
   font-family: inherit;
   transition: border-color 0.18s ease;
 }
@@ -310,22 +265,22 @@ select {
 input:focus,
 textarea:focus,
 select:focus {
-  outline: 2px solid var(--verm);
+  outline: 2px solid var(--fg);
   outline-offset: 2px;
-  border-color: var(--verm);
+  border-color: var(--fg);
 }
 
 input::placeholder,
 textarea::placeholder {
-  color: var(--ink-3);
+  color: var(--fg-3);
 }
 
 code,
 pre {
   font-family: var(--ff-mono), ui-monospace, monospace;
-  background: var(--paper-2);
-  border: 1px solid var(--rule);
-  border-radius: var(--radius);
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
 }
 
 ::-webkit-scrollbar {
@@ -333,47 +288,41 @@ pre {
   height: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--paper-2);
+  background: var(--bg);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--rule-2);
+  background: var(--line-2);
+  border-radius: var(--r-pill);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--rule-3);
+  background: var(--line-3);
 }
 
-/* ------------------------------------------------------ specimen parts ---- */
+/* ------------------------------------------------------------- parts ----- */
 
-/* Mono micro-label. Wayfinding, figure numbers, dimensions, dates. */
+/* Mono micro-label. The reference's clock, BUILD counter and nav metadata. */
 .label {
   font-family: var(--ff-mono), ui-monospace, monospace;
   font-size: var(--text-micro);
   line-height: 1.15;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  font-weight: 500;
-  color: var(--ink-3);
+  font-weight: 400;
+  color: var(--fg-3);
+  font-variant-numeric: tabular-nums;
 }
 
-.label-accent {
-  color: var(--verm-text);
+.label-bright {
+  color: var(--fg);
 }
 
-/* Hairline structure. The layout is built from rules, not from cards. */
 .rule-t {
-  border-top: 1px solid var(--rule);
+  border-top: 1px solid var(--line);
 }
 .rule-b {
-  border-bottom: 1px solid var(--rule);
-}
-.rule-l {
-  border-left: 1px solid var(--rule);
-}
-.rule-heavy {
-  border-top: 2px solid var(--ink);
+  border-bottom: 1px solid var(--line);
 }
 
-/* Reading measure for editorial body copy. */
 .measure {
   max-width: var(--measure);
 }
@@ -381,87 +330,52 @@ pre {
   max-width: 54ch;
 }
 
-/*
-  The plate. A dark inset figure on the paper — the one place the technical
-  material lives. Fixed ink values in both themes: a figure printed on a page
-  does not change colour when the room does.
-*/
-.plate {
-  background: var(--plate);
-  color: var(--plate-fg);
-  border-radius: var(--radius);
-  position: relative;
-  isolation: isolate;
+/* The chip: the reference's floating nav and card surface. Raised panel,
+   8px radius, one hairline. This is the only container shape in the system. */
+.chip {
+  background: var(--bg-2);
+  border: 1px solid var(--line-2);
+  border-radius: var(--r-lg);
 }
 
-.plate::after {
-  /* Ink tooth on the plate. Inline SVG turbulence, no network request. */
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  opacity: 0.35;
-  mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+/* Panel used for the code figure. Slightly deeper than a chip. */
+.panel {
+  background: #080808;
+  border: 1px solid var(--line-2);
+  border-radius: var(--r-lg);
 }
 
-.plate > * {
-  position: relative;
-  z-index: 1;
+/* Serif is reserved for the credential wall, where the reference sets each
+   client name in a different face. */
+.serif {
+  font-family: var(--ff-serif), Georgia, serif;
 }
 
-/* Figure caption. Instrument Serif italic is the whole reason for the face. */
 .caption {
-  font-family: var(--ff-display), Georgia, serif;
-  font-style: italic;
   font-size: var(--text-sm);
-  line-height: 1.5;
-  color: var(--ink-3);
-}
-
-/* Corner ticks — crop marks on the figure. */
-.ticks::before,
-.ticks::after {
-  content: "";
-  position: absolute;
-  width: 9px;
-  height: 9px;
-  border-color: var(--verm);
-  pointer-events: none;
-}
-.ticks::before {
-  top: -1px;
-  left: -1px;
-  border-top: 1px solid;
-  border-left: 1px solid;
-}
-.ticks::after {
-  bottom: -1px;
-  right: -1px;
-  border-bottom: 1px solid;
-  border-right: 1px solid;
+  line-height: 1.55;
+  color: var(--fg-3);
 }
 
 /* -------------------------------------------------------- legacy parts ---- */
-/* Same class names the other 40 routes use. New implementations. */
+/* Same class names the other ~40 routes use. Monochrome implementations. */
 
 .card {
-  background: var(--paper);
-  border-radius: var(--radius);
+  background: var(--bg-2);
+  border-radius: var(--r-lg);
   padding: var(--space-6);
-  border: 1px solid var(--rule);
+  border: 1px solid var(--line-2);
   box-shadow: none;
   transition: border-color 0.18s ease;
 }
 .card:hover {
-  border-color: var(--rule-3);
+  border-color: var(--line-3);
 }
 
 .card-glass {
-  background: var(--paper-2);
-  border: 1px solid var(--rule);
-  border-radius: var(--radius);
+  background: var(--bg-2);
+  border: 1px solid var(--line-2);
+  border-radius: var(--r-lg);
 }
 
 .btn-primary,
@@ -471,24 +385,21 @@ pre {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  background: var(--verm-text);
-  color: var(--paper);
-  padding: 0.8rem 1.4rem;
-  border-radius: var(--radius);
+  background: var(--fg);
+  color: var(--bg);
+  padding: 0.7rem 1.25rem;
+  border-radius: var(--r);
   font-weight: 500;
   font-size: var(--text-sm);
-  letter-spacing: 0.01em;
-  border: 1px solid var(--verm-text);
+  border: 1px solid var(--fg);
   cursor: pointer;
   text-transform: none;
-  transition: background-color 0.18s ease, border-color 0.18s ease;
+  transition: opacity 0.18s ease;
 }
 .btn-primary:hover,
 .btn-danger:hover,
 .btn-cta:hover {
-  background: var(--ink);
-  border-color: var(--ink);
-  color: var(--paper);
+  opacity: 0.85;
   box-shadow: none;
   transform: none;
 }
@@ -499,20 +410,19 @@ pre {
   justify-content: center;
   gap: 0.5rem;
   background: transparent;
-  color: var(--ink);
-  padding: 0.8rem 1.4rem;
-  border-radius: var(--radius);
+  color: var(--fg);
+  padding: 0.7rem 1.25rem;
+  border-radius: var(--r);
   font-weight: 500;
   font-size: var(--text-sm);
-  letter-spacing: 0.01em;
-  border: 1px solid var(--rule-3);
+  border: 1px solid var(--line-3);
   cursor: pointer;
   text-transform: none;
   transition: border-color 0.18s ease, background-color 0.18s ease;
 }
 .btn-secondary:hover {
-  border-color: var(--ink);
-  background: var(--paper-2);
+  border-color: var(--fg);
+  background: var(--bg-2);
   box-shadow: none;
 }
 
@@ -520,70 +430,57 @@ pre {
   display: inline-flex;
   align-items: center;
   padding: 0.2rem 0.55rem;
-  border-radius: var(--radius);
+  border-radius: var(--r-pill);
   font-family: var(--ff-mono), ui-monospace, monospace;
   font-size: var(--text-micro);
-  font-weight: 500;
-  letter-spacing: 0.12em;
+  font-weight: 400;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 .badge-blue,
-.badge-red {
-  background: transparent;
-  color: var(--verm-text);
-  border: 1px solid var(--verm-text);
-}
+.badge-red,
 .badge-green {
   background: transparent;
-  color: var(--ink-2);
-  border: 1px solid var(--rule-3);
+  color: var(--fg-2);
+  border: 1px solid var(--line-2);
 }
 
-.text-primary-blue { color: var(--primary-blue); }
-.text-primary-green { color: var(--success); }
-.text-primary-navy { color: var(--ink); }
-.text-accent-purple { color: var(--verm-text); }
-.text-accent-orange { color: var(--verm-text); }
-.text-neutral-gray { color: var(--ink-2); }
-.text-ice { color: var(--verm-text); }
-.text-laser { color: var(--verm-text); }
+.text-primary-blue,
+.text-accent-purple,
+.text-accent-orange,
+.text-ice,
+.text-laser { color: var(--fg); }
+.text-primary-green { color: var(--fg-2); }
+.text-primary-navy { color: var(--fg); }
+.text-neutral-gray { color: var(--fg-2); }
 
-.bg-primary-blue { background-color: var(--primary-blue); }
-.bg-primary-green { background-color: var(--success); }
-.bg-primary-navy { background-color: var(--ink); }
-.bg-accent-purple { background-color: var(--verm); }
-.bg-accent-orange { background-color: var(--verm); }
-.bg-void { background-color: var(--paper); }
-.bg-space { background-color: var(--paper); }
-.bg-deep-space { background-color: var(--paper-2); }
+.bg-primary-blue,
+.bg-accent-purple,
+.bg-accent-orange { background-color: var(--fg); }
+.bg-primary-green { background-color: var(--fg-2); }
+.bg-primary-navy,
+.bg-void,
+.bg-space { background-color: var(--bg); }
+.bg-deep-space { background-color: var(--bg-2); }
 
-.border-primary-blue { border-color: var(--verm-text); }
-.border-primary-green { border-color: var(--success); }
-.border-glow { border-color: var(--rule); }
+.border-primary-blue { border-color: var(--fg); }
+.border-primary-green { border-color: var(--line-3); }
+.border-glow { border-color: var(--line); }
 
 .divider-glow {
   height: 1px;
-  background: var(--rule);
+  background: var(--line);
   opacity: 1;
 }
 
-/* Glow, scanlines and neon are retired. The class names stay so old markup
-   resolves, but they no longer paint anything. */
+/* Glow, scanlines and neon are retired. Names kept so old markup resolves. */
 .text-glow,
-.text-glow-subtle {
-  text-shadow: none;
-}
-.neon-border {
-  animation: none;
-}
-.scanlines::after {
-  content: none;
-}
+.text-glow-subtle { text-shadow: none; }
+.neon-border { animation: none; }
+.scanlines::after { content: none; }
 .grid-pattern,
 .radial-glow,
-.bg-gradient-animated {
-  background-image: none;
-}
+.bg-gradient-animated { background-image: none; }
 
 .font-mono {
   font-family: var(--ff-mono), ui-monospace, monospace;
@@ -592,26 +489,23 @@ pre {
 /* ------------------------------------------------------------ motion ----- */
 
 /*
-  Scroll reveal that CANNOT hide content, and cannot flash either.
+  Scroll reveal that CANNOT hide content.
 
-  Default state is fully visible. The hidden state requires .is-armed, which
-  JS adds at runtime and ONLY to elements that are already below the viewport
-  — so on-screen content is never hidden and then re-shown, which is the flash
-  most scroll-reveals ship with. With JS off, in a screenshot, in a
-  non-scrolling render, or under reduced motion, nothing is ever armed and
-  every .reveal is painted. The observer also carries a failsafe timeout that
-  disarms everything regardless of intersection.
+  Visible by default. The hidden state requires .is-armed, which Reveal.tsx
+  adds only after a real scroll and only to elements below the fold, then
+  disarms everything 2.5s later. So JS-off, reduced motion, print,
+  screenshots and non-scrolling renders always paint the full page.
 */
 .reveal {
   opacity: 1;
   transform: none;
   transition:
-    opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .reveal.is-armed:not(.is-in) {
   opacity: 0;
-  transform: translateY(12px);
+  transform: translateY(10px);
 }
 
 @media (prefers-reduced-motion: reduce) {

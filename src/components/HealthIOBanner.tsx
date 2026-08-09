@@ -20,11 +20,11 @@ export default function HealthIOBanner() {
   if (!isVisible) return null;
 
   return (
-    <div className="plate border-b border-plate-rule">
-      <div className="mx-auto flex max-w-[78rem] items-center gap-4 px-6 py-2.5">
+    <div className="panel border-b border-line-2">
+      <div className="mx-auto flex max-w-[84rem] items-center gap-4 px-6 py-2.5">
         <p className="flex min-w-0 flex-1 items-baseline gap-3 text-sm">
-          <span className="label text-verm-lift shrink-0">Fun &amp; Games</span>
-          <span className="truncate text-plate-fg/85">
+          <span className="label text-fg shrink-0">Fun &amp; Games</span>
+          <span className="truncate text-fg/85">
             Three challenges, three badges. How well do you know healthcare?
           </span>
         </p>
@@ -34,7 +34,7 @@ export default function HealthIOBanner() {
             <Link
               key={g.href}
               href={g.href}
-              className="label border border-plate-rule px-2.5 py-1 text-plate-dim transition-colors hover:border-verm-lift hover:text-verm-lift"
+              className="label border border-line-2 px-2.5 py-1 text-fg-3 transition-colors hover:border-fg hover:text-fg"
             >
               {g.label}
             </Link>
@@ -43,14 +43,14 @@ export default function HealthIOBanner() {
 
         <Link
           href="/games/healthio"
-          className="label shrink-0 border border-verm-lift px-2.5 py-1 text-verm-lift md:hidden"
+          className="label shrink-0 border border-fg px-2.5 py-1 text-fg md:hidden"
         >
           Play
         </Link>
 
         <button
           onClick={() => setIsVisible(false)}
-          className="shrink-0 p-1 text-plate-dim transition-colors hover:text-plate-fg"
+          className="shrink-0 p-1 text-fg-3 transition-colors hover:text-fg"
           aria-label="Dismiss banner"
         >
           <svg

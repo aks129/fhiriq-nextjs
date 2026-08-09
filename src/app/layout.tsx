@@ -1,32 +1,35 @@
 import type { Metadata, Viewport } from "next";
-import { Instrument_Serif, Hanken_Grotesk, JetBrains_Mono } from "next/font/google";
+import { Instrument_Serif, Schibsted_Grotesk, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import LinkedInInsight from "@/components/LinkedInInsight";
 
-// SPECIMEN type. Three faces, three jobs.
-// Display: Instrument Serif. One weight, sharp serifs, and an italic that
-// carries every figure caption. The editorial voice of the whole system.
-const display = Instrument_Serif({
-  variable: "--ff-display",
-  subsets: ["latin"],
-  weight: "400",
-  style: ["normal", "italic"],
-  display: "swap",
-});
-
-// Body: Hanken Grotesk. Variable, warm, holds up at 13px in a dense table.
-const body = Hanken_Grotesk({
+// MONO type, following agencidev: one variable sans plus one mono, and that
+// is essentially the whole system.
+//
+// Body and headings: Schibsted Grotesk. Free variable grotesk standing in for
+// the reference's licensed Sana Sans Variable. Geometric with a little
+// warmth, and it holds at 13px.
+const body = Schibsted_Grotesk({
   variable: "--ff-body",
   subsets: ["latin"],
   display: "swap",
 });
 
-// Mono: JetBrains Mono. Codes, rates, measure IDs, line numbers. globals.css
-// named this face for years but never loaded it, so every .font-mono on the
-// site was silently falling back to the system monospace.
-const mono = JetBrains_Mono({
+// Mono: Geist Mono, the same face the reference uses for its live clock,
+// BUILD counter and micro-labels.
+const mono = Geist_Mono({
   variable: "--ff-mono",
   subsets: ["latin"],
+  display: "swap",
+});
+
+// Serif: one job only. The reference sets each name in its client wall in a
+// different typeface; this is the third voice in our credential row.
+const serif = Instrument_Serif({
+  variable: "--ff-serif",
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
   display: "swap",
 });
 
@@ -84,7 +87,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${display.variable} ${body.variable} ${mono.variable} antialiased font-sans`}
+        className={`${body.variable} ${mono.variable} ${serif.variable} antialiased font-sans`}
       >
         {children}
         <LinkedInInsight />

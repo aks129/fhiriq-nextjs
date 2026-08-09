@@ -10,7 +10,7 @@ import TrackedLink from '@/components/TrackedLink';
 import TranspileFigure from '@/components/TranspileFigure';
 
 /**
- * SPECIMEN homepage.
+ * MONO homepage, adapted from agencidev.com.
  *
  * Server component. Every interactive part is a small client island
  * (TranspileFigure, SubscribeForm, TrackedLink, PageAnalytics, Reveal,
@@ -19,7 +19,7 @@ import TranspileFigure from '@/components/TranspileFigure';
  * visual.
  */
 
-const SHELL = 'mx-auto max-w-[78rem] px-6';
+const SHELL = 'mx-auto max-w-[84rem] px-4 sm:px-6';
 
 /** Section with a marginal rail: mono label in the margin, content offset. */
 function Section({
@@ -32,10 +32,10 @@ function Section({
   className?: string;
 }) {
   return (
-    <section className={`border-t border-rule ${className}`}>
+    <section className={`border-t border-line ${className}`}>
       <div className={`${SHELL} py-16 md:py-24`}>
         <div className="grid min-w-0 gap-8 md:grid-cols-[8.5rem_minmax(0,1fr)] md:gap-12">
-          <p className="label label-accent md:pt-3">{label}</p>
+          <p className="label label-bright md:pt-3">{label}</p>
           <div className="min-w-0">{children}</div>
         </div>
       </div>
@@ -45,7 +45,7 @@ function Section({
 
 function H2({ children }: { children: React.ReactNode }) {
   return (
-    <h2 className="font-display text-title tracking-tight text-ink">
+    <h2 className="text-title tracking-tight text-fg">
       {children}
     </h2>
   );
@@ -194,7 +194,7 @@ function GitHubMark() {
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-paper">
+    <div className="min-h-screen bg-bg">
       <PageAnalytics page="home" />
       <Reveal />
       <HealthIOBanner />
@@ -206,20 +206,20 @@ export default function Home() {
           <p className="label flex items-start gap-2.5 self-start leading-relaxed md:pt-4">
             <span
               aria-hidden="true"
-              className="mt-[3px] inline-block h-2 w-2 shrink-0 bg-verm"
+              className="mt-[5px] inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-fg"
             />
             <span>Out of the FHIR Podcast · New episodes weekly</span>
           </p>
 
           <div className="min-w-0">
-            <h1 className="max-w-[52rem] font-display text-display tracking-tight text-ink">
+            <h1 className="max-w-[52rem] text-display tracking-tight text-fg">
               I help healthcare orgs make sense of{' '}
-              <em className="italic text-verm-text">
+              <em className="italic text-fg">
                 FHIR, AI, and quality measurement
               </em>
             </h1>
 
-            <p className="measure mt-8 text-lg leading-relaxed text-ink-2">
+            <p className="measure mt-8 text-lg leading-relaxed text-fg-2">
               I&apos;m Eugene Vestel. Through consulting, open-source tools, and
               the Out of the FHIR podcast, I help teams navigate healthcare
               interoperability and turn data into outcomes.
@@ -245,7 +245,7 @@ export default function Home() {
               </TrackedLink>
             </div>
 
-            <p className="label mt-9 border-t border-rule pt-4 leading-relaxed">
+            <p className="label mt-9 border-t border-line pt-4 leading-relaxed">
               Payer Interoperability Analytics &amp; AI Lead at Outcomes ·
               Former NCQA Advisor · 15+ years in healthcare data
             </p>
@@ -256,11 +256,11 @@ export default function Home() {
       {/* -------------------------------------------- the signature moment */}
       {/* Fig. 1 gets its own band. Inside the hero column the code panes were
           277px wide against 492px of content, so both were clipped. */}
-      <section className="border-t border-rule bg-paper-2">
+      <section className="border-t border-line bg-bg-2">
         <div className={`${SHELL} py-12 md:py-16`}>
           <div className="grid min-w-0 gap-8 md:grid-cols-[8.5rem_minmax(0,1fr)] md:gap-12">
             <div className="min-w-0 md:pt-3">
-              <p className="label label-accent">Figure 1</p>
+              <p className="label label-bright">Figure 1</p>
               <p className="caption mt-2 leading-snug">
                 What &ldquo;quality measurement&rdquo; looks like when it stops
                 being a slide.
@@ -271,16 +271,31 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ------------------------------------------------------ credibility */}
-      <section className="border-y border-rule bg-paper-2">
+      {/*
+        Credential wall. The reference renders its client list with each name
+        in a different typeface, which is what makes a plain row of words read
+        as a considered object. Same move here across the three faces the
+        system already loads, so it costs no extra weight.
+      */}
+      <section className="border-y border-line">
         <div className={`${SHELL} py-8`}>
-          <ul className="grid grid-cols-2 gap-x-8 gap-y-6 md:grid-cols-5">
-            {CREDENTIALS.map((c) => (
-              <li key={c.label} className="border-l-2 border-verm pl-3">
-                <p className="text-sm font-medium leading-snug text-ink">
+          <p className="label mb-6">Track record</p>
+          <ul className="grid grid-cols-2 gap-x-8 gap-y-7 md:grid-cols-5">
+            {CREDENTIALS.map((c, i) => (
+              <li key={c.label}>
+                <p
+                  className={[
+                    'leading-snug text-fg',
+                    i % 3 === 0
+                      ? 'text-[17px] tracking-tight'
+                      : i % 3 === 1
+                        ? 'serif text-[19px]'
+                        : 'font-mono text-[14px] tracking-tight',
+                  ].join(' ')}
+                >
                   {c.label}
                 </p>
-                <p className="mt-1 text-xs leading-snug text-ink-3">
+                <p className="mt-1.5 text-xs leading-snug text-fg-3">
                   {c.detail}
                 </p>
               </li>
@@ -294,7 +309,7 @@ export default function Home() {
         <div className="grid gap-12 lg:grid-cols-[1fr_minmax(0,0.85fr)] lg:gap-16">
           <div className="reveal">
             <H2>Out of the FHIR</H2>
-            <p className="measure mt-5 text-lg leading-relaxed text-ink-2">
+            <p className="measure mt-5 text-lg leading-relaxed text-fg-2">
               Weekly conversations with the people building the future of
               healthcare interoperability. From HL7 work group chairs to startup
               founders to CMS policy makers — the stories behind the standards.
@@ -307,7 +322,7 @@ export default function Home() {
                     href={p.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 border border-rule-2 px-3 py-1.5 text-sm text-ink-2 transition-colors hover:border-verm-text hover:text-verm-text"
+                    className="inline-flex items-center gap-2 border border-line-2 px-3 py-1.5 text-sm text-fg-2 transition-colors hover:border-fg hover:text-fg"
                   >
                     <svg
                       className="h-3.5 w-3.5"
@@ -325,21 +340,21 @@ export default function Home() {
 
             <Link
               href="/podcast"
-              className="mt-7 inline-block border-b border-verm-text pb-0.5 text-sm font-medium text-verm-text transition-colors hover:border-ink hover:text-ink"
+              className="mt-7 inline-block border-b border-fg pb-0.5 text-sm font-medium text-fg transition-colors hover:border-fg hover:text-fg"
             >
               Browse all episodes
             </Link>
           </div>
 
           <div className="reveal">
-            <p className="label border-b border-rule pb-2">Recent themes</p>
+            <p className="label border-b border-line pb-2">Recent themes</p>
             <ul>
               {EPISODES.map((ep) => (
-                <li key={ep.title} className="border-b border-rule py-4">
-                  <p className="font-display text-lg leading-snug text-ink">
+                <li key={ep.title} className="border-b border-line py-4">
+                  <p className="text-lg leading-snug text-fg">
                     {ep.title}
                   </p>
-                  <p className="mt-1 text-sm leading-snug text-ink-2">
+                  <p className="mt-1 text-sm leading-snug text-fg-2">
                     {ep.topic}
                   </p>
                 </li>
@@ -354,7 +369,7 @@ export default function Home() {
         <div className="grid gap-12 lg:grid-cols-[1fr_minmax(0,0.8fr)] lg:gap-16">
           <div className="reveal">
             <H2>The FHIR IQ Playbook</H2>
-            <p className="measure mt-5 text-lg leading-relaxed text-ink-2">
+            <p className="measure mt-5 text-lg leading-relaxed text-fg-2">
               A weekly newsletter on FHIR implementation, quality measurement,
               healthcare AI, and the tools and standards shaping
               interoperability. Written for the people doing the actual work.
@@ -384,7 +399,7 @@ export default function Home() {
       <Section label="Open Source">
         <div className="reveal">
           <H2>Building HealthClaw</H2>
-          <p className="measure mt-5 text-lg leading-relaxed text-ink-2">
+          <p className="measure mt-5 text-lg leading-relaxed text-fg-2">
             An open-source AI health agent stack built on MCP, FHIR R4, and
             SMART on FHIR — exploring what happens when patients have the same
             processing power as provider systems.
@@ -405,7 +420,7 @@ export default function Home() {
                   href={l.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="border-b border-rule-2 pb-0.5 text-sm text-ink-2 transition-colors hover:border-verm-text hover:text-verm-text"
+                  className="border-b border-line-2 pb-0.5 text-sm text-fg-2 transition-colors hover:border-fg hover:text-fg"
                 >
                   {l.label}
                 </a>
@@ -414,25 +429,25 @@ export default function Home() {
           </ul>
         </div>
 
-        <div className="mt-12 border-t border-rule">
+        <div className="mt-12 border-t border-line">
           {PROJECTS.map((p) => (
             <article
               key={p.name}
-              className="reveal grid gap-4 border-b border-rule py-9 md:grid-cols-[minmax(0,1fr)_14rem] md:gap-10"
+              className="reveal grid gap-4 border-b border-line py-9 md:grid-cols-[minmax(0,1fr)_14rem] md:gap-10"
             >
               <div className="min-w-0">
                 <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
-                  <span className="label label-accent">{p.status}</span>
+                  <span className="label label-bright">{p.status}</span>
                   {p.site && (
-                    <span className="label border border-rule-2 px-2 py-0.5">
+                    <span className="label border border-line-2 px-2 py-0.5">
                       {p.site.label}
                     </span>
                   )}
                 </div>
-                <h3 className="mt-3 font-display text-2xl leading-tight text-ink">
+                <h3 className="mt-3 text-2xl leading-tight text-fg">
                   {p.name}
                 </h3>
-                <p className="measure mt-3 leading-relaxed text-ink-2">
+                <p className="measure mt-3 leading-relaxed text-fg-2">
                   {p.body}
                 </p>
                 <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2">
@@ -441,7 +456,7 @@ export default function Home() {
                       href={p.site.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="border-b border-verm-text pb-0.5 text-sm font-medium text-verm-text transition-colors hover:border-ink hover:text-ink"
+                      className="border-b border-fg pb-0.5 text-sm font-medium text-fg transition-colors hover:border-fg hover:text-fg"
                     >
                       Visit {p.site.label}
                     </a>
@@ -450,7 +465,7 @@ export default function Home() {
                     href={p.repo}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-sm text-ink-2 transition-colors hover:text-ink"
+                    className="inline-flex items-center gap-1.5 text-sm text-fg-2 transition-colors hover:text-fg"
                   >
                     <GitHubMark />
                     View on GitHub
@@ -458,9 +473,9 @@ export default function Home() {
                 </div>
               </div>
 
-              <ul className="flex flex-wrap content-start gap-1.5 md:border-l md:border-rule md:pl-6">
+              <ul className="flex flex-wrap content-start gap-1.5 md:border-l md:border-line md:pl-6">
                 {p.tags.map((t) => (
-                  <li key={t} className="label border border-rule px-2 py-1">
+                  <li key={t} className="label border border-line px-2 py-1">
                     {t}
                   </li>
                 ))}
@@ -477,7 +492,7 @@ export default function Home() {
             href="https://github.com/aks129"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-sm font-medium text-ink-2 transition-colors hover:text-verm-text"
+            className="inline-flex items-center gap-1.5 text-sm font-medium text-fg-2 transition-colors hover:text-fg"
           >
             <GitHubMark />
             See all projects on GitHub
@@ -489,27 +504,27 @@ export default function Home() {
       <Section label="Resources">
         <div className="reveal">
           <H2>Free guides &amp; references</H2>
-          <p className="measure mt-5 text-lg leading-relaxed text-ink-2">
+          <p className="measure mt-5 text-lg leading-relaxed text-fg-2">
             Practical resources I&apos;ve written based on real implementation
             experience.
           </p>
         </div>
 
-        <ul className="reveal mt-10 grid border-t border-rule sm:grid-cols-2 lg:grid-cols-4">
+        <ul className="reveal mt-10 grid border-t border-line sm:grid-cols-2 lg:grid-cols-4">
           {RESOURCES.map((r) => (
             <li
               key={r.href}
-              className="border-b border-rule lg:border-r lg:last:border-r-0"
+              className="border-b border-line lg:border-r lg:last:border-r-0"
             >
               <Link
                 href={r.href}
                 className="group block h-full px-0 py-6 transition-colors lg:px-5"
               >
-                <span className="label label-accent">{r.kind}</span>
-                <span className="mt-2.5 block font-display text-xl leading-snug text-ink group-hover:text-verm-text">
+                <span className="label label-bright">{r.kind}</span>
+                <span className="mt-2.5 block text-xl leading-snug text-fg group-hover:text-fg">
                   {r.title}
                 </span>
-                <span className="mt-1.5 block text-sm leading-snug text-ink-2">
+                <span className="mt-1.5 block text-sm leading-snug text-fg-2">
                   {r.desc}
                 </span>
               </Link>
@@ -519,7 +534,7 @@ export default function Home() {
 
         <Link
           href="/resources"
-          className="mt-7 inline-block border-b border-verm-text pb-0.5 text-sm font-medium text-verm-text transition-colors hover:border-ink hover:text-ink"
+          className="mt-7 inline-block border-b border-fg pb-0.5 text-sm font-medium text-fg transition-colors hover:border-fg hover:text-fg"
         >
           View all resources
         </Link>
@@ -530,7 +545,7 @@ export default function Home() {
         <div className="grid gap-12 lg:grid-cols-[1fr_minmax(0,0.8fr)] lg:gap-16">
           <div className="reveal">
             <H2>Work with me</H2>
-            <p className="measure mt-5 text-lg leading-relaxed text-ink-2">
+            <p className="measure mt-5 text-lg leading-relaxed text-fg-2">
               I advise healthcare organizations on FHIR implementation strategy,
               data architecture, quality measurement, and AI readiness. Whether
               you&apos;re starting your FHIR journey or optimizing an existing
@@ -548,14 +563,14 @@ export default function Home() {
             </TrackedLink>
           </div>
 
-          <ul className="reveal border-t border-rule lg:pt-1">
+          <ul className="reveal border-t border-line lg:pt-1">
             {ADVISORY.map((item) => (
               <li
                 key={item}
-                className="flex items-baseline gap-3 border-b border-rule py-3"
+                className="flex items-baseline gap-3 border-b border-line py-3"
               >
-                <span aria-hidden="true" className="h-px w-4 shrink-0 bg-verm" />
-                <span className="text-sm text-ink">{item}</span>
+                <span aria-hidden="true" className="h-px w-3 shrink-0 bg-line-3" />
+                <span className="text-sm text-fg">{item}</span>
               </li>
             ))}
           </ul>
@@ -567,7 +582,7 @@ export default function Home() {
         <div className="grid gap-10 lg:grid-cols-[1fr_minmax(0,0.8fr)] lg:gap-16">
           <div className="reveal">
             <H2>Stay in the loop</H2>
-            <p className="measure mt-5 leading-relaxed text-ink-2">
+            <p className="measure mt-5 leading-relaxed text-fg-2">
               Join 450+ healthcare data professionals getting weekly insights on
               FHIR, AI, and quality measurement. Read by engineers, architects,
               and analysts at health systems, payers, and vendors.
