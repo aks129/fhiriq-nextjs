@@ -155,9 +155,9 @@ export default function Portfolio() {
   const featuredProjects = projects.filter(project => project.featured);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-bg">
       {/* Navigation */}
-      <nav className="bg-white shadow-lg">
+      <nav className="bg-bg shadow-lg">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center">
@@ -196,7 +196,7 @@ export default function Portfolio() {
       </nav>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-primary-blue to-accent-purple text-white py-20">
+      <section className="bg-gradient-to-r from-primary-blue to-accent-purple text-fg py-20">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <h1 className="text-5xl font-bold mb-6">FHIR IQ Portfolio</h1>
           <p className="text-xl mb-8 max-w-3xl mx-auto">
@@ -221,7 +221,7 @@ export default function Portfolio() {
             href="https://github.com/AKS129"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-white text-primary-blue px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition"
+            className="bg-bg text-primary-blue px-8 py-3 rounded-lg font-semibold hover:bg-bg-2 transition"
           >
             View GitHub Profile
           </a>
@@ -299,8 +299,8 @@ export default function Portfolio() {
                 onClick={() => setActiveCategory(category.id)}
                 className={`px-4 py-2 rounded-lg transition ${
                   activeCategory === category.id
-                    ? 'bg-primary-blue text-white'
-                    : 'bg-white text-primary-blue hover:bg-primary-blue hover:text-white'
+                    ? 'bg-primary-blue text-fg'
+                    : 'bg-bg text-primary-blue hover:bg-primary-blue hover:text-white'
                 }`}
               >
                 {category.name} ({category.count})
@@ -311,11 +311,11 @@ export default function Portfolio() {
           {/* Projects Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredProjects.map((project) => (
-              <div key={project.id} className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
+              <div key={project.id} className="bg-bg rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
                 <div className="flex justify-between items-start mb-4">
                   <div className="text-4xl">{project.image}</div>
                   {project.featured && (
-                    <span className="bg-accent-orange text-white px-2 py-1 rounded text-xs">
+                    <span className="bg-accent-orange text-fg px-2 py-1 rounded text-xs">
                       Featured
                     </span>
                   )}
@@ -384,7 +384,7 @@ export default function Portfolio() {
       </section>
 
       {/* CTA */}
-      <section className="py-16 bg-primary-blue text-white">
+      <section className="py-16 bg-primary-blue text-fg">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-6">
             Ready to Build Something Amazing?
@@ -396,7 +396,7 @@ export default function Portfolio() {
           <div className="flex gap-4 justify-center">
             <Link
               href="/contact"
-              className="bg-white text-primary-blue px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition"
+              className="bg-bg text-primary-blue px-8 py-3 rounded-lg font-semibold hover:bg-bg-2 transition"
             >
               Start a Project
             </Link>
@@ -404,7 +404,7 @@ export default function Portfolio() {
               href="https://github.com/AKS129"
               target="_blank"
               rel="noopener noreferrer"
-              className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-primary-blue transition"
+              className="border-2 border-white text-fg px-8 py-3 rounded-lg font-semibold hover:bg-bg hover:text-primary-blue transition"
             >
               Follow on GitHub
             </a>
@@ -413,41 +413,41 @@ export default function Portfolio() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-primary-navy text-white py-12">
+      <footer className="bg-primary-navy text-fg py-12">
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8">
             <div>
               <h3 className="text-xl font-bold mb-4">FHIR IQ</h3>
-              <p className="text-gray-400">
+              <p className="text-fg-3">
                 Leading FHIR innovation through open source contributions and cutting-edge healthcare technology.
               </p>
             </div>
             <div>
               <h4 className="font-semibold mb-4">Projects</h4>
-              <ul className="space-y-2 text-gray-400">
-                <li><a href="https://fhirquiz.vercel.app" target="_blank" rel="noopener noreferrer" className="hover:text-white">FHIR Quiz</a></li>
-                <li><a href="https://plumly.vercel.app" target="_blank" rel="noopener noreferrer" className="hover:text-white">Plumly AI</a></li>
-                <li><a href="https://fhirspective.vercel.app" target="_blank" rel="noopener noreferrer" className="hover:text-white">FHIRspective</a></li>
+              <ul className="space-y-2 text-fg-3">
+                <li><a href="https://fhirquiz.vercel.app" target="_blank" rel="noopener noreferrer" className="hover:text-fg">FHIR Quiz</a></li>
+                <li><a href="https://plumly.vercel.app" target="_blank" rel="noopener noreferrer" className="hover:text-fg">Plumly AI</a></li>
+                <li><a href="https://fhirspective.vercel.app" target="_blank" rel="noopener noreferrer" className="hover:text-fg">FHIRspective</a></li>
               </ul>
             </div>
             <div>
               <h4 className="font-semibold mb-4">Resources</h4>
-              <ul className="space-y-2 text-gray-400">
-                <li><Link href="/blog" className="hover:text-white">Blog</Link></li>
-                <li><Link href="/training" className="hover:text-white">Training</Link></li>
-                <li><Link href="/tools" className="hover:text-white">Tools</Link></li>
+              <ul className="space-y-2 text-fg-3">
+                <li><Link href="/blog" className="hover:text-fg">Blog</Link></li>
+                <li><Link href="/training" className="hover:text-fg">Training</Link></li>
+                <li><Link href="/tools" className="hover:text-fg">Tools</Link></li>
               </ul>
             </div>
             <div>
               <h4 className="font-semibold mb-4">Connect</h4>
-              <ul className="space-y-2 text-gray-400">
-                <li><a href="https://github.com/AKS129" target="_blank" rel="noopener noreferrer" className="hover:text-white">GitHub</a></li>
-                <li><Link href="/contact" className="hover:text-white">Contact</Link></li>
-                <li><Link href="/podcast" className="hover:text-white">Podcast</Link></li>
+              <ul className="space-y-2 text-fg-3">
+                <li><a href="https://github.com/AKS129" target="_blank" rel="noopener noreferrer" className="hover:text-fg">GitHub</a></li>
+                <li><Link href="/contact" className="hover:text-fg">Contact</Link></li>
+                <li><Link href="/podcast" className="hover:text-fg">Podcast</Link></li>
               </ul>
             </div>
           </div>
-          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+          <div className="border-t border-line-2 mt-8 pt-8 text-center text-fg-3">
             <p>&copy; 2024 FHIR IQ. All rights reserved.</p>
           </div>
         </div>

@@ -2,9 +2,9 @@ import Link from 'next/link';
 
 export default function InnovationPilotTerms() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-bg">
       {/* Navigation */}
-      <nav className="bg-white shadow-lg">
+      <nav className="bg-bg shadow-lg">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center">
@@ -40,7 +40,7 @@ export default function InnovationPilotTerms() {
       <div className="max-w-3xl mx-auto px-6 pt-8">
         <Link
           href="/cql-to-sql"
-          className="inline-flex items-center gap-2 text-gray-500 hover:text-gray-900 text-sm"
+          className="inline-flex items-center gap-2 text-fg-3 hover:text-fg text-sm"
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
@@ -51,26 +51,26 @@ export default function InnovationPilotTerms() {
 
       {/* Content */}
       <main className="max-w-3xl mx-auto px-6 py-12">
-        <h1 className="text-4xl font-bold text-gray-900 mb-2">
+        <h1 className="text-4xl font-bold text-fg mb-2">
           Design Partner Pilot Program
         </h1>
-        <p className="text-xl text-gray-600 mb-8">
+        <p className="text-xl text-fg-2 mb-8">
           Rules of Engagement
         </p>
 
         <div className="prose prose-lg max-w-none">
-          <p className="text-gray-600 mb-8">
+          <p className="text-fg-2 mb-8">
             The following terms outline the mutual expectations and IP arrangements for participants
             in the FHIR IQ Design Partner Pilot Program (&quot;Program&quot;). These are intended as a
             framework for discussion and will be formalized in a separate agreement.
           </p>
 
           <section className="mb-10">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-4 flex items-center gap-3">
+            <h2 className="text-2xl font-semibold text-fg mb-4 flex items-center gap-3">
               <span className="w-8 h-8 bg-primary-blue/10 rounded-full flex items-center justify-center text-primary-blue text-sm font-bold">1</span>
               You Own Your Data and Clinical Logic
             </h2>
-            <ul className="space-y-3 text-gray-600">
+            <ul className="space-y-3 text-fg-2">
               <li className="flex items-start gap-3">
                 <svg className="w-5 h-5 text-primary-green mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -99,11 +99,11 @@ export default function InnovationPilotTerms() {
           </section>
 
           <section className="mb-10">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-4 flex items-center gap-3">
+            <h2 className="text-2xl font-semibold text-fg mb-4 flex items-center gap-3">
               <span className="w-8 h-8 bg-primary-blue/10 rounded-full flex items-center justify-center text-primary-blue text-sm font-bold">2</span>
               FHIR IQ Owns the Engine and Algorithms
             </h2>
-            <ul className="space-y-3 text-gray-600">
+            <ul className="space-y-3 text-fg-2">
               <li className="flex items-start gap-3">
                 <svg className="w-5 h-5 text-primary-green mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -132,11 +132,11 @@ export default function InnovationPilotTerms() {
           </section>
 
           <section className="mb-10">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-4 flex items-center gap-3">
+            <h2 className="text-2xl font-semibold text-fg mb-4 flex items-center gap-3">
               <span className="w-8 h-8 bg-primary-blue/10 rounded-full flex items-center justify-center text-primary-blue text-sm font-bold">3</span>
               90-Day Fixed Sprint Duration
             </h2>
-            <ul className="space-y-3 text-gray-600">
+            <ul className="space-y-3 text-fg-2">
               <li className="flex items-start gap-3">
                 <svg className="w-5 h-5 text-primary-green mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -165,11 +165,11 @@ export default function InnovationPilotTerms() {
           </section>
 
           <section className="mb-10">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-4 flex items-center gap-3">
+            <h2 className="text-2xl font-semibold text-fg mb-4 flex items-center gap-3">
               <span className="w-8 h-8 bg-primary-blue/10 rounded-full flex items-center justify-center text-primary-blue text-sm font-bold">4</span>
               Direct Access to Founder/Architect
             </h2>
-            <ul className="space-y-3 text-gray-600">
+            <ul className="space-y-3 text-fg-2">
               <li className="flex items-start gap-3">
                 <svg className="w-5 h-5 text-primary-green mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -198,11 +198,11 @@ export default function InnovationPilotTerms() {
           </section>
 
           <section className="mb-10">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-4 flex items-center gap-3">
+            <h2 className="text-2xl font-semibold text-fg mb-4 flex items-center gap-3">
               <span className="w-8 h-8 bg-primary-blue/10 rounded-full flex items-center justify-center text-primary-blue text-sm font-bold">5</span>
               Partner Expectations
             </h2>
-            <ul className="space-y-3 text-gray-600">
+            <ul className="space-y-3 text-fg-2">
               <li className="flex items-start gap-3">
                 <svg className="w-5 h-5 text-accent-orange mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -230,8 +230,8 @@ export default function InnovationPilotTerms() {
             </ul>
           </section>
 
-          <div className="bg-gray-50 rounded-xl p-6 mt-12">
-            <p className="text-gray-600 text-sm">
+          <div className="bg-bg-2 rounded-xl p-6 mt-12">
+            <p className="text-fg-2 text-sm">
               <strong>Note:</strong> These terms are a summary framework. Formal participation requires
               execution of a mutual NDA and Pilot Agreement. If you have questions about any of
               these terms, please{' '}
@@ -246,7 +246,7 @@ export default function InnovationPilotTerms() {
         <div className="mt-12 text-center">
           <Link
             href="/early-access"
-            className="inline-block bg-accent-purple hover:bg-purple-700 text-white px-8 py-4 rounded-lg font-semibold transition text-lg"
+            className="inline-block bg-accent-purple hover:bg-bg-3 text-fg px-8 py-4 rounded-lg font-semibold transition text-lg"
           >
             Apply for Design Partner Program
           </Link>
@@ -254,22 +254,22 @@ export default function InnovationPilotTerms() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12 mt-20">
+      <footer className="bg-bg-2 text-fg py-12 mt-20">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <div>
               <Link href="/" className="text-2xl font-bold">FHIR IQ</Link>
-              <p className="text-gray-400 mt-2">The Semantic Intelligence Layer for Healthcare</p>
+              <p className="text-fg-3 mt-2">The Semantic Intelligence Layer for Healthcare</p>
             </div>
             <div className="flex gap-8">
-              <Link href="/" className="text-gray-400 hover:text-white transition">Home</Link>
-              <Link href="/cql-to-sql" className="text-gray-400 hover:text-white transition">CQL-to-SQL</Link>
-              <Link href="/library" className="text-gray-400 hover:text-white transition">ViewDefinition Library</Link>
-              <Link href="/contact" className="text-gray-400 hover:text-white transition">Contact</Link>
+              <Link href="/" className="text-fg-3 hover:text-fg transition">Home</Link>
+              <Link href="/cql-to-sql" className="text-fg-3 hover:text-fg transition">CQL-to-SQL</Link>
+              <Link href="/library" className="text-fg-3 hover:text-fg transition">ViewDefinition Library</Link>
+              <Link href="/contact" className="text-fg-3 hover:text-fg transition">Contact</Link>
             </div>
           </div>
-          <div className="mt-8 pt-8 border-t border-gray-800 text-center">
-            <p className="text-gray-400">&copy; 2025 FHIR IQ. All rights reserved.</p>
+          <div className="mt-8 pt-8 border-t border-line-2 text-center">
+            <p className="text-fg-3">&copy; 2025 FHIR IQ. All rights reserved.</p>
           </div>
         </div>
       </footer>

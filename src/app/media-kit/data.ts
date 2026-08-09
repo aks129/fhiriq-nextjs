@@ -225,11 +225,11 @@ export const copy = {
 
 // Tailwind class tokens per color key — text, soft bg, border, solid bg, left-border accent
 export const palette: Record<ColorKey, { text: string; bg: string; border: string; solid: string; leftBorder: string }> = {
-  teal:   { text: "text-sky-600",     bg: "bg-sky-50",     border: "border-sky-200",     solid: "bg-sky-500",     leftBorder: "border-l-sky-400" },
-  purple: { text: "text-violet-600",  bg: "bg-violet-50",  border: "border-violet-200",  solid: "bg-violet-500",  leftBorder: "border-l-violet-400" },
-  coral:  { text: "text-rose-600",    bg: "bg-rose-50",    border: "border-rose-200",    solid: "bg-rose-500",    leftBorder: "border-l-rose-400" },
-  amber:  { text: "text-amber-600",   bg: "bg-amber-50",   border: "border-amber-200",   solid: "bg-amber-500",   leftBorder: "border-l-amber-400" },
-  blue:   { text: "text-blue-600",    bg: "bg-blue-50",    border: "border-blue-200",    solid: "bg-blue-500",    leftBorder: "border-l-blue-400" },
-  green:  { text: "text-emerald-600", bg: "bg-emerald-50", border: "border-emerald-200", solid: "bg-emerald-500", leftBorder: "border-l-emerald-400" },
-  dim:    { text: "text-slate-500",   bg: "bg-slate-50",   border: "border-slate-200",   solid: "bg-slate-400",   leftBorder: "border-l-slate-400" },
+  teal:   { text: "text-fg",     bg: "bg-bg-2",     border: "border-line-2",     solid: "bg-bg-3",     leftBorder: "border-l-sky-400" },
+  purple: { text: "text-fg",  bg: "bg-bg-2",  border: "border-line-2",  solid: "bg-bg-3",  leftBorder: "border-l-violet-400" },
+  coral:  { text: "text-fg",    bg: "bg-bg-2",    border: "border-line-2",    solid: "bg-bg-3",    leftBorder: "border-l-rose-400" },
+  amber:  { text: "text-fg",   bg: "bg-bg-2",   border: "border-line-2",   solid: "bg-bg-3",   leftBorder: "border-l-amber-400" },
+  blue:   { text: "text-fg",    bg: "bg-bg-2",    border: "border-line-2",    solid: "bg-bg-3",    leftBorder: "border-l-blue-400" },
+  green:  { text: "text-fg", bg: "bg-bg-2", border: "border-line-2", solid: "bg-bg-3", leftBorder: "border-l-emerald-400" },
+  dim:    { text: "text-fg-2",   bg: "bg-bg-2",   border: "border-line-2",   solid: "bg-bg-3",   leftBorder: "border-l-slate-400" },
 };

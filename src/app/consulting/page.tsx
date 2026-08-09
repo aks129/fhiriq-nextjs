@@ -4,9 +4,9 @@ import Link from 'next/link';
 
 export default function Consulting() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-bg">
       {/* Navigation */}
-      <nav className="bg-white shadow-lg">
+      <nav className="bg-bg shadow-lg">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center">
@@ -50,7 +50,7 @@ export default function Consulting() {
       </nav>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-primary-navy to-primary-blue text-white py-20">
+      <section className="bg-gradient-to-r from-primary-navy to-primary-blue text-fg py-20">
         <div className="max-w-7xl mx-auto px-4">
           <div className="max-w-4xl">
             <h1 className="text-5xl font-bold mb-6">
@@ -66,13 +66,13 @@ export default function Consulting() {
                 href="https://calendar.app.google/TMvRGiiYfbBKNd889"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-white text-primary-blue px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition"
+                className="bg-bg text-primary-blue px-8 py-4 rounded-lg font-semibold hover:bg-bg-2 transition"
               >
                 Schedule Discovery Call
               </a>
               <Link
                 href="/portfolio"
-                className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-primary-blue transition"
+                className="border-2 border-white text-fg px-8 py-4 rounded-lg font-semibold hover:bg-bg hover:text-primary-blue transition"
               >
                 View Case Studies
               </Link>
@@ -82,14 +82,14 @@ export default function Consulting() {
       </section>
 
       {/* The Problem Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-bg">
         <div className="max-w-7xl mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold mb-8 text-primary-navy text-center">
               Why Most FHIR Projects Fail
             </h2>
             <div className="grid md:grid-cols-2 gap-6">
-              <div className="bg-gray-50 p-6 rounded-lg">
+              <div className="bg-bg-2 p-6 rounded-lg">
                 <div className="text-3xl mb-3">⚠️</div>
                 <h3 className="font-semibold text-lg mb-2">Underestimated Complexity</h3>
                 <p className="text-neutral-gray">
@@ -97,7 +97,7 @@ export default function Consulting() {
                   of healthcare data standards, implementation guides, and compliance requirements.
                 </p>
               </div>
-              <div className="bg-gray-50 p-6 rounded-lg">
+              <div className="bg-bg-2 p-6 rounded-lg">
                 <div className="text-3xl mb-3">🔄</div>
                 <h3 className="font-semibold text-lg mb-2">Endless Iterations</h3>
                 <p className="text-neutral-gray">
@@ -105,7 +105,7 @@ export default function Consulting() {
                   thing, only to restart when they hit validation or regulatory walls.
                 </p>
               </div>
-              <div className="bg-gray-50 p-6 rounded-lg">
+              <div className="bg-bg-2 p-6 rounded-lg">
                 <div className="text-3xl mb-3">💸</div>
                 <h3 className="font-semibold text-lg mb-2">Budget Overruns</h3>
                 <p className="text-neutral-gray">
@@ -113,7 +113,7 @@ export default function Consulting() {
                   and missing critical market windows.
                 </p>
               </div>
-              <div className="bg-gray-50 p-6 rounded-lg">
+              <div className="bg-bg-2 p-6 rounded-lg">
                 <div className="text-3xl mb-3">👥</div>
                 <h3 className="font-semibold text-lg mb-2">Knowledge Gaps</h3>
                 <p className="text-neutral-gray">
@@ -140,7 +140,7 @@ export default function Consulting() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            <div className="bg-white rounded-lg p-8 shadow-sm">
+            <div className="bg-bg rounded-lg p-8 shadow-sm">
               <div className="w-16 h-16 bg-primary-blue/10 rounded-lg flex items-center justify-center mb-6">
                 <svg className="w-8 h-8 text-primary-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
@@ -170,7 +170,7 @@ export default function Consulting() {
               </ul>
             </div>
 
-            <div className="bg-white rounded-lg p-8 shadow-sm">
+            <div className="bg-bg rounded-lg p-8 shadow-sm">
               <div className="w-16 h-16 bg-accent-purple/10 rounded-lg flex items-center justify-center mb-6">
                 <svg className="w-8 h-8 text-accent-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
@@ -200,7 +200,7 @@ export default function Consulting() {
               </ul>
             </div>
 
-            <div className="bg-white rounded-lg p-8 shadow-sm">
+            <div className="bg-bg rounded-lg p-8 shadow-sm">
               <div className="w-16 h-16 bg-primary-green/10 rounded-lg flex items-center justify-center mb-6">
                 <svg className="w-8 h-8 text-primary-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -234,7 +234,7 @@ export default function Consulting() {
       </section>
 
       {/* Consulting Services */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-bg">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4 text-primary-navy">Consulting Services</h2>
@@ -292,7 +292,7 @@ export default function Consulting() {
 
             <div className="card border-2 border-primary-blue relative">
               <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                <span className="bg-primary-blue text-white px-4 py-1 rounded-full text-sm font-semibold">
+                <span className="bg-primary-blue text-fg px-4 py-1 rounded-full text-sm font-semibold">
                   Most Popular
                 </span>
               </div>
@@ -465,7 +465,7 @@ export default function Consulting() {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-            <div className="bg-white p-6 rounded-lg text-center">
+            <div className="bg-bg p-6 rounded-lg text-center">
               <div className="text-4xl mb-4">🏥</div>
               <h3 className="font-bold text-lg mb-2 text-primary-navy">Health Systems</h3>
               <p className="text-sm text-neutral-gray">
@@ -473,7 +473,7 @@ export default function Consulting() {
               </p>
             </div>
 
-            <div className="bg-white p-6 rounded-lg text-center">
+            <div className="bg-bg p-6 rounded-lg text-center">
               <div className="text-4xl mb-4">💳</div>
               <h3 className="font-bold text-lg mb-2 text-primary-navy">Payer Organizations</h3>
               <p className="text-sm text-neutral-gray">
@@ -481,7 +481,7 @@ export default function Consulting() {
               </p>
             </div>
 
-            <div className="bg-white p-6 rounded-lg text-center">
+            <div className="bg-bg p-6 rounded-lg text-center">
               <div className="text-4xl mb-4">🚀</div>
               <h3 className="font-bold text-lg mb-2 text-primary-navy">Digital Health Startups</h3>
               <p className="text-sm text-neutral-gray">
@@ -489,7 +489,7 @@ export default function Consulting() {
               </p>
             </div>
 
-            <div className="bg-white p-6 rounded-lg text-center">
+            <div className="bg-bg p-6 rounded-lg text-center">
               <div className="text-4xl mb-4">🔬</div>
               <h3 className="font-bold text-lg mb-2 text-primary-navy">Research Organizations</h3>
               <p className="text-sm text-neutral-gray">
@@ -501,7 +501,7 @@ export default function Consulting() {
       </section>
 
       {/* Results & Testimonials */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-bg">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4 text-primary-navy">Proven Results</h2>
@@ -581,7 +581,7 @@ export default function Consulting() {
             <div className="space-y-8">
               <div className="flex gap-6">
                 <div className="flex-shrink-0">
-                  <div className="w-12 h-12 bg-primary-blue text-white rounded-full flex items-center justify-center font-bold text-xl">
+                  <div className="w-12 h-12 bg-primary-blue text-fg rounded-full flex items-center justify-center font-bold text-xl">
                     1
                   </div>
                 </div>
@@ -596,7 +596,7 @@ export default function Consulting() {
 
               <div className="flex gap-6">
                 <div className="flex-shrink-0">
-                  <div className="w-12 h-12 bg-primary-blue text-white rounded-full flex items-center justify-center font-bold text-xl">
+                  <div className="w-12 h-12 bg-primary-blue text-fg rounded-full flex items-center justify-center font-bold text-xl">
                     2
                   </div>
                 </div>
@@ -611,7 +611,7 @@ export default function Consulting() {
 
               <div className="flex gap-6">
                 <div className="flex-shrink-0">
-                  <div className="w-12 h-12 bg-primary-blue text-white rounded-full flex items-center justify-center font-bold text-xl">
+                  <div className="w-12 h-12 bg-primary-blue text-fg rounded-full flex items-center justify-center font-bold text-xl">
                     3
                   </div>
                 </div>
@@ -626,7 +626,7 @@ export default function Consulting() {
 
               <div className="flex gap-6">
                 <div className="flex-shrink-0">
-                  <div className="w-12 h-12 bg-primary-blue text-white rounded-full flex items-center justify-center font-bold text-xl">
+                  <div className="w-12 h-12 bg-primary-blue text-fg rounded-full flex items-center justify-center font-bold text-xl">
                     4
                   </div>
                 </div>
@@ -641,7 +641,7 @@ export default function Consulting() {
 
               <div className="flex gap-6">
                 <div className="flex-shrink-0">
-                  <div className="w-12 h-12 bg-primary-green text-white rounded-full flex items-center justify-center font-bold text-xl">
+                  <div className="w-12 h-12 bg-primary-green text-fg rounded-full flex items-center justify-center font-bold text-xl">
                     5
                   </div>
                 </div>
@@ -659,7 +659,7 @@ export default function Consulting() {
       </section>
 
       {/* Why Choose Me */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-bg">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4 text-primary-navy">Why Work With Me</h2>
@@ -745,7 +745,7 @@ export default function Consulting() {
           </div>
 
           <div className="space-y-6">
-            <div className="bg-white p-6 rounded-lg">
+            <div className="bg-bg p-6 rounded-lg">
               <h3 className="font-bold text-lg mb-2 text-primary-navy">
                 Do you work with organizations outside the US?
               </h3>
@@ -755,7 +755,7 @@ export default function Consulting() {
               </p>
             </div>
 
-            <div className="bg-white p-6 rounded-lg">
+            <div className="bg-bg p-6 rounded-lg">
               <h3 className="font-bold text-lg mb-2 text-primary-navy">
                 What if our project needs change mid-engagement?
               </h3>
@@ -765,7 +765,7 @@ export default function Consulting() {
               </p>
             </div>
 
-            <div className="bg-white p-6 rounded-lg">
+            <div className="bg-bg p-6 rounded-lg">
               <h3 className="font-bold text-lg mb-2 text-primary-navy">
                 Do you work onsite or remotely?
               </h3>
@@ -775,7 +775,7 @@ export default function Consulting() {
               </p>
             </div>
 
-            <div className="bg-white p-6 rounded-lg">
+            <div className="bg-bg p-6 rounded-lg">
               <h3 className="font-bold text-lg mb-2 text-primary-navy">
                 How quickly can we get started?
               </h3>
@@ -785,7 +785,7 @@ export default function Consulting() {
               </p>
             </div>
 
-            <div className="bg-white p-6 rounded-lg">
+            <div className="bg-bg p-6 rounded-lg">
               <h3 className="font-bold text-lg mb-2 text-primary-navy">
                 What happens after our engagement ends?
               </h3>
@@ -799,7 +799,7 @@ export default function Consulting() {
       </section>
 
       {/* Final CTA */}
-      <section className="py-20 bg-gradient-to-r from-primary-blue to-accent-purple text-white">
+      <section className="py-20 bg-gradient-to-r from-primary-blue to-accent-purple text-fg">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-4xl font-bold mb-6">
             Ready to Succeed With FHIR?
@@ -813,13 +813,13 @@ export default function Consulting() {
               href="https://calendar.app.google/TMvRGiiYfbBKNd889"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-white text-primary-blue px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition text-lg"
+              className="bg-bg text-primary-blue px-8 py-4 rounded-lg font-semibold hover:bg-bg-2 transition text-lg"
             >
               Schedule Your Discovery Call
             </a>
             <Link
               href="/portfolio"
-              className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-primary-blue transition text-lg"
+              className="border-2 border-white text-fg px-8 py-4 rounded-lg font-semibold hover:bg-bg hover:text-primary-blue transition text-lg"
             >
               See My Work
             </Link>
@@ -831,41 +831,41 @@ export default function Consulting() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-primary-navy text-white py-12">
+      <footer className="bg-primary-navy text-fg py-12">
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8">
             <div>
               <h3 className="text-xl font-bold mb-4">FHIR IQ</h3>
-              <p className="text-gray-400">
+              <p className="text-fg-3">
                 Leading healthcare interoperability solutions powered by AI and FHIR expertise.
               </p>
             </div>
             <div>
               <h4 className="font-semibold mb-4">Solutions</h4>
-              <ul className="space-y-2 text-gray-400">
-                <li><Link href="/solutions" className="hover:text-white">By Industry</Link></li>
-                <li><Link href="/consulting" className="hover:text-white">Consulting</Link></li>
-                <li><Link href="/training" className="hover:text-white">Training</Link></li>
+              <ul className="space-y-2 text-fg-3">
+                <li><Link href="/solutions" className="hover:text-fg">By Industry</Link></li>
+                <li><Link href="/consulting" className="hover:text-fg">Consulting</Link></li>
+                <li><Link href="/training" className="hover:text-fg">Training</Link></li>
               </ul>
             </div>
             <div>
               <h4 className="font-semibold mb-4">Resources</h4>
-              <ul className="space-y-2 text-gray-400">
-                <li><Link href="/blog" className="hover:text-white">Blog</Link></li>
-                <li><Link href="/podcast" className="hover:text-white">Podcast</Link></li>
-                <li><Link href="/portfolio" className="hover:text-white">Portfolio</Link></li>
+              <ul className="space-y-2 text-fg-3">
+                <li><Link href="/blog" className="hover:text-fg">Blog</Link></li>
+                <li><Link href="/podcast" className="hover:text-fg">Podcast</Link></li>
+                <li><Link href="/portfolio" className="hover:text-fg">Portfolio</Link></li>
               </ul>
             </div>
             <div>
               <h4 className="font-semibold mb-4">Company</h4>
-              <ul className="space-y-2 text-gray-400">
-                <li><Link href="/about" className="hover:text-white">About</Link></li>
-                <li><Link href="/contact" className="hover:text-white">Contact</Link></li>
-                <li><Link href="/partners" className="hover:text-white">Partners</Link></li>
+              <ul className="space-y-2 text-fg-3">
+                <li><Link href="/about" className="hover:text-fg">About</Link></li>
+                <li><Link href="/contact" className="hover:text-fg">Contact</Link></li>
+                <li><Link href="/partners" className="hover:text-fg">Partners</Link></li>
               </ul>
             </div>
           </div>
-          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+          <div className="border-t border-line-2 mt-8 pt-8 text-center text-fg-3">
             <p>&copy; 2024 FHIR IQ. All rights reserved.</p>
           </div>
         </div>

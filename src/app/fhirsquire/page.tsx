@@ -15,9 +15,9 @@ export default function FHIRSquirePage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-bg">
       {/* Navigation */}
-      <nav className="bg-white shadow-lg sticky top-0 z-50">
+      <nav className="bg-bg shadow-lg sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center gap-8">
@@ -25,8 +25,8 @@ export default function FHIRSquirePage() {
                 FHIR IQ
               </Link>
               <div className="flex items-center gap-2">
-                <span className="text-xl font-semibold text-gray-900">FHIRSquire</span>
-                <span className="bg-accent-purple text-white px-2 py-1 rounded text-xs font-bold">AI-POWERED</span>
+                <span className="text-xl font-semibold text-fg">FHIRSquire</span>
+                <span className="bg-accent-purple text-fg px-2 py-1 rounded text-xs font-bold">AI-POWERED</span>
               </div>
             </div>
             <div className="hidden md:flex space-x-6">
@@ -45,7 +45,7 @@ export default function FHIRSquirePage() {
       </nav>
 
       {/* Info Banner */}
-      <div className="bg-gradient-to-r from-accent-purple to-primary-blue text-white py-4">
+      <div className="bg-gradient-to-r from-accent-purple to-primary-blue text-fg py-4">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
@@ -60,7 +60,7 @@ export default function FHIRSquirePage() {
             </div>
             <Link
               href="/tools"
-              className="text-white hover:text-gray-200 text-sm font-semibold whitespace-nowrap"
+              className="text-fg hover:text-fg-2 text-sm font-semibold whitespace-nowrap"
             >
               View All Tools →
             </Link>
@@ -80,12 +80,12 @@ export default function FHIRSquirePage() {
       </div>
 
       {/* Footer Info */}
-      <div className="bg-gray-50 border-t border-gray-200 py-6">
+      <div className="bg-bg-2 border-t border-line py-6">
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid md:grid-cols-3 gap-6 text-center">
             <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Need Help?</h3>
-              <p className="text-sm text-gray-600 mb-2">
+              <h3 className="font-semibold text-fg mb-2">Need Help?</h3>
+              <p className="text-sm text-fg-2 mb-2">
                 Get expert guidance on FHIR profile implementation
               </p>
               <Link href="/consulting" className="text-primary-blue hover:underline text-sm font-semibold">
@@ -93,8 +93,8 @@ export default function FHIRSquirePage() {
               </Link>
             </div>
             <div>
-              <h3 className="font-semibold text-gray-900 mb-2">More Tools</h3>
-              <p className="text-sm text-gray-600 mb-2">
+              <h3 className="font-semibold text-fg mb-2">More Tools</h3>
+              <p className="text-sm text-fg-2 mb-2">
                 Explore our complete suite of FHIR development tools
               </p>
               <Link href="/tools" className="text-primary-blue hover:underline text-sm font-semibold">
@@ -102,8 +102,8 @@ export default function FHIRSquirePage() {
               </Link>
             </div>
             <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Learn More</h3>
-              <p className="text-sm text-gray-600 mb-2">
+              <h3 className="font-semibold text-fg mb-2">Learn More</h3>
+              <p className="text-sm text-fg-2 mb-2">
                 Training courses and resources for FHIR development
               </p>
               <Link href="/training" className="text-primary-blue hover:underline text-sm font-semibold">

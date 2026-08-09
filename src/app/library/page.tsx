@@ -247,9 +247,9 @@ export default function Library() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-bg">
       {/* Navigation */}
-      <nav className="bg-white shadow-lg">
+      <nav className="bg-bg shadow-lg">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center">
@@ -282,7 +282,7 @@ export default function Library() {
       </nav>
 
       {/* Hero */}
-      <section className="bg-gradient-to-r from-primary-blue to-accent-purple text-white py-16">
+      <section className="bg-gradient-to-r from-primary-blue to-accent-purple text-fg py-16">
         <div className="max-w-5xl mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
             Stop Writing Boilerplate
@@ -294,7 +294,7 @@ export default function Library() {
       </section>
 
       {/* Banner */}
-      <div className="bg-primary-green text-white py-3">
+      <div className="bg-primary-green text-fg py-3">
         <div className="max-w-5xl mx-auto px-4 text-center">
           <p className="text-sm">
             <strong>New:</strong> ViewDefinitions now aligned with SQL on FHIR IG v2.0 specification.{' '}
@@ -306,7 +306,7 @@ export default function Library() {
       </div>
 
       {/* Search & Filter */}
-      <section className="py-8 bg-gray-50 border-b">
+      <section className="py-8 bg-bg-2 border-b">
         <div className="max-w-6xl mx-auto px-4">
           <div className="flex flex-col md:flex-row gap-4">
             <div className="flex-1">
@@ -315,7 +315,7 @@ export default function Library() {
                 placeholder="Search ViewDefinitions..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-blue focus:border-transparent"
+                className="w-full px-4 py-3 rounded-lg border border-line-2 focus:outline-none focus:ring-2 focus:ring-primary-blue focus:border-transparent"
               />
             </div>
             <div className="flex gap-2 flex-wrap">
@@ -325,8 +325,8 @@ export default function Library() {
                   onClick={() => setSelectedResource(resource)}
                   className={`px-4 py-2 rounded-lg font-medium transition ${
                     selectedResource === resource
-                      ? 'bg-primary-blue text-white'
-                      : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
+                      ? 'bg-primary-blue text-fg'
+                      : 'bg-bg text-fg-2 border border-line-2 hover:bg-bg-2'
                   }`}
                 >
                   {resource === 'all' ? 'All Resources' : resource}
@@ -341,7 +341,7 @@ export default function Library() {
       <section className="py-12">
         <div className="max-w-6xl mx-auto px-4">
           <div className="mb-6 flex items-center justify-between">
-            <p className="text-gray-600">
+            <p className="text-fg-2">
               Showing {filteredDefinitions.length} of {VIEW_DEFINITIONS.length} ViewDefinitions
             </p>
             <a
@@ -356,28 +356,28 @@ export default function Library() {
 
           <div className="space-y-6">
             {filteredDefinitions.map((def) => (
-              <div key={def.id} className="bg-white rounded-xl border border-gray-200 overflow-hidden hover:shadow-lg transition">
+              <div key={def.id} className="bg-bg rounded-xl border border-line overflow-hidden hover:shadow-lg transition">
                 <div className="p-6">
                   <div className="flex items-start justify-between mb-4">
                     <div>
                       <div className="flex items-center gap-3 mb-2">
-                        <h3 className="text-xl font-semibold text-gray-900">{def.name}</h3>
+                        <h3 className="text-xl font-semibold text-fg">{def.name}</h3>
                         <span className="bg-primary-blue/10 text-primary-blue px-2 py-1 rounded text-xs font-medium">
                           {def.resource}
                         </span>
-                        <span className="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs font-medium">
+                        <span className="bg-bg-2 text-fg-2 px-2 py-1 rounded text-xs font-medium">
                           {def.profile}
                         </span>
                       </div>
-                      <p className="text-gray-600">{def.description}</p>
+                      <p className="text-fg-2">{def.description}</p>
                     </div>
                   </div>
 
                   <div className="mb-4">
-                    <p className="text-sm text-gray-500 mb-2">Columns:</p>
+                    <p className="text-sm text-fg-3 mb-2">Columns:</p>
                     <div className="flex flex-wrap gap-2">
                       {def.columns.map(col => (
-                        <code key={col} className="bg-gray-100 text-gray-700 px-2 py-1 rounded text-sm">
+                        <code key={col} className="bg-bg-2 text-fg-2 px-2 py-1 rounded text-sm">
                           {col}
                         </code>
                       ))}
@@ -386,12 +386,12 @@ export default function Library() {
 
                   <div className="grid md:grid-cols-2 gap-4">
                     {/* JSON */}
-                    <div className="bg-gray-900 rounded-lg overflow-hidden">
-                      <div className="flex items-center justify-between px-4 py-2 bg-gray-800">
-                        <span className="text-gray-400 text-sm">ViewDefinition JSON</span>
+                    <div className="bg-bg-2 rounded-lg overflow-hidden">
+                      <div className="flex items-center justify-between px-4 py-2 bg-bg-2">
+                        <span className="text-fg-3 text-sm">ViewDefinition JSON</span>
                         <button
                           onClick={() => copyToClipboard(JSON.stringify(def.viewDefinitionJson, null, 2), def.id, 'json')}
-                          className="text-gray-400 hover:text-white transition flex items-center gap-1 text-sm"
+                          className="text-fg-3 hover:text-fg transition flex items-center gap-1 text-sm"
                         >
                           {copiedId === `${def.id}-json` ? (
                             <>
@@ -410,18 +410,18 @@ export default function Library() {
                           )}
                         </button>
                       </div>
-                      <pre className="p-4 text-green-400 text-xs overflow-x-auto max-h-48">
+                      <pre className="p-4 text-fg-2 text-xs overflow-x-auto max-h-48">
                         {JSON.stringify(def.viewDefinitionJson, null, 2)}
                       </pre>
                     </div>
 
                     {/* SQL */}
-                    <div className="bg-gray-900 rounded-lg overflow-hidden">
-                      <div className="flex items-center justify-between px-4 py-2 bg-gray-800">
-                        <span className="text-gray-400 text-sm">Generated SQL (BigQuery)</span>
+                    <div className="bg-bg-2 rounded-lg overflow-hidden">
+                      <div className="flex items-center justify-between px-4 py-2 bg-bg-2">
+                        <span className="text-fg-3 text-sm">Generated SQL (BigQuery)</span>
                         <button
                           onClick={() => copyToClipboard(def.sqlSnippet, def.id, 'sql')}
-                          className="text-gray-400 hover:text-white transition flex items-center gap-1 text-sm"
+                          className="text-fg-3 hover:text-fg transition flex items-center gap-1 text-sm"
                         >
                           {copiedId === `${def.id}-sql` ? (
                             <>
@@ -440,7 +440,7 @@ export default function Library() {
                           )}
                         </button>
                       </div>
-                      <pre className="p-4 text-blue-400 text-xs overflow-x-auto max-h-48">
+                      <pre className="p-4 text-fg-2 text-xs overflow-x-auto max-h-48">
                         {def.sqlSnippet}
                       </pre>
                     </div>
@@ -452,19 +452,19 @@ export default function Library() {
 
           {filteredDefinitions.length === 0 && (
             <div className="text-center py-12">
-              <p className="text-gray-500">No ViewDefinitions match your search criteria.</p>
+              <p className="text-fg-3">No ViewDefinitions match your search criteria.</p>
             </div>
           )}
         </div>
       </section>
 
       {/* CTA */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-bg-2">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl font-bold text-fg mb-4">
             Need Custom ViewDefinitions?
           </h2>
-          <p className="text-xl text-gray-600 mb-8">
+          <p className="text-xl text-fg-2 mb-8">
             We can help you create ViewDefinitions tailored to your implementation guide or custom profiles.
           </p>
           <div className="flex gap-4 justify-center flex-wrap">
@@ -479,23 +479,23 @@ export default function Library() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12">
+      <footer className="bg-bg-2 text-fg py-12">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <div>
               <Link href="/" className="text-2xl font-bold">FHIR IQ</Link>
-              <p className="text-gray-400 mt-2">The Semantic Intelligence Layer for Healthcare</p>
+              <p className="text-fg-3 mt-2">The Semantic Intelligence Layer for Healthcare</p>
             </div>
             <div className="flex gap-8">
-              <Link href="/" className="text-gray-400 hover:text-white transition">Home</Link>
-              <Link href="/cql-to-sql" className="text-gray-400 hover:text-white transition">CQL-to-SQL</Link>
-              <Link href="/early-access" className="text-gray-400 hover:text-white transition">Design Partner Program</Link>
-              <Link href="/contact" className="text-gray-400 hover:text-white transition">Contact</Link>
+              <Link href="/" className="text-fg-3 hover:text-fg transition">Home</Link>
+              <Link href="/cql-to-sql" className="text-fg-3 hover:text-fg transition">CQL-to-SQL</Link>
+              <Link href="/early-access" className="text-fg-3 hover:text-fg transition">Design Partner Program</Link>
+              <Link href="/contact" className="text-fg-3 hover:text-fg transition">Contact</Link>
             </div>
           </div>
-          <div className="mt-8 pt-8 border-t border-gray-800 text-center">
-            <p className="text-gray-400">&copy; 2025 FHIR IQ. All rights reserved.</p>
-            <p className="text-sm text-gray-500 mt-2">
+          <div className="mt-8 pt-8 border-t border-line-2 text-center">
+            <p className="text-fg-3">&copy; 2025 FHIR IQ. All rights reserved.</p>
+            <p className="text-sm text-fg-3 mt-2">
               FHIR® is a registered trademark of Health Level Seven International (HL7®) and is used with permission.
             </p>
           </div>

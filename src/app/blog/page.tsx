@@ -4,33 +4,33 @@ import Link from 'next/link';
 
 export default function Blog() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-bg">
       {/* Navigation */}
-      <nav className="bg-white shadow-lg">
+      <nav className="bg-bg shadow-lg">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center">
-              <Link href="/" className="text-2xl font-bold text-blue-600">
+              <Link href="/" className="text-2xl font-bold text-fg">
                 FHIR IQ
               </Link>
             </div>
             <div className="hidden md:flex space-x-8">
-              <Link href="/products" className="text-gray-700 hover:text-blue-600">
+              <Link href="/products" className="text-fg-2 hover:text-fg">
                 Products
               </Link>
-              <Link href="/builder" className="text-gray-700 hover:text-blue-600">
+              <Link href="/builder" className="text-fg-2 hover:text-fg">
                 AI Builder
               </Link>
-              <Link href="/blog" className="text-blue-600 font-semibold">
+              <Link href="/blog" className="text-fg font-semibold">
                 Blog
               </Link>
-              <Link href="/podcast" className="text-gray-700 hover:text-blue-600">
+              <Link href="/podcast" className="text-fg-2 hover:text-fg">
                 Podcast
               </Link>
-              <Link href="/about" className="text-gray-700 hover:text-blue-600">
+              <Link href="/about" className="text-fg-2 hover:text-fg">
                 About
               </Link>
-              <Link href="/contact" className="text-gray-700 hover:text-blue-600">
+              <Link href="/contact" className="text-fg-2 hover:text-fg">
                 Contact
               </Link>
             </div>
@@ -39,7 +39,7 @@ export default function Blog() {
       </nav>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-purple-600 to-pink-600 text-white py-20">
+      <section className="bg-gradient-to-r from-bg-3 to-bg-3 text-fg py-20">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <h1 className="text-5xl font-bold mb-6">FHIR IQ Blog</h1>
           <p className="text-xl mb-8 max-w-3xl mx-auto">
@@ -53,10 +53,10 @@ export default function Blog() {
       <section className="py-16">
         <div className="max-w-6xl mx-auto px-4">
           <div className="mb-8 text-center">
-            <h2 className="text-3xl font-bold mb-4 text-gray-800">
+            <h2 className="text-3xl font-bold mb-4 text-fg">
               Read Our Latest Posts on Substack
             </h2>
-            <p className="text-lg text-gray-600 mb-6">
+            <p className="text-lg text-fg-2 mb-6">
               Follow our newsletter for in-depth articles about FHIR, healthcare interoperability, and AI innovations.
             </p>
             <div className="flex gap-4 justify-center mb-8">
@@ -64,7 +64,7 @@ export default function Blog() {
                 href="https://evestel.substack.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition"
+                className="bg-fg text-bg px-6 py-3 rounded-lg font-semibold hover:bg-fg transition"
               >
                 Visit Our Substack
               </a>
@@ -72,7 +72,7 @@ export default function Blog() {
                 href="https://evestel.substack.com/subscribe"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-purple-700 transition"
+                className="bg-bg-3 text-fg px-6 py-3 rounded-lg font-semibold hover:bg-bg-3 transition"
               >
                 Subscribe to Newsletter
               </a>
@@ -80,7 +80,7 @@ export default function Blog() {
           </div>
 
           {/* Substack Embed */}
-          <div className="bg-white rounded-lg shadow-xl p-4">
+          <div className="bg-bg rounded-lg shadow-xl p-4">
             <iframe
               src="https://evestel.substack.com/embed"
               width="100%"
@@ -95,19 +95,19 @@ export default function Blog() {
       </section>
 
       {/* Archive Link Section */}
-      <section className="bg-gray-50 py-12">
+      <section className="bg-bg-2 py-12">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <h3 className="text-2xl font-bold mb-4 text-gray-800">
+          <h3 className="text-2xl font-bold mb-4 text-fg">
             Looking for More Content?
           </h3>
-          <p className="text-lg text-gray-600 mb-6">
+          <p className="text-lg text-fg-2 mb-6">
             Browse our complete archive of articles, tutorials, and case studies.
           </p>
           <a
             href="https://evestel.substack.com/archive"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition"
+            className="inline-flex items-center bg-fg text-bg px-6 py-3 rounded-lg font-semibold hover:bg-fg transition"
           >
             View Full Archive
             <svg className="w-5 h-5 ml-2" viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -118,7 +118,7 @@ export default function Blog() {
       </section>
 
       {/* Newsletter Subscribe Section */}
-      <section className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-16">
+      <section className="bg-gradient-to-r from-bg-3 to-bg-3 text-fg py-16">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-6">
             Never Miss an Update
@@ -141,7 +141,7 @@ export default function Blog() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-800 text-white py-8">
+      <footer className="bg-bg-2 text-fg py-8">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <p>&copy; 2024 FHIR IQ. All rights reserved.</p>
         </div>

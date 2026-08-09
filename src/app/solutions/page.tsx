@@ -79,9 +79,9 @@ export default function Solutions() {
   ];
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-bg">
       {/* Navigation */}
-      <nav className="bg-white shadow-lg">
+      <nav className="bg-bg shadow-lg">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center">
@@ -120,7 +120,7 @@ export default function Solutions() {
       </nav>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-primary-navy to-primary-blue text-white py-20">
+      <section className="bg-gradient-to-r from-primary-navy to-primary-blue text-fg py-20">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <h1 className="text-5xl font-bold mb-6">FHIR Solutions by Industry</h1>
           <p className="text-xl mb-8 max-w-3xl mx-auto">
@@ -207,7 +207,7 @@ export default function Solutions() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-primary-blue text-white">
+      <section className="py-16 bg-primary-blue text-fg">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-6">
             Ready to Transform Your FHIR Implementation?
@@ -219,13 +219,13 @@ export default function Solutions() {
           <div className="flex gap-4 justify-center">
             <Link
               href="/contact"
-              className="bg-white text-primary-blue px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition"
+              className="bg-bg text-primary-blue px-8 py-3 rounded-lg font-semibold hover:bg-bg-2 transition"
             >
               Schedule Discovery Call
             </Link>
             <Link
               href="/tools"
-              className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-primary-blue transition"
+              className="border-2 border-white text-fg px-8 py-3 rounded-lg font-semibold hover:bg-bg hover:text-primary-blue transition"
             >
               Explore Our Tools
             </Link>
@@ -234,42 +234,42 @@ export default function Solutions() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-primary-navy text-white py-12">
+      <footer className="bg-primary-navy text-fg py-12">
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8">
             <div>
               <h3 className="text-xl font-bold mb-4">FHIR IQ</h3>
-              <p className="text-gray-400">
+              <p className="text-fg-3">
                 Leading healthcare interoperability solutions powered by AI and FHIR expertise.
               </p>
             </div>
             <div>
               <h4 className="font-semibold mb-4">Solutions</h4>
-              <ul className="space-y-2 text-gray-400">
-                <li><Link href="/solutions#payers" className="hover:text-white">Payers</Link></li>
-                <li><Link href="/solutions#providers" className="hover:text-white">Providers</Link></li>
-                <li><Link href="/solutions#aggregators" className="hover:text-white">Aggregators</Link></li>
-                <li><Link href="/solutions#pharma" className="hover:text-white">Pharma</Link></li>
+              <ul className="space-y-2 text-fg-3">
+                <li><Link href="/solutions#payers" className="hover:text-fg">Payers</Link></li>
+                <li><Link href="/solutions#providers" className="hover:text-fg">Providers</Link></li>
+                <li><Link href="/solutions#aggregators" className="hover:text-fg">Aggregators</Link></li>
+                <li><Link href="/solutions#pharma" className="hover:text-fg">Pharma</Link></li>
               </ul>
             </div>
             <div>
               <h4 className="font-semibold mb-4">Resources</h4>
-              <ul className="space-y-2 text-gray-400">
-                <li><Link href="/blog" className="hover:text-white">Blog</Link></li>
-                <li><Link href="/podcast" className="hover:text-white">Podcast</Link></li>
-                <li><Link href="/case-studies" className="hover:text-white">Case Studies</Link></li>
+              <ul className="space-y-2 text-fg-3">
+                <li><Link href="/blog" className="hover:text-fg">Blog</Link></li>
+                <li><Link href="/podcast" className="hover:text-fg">Podcast</Link></li>
+                <li><Link href="/case-studies" className="hover:text-fg">Case Studies</Link></li>
               </ul>
             </div>
             <div>
               <h4 className="font-semibold mb-4">Company</h4>
-              <ul className="space-y-2 text-gray-400">
-                <li><Link href="/about" className="hover:text-white">About</Link></li>
-                <li><Link href="/contact" className="hover:text-white">Contact</Link></li>
-                <li><Link href="/partners" className="hover:text-white">Partners</Link></li>
+              <ul className="space-y-2 text-fg-3">
+                <li><Link href="/about" className="hover:text-fg">About</Link></li>
+                <li><Link href="/contact" className="hover:text-fg">Contact</Link></li>
+                <li><Link href="/partners" className="hover:text-fg">Partners</Link></li>
               </ul>
             </div>
           </div>
-          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+          <div className="border-t border-line-2 mt-8 pt-8 text-center text-fg-3">
             <p>&copy; 2024 FHIR IQ. All rights reserved.</p>
           </div>
         </div>

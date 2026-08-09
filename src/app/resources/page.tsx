@@ -123,12 +123,12 @@ export default function ResourcesPage() {
 
   const getTypeColor = (type: string) => {
     switch (type) {
-      case 'guide': return 'bg-primary-blue text-white';
-      case 'game': return 'bg-accent-purple text-white';
-      case 'podcast': return 'bg-accent-teal text-white';
-      case 'substack': return 'bg-accent-orange text-white';
-      case 'tool': return 'bg-primary-green text-white';
-      default: return 'bg-gray-500 text-white';
+      case 'guide': return 'bg-primary-blue text-fg';
+      case 'game': return 'bg-accent-purple text-fg';
+      case 'podcast': return 'bg-accent-teal text-fg';
+      case 'substack': return 'bg-accent-orange text-fg';
+      case 'tool': return 'bg-primary-green text-fg';
+      default: return 'bg-bg-3 text-fg';
     }
   };
 
@@ -149,9 +149,9 @@ export default function ResourcesPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-bg">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-primary-blue to-accent-purple text-white py-20">
+      <section className="bg-gradient-to-r from-primary-blue to-accent-purple text-fg py-20">
         <div className="max-w-7xl mx-auto px-4">
           <div className="max-w-3xl">
             <h1 className="text-5xl font-bold mb-6">
@@ -161,14 +161,14 @@ export default function ResourcesPage() {
               Your comprehensive library of FHIR guides, tools, games, podcast episodes, and newsletter articles. Everything you need to master FHIR implementation.
             </p>
             <div className="flex gap-4">
-              <Link href="/consulting" className="bg-white text-primary-blue px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition">
+              <Link href="/consulting" className="bg-bg text-primary-blue px-6 py-3 rounded-lg font-semibold hover:bg-bg-2 transition">
                 Get Expert Help
               </Link>
               <a
                 href="https://evestel.substack.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white/10 transition"
+                className="border-2 border-white text-fg px-6 py-3 rounded-lg font-semibold hover:bg-white/10 transition"
               >
                 Subscribe to Newsletter
               </a>
@@ -179,7 +179,7 @@ export default function ResourcesPage() {
 
       {/* Featured Resources */}
       {featuredResources.length > 0 && (
-        <section className="py-12 bg-gray-50 border-b">
+        <section className="py-12 bg-bg-2 border-b">
           <div className="max-w-7xl mx-auto px-4">
             <h2 className="text-2xl font-bold mb-6 flex items-center">
               <span className="text-2xl mr-2">⭐</span>
@@ -190,20 +190,20 @@ export default function ResourcesPage() {
                 <Link
                   key={resource.id}
                   href={resource.url}
-                  className="bg-white border-2 border-primary-blue rounded-lg p-6 hover:shadow-lg transition"
+                  className="bg-bg border-2 border-primary-blue rounded-lg p-6 hover:shadow-lg transition"
                 >
                   <div className="flex items-center justify-between mb-3">
                     <span className={`text-xs font-bold px-3 py-1 rounded-full ${getTypeColor(resource.type)}`}>
                       {getTypeLabel(resource.type)}
                     </span>
-                    <span className="text-sm text-gray-500">{formatDate(resource.date)}</span>
+                    <span className="text-sm text-fg-3">{formatDate(resource.date)}</span>
                   </div>
                   <h3 className="text-xl font-bold mb-2">{resource.title}</h3>
-                  <p className="text-gray-600 text-sm mb-3">{resource.description}</p>
+                  <p className="text-fg-2 text-sm mb-3">{resource.description}</p>
                   {resource.tags && resource.tags.length > 0 && (
                     <div className="flex flex-wrap gap-2">
                       {resource.tags.map(tag => (
-                        <span key={tag} className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">
+                        <span key={tag} className="text-xs bg-bg-2 text-fg-2 px-2 py-1 rounded">
                           {tag}
                         </span>
                       ))}
@@ -217,7 +217,7 @@ export default function ResourcesPage() {
       )}
 
       {/* Search and Filter */}
-      <section className="py-8 bg-white border-b sticky top-0 z-10">
+      <section className="py-8 bg-bg border-b sticky top-0 z-10">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex flex-col lg:flex-row gap-4 items-center justify-between">
             {/* Search */}
@@ -228,10 +228,10 @@ export default function ResourcesPage() {
                   placeholder="Search resources..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full px-4 py-2 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-blue"
+                  className="w-full px-4 py-2 pl-10 border border-line-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-blue"
                 />
                 <svg
-                  className="absolute left-3 top-2.5 w-5 h-5 text-gray-400"
+                  className="absolute left-3 top-2.5 w-5 h-5 text-fg-3"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -249,8 +249,8 @@ export default function ResourcesPage() {
                   onClick={() => setSelectedType(type.id)}
                   className={`px-4 py-2 rounded-lg font-medium transition ${
                     selectedType === type.id
-                      ? 'bg-primary-blue text-white'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                      ? 'bg-primary-blue text-fg'
+                      : 'bg-bg-2 text-fg-2 hover:bg-bg-2'
                   }`}
                 >
                   <span className="mr-1">{type.icon}</span>
@@ -263,17 +263,17 @@ export default function ResourcesPage() {
       </section>
 
       {/* Resources Grid */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-bg">
         <div className="max-w-7xl mx-auto px-4">
           {filteredResources.length === 0 ? (
             <div className="text-center py-12">
               <div className="text-6xl mb-4">🔍</div>
-              <h3 className="text-2xl font-bold mb-2 text-gray-900">No resources found</h3>
-              <p className="text-gray-600">Try adjusting your search or filter criteria</p>
+              <h3 className="text-2xl font-bold mb-2 text-fg">No resources found</h3>
+              <p className="text-fg-2">Try adjusting your search or filter criteria</p>
             </div>
           ) : (
             <>
-              <div className="mb-6 text-gray-600">
+              <div className="mb-6 text-fg-2">
                 Showing {filteredResources.length} {filteredResources.length === 1 ? 'resource' : 'resources'}
               </div>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -281,20 +281,20 @@ export default function ResourcesPage() {
                   <Link
                     key={resource.id}
                     href={resource.url}
-                    className="bg-white border border-gray-200 rounded-lg p-6 hover:border-primary-blue hover:shadow-md transition"
+                    className="bg-bg border border-line rounded-lg p-6 hover:border-primary-blue hover:shadow-md transition"
                   >
                     <div className="flex items-center justify-between mb-3">
                       <span className={`text-xs font-bold px-3 py-1 rounded-full ${getTypeColor(resource.type)}`}>
                         {getTypeLabel(resource.type)}
                       </span>
-                      <span className="text-sm text-gray-500">{formatDate(resource.date)}</span>
+                      <span className="text-sm text-fg-3">{formatDate(resource.date)}</span>
                     </div>
                     <h3 className="text-lg font-bold mb-2">{resource.title}</h3>
-                    <p className="text-gray-600 text-sm mb-3 line-clamp-3">{resource.description}</p>
+                    <p className="text-fg-2 text-sm mb-3 line-clamp-3">{resource.description}</p>
                     {resource.tags && resource.tags.length > 0 && (
                       <div className="flex flex-wrap gap-2 mb-3">
                         {resource.tags.slice(0, 3).map(tag => (
-                          <span key={tag} className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">
+                          <span key={tag} className="text-xs bg-bg-2 text-fg-2 px-2 py-1 rounded">
                             {tag}
                           </span>
                         ))}
@@ -315,7 +315,7 @@ export default function ResourcesPage() {
       </section>
 
       {/* Podcast Section */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-bg-2">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-between mb-8">
             <div>
@@ -323,11 +323,11 @@ export default function ResourcesPage() {
                 <span className="text-3xl mr-3">🎙️</span>
                 Out of the FHIR Podcast
               </h2>
-              <p className="text-gray-600">Real-world implementation stories from healthcare technology leaders</p>
+              <p className="text-fg-2">Real-world implementation stories from healthcare technology leaders</p>
             </div>
             <Link
               href="/podcast"
-              className="bg-accent-teal text-white px-6 py-3 rounded-lg font-semibold hover:bg-accent-teal/90 transition"
+              className="bg-accent-teal text-fg px-6 py-3 rounded-lg font-semibold hover:bg-accent-teal/90 transition"
             >
               View All Episodes
             </Link>
@@ -335,10 +335,10 @@ export default function ResourcesPage() {
 
           <div className="grid md:grid-cols-3 gap-6">
             {/* Podcast episodes - these would come from your podcast feed */}
-            <div className="bg-white rounded-lg p-6 border border-gray-200">
+            <div className="bg-bg rounded-lg p-6 border border-line">
               <div className="text-accent-teal font-semibold text-sm mb-2">LATEST EPISODE</div>
               <h3 className="text-lg font-bold mb-2">Building a National Health Data Exchange</h3>
-              <p className="text-gray-600 text-sm mb-4">
+              <p className="text-fg-2 text-sm mb-4">
                 Interview with architects behind a nationwide FHIR-based health information exchange serving millions of patients.
               </p>
               <Link href="/podcast" className="text-accent-teal font-semibold text-sm hover:underline">
@@ -346,10 +346,10 @@ export default function ResourcesPage() {
               </Link>
             </div>
 
-            <div className="bg-white rounded-lg p-6 border border-gray-200">
+            <div className="bg-bg rounded-lg p-6 border border-line">
               <div className="text-accent-teal font-semibold text-sm mb-2">EPISODE</div>
               <h3 className="text-lg font-bold mb-2">Scaling FHIR for 10M+ Patients</h3>
-              <p className="text-gray-600 text-sm mb-4">
+              <p className="text-fg-2 text-sm mb-4">
                 How a major payer built a high-performance FHIR CDR handling billions of requests per month.
               </p>
               <Link href="/podcast" className="text-accent-teal font-semibold text-sm hover:underline">
@@ -357,10 +357,10 @@ export default function ResourcesPage() {
               </Link>
             </div>
 
-            <div className="bg-white rounded-lg p-6 border border-gray-200">
+            <div className="bg-bg rounded-lg p-6 border border-line">
               <div className="text-accent-teal font-semibold text-sm mb-2">EPISODE</div>
               <h3 className="text-lg font-bold mb-2">From HL7v2 to FHIR: Migration Stories</h3>
-              <p className="text-gray-600 text-sm mb-4">
+              <p className="text-fg-2 text-sm mb-4">
                 Lessons learned from migrating a legacy HL7v2 integration engine to modern FHIR APIs.
               </p>
               <Link href="/podcast" className="text-accent-teal font-semibold text-sm hover:underline">
@@ -372,7 +372,7 @@ export default function ResourcesPage() {
       </section>
 
       {/* Newsletter Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-bg">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-between mb-8">
             <div>
@@ -380,13 +380,13 @@ export default function ResourcesPage() {
                 <span className="text-3xl mr-3">📧</span>
                 FHIR IQ Newsletter
               </h2>
-              <p className="text-gray-600">Weekly insights on FHIR standards, implementation patterns, and industry news</p>
+              <p className="text-fg-2">Weekly insights on FHIR standards, implementation patterns, and industry news</p>
             </div>
             <a
               href="https://evestel.substack.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-accent-orange text-white px-6 py-3 rounded-lg font-semibold hover:bg-accent-orange/90 transition"
+              className="bg-accent-orange text-fg px-6 py-3 rounded-lg font-semibold hover:bg-accent-orange/90 transition"
             >
               Subscribe on Substack
             </a>
@@ -394,10 +394,10 @@ export default function ResourcesPage() {
 
           <div className="grid md:grid-cols-2 gap-6">
             {/* Newsletter posts - these would come from Substack RSS */}
-            <div className="bg-white rounded-lg p-6 border border-gray-200">
+            <div className="bg-bg rounded-lg p-6 border border-line">
               <div className="text-accent-orange font-semibold text-sm mb-2">LATEST POST</div>
               <h3 className="text-lg font-bold mb-2">FHIR R5 Preview: What&apos;s New for Implementers</h3>
-              <p className="text-gray-600 text-sm mb-4">
+              <p className="text-fg-2 text-sm mb-4">
                 A comprehensive overview of FHIR R5 changes, breaking changes, and migration strategies for existing implementations.
               </p>
               <a
@@ -410,10 +410,10 @@ export default function ResourcesPage() {
               </a>
             </div>
 
-            <div className="bg-white rounded-lg p-6 border border-gray-200">
+            <div className="bg-bg rounded-lg p-6 border border-line">
               <div className="text-accent-orange font-semibold text-sm mb-2">POST</div>
               <h3 className="text-lg font-bold mb-2">Bulk Data Access: Performance Optimization Guide</h3>
-              <p className="text-gray-600 text-sm mb-4">
+              <p className="text-fg-2 text-sm mb-4">
                 Best practices for implementing FHIR $export operations at scale, with benchmarks and real-world case studies.
               </p>
               <a
@@ -426,10 +426,10 @@ export default function ResourcesPage() {
               </a>
             </div>
 
-            <div className="bg-white rounded-lg p-6 border border-gray-200">
+            <div className="bg-bg rounded-lg p-6 border border-line">
               <div className="text-accent-orange font-semibold text-sm mb-2">POST</div>
               <h3 className="text-lg font-bold mb-2">SMART App Launch 2.0: Security Enhancements</h3>
-              <p className="text-gray-600 text-sm mb-4">
+              <p className="text-fg-2 text-sm mb-4">
                 Understanding the security improvements in SMART App Launch 2.0 and how to implement them in your apps.
               </p>
               <a
@@ -442,10 +442,10 @@ export default function ResourcesPage() {
               </a>
             </div>
 
-            <div className="bg-white rounded-lg p-6 border border-gray-200">
+            <div className="bg-bg rounded-lg p-6 border border-line">
               <div className="text-accent-orange font-semibold text-sm mb-2">POST</div>
               <h3 className="text-lg font-bold mb-2">US Core 7.0: Breaking Down the Changes</h3>
-              <p className="text-gray-600 text-sm mb-4">
+              <p className="text-fg-2 text-sm mb-4">
                 A detailed analysis of US Core 7.0 updates, new profiles, and what they mean for your implementation.
               </p>
               <a
@@ -462,7 +462,7 @@ export default function ResourcesPage() {
       </section>
 
       {/* Newsletter Signup */}
-      <section className="py-20 bg-gradient-to-r from-primary-blue to-accent-purple text-white">
+      <section className="py-20 bg-gradient-to-r from-primary-blue to-accent-purple text-fg">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-4xl font-bold mb-6">
             Stay Updated with FHIR IQ
@@ -474,9 +474,9 @@ export default function ResourcesPage() {
             <input
               type="email"
               placeholder="Enter your email"
-              className="flex-1 px-6 py-4 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-white"
+              className="flex-1 px-6 py-4 rounded-lg text-fg focus:outline-none focus:ring-2 focus:ring-white"
             />
-            <button className="bg-white text-primary-blue px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition">
+            <button className="bg-bg text-primary-blue px-8 py-4 rounded-lg font-semibold hover:bg-bg-2 transition">
               Subscribe
             </button>
           </div>
@@ -487,18 +487,18 @@ export default function ResourcesPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-bg">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="bg-gray-50 rounded-2xl p-12 text-center">
+          <div className="bg-bg-2 rounded-2xl p-12 text-center">
             <h2 className="text-3xl font-bold mb-4">Need Expert FHIR Guidance?</h2>
-            <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+            <p className="text-xl text-fg-2 mb-8 max-w-2xl mx-auto">
               Whether you&apos;re starting a new FHIR project or optimizing an existing implementation,
               our consulting services can help you succeed faster.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/consulting"
-                className="bg-primary-blue text-white px-8 py-4 rounded-lg font-semibold hover:bg-primary-blue/90 transition"
+                className="bg-primary-blue text-fg px-8 py-4 rounded-lg font-semibold hover:bg-primary-blue/90 transition"
               >
                 View Consulting Services
               </Link>
@@ -506,7 +506,7 @@ export default function ResourcesPage() {
                 href="https://calendar.app.google/TMvRGiiYfbBKNd889"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-white border-2 border-primary-blue text-primary-blue px-8 py-4 rounded-lg font-semibold hover:bg-gray-50 transition"
+                className="bg-bg border-2 border-primary-blue text-primary-blue px-8 py-4 rounded-lg font-semibold hover:bg-bg-2 transition"
               >
                 Schedule a Call
               </a>

@@ -53,10 +53,10 @@ function BigStat({ value, label, colorKey, sub, growth }: Stat) {
     <div className="flex flex-col gap-1">
       <div className="flex items-baseline gap-2 flex-wrap">
         <div className={`text-3xl font-mono font-semibold leading-none tracking-tight ${p.text}`}>{value}</div>
-        {growth && <span className="text-xs font-mono font-semibold text-emerald-600">{growth}</span>}
+        {growth && <span className="text-xs font-mono font-semibold text-fg">{growth}</span>}
       </div>
-      <div className="text-xs text-slate-600">{label}</div>
-      {sub && <div className="text-[10px] font-mono text-slate-400 mt-0.5">{sub}</div>}
+      <div className="text-xs text-fg-2">{label}</div>
+      {sub && <div className="text-[10px] font-mono text-fg-3 mt-0.5">{sub}</div>}
     </div>
   );
 }
@@ -64,7 +64,7 @@ function BigStat({ value, label, colorKey, sub, growth }: Stat) {
 function StackedBar({ data }: { data: Bar[] }) {
   return (
     <div className="flex flex-col gap-2.5">
-      <div className="flex w-full h-2.5 rounded overflow-hidden bg-slate-100">
+      <div className="flex w-full h-2.5 rounded overflow-hidden bg-bg-2">
         {data.map((d, i) => (
           <div key={i} className={palette[d.colorKey].solid} style={{ width: `${d.pct}%` }} />
         ))}
@@ -74,9 +74,9 @@ function StackedBar({ data }: { data: Bar[] }) {
           <div key={i} className="flex justify-between items-center text-xs">
             <div className="flex items-center gap-2">
               <div className={`w-2 h-2 rounded-sm ${palette[d.colorKey].solid}`} />
-              <span className="text-slate-700">{d.role}</span>
+              <span className="text-fg-2">{d.role}</span>
             </div>
-            <span className="text-slate-500 font-mono">{d.pct}%</span>
+            <span className="text-fg-3 font-mono">{d.pct}%</span>
           </div>
         ))}
       </div>
@@ -95,7 +95,7 @@ function SectionHeader({ children, colorKey }: { children: ReactNode; colorKey: 
 function Card({ children, accent }: { children: ReactNode; accent?: keyof typeof palette }) {
   return (
     <div
-      className={`bg-white rounded-xl border ${accent ? palette[accent].border : 'border-slate-200'} px-5 py-4 shadow-sm`}
+      className={`bg-bg rounded-xl border ${accent ? palette[accent].border : 'border-line-2'} px-5 py-4 shadow-sm`}
     >
       {children}
     </div>
@@ -108,10 +108,10 @@ function Card({ children, accent }: { children: ReactNode; accent?: keyof typeof
 
 function HeroReach() {
   return (
-    <div className="bg-white rounded-xl border border-slate-200 px-6 py-5 shadow-sm">
+    <div className="bg-bg rounded-xl border border-line px-6 py-5 shadow-sm">
       <div className="flex items-baseline justify-between mb-4 flex-wrap gap-2">
         <SectionHeader colorKey="teal">Aggregated ecosystem reach</SectionHeader>
-        <div className="text-[10px] font-mono text-slate-400">{meta.periodLabel}</div>
+        <div className="text-[10px] font-mono text-fg-3">{meta.periodLabel}</div>
       </div>
       <div className="grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))] gap-5">
         {heroStats.map((s, i) => (
@@ -129,7 +129,7 @@ function SubstackCard() {
         <SectionHeader colorKey="amber">FHIR IQ Playbook — Substack</SectionHeader>
         <Pill colorKey="amber" size="sm">PREMIUM NEWSLETTER</Pill>
       </div>
-      <p className="text-xs text-slate-600 leading-relaxed mb-3.5">{copy.substackFraming}</p>
+      <p className="text-xs text-fg-2 leading-relaxed mb-3.5">{copy.substackFraming}</p>
       <div className="grid grid-cols-[repeat(auto-fit,minmax(110px,1fr))] gap-3.5 mb-4">
         {substackStats.map((s, i) => (
           <BigStat key={i} {...s} />
@@ -137,12 +137,12 @@ function SubstackCard() {
       </div>
       <div className="grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-4">
         <div>
-          <div className="text-[10px] font-mono text-slate-400 uppercase tracking-widest mb-2">Top posts</div>
+          <div className="text-[10px] font-mono text-fg-3 uppercase tracking-widest mb-2">Top posts</div>
           <div className="flex flex-col gap-1.5">
             {substackTopPosts.slice(0, 5).map((p, i) => (
-              <div key={i} className="px-2.5 py-2 rounded-md bg-slate-50">
-                <div className="text-xs text-slate-800 leading-snug">{p.title}</div>
-                <div className="text-[10px] font-mono text-slate-400 mt-0.5">
+              <div key={i} className="px-2.5 py-2 rounded-md bg-bg-2">
+                <div className="text-xs text-fg leading-snug">{p.title}</div>
+                <div className="text-[10px] font-mono text-fg-3 mt-0.5">
                   {p.views.toLocaleString()} views · {p.openRate}% open · {p.date}
                 </div>
               </div>
@@ -150,19 +150,19 @@ function SubstackCard() {
           </div>
         </div>
         <div>
-          <div className="text-[10px] font-mono text-slate-400 uppercase tracking-widest mb-2">Subscriber sources (lifetime)</div>
+          <div className="text-[10px] font-mono text-fg-3 uppercase tracking-widest mb-2">Subscriber sources (lifetime)</div>
           <div className="flex flex-col gap-1.5">
             {substackGrowthSources.map((s) => (
-              <div key={s.source} className="flex justify-between items-center px-2.5 py-1.5 rounded-md bg-slate-50">
-                <span className="text-xs text-slate-800">{s.source}</span>
+              <div key={s.source} className="flex justify-between items-center px-2.5 py-1.5 rounded-md bg-bg-2">
+                <span className="text-xs text-fg">{s.source}</span>
                 <div className="flex gap-2 items-center">
-                  <span className="text-[10px] font-mono text-slate-400">{s.visitors.toLocaleString()} vis</span>
+                  <span className="text-[10px] font-mono text-fg-3">{s.visitors.toLocaleString()} vis</span>
                   <span className={`text-[11px] font-mono font-semibold ${palette[s.colorKey].text}`}>+{s.subs}</span>
                 </div>
               </div>
             ))}
           </div>
-          <div className="mt-2.5 text-[10px] font-mono text-slate-400">Top countries: {substackCountriesLine}</div>
+          <div className="mt-2.5 text-[10px] font-mono text-fg-3">Top countries: {substackCountriesLine}</div>
         </div>
       </div>
     </Card>
@@ -176,7 +176,7 @@ function PodcastTruthCard() {
         <SectionHeader colorKey="coral">Out of the FHIR podcast — Apple + Spotify combined</SectionHeader>
         <Pill colorKey="coral" size="sm">CREDIBILITY ASSET</Pill>
       </div>
-      <p className="text-xs text-slate-600 leading-relaxed mb-3.5">{copy.podcastFraming}</p>
+      <p className="text-xs text-fg-2 leading-relaxed mb-3.5">{copy.podcastFraming}</p>
       <div className="grid grid-cols-[repeat(auto-fit,minmax(110px,1fr))] gap-3.5 mb-4">
         {podcastStats.map((s, i) => (
           <BigStat key={i} {...s} />
@@ -184,34 +184,34 @@ function PodcastTruthCard() {
       </div>
       <div className="grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-4">
         <div>
-          <div className="text-[10px] font-mono text-slate-400 uppercase tracking-widest mb-2">Top listener cities (Apple)</div>
+          <div className="text-[10px] font-mono text-fg-3 uppercase tracking-widest mb-2">Top listener cities (Apple)</div>
           <div className="flex flex-col gap-1.5">
             {podcastGeo.map((g) => (
               <div key={g.city} className="flex items-center gap-2.5">
-                <span className="text-[11px] text-slate-800 min-w-[90px]">{g.city}</span>
-                <div className="flex-1 h-1.5 rounded-full bg-slate-100 overflow-hidden">
+                <span className="text-[11px] text-fg min-w-[90px]">{g.city}</span>
+                <div className="flex-1 h-1.5 rounded-full bg-bg-2 overflow-hidden">
                   <div className={`h-full ${palette[g.colorKey].solid}`} style={{ width: `${(g.listeners / 15) * 100}%` }} />
                 </div>
-                <span className="text-[11px] font-mono text-slate-500 min-w-[24px] text-right">{g.listeners}</span>
+                <span className="text-[11px] font-mono text-fg-3 min-w-[24px] text-right">{g.listeners}</span>
               </div>
             ))}
           </div>
         </div>
         <div>
-          <div className="text-[10px] font-mono text-slate-400 uppercase tracking-widest mb-2">Top episodes (combined plays)</div>
+          <div className="text-[10px] font-mono text-fg-3 uppercase tracking-widest mb-2">Top episodes (combined plays)</div>
           <div className="flex flex-col gap-1.5">
             {podcastTopEpisodes.slice(0, 5).map((e, i) => (
-              <div key={i} className="flex justify-between items-center px-2.5 py-1.5 rounded-md bg-slate-50">
-                <span className="text-[11px] text-slate-800 flex-1 mr-2">
+              <div key={i} className="flex justify-between items-center px-2.5 py-1.5 rounded-md bg-bg-2">
+                <span className="text-[11px] text-fg flex-1 mr-2">
                   {e.num} · {e.title}
                 </span>
-                <span className="text-[11px] font-mono font-semibold text-rose-600">{e.total}</span>
+                <span className="text-[11px] font-mono font-semibold text-fg">{e.total}</span>
               </div>
             ))}
           </div>
         </div>
       </div>
-      <div className="mt-3.5 px-3 py-2.5 rounded-lg bg-rose-50 text-xs text-rose-700 leading-relaxed">
+      <div className="mt-3.5 px-3 py-2.5 rounded-lg bg-bg-2 text-xs text-fg leading-relaxed">
         Every listener city is a US healthcare interop hub. Zero off-target waste.
       </div>
     </Card>
@@ -225,13 +225,13 @@ function SubstackPodcastCard() {
         <SectionHeader colorKey="amber">Substack RSS — episode download durability</SectionHeader>
         <Pill colorKey="amber" size="sm">LONG-TAIL</Pill>
       </div>
-      <p className="text-xs text-slate-600 leading-relaxed mb-3.5">{copy.substackPodcastFraming}</p>
+      <p className="text-xs text-fg-2 leading-relaxed mb-3.5">{copy.substackPodcastFraming}</p>
       <div className="grid grid-cols-[repeat(auto-fit,minmax(140px,1fr))] gap-3.5">
         {substackPodcastStats.map((s, i) => (
           <BigStat key={i} {...s} />
         ))}
       </div>
-      <div className="mt-3.5 px-3 py-2.5 rounded-lg bg-amber-50 text-xs text-amber-700 leading-relaxed">
+      <div className="mt-3.5 px-3 py-2.5 rounded-lg bg-bg-2 text-xs text-fg leading-relaxed">
         Translation: a mid-roll sponsor placement keeps earning impressions for 90+ days post-publish.
       </div>
     </Card>
@@ -245,15 +245,15 @@ function GuestRosterCard() {
         <SectionHeader colorKey="purple">Guest roster — the ecosystem bench</SectionHeader>
         <Pill colorKey="purple" size="sm">SPONSOR DRAW</Pill>
       </div>
-      <p className="text-xs text-slate-600 leading-relaxed mb-3.5">{copy.guestFraming}</p>
+      <p className="text-xs text-fg-2 leading-relaxed mb-3.5">{copy.guestFraming}</p>
       <div className="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-2">
         {notableGuests.map((g) => (
           <div
             key={g.name}
-            className={`px-3 py-2.5 rounded-md bg-slate-50 border-l-2 ${palette[g.colorKey].leftBorder}`}
+            className={`px-3 py-2.5 rounded-md bg-bg-2 border-l-2 ${palette[g.colorKey].leftBorder}`}
           >
-            <div className="text-xs font-semibold text-slate-800">{g.name}</div>
-            <div className="text-[11px] text-slate-600 mt-0.5">{g.credential}</div>
+            <div className="text-xs font-semibold text-fg">{g.name}</div>
+            <div className="text-[11px] text-fg-2 mt-0.5">{g.credential}</div>
           </div>
         ))}
       </div>
@@ -267,15 +267,15 @@ function PlatformGrid() {
       {platforms.map((p) => (
         <div
           key={p.name}
-          className={`bg-white rounded-lg border px-4 py-3.5 shadow-sm ${p.verified ? 'border-slate-200' : 'border-amber-200 opacity-70'}`}
+          className={`bg-bg rounded-lg border px-4 py-3.5 shadow-sm ${p.verified ? 'border-line-2' : 'border-line-2 opacity-70'}`}
         >
           <div className="flex justify-between items-start mb-2 gap-1.5">
-            <span className="text-xs text-slate-600 font-medium">{p.name}</span>
+            <span className="text-xs text-fg-2 font-medium">{p.name}</span>
             <Pill colorKey={p.colorKey} size="sm">{p.growth}</Pill>
           </div>
           <div className={`text-2xl font-mono font-semibold leading-none ${palette[p.colorKey].text}`}>{p.metric}</div>
-          <div className="text-[11px] text-slate-400 mt-1">{p.sub}</div>
-          <div className="text-[11px] text-slate-600 mt-1.5 pt-1.5 border-t border-slate-100">{p.detail}</div>
+          <div className="text-[11px] text-fg-3 mt-1">{p.sub}</div>
+          <div className="text-[11px] text-fg-2 mt-1.5 pt-1.5 border-t border-line-2">{p.detail}</div>
         </div>
       ))}
     </div>
@@ -289,7 +289,7 @@ function PlatformGrid() {
 function SponsorView() {
   return (
     <div className="flex flex-col gap-4">
-      <p className="text-xs text-slate-600 leading-relaxed px-0.5">{copy.sponsorIntro}</p>
+      <p className="text-xs text-fg-2 leading-relaxed px-0.5">{copy.sponsorIntro}</p>
 
       <HeroReach />
       <SubstackCard />
@@ -322,19 +322,19 @@ function SponsorView() {
       <Card>
         <div className="flex justify-between items-center mb-3.5 flex-wrap gap-2">
           <SectionHeader colorKey="teal">Rare-opportunity inventory — calibrated to actual asset</SectionHeader>
-          <span className="text-[10px] font-mono text-slate-400">Ordered by revenue priority</span>
+          <span className="text-[10px] font-mono text-fg-3">Ordered by revenue priority</span>
         </div>
         <div className="flex flex-col gap-2">
           {sponsorInventory.map((s, i) => (
-            <div key={i} className="flex gap-3.5 px-4 py-3.5 rounded-lg bg-slate-50 items-start">
+            <div key={i} className="flex gap-3.5 px-4 py-3.5 rounded-lg bg-bg-2 items-start">
               <div className={`w-[3px] self-stretch rounded ${palette[s.colorKey].solid} flex-shrink-0`} />
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 flex-wrap">
-                  <span className="text-[11px] font-mono text-slate-400">#{s.priority}</span>
-                  <span className="text-[13px] font-semibold text-slate-800">{s.tier}</span>
+                  <span className="text-[11px] font-mono text-fg-3">#{s.priority}</span>
+                  <span className="text-[13px] font-semibold text-fg">{s.tier}</span>
                   {s.scarce && <Pill colorKey="coral" size="sm">SCARCE</Pill>}
                 </div>
-                <p className="text-xs text-slate-600 mt-1 leading-relaxed">{s.note}</p>
+                <p className="text-xs text-fg-2 mt-1 leading-relaxed">{s.note}</p>
               </div>
               <div className={`text-[13px] font-mono font-semibold whitespace-nowrap ${palette[s.colorKey].text}`}>{s.price}</div>
             </div>
@@ -350,7 +350,7 @@ function SponsorView() {
 function AdvisoryView() {
   return (
     <div className="flex flex-col gap-4">
-      <p className="text-xs text-slate-600 leading-relaxed px-0.5">{copy.advisoryIntro}</p>
+      <p className="text-xs text-fg-2 leading-relaxed px-0.5">{copy.advisoryIntro}</p>
 
       <HeroReach />
       <SubstackCard />
@@ -360,9 +360,9 @@ function AdvisoryView() {
         <SectionHeader colorKey="amber">Authority + credibility signals</SectionHeader>
         <div className="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-2.5 mt-3.5">
           {authoritySignals.map((s, i) => (
-            <div key={i} className="flex gap-2.5 px-3.5 py-3 rounded-lg bg-slate-50 items-center">
+            <div key={i} className="flex gap-2.5 px-3.5 py-3 rounded-lg bg-bg-2 items-center">
               <div className={`w-2 h-2 rounded-full ${palette[s.colorKey].solid} flex-shrink-0`} />
-              <span className="text-xs text-slate-800 leading-snug">{s.label}</span>
+              <span className="text-xs text-fg leading-snug">{s.label}</span>
             </div>
           ))}
         </div>
@@ -372,12 +372,12 @@ function AdvisoryView() {
         <SectionHeader colorKey="purple">Owned ecosystem assets</SectionHeader>
         <div className="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-2.5 mt-3.5">
           {ownedAssets.map((a) => (
-            <div key={a.name} className="px-4 py-3.5 rounded-lg bg-slate-50">
+            <div key={a.name} className="px-4 py-3.5 rounded-lg bg-bg-2">
               <div className="flex items-center gap-2 mb-1.5">
                 <div className={`w-1.5 h-1.5 rounded-full ${palette[a.colorKey].solid}`} />
-                <span className="text-[13px] font-semibold text-slate-800">{a.name}</span>
+                <span className="text-[13px] font-semibold text-fg">{a.name}</span>
               </div>
-              <p className="text-xs text-slate-600 leading-relaxed">{a.desc}</p>
+              <p className="text-xs text-fg-2 leading-relaxed">{a.desc}</p>
             </div>
           ))}
         </div>
@@ -401,15 +401,15 @@ function AdvisoryView() {
 function CoachingView() {
   return (
     <div className="flex flex-col gap-4">
-      <p className="text-xs text-slate-600 leading-relaxed px-0.5">{copy.coachingIntro}</p>
+      <p className="text-xs text-fg-2 leading-relaxed px-0.5">{copy.coachingIntro}</p>
 
       <Card>
         <SectionHeader colorKey="purple">Who I work with</SectionHeader>
         <div className="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-3 mt-4">
           {coachingClientTypes.map((w) => (
-            <div key={w.label} className={`px-4 py-3.5 rounded-lg bg-slate-50 border-l-2 ${palette[w.colorKey].border.replace('border-', 'border-l-')}`}>
-              <div className="text-[13px] font-semibold text-slate-800">{w.label}</div>
-              <div className="text-[11px] text-slate-600 mt-1">{w.desc}</div>
+            <div key={w.label} className={`px-4 py-3.5 rounded-lg bg-bg-2 border-l-2 ${palette[w.colorKey].border.replace('border-', 'border-l-')}`}>
+              <div className="text-[13px] font-semibold text-fg">{w.label}</div>
+              <div className="text-[11px] text-fg-2 mt-1">{w.desc}</div>
             </div>
           ))}
         </div>
@@ -428,14 +428,14 @@ function CoachingView() {
         <SectionHeader colorKey="coral">Engagement tiers</SectionHeader>
         <div className="flex flex-col gap-2 mt-3.5">
           {advisoryOffers.map((o, i) => (
-            <div key={i} className="px-3.5 py-3 rounded-lg bg-slate-50">
+            <div key={i} className="px-3.5 py-3 rounded-lg bg-bg-2">
               <div className="flex justify-between items-center gap-2.5 flex-wrap">
-                <div className="text-[13px] font-semibold text-slate-800">{o.name}</div>
-                <div className="text-[13px] font-mono font-semibold text-sky-600">{o.price}</div>
+                <div className="text-[13px] font-semibold text-fg">{o.name}</div>
+                <div className="text-[13px] font-mono font-semibold text-fg">{o.price}</div>
               </div>
               <div className="flex gap-3.5 mt-1 flex-wrap">
-                <span className="text-xs text-slate-600">{o.who}</span>
-                <span className="text-xs font-mono text-slate-400">· {o.format}</span>
+                <span className="text-xs text-fg-2">{o.who}</span>
+                <span className="text-xs font-mono text-fg-3">· {o.format}</span>
               </div>
             </div>
           ))}
@@ -451,10 +451,10 @@ function CoachingView() {
           {coachingProof.map((p, i) => (
             <div
               key={i}
-              className={`px-4 py-4 rounded-lg bg-slate-50 border-l-2 ${palette[p.colorKey].border.replace('border-', 'border-l-')} ${p.placeholder ? 'opacity-70' : ''}`}
+              className={`px-4 py-4 rounded-lg bg-bg-2 border-l-2 ${palette[p.colorKey].border.replace('border-', 'border-l-')} ${p.placeholder ? 'opacity-70' : ''}`}
             >
-              <p className="text-[13px] text-slate-800 leading-relaxed italic">&ldquo;{p.quote}&rdquo;</p>
-              <div className="text-[11px] font-mono text-slate-400 mt-2">— {p.attribution}</div>
+              <p className="text-[13px] text-fg leading-relaxed italic">&ldquo;{p.quote}&rdquo;</p>
+              <div className="text-[11px] font-mono text-fg-3 mt-2">— {p.attribution}</div>
             </div>
           ))}
         </div>
@@ -462,7 +462,7 @@ function CoachingView() {
 
       <Card>
         <SectionHeader colorKey="amber">Why this works</SectionHeader>
-        <p className="text-[13px] text-slate-700 leading-relaxed mt-3.5">{copy.whyThisWorks}</p>
+        <p className="text-[13px] text-fg-2 leading-relaxed mt-3.5">{copy.whyThisWorks}</p>
       </Card>
 
       <ContactCTA />
@@ -472,7 +472,7 @@ function CoachingView() {
 
 function ContactCTA() {
   return (
-    <div className="bg-gradient-to-r from-accent-purple via-primary-blue to-primary-navy rounded-xl px-6 py-7 text-white mt-2">
+    <div className="bg-gradient-to-r from-accent-purple via-primary-blue to-primary-navy rounded-xl px-6 py-7 text-fg mt-2">
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
           <div className="text-lg font-semibold mb-1">Let&apos;s talk.</div>
@@ -483,7 +483,7 @@ function ContactCTA() {
         <div className="flex gap-2.5 flex-wrap">
           <a
             href="mailto:gene@fhiriq.com"
-            className="px-5 py-2.5 rounded-lg bg-white text-slate-900 text-sm font-semibold hover:bg-slate-100 transition-colors whitespace-nowrap"
+            className="px-5 py-2.5 rounded-lg bg-bg text-fg text-sm font-semibold hover:bg-bg-2 transition-colors whitespace-nowrap"
           >
             gene@fhiriq.com
           </a>
@@ -518,9 +518,9 @@ export default function MediaKitPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-bg">
       {/* Site nav */}
-      <nav className="bg-white shadow-sm sticky top-0 z-30">
+      <nav className="bg-bg shadow-sm sticky top-0 z-30">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between items-center py-4">
             <Link href="/" className="text-2xl font-bold text-primary-blue">
@@ -539,7 +539,7 @@ export default function MediaKitPage() {
       </nav>
 
       {/* Hero */}
-      <section className="bg-gradient-to-r from-accent-purple via-primary-blue to-primary-navy text-white">
+      <section className="bg-gradient-to-r from-accent-purple via-primary-blue to-primary-navy text-fg">
         <div className="max-w-7xl mx-auto px-4 py-16 md:py-20">
           <div className="flex flex-wrap items-center gap-3 mb-5">
             <span className="inline-flex items-center bg-white/15 backdrop-blur px-3 py-1 rounded-full text-xs font-medium">
@@ -555,10 +555,10 @@ export default function MediaKitPage() {
             Reach the healthcare interoperability ecosystem at decision-maker depth — sponsorship, advisory, and coaching opportunities across podcast, newsletter, group, and an active open-source surface.
           </p>
           <div className="flex flex-wrap gap-2">
-            <span className="text-[11px] font-mono px-2.5 py-1 rounded bg-emerald-500/20 text-emerald-100 border border-emerald-300/30">
+            <span className="text-[11px] font-mono px-2.5 py-1 rounded bg-bg-3 text-fg-2 border border-line-2">
               {meta.verifiedSources}
             </span>
-            <span className="text-[11px] font-mono px-2.5 py-1 rounded bg-amber-500/20 text-amber-100 border border-amber-300/30">
+            <span className="text-[11px] font-mono px-2.5 py-1 rounded bg-bg-3 text-fg-2 border border-line-2">
               {meta.pendingSources}
             </span>
           </div>
@@ -567,7 +567,7 @@ export default function MediaKitPage() {
 
       {/* Tabs */}
       <div className="max-w-7xl mx-auto px-4 -mt-5 relative z-10">
-        <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-1.5 inline-flex gap-1 overflow-x-auto max-w-full">
+        <div className="bg-bg rounded-xl border border-line shadow-sm p-1.5 inline-flex gap-1 overflow-x-auto max-w-full">
           {tabs.map((t) => (
             <button
               key={t.id}
@@ -575,12 +575,12 @@ export default function MediaKitPage() {
               onClick={() => setActiveTab(t.id)}
               className={`px-4 py-2.5 rounded-lg whitespace-nowrap text-left transition-colors ${
                 activeTab === t.id
-                  ? 'bg-slate-900 text-white'
-                  : 'text-slate-600 hover:bg-slate-50'
+                  ? 'bg-bg-2 text-fg'
+                  : 'text-fg-2 hover:bg-bg-2'
               }`}
             >
               <div className="text-[13px] font-medium">{t.label}</div>
-              <div className={`text-[10px] font-mono tracking-wide ${activeTab === t.id ? 'text-white/70' : 'text-slate-400'}`}>
+              <div className={`text-[10px] font-mono tracking-wide ${activeTab === t.id ? 'text-fg-2' : 'text-fg-3'}`}>
                 {t.sub}
               </div>
             </button>
@@ -594,12 +594,12 @@ export default function MediaKitPage() {
       </div>
 
       {/* Footer */}
-      <footer className="bg-slate-50 border-t border-slate-200 mt-8">
+      <footer className="bg-bg-2 border-t border-line mt-8">
         <div className="max-w-7xl mx-auto px-4 py-6 flex flex-wrap justify-between items-center gap-3">
-          <span className="text-xs text-slate-500">
+          <span className="text-xs text-fg-3">
             {meta.ownerName} · {meta.ownerSite} · <a href={`mailto:${meta.ownerEmail}`} className="hover:text-primary-blue">{meta.ownerEmail}</a>
           </span>
-          <span className="text-xs font-mono text-slate-400">{meta.sourcesLine}</span>
+          <span className="text-xs font-mono text-fg-3">{meta.sourcesLine}</span>
         </div>
       </footer>
     </div>

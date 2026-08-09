@@ -108,8 +108,8 @@ export default function LivePodcastMetrics({
         <div className="grid md:grid-cols-4 gap-8 text-center">
           {[1, 2, 3, 4].map((i) => (
             <div key={i} className="card">
-              <div className="h-12 bg-gray-200 rounded animate-pulse mb-2"></div>
-              <div className="h-4 bg-gray-100 rounded animate-pulse"></div>
+              <div className="h-12 bg-bg-2 rounded animate-pulse mb-2"></div>
+              <div className="h-4 bg-bg-2 rounded animate-pulse"></div>
             </div>
           ))}
         </div>
@@ -121,10 +121,10 @@ export default function LivePodcastMetrics({
     return (
       <div className={`${className}`}>
         <div className="text-center py-8">
-          <p className="text-red-600 mb-4">Failed to load podcast metrics</p>
+          <p className="text-fg mb-4">Failed to load podcast metrics</p>
           <button
             onClick={refreshMetrics}
-            className="bg-primary-blue text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
+            className="bg-primary-blue text-white px-4 py-2 rounded-lg hover:bg-bg-3 transition"
           >
             Retry
           </button>
@@ -142,7 +142,7 @@ export default function LivePodcastMetrics({
             {metrics.episodes}
           </div>
           <div className="text-neutral-gray">Episodes Published</div>
-          <div className="text-xs text-gray-400 mt-1">
+          <div className="text-xs text-fg-2 mt-1">
             📡 Substack Feed
           </div>
         </div>
@@ -152,7 +152,7 @@ export default function LivePodcastMetrics({
             {formatNumber(metrics.monthlyListeners)}
           </div>
           <div className="text-neutral-gray">Monthly Listeners</div>
-          <div className="text-xs text-gray-400 mt-1">
+          <div className="text-xs text-fg-2 mt-1">
             📊 Live Data
           </div>
         </div>
@@ -162,7 +162,7 @@ export default function LivePodcastMetrics({
             {formatNumber(metrics.subscribers)}
           </div>
           <div className="text-neutral-gray">Total Subscribers</div>
-          <div className="text-xs text-gray-400 mt-1">
+          <div className="text-xs text-fg-2 mt-1">
             🌐 All Platforms
           </div>
         </div>
@@ -172,7 +172,7 @@ export default function LivePodcastMetrics({
             {metrics.countries}
           </div>
           <div className="text-neutral-gray">Countries Reached</div>
-          <div className="text-xs text-gray-400 mt-1">
+          <div className="text-xs text-fg-2 mt-1">
             🌍 Global Reach
           </div>
         </div>
@@ -181,49 +181,49 @@ export default function LivePodcastMetrics({
       {/* Platform Breakdown */}
       {showPlatformBreakdown && (
         <div className="grid md:grid-cols-4 gap-6 mb-8">
-          <div className="bg-orange-50 border border-orange-200 rounded-lg p-4 text-center">
-            <div className="text-2xl font-bold text-orange-600 mb-1">
+          <div className="bg-bg-2 border border-line-2 rounded-lg p-4 text-center">
+            <div className="text-2xl font-bold text-fg mb-1">
               {formatNumber(metrics.platforms.substack.subscribers)}
             </div>
-            <div className="text-sm text-orange-700 font-medium">📡 Substack</div>
-            <div className="text-xs text-orange-600">Subscribers</div>
+            <div className="text-sm text-fg font-medium">📡 Substack</div>
+            <div className="text-xs text-fg">Subscribers</div>
           </div>
 
-          <div className="bg-green-50 border border-green-200 rounded-lg p-4 text-center">
-            <div className="text-2xl font-bold text-green-600 mb-1">
+          <div className="bg-bg-2 border border-line-2 rounded-lg p-4 text-center">
+            <div className="text-2xl font-bold text-fg mb-1">
               {formatNumber(metrics.platforms.spotify.monthlyListeners)}
             </div>
-            <div className="text-sm text-green-700 font-medium">🎵 Spotify</div>
-            <div className="text-xs text-green-600">Monthly Listeners</div>
+            <div className="text-sm text-fg font-medium">🎵 Spotify</div>
+            <div className="text-xs text-fg">Monthly Listeners</div>
           </div>
 
-          <div className="bg-purple-50 border border-purple-200 rounded-lg p-4 text-center">
-            <div className="text-2xl font-bold text-purple-600 mb-1">
+          <div className="bg-bg-2 border border-line-2 rounded-lg p-4 text-center">
+            <div className="text-2xl font-bold text-fg mb-1">
               {formatNumber(metrics.platforms.apple.downloads)}
             </div>
-            <div className="text-sm text-purple-700 font-medium">🍎 Apple</div>
-            <div className="text-xs text-purple-600">Total Downloads</div>
+            <div className="text-sm text-fg font-medium">🍎 Apple</div>
+            <div className="text-xs text-fg">Total Downloads</div>
           </div>
 
-          <div className="bg-red-50 border border-red-200 rounded-lg p-4 text-center">
-            <div className="text-2xl font-bold text-red-600 mb-1">
+          <div className="bg-bg-2 border border-line-2 rounded-lg p-4 text-center">
+            <div className="text-2xl font-bold text-fg mb-1">
               {formatNumber(metrics.platforms.youtube.views)}
             </div>
-            <div className="text-sm text-red-700 font-medium">📺 YouTube</div>
-            <div className="text-xs text-red-600">Total Views</div>
+            <div className="text-sm text-fg font-medium">📺 YouTube</div>
+            <div className="text-xs text-fg">Total Views</div>
           </div>
         </div>
       )}
 
       {/* Status Footer */}
-      <div className="flex items-center justify-between text-sm text-gray-500 border-t pt-4">
+      <div className="flex items-center justify-between text-sm text-fg-2 border-t pt-4">
         <div className="flex items-center gap-2">
-          <div className={`w-2 h-2 rounded-full ${error ? 'bg-yellow-400' : 'bg-green-400'}`}></div>
+          <div className={`w-2 h-2 rounded-full ${error ? 'bg-bg-3' : 'bg-bg-3'}`}></div>
           <span>
             {error ? 'Using cached data' : 'Live metrics'}
           </span>
           {error && (
-            <span className="text-yellow-600 text-xs">({error})</span>
+            <span className="text-fg text-xs">({error})</span>
           )}
         </div>
 
@@ -239,7 +239,7 @@ export default function LivePodcastMetrics({
           <button
             onClick={refreshMetrics}
             disabled={loading}
-            className="text-primary-blue hover:text-blue-700 disabled:opacity-50 transition-colors"
+            className="text-primary-blue hover:text-fg disabled:opacity-50 transition-colors"
             title="Refresh metrics"
           >
             <svg
@@ -260,10 +260,10 @@ export default function LivePodcastMetrics({
       </div>
 
       {/* Growth Indicators */}
-      <div className="mt-6 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg p-4">
+      <div className="mt-6 bg-gradient-to-r from-bg-2 to-bg-2 rounded-lg p-4">
         <div className="text-center">
-          <h4 className="font-semibold text-gray-800 mb-2">📈 Growth Tracking</h4>
-          <p className="text-sm text-gray-600">
+          <h4 className="font-semibold text-fg mb-2">📈 Growth Tracking</h4>
+          <p className="text-sm text-fg">
             Metrics update every 5 minutes. Subscribe to see our community grow in real-time!
           </p>
         </div>

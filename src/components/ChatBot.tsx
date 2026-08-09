@@ -188,7 +188,7 @@ export default function ChatBot({ className = '' }: ChatBotProps) {
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="bg-white rounded-lg shadow-2xl w-96 h-96 flex flex-col border border-gray-200">
+        <div className="bg-white rounded-lg shadow-2xl w-96 h-96 flex flex-col border border-line-2">
           {/* Header */}
           <div className="bg-primary-blue text-white p-4 rounded-t-lg flex justify-between items-center">
             <div className="flex items-center space-x-2">
@@ -197,7 +197,7 @@ export default function ChatBot({ className = '' }: ChatBotProps) {
             </div>
             <button
               onClick={() => setIsOpen(false)}
-              className="text-white hover:text-gray-200 transition-colors"
+              className="text-white hover:text-fg-2 transition-colors"
               aria-label="Close chat"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -217,7 +217,7 @@ export default function ChatBot({ className = '' }: ChatBotProps) {
                   className={`max-w-[80%] p-3 rounded-lg ${
                     message.role === 'user'
                       ? 'bg-primary-blue text-white'
-                      : 'bg-gray-100 text-gray-800'
+                      : 'bg-bg-2 text-fg'
                   }`}
                 >
                   <p className="text-sm whitespace-pre-wrap">{message.content}</p>
@@ -231,7 +231,7 @@ export default function ChatBot({ className = '' }: ChatBotProps) {
             {/* Quick Suggestions */}
             {messages.length === 1 && !isLoading && (
               <div className="space-y-2">
-                <p className="text-sm text-gray-600">Quick questions to get you started:</p>
+                <p className="text-sm text-fg">Quick questions to get you started:</p>
                 {QUICK_SUGGESTIONS.map((suggestion, index) => (
                   <button
                     key={index}
@@ -247,11 +247,11 @@ export default function ChatBot({ className = '' }: ChatBotProps) {
             {/* Loading indicator */}
             {isLoading && (
               <div className="flex justify-start">
-                <div className="bg-gray-100 p-3 rounded-lg">
+                <div className="bg-bg-2 p-3 rounded-lg">
                   <div className="flex space-x-1">
-                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
-                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                    <div className="w-2 h-2 bg-bg-3 rounded-full animate-bounce"></div>
+                    <div className="w-2 h-2 bg-bg-3 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                    <div className="w-2 h-2 bg-bg-3 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
                   </div>
                 </div>
               </div>
@@ -261,7 +261,7 @@ export default function ChatBot({ className = '' }: ChatBotProps) {
           </div>
 
           {/* Input */}
-          <form onSubmit={handleSubmit} className="p-4 border-t border-gray-200">
+          <form onSubmit={handleSubmit} className="p-4 border-t border-line-2">
             <div className="flex space-x-2">
               <input
                 type="text"
@@ -269,13 +269,13 @@ export default function ChatBot({ className = '' }: ChatBotProps) {
                 onChange={(e) => setInputValue(e.target.value)}
                 onKeyPress={handleKeyPress}
                 placeholder="Ask me about FHIR..."
-                className="flex-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-blue focus:border-transparent"
+                className="flex-1 p-2 border border-line-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-blue focus:border-transparent"
                 disabled={isLoading}
               />
               <button
                 type="submit"
                 disabled={isLoading || !inputValue.trim()}
-                className="bg-primary-blue hover:bg-primary-navy disabled:bg-gray-400 text-white p-2 rounded-lg transition-colors"
+                className="bg-primary-blue hover:bg-primary-navy disabled:bg-bg-3 text-white p-2 rounded-lg transition-colors"
                 aria-label="Send message"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

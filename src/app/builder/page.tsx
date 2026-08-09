@@ -135,9 +135,9 @@ export default function Builder() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-bg">
       {/* Navigation */}
-      <nav className="bg-white shadow-lg">
+      <nav className="bg-bg shadow-lg">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center">
@@ -176,7 +176,7 @@ export default function Builder() {
       </nav>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-primary-green to-primary-blue text-white py-20">
+      <section className="bg-gradient-to-r from-primary-green to-primary-blue text-fg py-20">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <h1 className="text-5xl font-bold mb-6">FHIR Builder AI</h1>
           <p className="text-xl mb-8 max-w-3xl mx-auto">
@@ -186,7 +186,7 @@ export default function Builder() {
           <div className="flex gap-4 justify-center">
             <button
               onClick={() => setCurrentStep(1)}
-              className="bg-white text-primary-blue px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition"
+              className="bg-bg text-primary-blue px-8 py-3 rounded-lg font-semibold hover:bg-bg-2 transition"
             >
               Start Building Now
             </button>
@@ -194,7 +194,7 @@ export default function Builder() {
               href="https://fhir-viewdefinition-builder.vercel.app"
               target="_blank"
               rel="noopener noreferrer"
-              className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-primary-blue transition"
+              className="border-2 border-white text-fg px-8 py-3 rounded-lg font-semibold hover:bg-bg hover:text-primary-blue transition"
             >
               View Live Demo
             </a>
@@ -213,8 +213,8 @@ export default function Builder() {
                   <div
                     className={`w-10 h-10 rounded-full flex items-center justify-center font-semibold ${
                       step <= currentStep
-                        ? 'bg-primary-blue text-white'
-                        : 'bg-gray-200 text-gray-500'
+                        ? 'bg-primary-blue text-fg'
+                        : 'bg-bg-3 text-fg-3'
                     }`}
                   >
                     {step}
@@ -222,7 +222,7 @@ export default function Builder() {
                   {step < 4 && (
                     <div
                       className={`w-16 h-1 ${
-                        step < currentStep ? 'bg-primary-blue' : 'bg-gray-200'
+                        step < currentStep ? 'bg-primary-blue' : 'bg-bg-3'
                       }`}
                     />
                   )}
@@ -231,7 +231,7 @@ export default function Builder() {
             </div>
             <div className="flex justify-center mt-4">
               <div className="text-center">
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-fg-2">
                   Step {currentStep} of 4: {
                     currentStep === 1 ? 'Choose Application Type' :
                     currentStep === 2 ? 'Describe Requirements' :
@@ -282,7 +282,7 @@ export default function Builder() {
                       <span className="text-neutral-gray">{template.estimatedTime}</span>
                     </div>
 
-                    <div className="mt-4 pt-4 border-t border-gray-200">
+                    <div className="mt-4 pt-4 border-t border-line">
                       <a
                         href={template.demoUrl}
                         target="_blank"
@@ -325,7 +325,7 @@ export default function Builder() {
                       value={requirements}
                       onChange={(e) => setRequirements(e.target.value)}
                       placeholder="Example: I need a patient portal that shows upcoming appointments, lab results from the last 6 months, and allows patients to message their care team. It should integrate with standard FHIR APIs using Particle Health data aggregation and support SMART on FHIR authentication..."
-                      className="w-full h-32 p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-blue focus:border-transparent"
+                      className="w-full h-32 p-4 border border-line-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-blue focus:border-transparent"
                       rows={6}
                     />
                   </div>
@@ -340,7 +340,7 @@ export default function Builder() {
                     <button
                       onClick={handleRequirementsSubmit}
                       disabled={!requirements.trim()}
-                      className="btn-primary disabled:bg-gray-400"
+                      className="btn-primary disabled:bg-bg-3"
                     >
                       Generate Application
                     </button>
@@ -456,7 +456,7 @@ export default function Builder() {
                   <div className="relative">
                     <iframe
                       src={generatedApp.preview}
-                      className="w-full h-96 border border-gray-300 rounded-lg"
+                      className="w-full h-96 border border-line-2 rounded-lg"
                       title="Generated Application Preview"
                     />
                     <div className="absolute top-2 right-2">
@@ -464,7 +464,7 @@ export default function Builder() {
                         href={generatedApp.preview}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="bg-white text-primary-blue px-3 py-1 rounded shadow text-sm hover:bg-gray-100"
+                        className="bg-bg text-primary-blue px-3 py-1 rounded shadow text-sm hover:bg-bg-2"
                       >
                         Open in New Tab ↗
                       </a>
@@ -519,7 +519,7 @@ export default function Builder() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-primary-blue text-white">
+      <section className="py-16 bg-primary-blue text-fg">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-6">
             Ready to Build the Future of Healthcare?
@@ -530,13 +530,13 @@ export default function Builder() {
           <div className="flex gap-4 justify-center">
             <button
               onClick={() => setCurrentStep(1)}
-              className="bg-white text-primary-blue px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition"
+              className="bg-bg text-primary-blue px-8 py-3 rounded-lg font-semibold hover:bg-bg-2 transition"
             >
               Start Building Free
             </button>
             <Link
               href="/contact"
-              className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-primary-blue transition"
+              className="border-2 border-white text-fg px-8 py-3 rounded-lg font-semibold hover:bg-bg hover:text-primary-blue transition"
             >
               Schedule Demo
             </Link>
@@ -545,43 +545,43 @@ export default function Builder() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-primary-navy text-white py-12">
+      <footer className="bg-primary-navy text-fg py-12">
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8">
             <div>
               <h3 className="text-xl font-bold mb-4">FHIR IQ</h3>
-              <p className="text-gray-400">
+              <p className="text-fg-3">
                 Building the future of healthcare with AI-powered FHIR development tools.
               </p>
             </div>
             <div>
               <h4 className="font-semibold mb-4">Builder AI</h4>
-              <ul className="space-y-2 text-gray-400">
-                <li><a href="#" className="hover:text-white">Patient Portals</a></li>
-                <li><a href="#" className="hover:text-white">Provider Dashboards</a></li>
-                <li><a href="#" className="hover:text-white">Integration Tools</a></li>
-                <li><a href="#" className="hover:text-white">Custom Apps</a></li>
+              <ul className="space-y-2 text-fg-3">
+                <li><a href="#" className="hover:text-fg">Patient Portals</a></li>
+                <li><a href="#" className="hover:text-fg">Provider Dashboards</a></li>
+                <li><a href="#" className="hover:text-fg">Integration Tools</a></li>
+                <li><a href="#" className="hover:text-fg">Custom Apps</a></li>
               </ul>
             </div>
             <div>
               <h4 className="font-semibold mb-4">Resources</h4>
-              <ul className="space-y-2 text-gray-400">
-                <li><Link href="/tools" className="hover:text-white">All Tools</Link></li>
-                <li><Link href="/training" className="hover:text-white">Training</Link></li>
-                <li><Link href="/blog" className="hover:text-white">Blog</Link></li>
-                <li><Link href="/partners" className="hover:text-white">Partners</Link></li>
+              <ul className="space-y-2 text-fg-3">
+                <li><Link href="/tools" className="hover:text-fg">All Tools</Link></li>
+                <li><Link href="/training" className="hover:text-fg">Training</Link></li>
+                <li><Link href="/blog" className="hover:text-fg">Blog</Link></li>
+                <li><Link href="/partners" className="hover:text-fg">Partners</Link></li>
               </ul>
             </div>
             <div>
               <h4 className="font-semibold mb-4">Company</h4>
-              <ul className="space-y-2 text-gray-400">
-                <li><Link href="/about" className="hover:text-white">About</Link></li>
-                <li><Link href="/contact" className="hover:text-white">Contact</Link></li>
-                <li><Link href="/solutions" className="hover:text-white">Solutions</Link></li>
+              <ul className="space-y-2 text-fg-3">
+                <li><Link href="/about" className="hover:text-fg">About</Link></li>
+                <li><Link href="/contact" className="hover:text-fg">Contact</Link></li>
+                <li><Link href="/solutions" className="hover:text-fg">Solutions</Link></li>
               </ul>
             </div>
           </div>
-          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+          <div className="border-t border-line-2 mt-8 pt-8 text-center text-fg-3">
             <p>&copy; 2024 FHIR IQ. All rights reserved.</p>
           </div>
         </div>
