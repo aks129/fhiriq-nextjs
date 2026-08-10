@@ -504,7 +504,7 @@ export default function ArchitecturesPage() {
             </div>
 
             <div className="flex gap-4 pt-4 border-t">
-              <Link href="/builder" className="text-primary-blue font-semibold hover:underline">
+              <Link href="/lab" className="text-primary-blue font-semibold hover:underline">
                 Build SMART Apps →
               </Link>
             </div>

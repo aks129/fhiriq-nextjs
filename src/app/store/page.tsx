@@ -290,10 +290,10 @@ export default function Store() {
               FHIR IQ
             </Link>
             <div className="hidden md:flex space-x-8 items-center">
-              <Link href="/solutions" className="text-fg-2 hover:text-accent-teal font-medium">
+              <Link href="/lab" className="text-fg-2 hover:text-accent-teal font-medium">
                 Solutions
               </Link>
-              <Link href="/tools" className="text-fg-2 hover:text-accent-teal font-medium">
+              <Link href="/lab" className="text-fg-2 hover:text-accent-teal font-medium">
                 Tools
               </Link>
               <Link href="/store" className="text-accent-teal font-semibold">
@@ -485,7 +485,7 @@ export default function Store() {
               Contact Sales
             </Link>
             <Link
-              href="/solutions"
+              href="/lab"
               className="px-8 py-4 bg-accent-purple text-fg font-bold rounded-lg hover:bg-bg-3 transition-colors border-2 border-white"
             >
               View Solutions

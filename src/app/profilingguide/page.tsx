@@ -742,7 +742,7 @@ export default function ProfilingGuide() {
                 </li>
                 <li>
                   <a
-                    href="https://forge.fire.ly/"
+                    href="https://fire.ly/products/forge/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-fg hover:text-fg-2 underline font-medium"

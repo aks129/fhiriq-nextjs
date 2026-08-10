@@ -15,10 +15,10 @@ export default function Consulting() {
               </Link>
             </div>
             <div className="hidden md:flex space-x-8">
-              <Link href="/solutions" className="text-neutral-gray hover:text-primary-blue font-medium">
+              <Link href="/lab" className="text-neutral-gray hover:text-primary-blue font-medium">
                 Solutions
               </Link>
-              <Link href="/tools" className="text-neutral-gray hover:text-primary-blue font-medium">
+              <Link href="/lab" className="text-neutral-gray hover:text-primary-blue font-medium">
                 Tools
               </Link>
               <Link href="/training" className="text-neutral-gray hover:text-primary-blue font-medium">
@@ -71,7 +71,7 @@ export default function Consulting() {
                 Schedule Discovery Call
               </a>
               <Link
-                href="/portfolio"
+                href="/lab"
                 className="border-2 border-white text-fg px-8 py-4 rounded-lg font-semibold hover:bg-bg hover:text-primary-blue transition"
               >
                 View Case Studies
@@ -560,7 +560,7 @@ export default function Consulting() {
           </div>
 
           <div className="text-center mt-12">
-            <Link href="/portfolio" className="text-primary-blue font-semibold hover:underline">
+            <Link href="/lab" className="text-primary-blue font-semibold hover:underline">
               View More Case Studies →
             </Link>
           </div>
@@ -818,7 +818,7 @@ export default function Consulting() {
               Schedule Your Discovery Call
             </a>
             <Link
-              href="/portfolio"
+              href="/lab"
               className="border-2 border-white text-fg px-8 py-4 rounded-lg font-semibold hover:bg-bg hover:text-primary-blue transition text-lg"
             >
               See My Work
@@ -843,7 +843,7 @@ export default function Consulting() {
             <div>
               <h4 className="font-semibold mb-4">Solutions</h4>
               <ul className="space-y-2 text-fg-3">
-                <li><Link href="/solutions" className="hover:text-fg">By Industry</Link></li>
+                <li><Link href="/lab" className="hover:text-fg">By Industry</Link></li>
                 <li><Link href="/consulting" className="hover:text-fg">Consulting</Link></li>
                 <li><Link href="/training" className="hover:text-fg">Training</Link></li>
               </ul>
@@ -853,7 +853,7 @@ export default function Consulting() {
               <ul className="space-y-2 text-fg-3">
                 <li><Link href="/blog" className="hover:text-fg">Blog</Link></li>
                 <li><Link href="/podcast" className="hover:text-fg">Podcast</Link></li>
-                <li><Link href="/portfolio" className="hover:text-fg">Portfolio</Link></li>
+                <li><Link href="/lab" className="hover:text-fg">Portfolio</Link></li>
               </ul>
             </div>
             <div>
