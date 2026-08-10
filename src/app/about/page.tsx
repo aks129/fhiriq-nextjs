@@ -35,7 +35,7 @@ export default function About() {
               <Link href="/lab" className="text-neutral-gray hover:text-primary-blue font-medium">
                 Tools
               </Link>
-              <Link href="/resources" className="text-neutral-gray hover:text-primary-blue font-medium">
+              <Link href="/reference" className="text-neutral-gray hover:text-primary-blue font-medium">
                 Resources
               </Link>
               <Link href="/about" className="text-primary-blue font-semibold">

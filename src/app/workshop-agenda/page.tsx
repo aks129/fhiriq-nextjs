@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import { SLACK_INVITE, SLACK_FALLBACK_EMAIL, SLACK_FALLBACK_HREF } from '@/lib/cohort';
 import './workshop-agenda.css';
 
 export const metadata: Metadata = {
@@ -333,18 +334,20 @@ export default function WorkshopAgendaPage() {
             </div>
 
             <div className="call" style={{ marginTop: 36, maxWidth: 720 }}>
-              <div className="call-label">Slack — join now</div>
+              <div className="call-label">Slack</div>
               <h3>Cohort 00 workspace</h3>
               <div className="call-time" style={{ wordBreak: "break-all" }}>
-                join.slack.com/t/fhirbuilders/shared_invite/zt-405j5tykg-T9v8~nNaX9tFZZgzaj37Ow
+                {SLACK_INVITE
+                  ? SLACK_INVITE.replace(/^https:\/\//, "")
+                  : `Email ${SLACK_FALLBACK_EMAIL} and I'll send you an invite.`}
               </div>
               <a
                 className="call-link"
-                href="https://join.slack.com/t/fhirbuilders/shared_invite/zt-405j5tykg-T9v8~nNaX9tFZZgzaj37Ow"
-                target="_blank"
-                rel="noopener noreferrer"
+                href={SLACK_INVITE ?? SLACK_FALLBACK_HREF}
+                target={SLACK_INVITE ? "_blank" : undefined}
+                rel={SLACK_INVITE ? "noopener noreferrer" : undefined}
               >
-                Join the Slack
+                {SLACK_INVITE ? "Join the Slack" : "Request an invite"}
               </a>
             </div>
           </div>

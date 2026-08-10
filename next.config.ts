@@ -30,6 +30,9 @@ const nextConfig: NextConfig = {
       ...retired.map((source) => ({ source, destination: '/', permanent: true })),
       // The Lab now carries the live projects, so point old tool traffic there.
       { source: '/products', destination: '/lab', permanent: true },
+      // /resources was a card list that still advertised three archived
+      // products. /reference replaces it as the reference desk.
+      { source: '/resources', destination: '/reference', permanent: true },
       // /training sold three courses and two certifications that do not exist,
       // with cohort dates from February 2024 and invented "seats remaining"
       // counts. The real training funnel is the workshop, so send it there.

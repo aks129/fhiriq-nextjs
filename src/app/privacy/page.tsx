@@ -310,7 +310,7 @@ export default function PrivacyPolicy() {
               <ul className="space-y-2 text-fg-3">
                 <li><Link href="/blog" className="hover:text-fg">Blog</Link></li>
                 <li><Link href="/architectures" className="hover:text-fg">Architectures</Link></li>
-                <li><Link href="/resources" className="hover:text-fg">Guides</Link></li>
+                <li><Link href="/reference" className="hover:text-fg">Guides</Link></li>
               </ul>
             </div>
             <div>

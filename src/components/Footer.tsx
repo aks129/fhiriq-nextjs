@@ -5,19 +5,24 @@ import Link from 'next/link';
  * set as a masthead block plus three ruled columns.
  */
 
+// Two entries here used to point at the same place ("ViewDefinition Library"
+// and "The Lab" were both /lab) and "Fun & Games" survived the games section
+// it was named for. Each label now goes somewhere distinct.
 const COLUMNS = [
+  {
+    heading: 'Reference',
+    links: [
+      { href: '/agentguide', label: 'AI Agents on FHIR' },
+      { href: '/architectures', label: 'Architectures' },
+      { href: '/cqlguide', label: 'CQL & Quality' },
+      { href: '/reference', label: 'All references' },
+    ],
+  },
   {
     heading: 'Content',
     links: [
       { href: '/podcast', label: 'Podcast' },
       { href: '/blog', label: 'Newsletter' },
-      { href: '/resources', label: 'Guides & Resources' },
-    ],
-  },
-  {
-    heading: 'Tools',
-    links: [
-      { href: '/lab', label: 'ViewDefinition Library' },
       { href: '/lab', label: 'The Lab' },
       { href: 'https://healthclaw.io', label: 'HealthClaw', external: true },
     ],
@@ -26,13 +31,13 @@ const COLUMNS = [
     heading: 'Connect',
     links: [
       { href: '/about', label: 'About Eugene' },
+      { href: '/consulting', label: 'Advisory' },
       { href: '/contact', label: 'Contact' },
       {
         href: 'https://calendar.app.google/TMvRGiiYfbBKNd889',
         label: 'Book a Call',
         external: true,
       },
-      { href: '/resources', label: 'Fun & Games' },
       { href: '/privacy', label: 'Privacy' },
     ],
   },

@@ -133,7 +133,16 @@ const PROJECTS = [
   },
 ] as const;
 
+// The agent reference leads deliberately. It is the one subject here that
+// neither Dogwood nor Point-of-Care Partners covers, and the only one backed
+// by shipped code, so it is the strongest thing to put first.
 const RESOURCES = [
+  {
+    href: '/agentguide',
+    kind: 'Reference',
+    title: 'AI Agents on FHIR',
+    desc: 'Access patterns, scopes, redaction and audit',
+  },
   {
     href: '/architectures',
     kind: 'Reference',
@@ -151,12 +160,6 @@ const RESOURCES = [
     kind: 'Guide',
     title: 'FHIR Profiling',
     desc: 'Data modeling and profiling best practices',
-  },
-  {
-    href: '/mappingguide',
-    kind: 'Guide',
-    title: 'Mapping Wiki',
-    desc: 'Data mapping patterns and techniques',
   },
 ] as const;
 
@@ -551,7 +554,7 @@ export default async function Home() {
         </ul>
 
         <Link
-          href="/resources"
+          href="/reference"
           className="mt-7 inline-block border-b border-fg pb-0.5 text-sm font-medium text-fg transition-colors hover:border-fg hover:text-fg"
         >
           View all resources

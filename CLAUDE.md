@@ -121,6 +121,20 @@ So: **never write a testimonial, a customer name, a case-study metric, a headlin
 
 Claims about third parties are the same problem one step removed. `/partners` described HL7 International, HIMSS and NCQA as partners ("official collaboration on FHIR specification development"). Nothing in the repo substantiates that, and misstating a relationship with a standards body is worse than saying nothing. Ask before asserting any affiliation.
 
+## Positioning — what this site competes on
+
+The named competitors are **Dogwood Health Consulting** and **Point-of-Care Partners**, and they win on different things. Dogwood's authority is personal: Lloyd McKenzie is on the FHIR core team, and their site publishes **no free reference material** because it does not need to. POCP's moat is regulatory intelligence — the Regulatory Resource Center, HIT Perspectives, a podcast — which is policy rather than implementation.
+
+That leaves an unoccupied position, and it is the one this site takes: **free, implementation-level technical reference**, concentrated on the intersection neither competitor covers — **AI agents on FHIR data** and **digital quality measurement**. Both are backed by shipped code (HealthClaw, Open Quality), which is why they can be written from practice instead of opinion.
+
+Consequences for anything you add here:
+
+- `/reference` is the desk and `/agentguide` is the flagship. New technical writing belongs in that structure, not as another orphaned top-level route — which is exactly how `/cqlguide`, `/profilingguide`, `/architectures` and `/mappingguide` ended up invisible.
+- Do not put the reference material behind a signup. Free and ungated is the competitive move; POCP gates some of theirs.
+- Standards details on these pages are **checked against the spec, not recalled**. The SMART v2 scope syntax in `/agentguide` is verified against the SMART App Launch IG; `.rs` and `.read` are not interchangeable and the cruds letters are order-sensitive.
+
+**Verified credentials** (the credential wall in `page.tsx`): Outcomes — Payer Interoperability Analytics & AI Lead; NCQA Advisor, Quality Measurement; b.well Connected Health — Director of Data & Analytics; UPMC — 5 years Clinical Analytics; Analytics on FHIR speaker, 2025. HL7 Connectathon participation is publicly documented. **A specific IG authorship or work-group co-chair role is not** — do not name one without confirming which.
+
 ## Key routes
 
 | Route | Purpose |
@@ -134,9 +148,9 @@ Claims about third parties are the same problem one step removed. `/partners` de
 | `/workshop-agenda`, `/workshop-agenda/present` | Cohort 00 reference + slide deck |
 | `/investor`, `/early-access`, `/innovation-pilot-terms` | Legacy product-era pages, still live |
 
-Retired in the truth pass and redirected: `/games` (+3), `/library`, `/tools` (+1), `/fhirsquire`, `/solutions` (+1), `/builder`, `/portfolio`, `/products`, `/partners`, `/training`.
+Retired in the truth pass and redirected: `/games` (+3), `/library`, `/tools` (+1), `/fhirsquire`, `/solutions` (+1), `/builder`, `/portfolio`, `/products`, `/partners`, `/training`, `/resources` (→ `/reference`).
 
-39 routes total. Guides under `/cqlguide`, `/mappingguide`, `/profilingguide` are served from `public/`; `/mappingguide` is rewritten to its `index.html` in `next.config.ts`.
+40 routes total. Guides under `/cqlguide`, `/mappingguide`, `/profilingguide` are served from `public/`; `/mappingguide` is rewritten to its `index.html` in `next.config.ts`.
 
 ### Cohort funnel
 
