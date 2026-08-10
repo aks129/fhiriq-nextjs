@@ -13,11 +13,15 @@ interface ChatBotProps {
   className?: string;
 }
 
+// These prompt the visitor, so they must only name work that exists. Three of
+// the previous five pointed at archived products — the Prior Authorization
+// Platform (FPAS), the data quality scanner (FHIRspective) and FHIR Quiz — and
+// invited questions the assistant could only answer with a 404.
 const QUICK_SUGGESTIONS = [
-  "What products does FHIR IQ offer?",
-  "Tell me about the Prior Authorization Platform",
-  "How can I assess my FHIR data quality?",
-  "What's the FHIR Quiz training platform?",
+  "What is HealthClaw Guardrails?",
+  "How does CareAgents keep my health data private?",
+  "What's in the Open Quality measure corpus?",
+  "Tell me about the Out of the FHIR podcast",
   "How do I book a consultation?"
 ];
 
