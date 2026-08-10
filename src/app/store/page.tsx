@@ -406,11 +406,17 @@ export default function Store() {
                       )}
                     </div>
 
+                    {/*
+                      This opens a contact form, not a checkout. Labelling it
+                      "Purchase Now" made it read as a broken payment flow —
+                      the button promises a transaction and delivers an enquiry.
+                      Say what it does.
+                    */}
                     <Link
                       href={`/contact?product=${product.id}`}
                       className="block w-full text-center px-6 py-3 bg-accent-teal text-fg rounded-lg font-semibold hover:bg-accent-teal-dark transition-colors"
                     >
-                      Purchase Now
+                      Request access
                     </Link>
                   </div>
                 </div>

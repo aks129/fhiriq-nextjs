@@ -12,7 +12,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/media-kit`,           changeFrequency: 'monthly', priority: 0.7 },
     { url: `${BASE}/workshop`,            changeFrequency: 'weekly',  priority: 0.7 },
     { url: `${BASE}/builders`,            changeFrequency: 'weekly',  priority: 0.7 },
-    { url: `${BASE}/resources`,           changeFrequency: 'monthly', priority: 0.6 },
+    // The reference desk is the discovery surface competitors do not have,
+    // so it and the agent guide are ranked with the primary content.
+    { url: `${BASE}/reference`,           changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE}/agentguide`,          changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE}/consulting`,          changeFrequency: 'monthly', priority: 0.6 },
     { url: `${BASE}/architectures`,       changeFrequency: 'monthly', priority: 0.5 },
     { url: `${BASE}/cqlguide`,            changeFrequency: 'monthly', priority: 0.5 },

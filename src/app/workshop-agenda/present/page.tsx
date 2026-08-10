@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
+import { SLACK_INVITE, SLACK_FALLBACK_EMAIL } from "@/lib/cohort";
 import "./present.css";
 
 const FONT_LINK =
@@ -444,9 +445,11 @@ export default function PresentPage() {
               </div>
               <div style={{ marginTop: 32, display: "flex", gap: 24, alignItems: "flex-end", flexWrap: "wrap" }}>
                 <div className="qr-box" style={{ maxWidth: 520 }}>
-                  <div className="qr-label">Slack — join now</div>
+                  <div className="qr-label">Slack</div>
                   <div className="qr-url" style={{ fontSize: 13, wordBreak: "break-all" }}>
-                    join.slack.com/t/fhirbuilders/shared_invite/zt-405j5tykg-T9v8~nNaX9tFZZgzaj37Ow
+                    {SLACK_INVITE
+                      ? SLACK_INVITE.replace(/^https:\/\//, "")
+                      : `Email ${SLACK_FALLBACK_EMAIL} for an invite`}
                   </div>
                 </div>
                 <div

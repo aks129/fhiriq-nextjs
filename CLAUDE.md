@@ -119,7 +119,25 @@ The same rule that killed the placeholder episodes applies to people and numbers
 
 So: **never write a testimonial, a customer name, a case-study metric, a headline statistic, or a scarcity counter that you cannot trace to a real source.** Client work here is confidential, which means the honest substitute for social proof is the public work — the open-source repos, the podcast, the writing. That is what `/consulting` points at now.
 
-Claims about third parties are the same problem one step removed. `/partners` described HL7 International, HIMSS and NCQA as partners ("official collaboration on FHIR specification development"). Nothing in the repo substantiates that, and misstating a relationship with a standards body is worse than saying nothing. Ask before asserting any affiliation.
+Claims about third parties are the same problem one step removed. `/partners` described HL7 International, HIMSS and NCQA as partners ("official collaboration on FHIR specification development"). Retiring it was right on the framing even though a real NCQA relationship existed — a consulting engagement is not a partnership, and the gap between those two words is the whole problem. **Ask before asserting any affiliation, and state the actual shape of it.**
+
+The same drift showed up in tense. "NCQA advisor" appeared in the present tense in four places, as "Former NCQA Advisor" in a fifth and "NCQA collaborator" in a sixth, for what was a four-month engagement. When a role ends, fix every instance — grep the org name, do not fix the one you happened to be looking at.
+
+## Positioning — what this site competes on
+
+The named competitors are **Dogwood Health Consulting** and **Point-of-Care Partners**, and they win on different things. Dogwood's authority is personal: Lloyd McKenzie is on the FHIR core team, and their site publishes **no free reference material** because it does not need to. POCP's moat is regulatory intelligence — the Regulatory Resource Center, HIT Perspectives, a podcast — which is policy rather than implementation.
+
+That leaves an unoccupied position, and it is the one this site takes: **free, implementation-level technical reference**, concentrated on the intersection neither competitor covers — **AI agents on FHIR data** and **digital quality measurement**. Both are backed by shipped code (HealthClaw, Open Quality), which is why they can be written from practice instead of opinion.
+
+Consequences for anything you add here:
+
+- `/reference` is the desk and `/agentguide` is the flagship. New technical writing belongs in that structure, not as another orphaned top-level route — which is exactly how `/cqlguide`, `/profilingguide`, `/architectures` and `/mappingguide` ended up invisible.
+- Do not put the reference material behind a signup. Free and ungated is the competitive move; POCP gates some of theirs.
+- Standards details on these pages are **checked against the spec, not recalled**. The SMART v2 scope syntax in `/agentguide` is verified against the SMART App Launch IG; `.rs` and `.read` are not interchangeable and the cruds letters are order-sensitive.
+
+**Verified credentials** (the credential wall and the Standards section in `page.tsx`): Outcomes — Payer Interoperability Analytics & AI Lead; SQL on FHIR — HL7 working group; NCQA — consultant April to August 2025 (a defined engagement, not a standing advisory role): strategy for digital content services optimization and AI adoption, plus data quality strategy; b.well Connected Health — Director of Data & Analytics, hired and led their first FHIR team, stood up Analytics on FHIR and mapped the data for the interoperability platform now behind Samsung Health and Fitbit (both partnerships are public and press-released); UPMC — 5 years Clinical Analytics; HL7 FHIR DevDays speaker on HealthClaw; Analytics on FHIR 2025; FHIR Camp 2025; Agents on FHIR weekly working group; early CQL and CQL-to-SQL practitioner.
+
+**Still unconfirmed:** a specific implementation-guide authorship or work-group co-chair title. Participation in SQL on FHIR is stated; authorship of a named IG is not. Do not upgrade one into the other.
 
 ## Key routes
 
@@ -134,9 +152,9 @@ Claims about third parties are the same problem one step removed. `/partners` de
 | `/workshop-agenda`, `/workshop-agenda/present` | Cohort 00 reference + slide deck |
 | `/investor`, `/early-access`, `/innovation-pilot-terms` | Legacy product-era pages, still live |
 
-Retired in the truth pass and redirected: `/games` (+3), `/library`, `/tools` (+1), `/fhirsquire`, `/solutions` (+1), `/builder`, `/portfolio`, `/products`, `/partners`, `/training`.
+Retired in the truth pass and redirected: `/games` (+3), `/library`, `/tools` (+1), `/fhirsquire`, `/solutions` (+1), `/builder`, `/portfolio`, `/products`, `/partners`, `/training`, `/resources` (→ `/reference`).
 
-39 routes total. Guides under `/cqlguide`, `/mappingguide`, `/profilingguide` are served from `public/`; `/mappingguide` is rewritten to its `index.html` in `next.config.ts`.
+40 routes total. Guides under `/cqlguide`, `/mappingguide`, `/profilingguide` are served from `public/`; `/mappingguide` is rewritten to its `index.html` in `next.config.ts`.
 
 ### Cohort funnel
 

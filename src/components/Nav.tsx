@@ -15,7 +15,7 @@ const LINKS = [
   { href: '/podcast', label: 'Podcast' },
   { href: '/blog', label: 'Newsletter' },
   { href: '/lab', label: 'Lab' },
-  { href: '/resources', label: 'Resources' },
+  { href: '/reference', label: 'Reference' },
   { href: '/about', label: 'About' },
 ] as const;
 
