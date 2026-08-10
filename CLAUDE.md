@@ -133,7 +133,9 @@ Consequences for anything you add here:
 - Do not put the reference material behind a signup. Free and ungated is the competitive move; POCP gates some of theirs.
 - Standards details on these pages are **checked against the spec, not recalled**. The SMART v2 scope syntax in `/agentguide` is verified against the SMART App Launch IG; `.rs` and `.read` are not interchangeable and the cruds letters are order-sensitive.
 
-**Verified credentials** (the credential wall in `page.tsx`): Outcomes — Payer Interoperability Analytics & AI Lead; NCQA Advisor, Quality Measurement; b.well Connected Health — Director of Data & Analytics; UPMC — 5 years Clinical Analytics; Analytics on FHIR speaker, 2025. HL7 Connectathon participation is publicly documented. **A specific IG authorship or work-group co-chair role is not** — do not name one without confirming which.
+**Verified credentials** (the credential wall and the Standards section in `page.tsx`): Outcomes — Payer Interoperability Analytics & AI Lead; SQL on FHIR — HL7 working group; NCQA Advisor, Quality Measurement; b.well Connected Health — Director of Data & Analytics, hired and led their first FHIR team, stood up Analytics on FHIR and mapped the data for the interoperability platform now behind Samsung Health and Fitbit (both partnerships are public and press-released); UPMC — 5 years Clinical Analytics; HL7 FHIR DevDays speaker on HealthClaw; Analytics on FHIR 2025; FHIR Camp 2025; Agents on FHIR weekly working group; early CQL and CQL-to-SQL practitioner.
+
+**Still unconfirmed:** a specific implementation-guide authorship or work-group co-chair title. Participation in SQL on FHIR is stated; authorship of a named IG is not. Do not upgrade one into the other.
 
 ## Key routes
 

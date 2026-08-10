@@ -79,10 +79,58 @@ const PLATFORMS = [
 
 const CREDENTIALS = [
   { label: 'Outcomes', detail: 'Payer Interoperability Analytics & AI Lead' },
+  { label: 'SQL on FHIR', detail: 'HL7 working group' },
   { label: 'NCQA Advisor', detail: 'Quality Measurement' },
   { label: 'b.well Connected Health', detail: 'Director of Data & Analytics' },
   { label: 'UPMC Health System', detail: '5 years in Clinical Analytics' },
-  { label: 'Analytics on FHIR', detail: 'Conference Speaker · 2025' },
+  { label: 'HL7 FHIR DevDays', detail: 'Speaker · HealthClaw' },
+] as const;
+
+/**
+ * Standards work.
+ *
+ * This is the section that answers Dogwood, whose authority is personal
+ * rather than published — their site carries no free reference material
+ * because Lloyd McKenzie's name does the work. The counter is not to claim
+ * more, it is to show where the work actually happens and let it be checked.
+ *
+ * Every line here is either independently verifiable or Eugene's own work
+ * history. Nothing is inferred. In particular there is no named
+ * implementation-guide authorship or co-chair role, because that has not
+ * been confirmed — see the note in CLAUDE.md before adding one.
+ */
+const STANDARDS = [
+  {
+    heading: 'Working groups',
+    items: [
+      {
+        name: 'SQL on FHIR',
+        detail:
+          'HL7 working group behind ViewDefinition — the specification underneath the CQL-to-SQL work above, and the ViewDefinition packs in the library.',
+      },
+      {
+        name: 'Agents on FHIR',
+        detail:
+          'Weekly working group on what it takes to put agents against clinical data safely.',
+      },
+      {
+        name: 'Quality measurement community',
+        detail:
+          'Early CQL practitioner, and among the first doing CQL-to-SQL conversion for measures that have to execute at scale.',
+      },
+    ],
+  },
+  {
+    heading: 'Speaking',
+    items: [
+      {
+        name: 'HL7 FHIR DevDays',
+        detail: 'Presented HealthClaw — guardrails between AI agents and FHIR data.',
+      },
+      { name: 'Analytics on FHIR', detail: 'Conference speaker, 2025.' },
+      { name: 'FHIR Camp', detail: '2025.' },
+    ],
+  },
 ] as const;
 
 const PROJECTS = [
@@ -273,7 +321,7 @@ export default async function Home() {
       <section className="border-y border-line">
         <div className={`${SHELL} py-8`}>
           <p className="label mb-6">Track record</p>
-          <ul className="grid grid-cols-2 gap-x-8 gap-y-7 md:grid-cols-5">
+          <ul className="grid grid-cols-2 gap-x-8 gap-y-7 md:grid-cols-3 lg:grid-cols-6">
             {CREDENTIALS.map((c, i) => (
               <li key={c.label}>
                 <p
@@ -296,6 +344,41 @@ export default async function Home() {
           </ul>
         </div>
       </section>
+
+      {/* ------------------------------------------------------- standards */}
+      <Section label="Standards">
+        <div className="reveal">
+          <H2>Where the work happens</H2>
+          <p className="measure mt-5 text-lg leading-relaxed text-fg-2">
+            I hired and led{' '}
+            <span className="text-fg">b.well Connected Health</span>&apos;s first
+            FHIR team, stood up Analytics on FHIR there, and mapped the data for
+            the interoperability platform now behind{' '}
+            <span className="text-fg">Samsung Health</span> and{' '}
+            <span className="text-fg">Fitbit</span>&apos;s medical records. The
+            standards work below is where that experience keeps getting tested
+            against other implementers.
+          </p>
+        </div>
+
+        <div className="reveal mt-10 grid gap-10 border-t border-line pt-8 lg:grid-cols-2 lg:gap-16">
+          {STANDARDS.map((group) => (
+            <div key={group.heading} className="min-w-0">
+              <p className="label label-bright">{group.heading}</p>
+              <dl className="mt-5 space-y-5">
+                {group.items.map((it) => (
+                  <div key={it.name} className="min-w-0">
+                    <dt className="text-lg leading-snug text-fg">{it.name}</dt>
+                    <dd className="measure-tight mt-1 text-sm leading-relaxed text-fg-2">
+                      {it.detail}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+          ))}
+        </div>
+      </Section>
 
       {/* --------------------------------------------------------- podcast */}
       <Section label="Podcast">
