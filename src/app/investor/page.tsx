@@ -267,7 +267,7 @@ export default function Investor() {
           <div className="bg-bg rounded-xl p-8 shadow-md">
             <p className="text-xl font-semibold text-fg mb-3">Founder: Eugene Vestel</p>
             <p className="text-fg-2 leading-relaxed">
-              Payer Interoperability Analytics &amp; AI Lead at Outcomes. FHIR data expert, NCQA collaborator, host of &quot;Out of the FHIR Podcast,&quot;
+              Payer Interoperability Analytics &amp; AI Lead at Outcomes. FHIR data expert, former NCQA consultant, host of &quot;Out of the FHIR Podcast,&quot;
               and leader in modern interoperability + quality models.
             </p>
           </div>

@@ -80,7 +80,10 @@ const PLATFORMS = [
 const CREDENTIALS = [
   { label: 'Outcomes', detail: 'Payer Interoperability Analytics & AI Lead' },
   { label: 'SQL on FHIR', detail: 'HL7 working group' },
-  { label: 'NCQA Advisor', detail: 'Quality Measurement' },
+  // A defined engagement (Apr–Aug 2025), not a standing role. The site used
+  // to say "NCQA advisor" in the present tense in four places, "Former NCQA
+  // Advisor" in a fifth and "NCQA collaborator" in a sixth.
+  { label: 'NCQA', detail: 'Consultant · 2025' },
   { label: 'b.well Connected Health', detail: 'Director of Data & Analytics' },
   { label: 'UPMC Health System', detail: '5 years in Clinical Analytics' },
   { label: 'HL7 FHIR DevDays', detail: 'Speaker · HealthClaw' },
@@ -288,7 +291,7 @@ export default async function Home() {
 
             <p className="label mt-9 border-t border-line pt-4 leading-relaxed">
               Payer Interoperability Analytics &amp; AI Lead at Outcomes ·
-              Former NCQA Advisor · 15+ years in healthcare data
+              Former NCQA consultant · 15+ years in healthcare data
             </p>
           </div>
         </div>

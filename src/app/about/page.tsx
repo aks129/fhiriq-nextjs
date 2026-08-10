@@ -4,11 +4,11 @@ import Link from 'next/link';
 export const metadata: Metadata = {
   title: 'About Eugene Vestel',
   description:
-    'Eugene Vestel is a healthcare data expert, NCQA advisor, and host of the Out of the FHIR podcast. 15+ years helping health systems, payers, and vendors navigate FHIR and quality measurement.',
+    'Eugene Vestel is a healthcare data expert, former NCQA consultant, and host of the Out of the FHIR podcast. 15+ years helping health systems, payers, and vendors navigate FHIR and quality measurement.',
   openGraph: {
     title: 'About Eugene Vestel | FHIR IQ',
     description:
-      'Healthcare data expert, NCQA advisor, and host of the Out of the FHIR podcast.',
+      'Healthcare data expert, former NCQA consultant, and host of the Out of the FHIR podcast.',
     url: 'https://fhiriq.com/about',
   },
 };
@@ -155,14 +155,15 @@ export default function About() {
             <div className="bg-bg rounded-lg shadow-md p-6 border-l-4 border-line-2">
               <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-3">
                 <div>
-                  <h3 className="text-2xl font-bold text-fg">Advisor Consultant</h3>
+                  <h3 className="text-2xl font-bold text-fg">Consultant</h3>
                   <p className="text-xl text-fg font-semibold">NCQA (National Committee for Quality Assurance)</p>
                 </div>
-                <span className="text-fg-2 mt-2 md:mt-0">March 2025 - August 2025</span>
+                {/* Corrected from "March 2025" — the engagement ran April to August. */}
+                <span className="text-fg-2 mt-2 md:mt-0">April 2025 - August 2025</span>
               </div>
               <p className="text-fg-2">
-                Provided strategic consulting on quality measurement, healthcare data standards, and analytics initiatives
-                supporting NCQA's mission to improve healthcare quality.
+                Strategy for digital content services optimization and AI adoption,
+                and data quality strategy.
               </p>
             </div>
 

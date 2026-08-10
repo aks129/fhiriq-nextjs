@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     template: "%s | FHIR IQ",
   },
   description:
-    "Eugene Vestel helps healthcare organizations navigate FHIR, AI, and quality measurement. Host of Out of the FHIR podcast. NCQA advisor, 15+ years in healthcare data.",
+    "Eugene Vestel helps healthcare organizations navigate FHIR, AI, and quality measurement. Host of Out of the FHIR podcast. Former NCQA consultant, 15+ years in healthcare data.",
   keywords:
     "FHIR, SQL on FHIR, healthcare analytics, quality measures, HEDIS, HL7, interoperability, healthcare AI, CQL, Out of the FHIR podcast, Eugene Vestel",
   authors: [{ name: "Eugene Vestel", url: "https://fhiriq.com" }],
