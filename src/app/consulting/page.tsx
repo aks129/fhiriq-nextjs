@@ -21,8 +21,8 @@ export default function Consulting() {
               <Link href="/lab" className="text-neutral-gray hover:text-primary-blue font-medium">
                 Tools
               </Link>
-              <Link href="/training" className="text-neutral-gray hover:text-primary-blue font-medium">
-                Training
+              <Link href="/workshop" className="text-neutral-gray hover:text-primary-blue font-medium">
+                Workshop
               </Link>
               <Link href="/consulting" className="text-primary-blue font-semibold">
                 Consulting
@@ -500,68 +500,55 @@ export default function Consulting() {
         </div>
       </section>
 
-      {/* Results & Testimonials */}
+      {/*
+        This section previously ran "Proven Results" — 60% faster, $500K+ saved,
+        100% first-time validation — over two testimonials from "Sarah Chen" and
+        "Michael Rodriguez". None of it was real: the statistics had no source
+        and both people were invented, with the same two names appearing on
+        /partners under different companies. Fabricated endorsements are the
+        worst thing a consulting page can carry, so they are gone.
+
+        What replaces them is proof that can actually be checked: the work is
+        open source and public. Anyone evaluating an engagement can read it.
+      */}
       <section className="py-16 bg-bg">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4 text-primary-navy">Proven Results</h2>
+            <h2 className="text-3xl font-bold mb-4 text-primary-navy">Judge the work directly</h2>
             <p className="text-xl text-neutral-gray max-w-3xl mx-auto">
-              Real outcomes from organizations I&apos;ve helped succeed with FHIR
+              Client engagements are confidential, so instead of asking you to take
+              testimonials on faith, here is the work in public. Read the code, listen
+              to the interviews, and decide whether I think about this the way you need.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 mb-12">
-            <div className="text-center">
-              <div className="text-5xl font-bold text-primary-blue mb-2">60%</div>
-              <div className="text-neutral-gray">Faster time to production</div>
-              <div className="text-sm text-neutral-gray mt-2">vs. organizations going it alone</div>
-            </div>
-            <div className="text-center">
-              <div className="text-5xl font-bold text-primary-green mb-2">$500K+</div>
-              <div className="text-neutral-gray">Average cost savings</div>
-              <div className="text-sm text-neutral-gray mt-2">from avoiding costly mistakes</div>
-            </div>
-            <div className="text-center">
-              <div className="text-5xl font-bold text-accent-purple mb-2">100%</div>
-              <div className="text-neutral-gray">First-time validation success</div>
-              <div className="text-sm text-neutral-gray mt-2">for implementation guide compliance</div>
-            </div>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            <div className="bg-bg-secondary p-8 rounded-lg">
-              <div className="flex items-center gap-4 mb-4">
-                <div className="w-16 h-16 bg-primary-blue/20 rounded-full"></div>
-                <div>
-                  <div className="font-bold text-primary-navy">Sarah Chen</div>
-                  <div className="text-sm text-neutral-gray">VP Engineering, Digital Health Startup</div>
-                </div>
-              </div>
-              <p className="text-neutral-gray italic">
-                &ldquo;We were 6 months into our FHIR project and completely stuck. Within 3 weeks of engaging with FHIR IQ,
-                we had a clear path forward and avoided what would have been a complete rebuild. The ROI was immediate
-                and obvious.&rdquo;
+          <div className="grid md:grid-cols-3 gap-8">
+            <a href="https://healthclaw.io" className="card block hover:shadow-xl transition-shadow">
+              <h3 className="text-xl font-bold mb-2 text-primary-navy">HealthClaw Guardrails</h3>
+              <p className="text-neutral-gray">
+                An open-source guardrail layer between AI agents and FHIR data —
+                redaction, audit and human sign-off enforced server-side.
               </p>
-            </div>
-
-            <div className="bg-bg-secondary p-8 rounded-lg">
-              <div className="flex items-center gap-4 mb-4">
-                <div className="w-16 h-16 bg-primary-green/20 rounded-full"></div>
-                <div>
-                  <div className="font-bold text-primary-navy">Michael Rodriguez</div>
-                  <div className="text-sm text-neutral-gray">Chief Architect, Regional Health System</div>
-                </div>
-              </div>
-              <p className="text-neutral-gray italic">
-                &ldquo;The strategic advisory engagement gave us confidence we were building the right thing. The architecture
-                patterns and implementation guide selection saved us months of trial and error. Worth every penny.&rdquo;
+            </a>
+            <a href="https://openquality.us" className="card block hover:shadow-xl transition-shadow">
+              <h3 className="text-xl font-bold mb-2 text-primary-navy">Open Quality</h3>
+              <p className="text-neutral-gray">
+                An MIT-licensed corpus of quality measures with verified provenance,
+                implementer notes, and CQL and SQL side by side.
               </p>
-            </div>
+            </a>
+            <Link href="/podcast" className="card block hover:shadow-xl transition-shadow">
+              <h3 className="text-xl font-bold mb-2 text-primary-navy">Out of the FHIR</h3>
+              <p className="text-neutral-gray">
+                Long-form conversations with the people building the standards —
+                work group chairs, founders, and policy makers.
+              </p>
+            </Link>
           </div>
 
           <div className="text-center mt-12">
             <Link href="/lab" className="text-primary-blue font-semibold hover:underline">
-              View More Case Studies →
+              See everything in The Lab →
             </Link>
           </div>
         </div>
@@ -845,7 +832,7 @@ export default function Consulting() {
               <ul className="space-y-2 text-fg-3">
                 <li><Link href="/lab" className="hover:text-fg">By Industry</Link></li>
                 <li><Link href="/consulting" className="hover:text-fg">Consulting</Link></li>
-                <li><Link href="/training" className="hover:text-fg">Training</Link></li>
+                <li><Link href="/workshop" className="hover:text-fg">Workshop</Link></li>
               </ul>
             </div>
             <div>
@@ -861,7 +848,6 @@ export default function Consulting() {
               <ul className="space-y-2 text-fg-3">
                 <li><Link href="/about" className="hover:text-fg">About</Link></li>
                 <li><Link href="/contact" className="hover:text-fg">Contact</Link></li>
-                <li><Link href="/partners" className="hover:text-fg">Partners</Link></li>
               </ul>
             </div>
           </div>

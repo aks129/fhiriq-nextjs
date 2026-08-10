@@ -301,7 +301,7 @@ export default function PrivacyPolicy() {
               <h4 className="font-semibold mb-4">Products</h4>
               <ul className="space-y-2 text-fg-3">
                 <li><Link href="/lab" className="hover:text-fg">Tools</Link></li>
-                <li><Link href="/training" className="hover:text-fg">Training</Link></li>
+                <li><Link href="/workshop" className="hover:text-fg">Workshop</Link></li>
                 <li><Link href="/consulting" className="hover:text-fg">Consulting</Link></li>
               </ul>
             </div>

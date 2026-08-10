@@ -113,6 +113,14 @@ Podcast and newsletter content comes from the real feed via `src/lib/podcast.ts`
 
 Retired routes are listed in `next.config.ts` and permanently redirect rather than 404.
 
+### No invented social proof
+
+The same rule that killed the placeholder episodes applies to people and numbers, and it was violated more seriously: `/partners` and `/consulting` carried **fabricated client testimonials** — invented names, companies, quotes and metrics — with "Sarah Chen" and "Michael Rodriguez" appearing on *both* pages under different employers. `/consulting` also headlined "60% faster", "$500K+ average cost savings" and "100% first-time validation success", none of which had a source. `/training` sold three courses and two certifications that do not exist, with February 2024 cohort dates and invented "seats remaining" counts.
+
+So: **never write a testimonial, a customer name, a case-study metric, a headline statistic, or a scarcity counter that you cannot trace to a real source.** Client work here is confidential, which means the honest substitute for social proof is the public work — the open-source repos, the podcast, the writing. That is what `/consulting` points at now.
+
+Claims about third parties are the same problem one step removed. `/partners` described HL7 International, HIMSS and NCQA as partners ("official collaboration on FHIR specification development"). Nothing in the repo substantiates that, and misstating a relationship with a standards body is worse than saying nothing. Ask before asserting any affiliation.
+
 ## Key routes
 
 | Route | Purpose |
@@ -126,9 +134,9 @@ Retired routes are listed in `next.config.ts` and permanently redirect rather th
 | `/workshop-agenda`, `/workshop-agenda/present` | Cohort 00 reference + slide deck |
 | `/investor`, `/early-access`, `/innovation-pilot-terms` | Legacy product-era pages, still live |
 
-Retired in the truth pass and redirected: `/games` (+3), `/library`, `/tools` (+1), `/fhirsquire`, `/solutions` (+1), `/builder`, `/portfolio`, `/products`.
+Retired in the truth pass and redirected: `/games` (+3), `/library`, `/tools` (+1), `/fhirsquire`, `/solutions` (+1), `/builder`, `/portfolio`, `/products`, `/partners`, `/training`.
 
-41 routes total. Guides under `/cqlguide`, `/mappingguide`, `/profilingguide` are served from `public/`; `/mappingguide` is rewritten to its `index.html` in `next.config.ts`.
+39 routes total. Guides under `/cqlguide`, `/mappingguide`, `/profilingguide` are served from `public/`; `/mappingguide` is rewritten to its `index.html` in `next.config.ts`.
 
 ### Cohort funnel
 

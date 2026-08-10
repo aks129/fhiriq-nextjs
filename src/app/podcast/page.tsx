@@ -104,17 +104,14 @@ export default function Podcast() {
               <Link href="/lab" className="text-neutral-gray hover:text-primary-blue font-medium">
                 Tools
               </Link>
-              <Link href="/training" className="text-neutral-gray hover:text-primary-blue font-medium">
-                Training
+              <Link href="/workshop" className="text-neutral-gray hover:text-primary-blue font-medium">
+                Workshop
               </Link>
               <Link href="/blog" className="text-neutral-gray hover:text-primary-blue font-medium">
                 Blog
               </Link>
               <Link href="/podcast" className="text-primary-blue font-semibold">
                 Podcast
-              </Link>
-              <Link href="/partners" className="text-neutral-gray hover:text-primary-blue font-medium">
-                Partners
               </Link>
               <Link href="/about" className="text-neutral-gray hover:text-primary-blue font-medium">
                 About
@@ -563,7 +560,7 @@ export default function Podcast() {
               <ul className="space-y-3 text-fg-3">
                 <li><Link href="/blog" className="hover:text-fg transition">Blog</Link></li>
                 <li><Link href="/lab" className="hover:text-fg transition">Tools</Link></li>
-                <li><Link href="/training" className="hover:text-fg transition">Training</Link></li>
+                <li><Link href="/workshop" className="hover:text-fg transition">Workshop</Link></li>
                 <li><a href="https://api.substack.com/feed/podcast/4334682.rss" target="_blank" rel="noopener noreferrer" className="hover:text-fg transition">RSS Feed</a></li>
               </ul>
             </div>
@@ -572,7 +569,6 @@ export default function Podcast() {
               <ul className="space-y-3 text-fg-3">
                 <li><Link href="/about" className="hover:text-fg transition">About</Link></li>
                 <li><Link href="/contact" className="hover:text-fg transition">Be a Guest</Link></li>
-                <li><Link href="/partners" className="hover:text-fg transition">Partners</Link></li>
                 <li><a href="https://evestel.substack.com/subscribe" target="_blank" rel="noopener noreferrer" className="hover:text-fg transition">Newsletter</a></li>
               </ul>
             </div>

@@ -14,7 +14,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/builders`,            changeFrequency: 'weekly',  priority: 0.7 },
     { url: `${BASE}/resources`,           changeFrequency: 'monthly', priority: 0.6 },
     { url: `${BASE}/consulting`,          changeFrequency: 'monthly', priority: 0.6 },
-    { url: `${BASE}/training`,            changeFrequency: 'monthly', priority: 0.6 },
     { url: `${BASE}/architectures`,       changeFrequency: 'monthly', priority: 0.5 },
     { url: `${BASE}/cqlguide`,            changeFrequency: 'monthly', priority: 0.5 },
     { url: `${BASE}/mappingguide`,        changeFrequency: 'monthly', priority: 0.5 },
