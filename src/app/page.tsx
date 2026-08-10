@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import ChatBot from '@/components/ChatBot';
-import HealthIOBanner from '@/components/HealthIOBanner';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import Reveal from '@/components/Reveal';
@@ -8,13 +7,14 @@ import PageAnalytics from '@/components/PageAnalytics';
 import SubscribeForm from '@/components/SubscribeForm';
 import TrackedLink from '@/components/TrackedLink';
 import TranspileFigure from '@/components/TranspileFigure';
+import { getEpisodes, formatEpisodeDate } from '@/lib/podcast';
 
 /**
  * MONO homepage, adapted from agencidev.com.
  *
  * Server component. Every interactive part is a small client island
  * (TranspileFigure, SubscribeForm, TrackedLink, PageAnalytics, Reveal,
- * ChatBot, HealthIOBanner), so the page itself ships no JS of its own.
+ * ChatBot), so the page itself ships no JS of its own.
  * Content and copy are unchanged from the previous build — this pass is
  * visual.
  */
@@ -51,24 +51,27 @@ function H2({ children }: { children: React.ReactNode }) {
   );
 }
 
+// The URLs this list previously carried were guesses — /show/outofthefhir
+// and /podcast/out-of-the-fhir returned 400 and 404. These are the real
+// ones, already in use on /podcast and each verified to return 200.
 const PLATFORMS = [
   {
-    href: 'https://evestel.substack.com',
+    href: 'https://evestel.substack.com/podcast',
     label: 'Substack',
     path: 'M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z',
   },
   {
-    href: 'https://open.spotify.com/show/outofthefhir',
+    href: 'https://open.spotify.com/show/6GBZT7KA1Ug8xMZ4l5LThU',
     label: 'Spotify',
     path: 'M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z',
   },
   {
-    href: 'https://podcasts.apple.com/podcast/out-of-the-fhir',
+    href: 'https://podcasts.apple.com/us/podcast/out-of-the-fhir-podcast/id1822845248',
     label: 'Apple',
     path: 'M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0H5.34zm6.525 2.568c4.988 0 8.94 3.16 9.69 7.62.09.42-.18.84-.6.93-.42.09-.84-.18-.93-.6C19.38 6.78 16.08 4.08 12 4.08c-4.08 0-7.38 2.7-8.025 6.438-.09.42-.51.69-.93.6-.42-.09-.69-.51-.6-.93.75-4.46 4.702-7.62 9.42-7.62zm.135 3.24c3.24 0 5.835 2.34 6.36 5.46.06.42-.24.81-.66.87-.42.06-.81-.24-.87-.66-.39-2.34-2.46-4.17-4.83-4.17s-4.44 1.83-4.83 4.17c-.06.42-.45.72-.87.66a.738.738 0 01-.66-.87c.525-3.12 3.12-5.46 6.36-5.46zm-.075 3.306A3.024 3.024 0 0114.94 12c0 1.32-.84 2.43-2.01 2.82v4.02c0 .51-.42.93-.93.93a.934.934 0 01-.93-.93v-4.02A3.006 3.006 0 019 12a3.024 3.024 0 012.925-3.006z',
   },
   {
-    href: 'https://youtube.com/@outofthefhir',
+    href: 'https://www.youtube.com/@OutoftheFHIRPodcast',
     label: 'YouTube',
     path: 'M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814z M9.545 15.568V8.432L15.818 12l-6.273 3.568z',
   },
@@ -80,21 +83,6 @@ const CREDENTIALS = [
   { label: 'b.well Connected Health', detail: 'Director of Data & Analytics' },
   { label: 'UPMC Health System', detail: '5 years in Clinical Analytics' },
   { label: 'Analytics on FHIR', detail: 'Conference Speaker · 2025' },
-] as const;
-
-const EPISODES = [
-  {
-    title: 'HL7 Work Group Insights',
-    topic: 'The future of SQL on FHIR and ViewDefinitions',
-  },
-  {
-    title: 'Quality Measurement Deep Dive',
-    topic: 'Why CQL needs a better execution story',
-  },
-  {
-    title: 'Interoperability in Practice',
-    topic: 'Real-world FHIR implementation lessons',
-  },
 ] as const;
 
 const PROJECTS = [
@@ -114,19 +102,20 @@ const PROJECTS = [
     repo: 'https://github.com/aks129/HealthClawGuardrails',
   },
   {
-    status: 'SMART on FHIR',
-    name: 'Smart Health Connect',
-    body: 'A SMART on FHIR patient records platform that aggregates your health data from Epic, Cerner, and other EHRs into a single secure interface. Provides curated health visualizations and MCP tools — the data layer that HealthClaw agents work with.',
-    tags: [
-      'SMART on FHIR R4',
-      'React + TypeScript',
-      'MCP Tools',
-      'AI Health Insights',
-      'Multi-EHR',
-      'PostgreSQL',
-    ],
-    site: null,
-    repo: 'https://github.com/aks129/SmartHealthConnect',
+    status: 'Live',
+    name: 'CareAgents',
+    body: 'Spin up a personal health agent in under a minute. Every read redacted, every access audited, every action approved by you — guardrailed by HealthClaw. This is what the guardrail layer looks like once a person is actually using it.',
+    tags: ['Personal health agent', 'Redacted reads', 'Audited access', 'Human approval'],
+    site: { href: 'https://careagents.cloud', label: 'careagents.cloud' },
+    repo: null,
+  },
+  {
+    status: 'Live',
+    name: 'Open Quality',
+    body: 'An open, MIT-licensed corpus of healthcare quality measures with verified provenance, plus a typed record of what implementers have actually learned about each one. CQL and SQL alongside the measure, not buried in a PDF.',
+    tags: ['MIT licensed', 'Verified provenance', 'CQL + SQL', 'Implementer notes'],
+    site: { href: 'https://openquality.us', label: 'openquality.us' },
+    repo: 'https://github.com/FHIR-IQ/openquality',
   },
   {
     status: 'Ecosystem Analysis',
@@ -192,12 +181,13 @@ function GitHubMark() {
   );
 }
 
-export default function Home() {
+export default async function Home() {
+  const episodes = await getEpisodes(4);
+
   return (
     <div className="min-h-screen bg-bg">
       <PageAnalytics page="home" />
       <Reveal />
-      <HealthIOBanner />
       <Nav />
 
       {/* ------------------------------------------------------------ hero */}
@@ -346,20 +336,45 @@ export default function Home() {
             </Link>
           </div>
 
+          {/* Real episodes from the Substack feed. If the feed is
+              unreachable we say so and link out, rather than rendering an
+              empty list or inventing placeholders. */}
           <div className="reveal">
-            <p className="label border-b border-line pb-2">Recent themes</p>
-            <ul>
-              {EPISODES.map((ep) => (
-                <li key={ep.title} className="border-b border-line py-4">
-                  <p className="text-lg leading-snug text-fg">
-                    {ep.title}
-                  </p>
-                  <p className="mt-1 text-sm leading-snug text-fg-2">
-                    {ep.topic}
-                  </p>
-                </li>
-              ))}
-            </ul>
+            <p className="label border-b border-line pb-2">Latest episodes</p>
+            {episodes.length > 0 ? (
+              <ul>
+                {episodes.map((ep) => (
+                  <li key={ep.link} className="border-b border-line py-4">
+                    <a
+                      href={ep.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group block"
+                    >
+                      <p className="text-lg leading-snug text-fg group-hover:underline">
+                        {ep.title}
+                      </p>
+                      <p className="label mt-2">
+                        {formatEpisodeDate(ep.date)}
+                      </p>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p className="py-4 text-sm leading-relaxed text-fg-2">
+                Episode list is loading from Substack.{' '}
+                <a
+                  href="https://evestel.substack.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="border-b border-line-3 text-fg hover:border-fg"
+                >
+                  Browse every episode there
+                </a>
+                .
+              </p>
+            )}
           </div>
         </div>
       </Section>
@@ -398,11 +413,12 @@ export default function Home() {
       {/* ----------------------------------------------------- open source */}
       <Section label="Open Source">
         <div className="reveal">
-          <H2>Building HealthClaw</H2>
+          <H2>What I&apos;m building</H2>
           <p className="measure mt-5 text-lg leading-relaxed text-fg-2">
-            An open-source AI health agent stack built on MCP, FHIR R4, and
-            SMART on FHIR — exploring what happens when patients have the same
-            processing power as provider systems.
+            A guardrail layer between AI agents and health data, a personal
+            care agent built on top of it, and an open corpus of the quality
+            measures the whole industry keeps rewriting from scratch. All
+            open, all running.
           </p>
           <ul className="mt-5 flex flex-wrap gap-x-6 gap-y-2">
             {[
@@ -461,15 +477,17 @@ export default function Home() {
                       Visit {p.site.label}
                     </a>
                   )}
-                  <a
-                    href={p.repo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-sm text-fg-2 transition-colors hover:text-fg"
-                  >
-                    <GitHubMark />
-                    View on GitHub
-                  </a>
+                  {p.repo && (
+                    <a
+                      href={p.repo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-sm text-fg-2 transition-colors hover:text-fg"
+                    >
+                      <GitHubMark />
+                      View on GitHub
+                    </a>
+                  )}
                 </div>
               </div>
 

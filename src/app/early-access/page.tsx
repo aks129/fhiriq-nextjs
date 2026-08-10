@@ -16,13 +16,13 @@ export default function EarlyAccess() {
               </Link>
             </div>
             <div className="hidden md:flex space-x-8">
-              <Link href="/solutions" className="text-neutral-gray hover:text-primary-blue font-medium">
+              <Link href="/lab" className="text-neutral-gray hover:text-primary-blue font-medium">
                 Solutions
               </Link>
               <Link href="/architectures" className="text-neutral-gray hover:text-primary-blue font-medium">
                 Architectures
               </Link>
-              <Link href="/tools" className="text-neutral-gray hover:text-primary-blue font-medium">
+              <Link href="/lab" className="text-neutral-gray hover:text-primary-blue font-medium">
                 Tools
               </Link>
               <Link href="/resources" className="text-neutral-gray hover:text-primary-blue font-medium">

@@ -8,8 +8,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/podcast`,             changeFrequency: 'daily',   priority: 0.9 },
     { url: `${BASE}/blog`,                changeFrequency: 'weekly',  priority: 0.8 },
     { url: `${BASE}/about`,               changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${BASE}/library`,             changeFrequency: 'weekly',  priority: 0.8 },
-    { url: `${BASE}/tools`,               changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${BASE}/lab`,                 changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE}/media-kit`,           changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${BASE}/workshop`,            changeFrequency: 'weekly',  priority: 0.7 },
+    { url: `${BASE}/builders`,            changeFrequency: 'weekly',  priority: 0.7 },
     { url: `${BASE}/resources`,           changeFrequency: 'monthly', priority: 0.6 },
     { url: `${BASE}/consulting`,          changeFrequency: 'monthly', priority: 0.6 },
     { url: `${BASE}/training`,            changeFrequency: 'monthly', priority: 0.6 },
@@ -19,7 +21,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/profilingguide`,      changeFrequency: 'monthly', priority: 0.5 },
     { url: `${BASE}/investor`,            changeFrequency: 'monthly', priority: 0.4 },
     { url: `${BASE}/contact`,             changeFrequency: 'yearly',  priority: 0.4 },
-    { url: `${BASE}/games`,               changeFrequency: 'monthly', priority: 0.3 },
     { url: `${BASE}/privacy`,             changeFrequency: 'yearly',  priority: 0.2 },
   ];
 }

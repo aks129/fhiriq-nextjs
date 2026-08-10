@@ -15,10 +15,10 @@ export default function SecurityPolicy() {
               </Link>
             </div>
             <div className="hidden md:flex space-x-8">
-              <Link href="/solutions" className="text-neutral-gray hover:text-primary-blue font-medium">
+              <Link href="/lab" className="text-neutral-gray hover:text-primary-blue font-medium">
                 Solutions
               </Link>
-              <Link href="/tools" className="text-neutral-gray hover:text-primary-blue font-medium">
+              <Link href="/lab" className="text-neutral-gray hover:text-primary-blue font-medium">
                 Tools
               </Link>
               <Link href="/about" className="text-neutral-gray hover:text-primary-blue font-medium">
@@ -556,7 +556,7 @@ export default function SecurityPolicy() {
             <div>
               <h4 className="font-semibold mb-4">Products</h4>
               <ul className="space-y-2 text-fg-3">
-                <li><Link href="/tools" className="hover:text-fg">Tools</Link></li>
+                <li><Link href="/lab" className="hover:text-fg">Tools</Link></li>
                 <li><Link href="/training" className="hover:text-fg">Training</Link></li>
                 <li><Link href="/consulting" className="hover:text-fg">Consulting</Link></li>
               </ul>

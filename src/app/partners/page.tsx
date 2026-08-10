@@ -81,10 +81,10 @@ export default function Partners() {
               </Link>
             </div>
             <div className="hidden md:flex space-x-8">
-              <Link href="/solutions" className="text-neutral-gray hover:text-primary-blue font-medium">
+              <Link href="/lab" className="text-neutral-gray hover:text-primary-blue font-medium">
                 Solutions
               </Link>
-              <Link href="/tools" className="text-neutral-gray hover:text-primary-blue font-medium">
+              <Link href="/lab" className="text-neutral-gray hover:text-primary-blue font-medium">
                 Tools
               </Link>
               <Link href="/training" className="text-neutral-gray hover:text-primary-blue font-medium">
@@ -232,7 +232,7 @@ export default function Partners() {
               Partner With Us
             </Link>
             <Link
-              href="/solutions"
+              href="/lab"
               className="border-2 border-white text-fg px-8 py-3 rounded-lg font-semibold hover:bg-bg hover:text-primary-blue transition"
             >
               View Solutions
@@ -257,14 +257,14 @@ export default function Partners() {
                 <li><Link href="/contact" className="hover:text-fg">Become a Partner</Link></li>
                 <li><a href="#integrations" className="hover:text-fg">Integrations</a></li>
                 <li><a href="#testimonials" className="hover:text-fg">Case Studies</a></li>
-                <li><Link href="/solutions" className="hover:text-fg">Joint Solutions</Link></li>
+                <li><Link href="/lab" className="hover:text-fg">Joint Solutions</Link></li>
               </ul>
             </div>
             <div>
               <h4 className="font-semibold mb-4">Resources</h4>
               <ul className="space-y-2 text-fg-3">
                 <li><Link href="/blog" className="hover:text-fg">Blog</Link></li>
-                <li><Link href="/tools" className="hover:text-fg">Tools</Link></li>
+                <li><Link href="/lab" className="hover:text-fg">Tools</Link></li>
                 <li><Link href="/training" className="hover:text-fg">Training</Link></li>
               </ul>
             </div>

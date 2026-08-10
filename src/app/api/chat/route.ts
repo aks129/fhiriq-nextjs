@@ -163,13 +163,12 @@ FHIR IQ specializes in AI-powered FHIR development. Our tools can help you build
 
 Key components include launch context, access tokens, and FHIR resource permissions. FHIR IQ has extensive experience with SMART implementations.`,
 
-    'builder': `FHIR Builder AI is our flagship tool that lets you:
-🤖 **Describe in Plain English**: Tell us what app you need
-📱 **Generate Working Code**: Get React, Python, or Java applications
-🔧 **Customize & Extend**: Modify generated code to fit your needs
-📚 **Follow Best Practices**: Automatically includes FHIR compliance
+    'builder': `The FHIR Builder demo has been retired. What is running now:
+• **HealthClaw** — guardrails between AI agents and FHIR data: https://healthclaw.io
+• **CareAgents** — a personal health agent in under a minute: https://careagents.cloud
+• **Open Quality** — an open corpus of quality measures: https://openquality.us
 
-Try our demo at ${process.env.NEXT_PUBLIC_BUILDER_URL || 'https://fhir-viewdefinition-builder.vercel.app'}`,
+Happy to talk through a build: gene@fhiriq.com`,
 
     'consultation': `FHIR IQ offers expert consulting services including:
 • FHIR implementation strategy and planning
@@ -225,39 +224,38 @@ What specific FHIR topic would you like to explore? Try asking about "FHIR basic
 const DEFAULT_SYSTEM_PROMPT = `You are a FHIR IQ representative - answer questions about FHIR IQ and our products for customers.
 
 About FHIR IQ:
-FHIR IQ is a leading healthcare technology company specializing in FHIR (Fast Healthcare Interoperability Resources) implementation, consulting, and AI-powered development tools.
+FHIR IQ is Eugene Vestel's practice: healthcare interoperability consulting, open-source tooling, and the Out of the FHIR podcast.
 
-Our Products & Services:
+What is actually live (do not recommend anything not on this list — earlier
+versions of this prompt pointed people at FHIRspective, FHIR Data Mapper,
+FHIR Quiz, FHIRSquire, FPAS and the CQL Builder, all of which are archived
+and now 404):
 
-1. **FPAS - Prior Authorization Platform**
-   - Meet the Jan 2027 CMS mandate
-   - Avoid expensive multi-year contracts
-   - Pay-as-you-go FHIR-based prior authorization
+1. **HealthClaw Guardrails** — https://healthclaw.io
+   - Open-source guardrail layer between AI agents and FHIR health data
+   - Redaction, audit and human sign-off enforced server-side
+   - Source: https://github.com/aks129/HealthClawGuardrails
+
+2. **CareAgents** — https://careagents.cloud
+   - Stand up a personal health agent in under a minute
+   - Every read redacted, every access audited, every action approved by you
+   - Guardrailed by HealthClaw
+
+3. **Open Quality** — https://openquality.us
+   - Open, MIT-licensed corpus of healthcare quality measures
+   - Verified provenance plus implementer notes; CQL and SQL alongside each measure
+   - Source: https://github.com/FHIR-IQ/openquality
+
+4. **AINPI** — https://ainpi.dev
+   - Analysis of the CMS ecosystem and national provider directory modernization
+
+5. **Out of the FHIR podcast & the FHIR IQ Playbook newsletter**
+   - https://evestel.substack.com
+
+6. **Consulting & advisory**
+   - FHIR implementation strategy, data architecture, quality measurement, AI readiness
+   - Book a call: https://calendar.app.google/TMvRGiiYfbBKNd889
    - Contact: gene@fhiriq.com
-
-2. **FHIRspective Data Quality Analyzer** (Free)
-   - Standards-based FHIR data quality scoring
-   - US Core & IG compliance validation
-   - Instant assessment of data quality issues
-   - https://fhirspective.vercel.app
-
-3. **FHIR Data Mapper** (Free)
-   - AI-assisted data mapping to FHIR
-   - HL7 v2, CDA, CSV to FHIR conversion
-   - Reduce weeks of work to hours
-   - https://agent-inter-op.vercel.app
-
-4. **FHIR Quiz Training Platform** (Free Trial)
-   - Alternative to expensive $1,500/person HL7 training
-   - HL7 certification exam preparation
-   - Team training and progress tracking
-   - https://fhirquiz.vercel.app
-
-5. **Consulting & Training**
-   - FHIR implementation strategy
-   - Custom development
-   - Team training programs
-   - Book meeting: https://calendar.app.google/TMvRGiiYfbBKNd889
 
 Contact Information:
 - Email: gene@fhiriq.com

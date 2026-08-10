@@ -27,99 +27,34 @@ export default function Podcast() {
     // Fetch podcast episodes from RSS feed
     const fetchPodcastFeed = async () => {
       try {
-        // Using a CORS proxy for client-side RSS feed fetching
-        const rssUrl = 'https://api.substack.com/feed/podcast/4334682.rss';
-        const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(rssUrl)}`;
-
-        const response = await fetch(proxyUrl);
-
-        if (!response.ok) {
-          throw new Error('Failed to fetch RSS feed');
-        }
-
-        const text = await response.text();
-
-        // Parse RSS XML
-        const parser = new DOMParser();
-        const xmlDoc = parser.parseFromString(text, 'text/xml');
-
-        const items = xmlDoc.querySelectorAll('item');
-        const parsedEpisodes: PodcastEpisode[] = [];
-
-        items.forEach((item, index) => {
-          if (index < 12) { // Show more recent episodes
-            const episode: PodcastEpisode = {
-              title: item.querySelector('title')?.textContent || '',
-              description: item.querySelector('description')?.textContent || '',
-              pubDate: item.querySelector('pubDate')?.textContent || '',
-              link: item.querySelector('link')?.textContent || '',
-              guid: item.querySelector('guid')?.textContent || String(index),
-            };
-
-            const enclosureNode = item.querySelector('enclosure');
-            if (enclosureNode) {
-              episode.enclosure = {
-                url: enclosureNode.getAttribute('url') || '',
-                type: enclosureNode.getAttribute('type') || '',
-                length: enclosureNode.getAttribute('length') || '',
-              };
-            }
-
-            // Extract duration if available
-            const duration = item.querySelector('duration, itunes\\:duration');
-            if (duration) {
-              episode.duration = duration.textContent || '';
-            }
-
-            parsedEpisodes.push(episode);
-          }
-        });
-
-        if (parsedEpisodes.length > 0) {
-          setEpisodes(parsedEpisodes);
-        } else {
-          // Use fallback data if no episodes parsed
-          loadFallbackData();
-        }
-        setLoading(false);
+        // Our own route, fetched server-side. Replaces a client-side call
+        // through the api.allorigins.win CORS proxy.
+        const response = await fetch('/api/podcast-feed');
+        if (!response.ok) throw new Error('feed unavailable');
+        const data = await response.json();
+        const parsed: PodcastEpisode[] = (data.episodes ?? []).map(
+          (e: { title: string; link: string; date: string; duration: string | null }, i: number) => ({
+            title: e.title,
+            description: '',
+            pubDate: e.date,
+            link: e.link,
+            guid: e.link || `ep-${i}`,
+            duration: e.duration ?? '',
+          }),
+        );
+        setEpisodes(parsed);
+        // No invented fallback. An empty feed renders an empty state that
+        // links out, rather than three fabricated episodes.
+        if (parsed.length === 0) setError('Episodes could not be loaded right now.');
       } catch (err) {
         console.error('Error fetching podcast feed:', err);
-        // Use fallback data instead of showing error
-        loadFallbackData();
+        setEpisodes([]);
+        setError('Episodes could not be loaded right now.');
+      } finally {
         setLoading(false);
       }
     };
 
-    const loadFallbackData = () => {
-      // Fallback podcast episodes if RSS feed fails
-      const fallbackEpisodes: PodcastEpisode[] = [
-        {
-          title: 'Welcome to Out of the FHIR Podcast',
-          description: 'Join us for in-depth conversations about FHIR, healthcare interoperability, and the future of health data exchange. In this episode, we introduce the podcast and discuss what you can expect in upcoming episodes.',
-          pubDate: new Date().toISOString(),
-          link: 'https://evestel.substack.com/podcast',
-          guid: 'fallback-1',
-          duration: '45:00'
-        },
-        {
-          title: 'FHIR Implementation Best Practices',
-          description: 'Exploring real-world FHIR implementation strategies, common pitfalls to avoid, and lessons learned from successful deployments in healthcare organizations.',
-          pubDate: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString(),
-          link: 'https://evestel.substack.com/podcast',
-          guid: 'fallback-2',
-          duration: '52:30'
-        },
-        {
-          title: 'The Future of Healthcare Interoperability',
-          description: 'A deep dive into emerging trends in healthcare data exchange, including AI integration, patient access APIs, and the evolving FHIR standards landscape.',
-          pubDate: new Date(Date.now() - 14 * 24 * 60 * 60 * 1000).toISOString(),
-          link: 'https://evestel.substack.com/podcast',
-          guid: 'fallback-3',
-          duration: '48:15'
-        }
-      ];
-      setEpisodes(fallbackEpisodes);
-    };
 
     fetchPodcastFeed();
   }, []);
@@ -163,10 +98,10 @@ export default function Podcast() {
               </Link>
             </div>
             <div className="hidden md:flex space-x-8">
-              <Link href="/solutions" className="text-neutral-gray hover:text-primary-blue font-medium">
+              <Link href="/lab" className="text-neutral-gray hover:text-primary-blue font-medium">
                 Solutions
               </Link>
-              <Link href="/tools" className="text-neutral-gray hover:text-primary-blue font-medium">
+              <Link href="/lab" className="text-neutral-gray hover:text-primary-blue font-medium">
                 Tools
               </Link>
               <Link href="/training" className="text-neutral-gray hover:text-primary-blue font-medium">
@@ -627,7 +562,7 @@ export default function Podcast() {
               <h4 className="font-semibold mb-4">Resources</h4>
               <ul className="space-y-3 text-fg-3">
                 <li><Link href="/blog" className="hover:text-fg transition">Blog</Link></li>
-                <li><Link href="/tools" className="hover:text-fg transition">Tools</Link></li>
+                <li><Link href="/lab" className="hover:text-fg transition">Tools</Link></li>
                 <li><Link href="/training" className="hover:text-fg transition">Training</Link></li>
                 <li><a href="https://api.substack.com/feed/podcast/4334682.rss" target="_blank" rel="noopener noreferrer" className="hover:text-fg transition">RSS Feed</a></li>
               </ul>

@@ -59,7 +59,7 @@ Two invariants in that layer are load-bearing, and reversing either one reintrod
 - **Legacy accent names resolve to a DARK surface** (`--bg-3`), not to `--fg`. They feed fills and gradient stops (`bg-accent-orange`, `from-accent-purple via-primary-blue`), and those fills almost always carry light text. Accent *text* stays bright via the separate explicit `.text-primary-blue` / `.text-accent-purple` rules.
 - **`[class~='bg-fg']` forces dark content.** A light fill inheriting light text is 1:1 and completely invisible, and it happens whenever the fill and the text sit on different elements — which no build-time class analysis can catch.
 
-**All 41 routes are converted.** There is no light page left. When touching an old route, use MONO tokens directly rather than the legacy aliases.
+**All routes are converted.** There is no light page left. When touching an old route, use MONO tokens directly rather than the legacy aliases.
 
 **Verifying a colour change:** contrast bugs here are invisible in a diff and easy to miss by eye across 41 routes. Drive the site with the Playwright MCP tools and compute contrast in the page: resolve colours by painting them to a 1×1 canvas rather than parsing the string, because Chrome returns `oklab(...)`/`lab(...)` for these tokens and a naive `rgb()` parser silently reports garbage. Compositing the text colour over its resolved background also handles alpha correctly.
 
@@ -92,19 +92,41 @@ Same rule applies to `TranspileFigure`: both code panes render complete on the s
 
 Watch for `min-width: auto` on grid and flex children — it lets a wide `<pre>` push its track past the viewport instead of scrolling inside it. Add `min-w-0` down the whole chain.
 
+## Only link to things that are live
+
+The site previously advertised a large amount of work that no longer exists: the podcast section shipped hardcoded placeholder episodes, three of four podcast platform URLs were guesses that 404'd, The Lab listed five tools that were all archived, and the chatbot recommended FHIRspective, FHIR Quiz and FPAS by name. Twenty-four outbound product links were dead.
+
+Before adding or keeping a project reference, verify it:
+
+```bash
+vercel projects ls                      # what has a production URL
+gh repo list aks129 --no-archived       # what is still maintained
+gh repo list FHIR-IQ --json name,isArchived
+curl -sL -o /dev/null -w '%{http_code}' <url>
+```
+
+**Currently live:** HealthClaw (healthclaw.io), CareAgents (careagents.cloud), Open Quality (openquality.us), AINPI (ainpi.dev), FHIR Builders (fhirbuilders.com), eugenevestel.com.
+
+**Archived — never link to these:** SmartHealthConnect, FHIRspective, AgentInterOp, fhirquiz, InteropGame, healthio, FHIRSquire, FPAS, s77, Plumly, Symphony.
+
+Podcast and newsletter content comes from the real feed via `src/lib/podcast.ts` (`evestel.substack.com/feed`, hourly revalidate, audio items only). **If the feed fails it returns an empty array and the UI must render an honest empty state that links out.** Do not reintroduce placeholder episodes — that is exactly what made a section with no data look populated.
+
+Retired routes are listed in `next.config.ts` and permanently redirect rather than 404.
+
 ## Key routes
 
 | Route | Purpose |
 | ----- | ------- |
 | `/` | Homepage — personal brand, podcast, newsletter, open-source work, advisory |
 | `/podcast` | *Out of the FHIR* with live metrics |
-| `/lab` | "The Lab" — open-source FHIR tools showcase |
-| `/library` | ViewDefinition library (SQL on FHIR) |
+| `/lab` | The Lab — the live projects, verified against Vercel and GitHub |
 | `/media-kit` | Podcast sponsor/advisory/coaching dashboard, outbound-shareable |
 | `/builders` | Healthcare AI Builders — Cohort 01 signup |
 | `/workshop` | Free workshop — Cohort 00 entry funnel |
 | `/workshop-agenda`, `/workshop-agenda/present` | Cohort 00 reference + slide deck |
 | `/investor`, `/early-access`, `/innovation-pilot-terms` | Legacy product-era pages, still live |
+
+Retired in the truth pass and redirected: `/games` (+3), `/library`, `/tools` (+1), `/fhirsquire`, `/solutions` (+1), `/builder`, `/portfolio`, `/products`.
 
 41 routes total. Guides under `/cqlguide`, `/mappingguide`, `/profilingguide` are served from `public/`; `/mappingguide` is rewritten to its `index.html` in `next.config.ts`.
 
@@ -183,14 +205,6 @@ Use whichever org actually owns the repo. There is no default. If a new project'
 ## Deployment
 
 Vercel, auto-deploy on push. `vercel.json` contains **only** API CORS headers; all redirects and rewrites live in `next.config.ts`.
-
-## Product URLs (for reference in code)
-
-- FHIRspective: <https://fhirspective.vercel.app>
-- FHIR Data Mapper: <https://agent-inter-op.vercel.app>
-- FHIR Quiz: <https://fhirquiz.vercel.app>
-- ViewDefinition Builder: <https://fhir-viewdefinition-builder.vercel.app>
-- CQL Builder POC: <https://s77.vercel.app>
 
 ## Contact
 

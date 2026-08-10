@@ -100,10 +100,10 @@ export default function Training() {
               </Link>
             </div>
             <div className="hidden md:flex space-x-8">
-              <Link href="/solutions" className="text-neutral-gray hover:text-primary-blue font-medium">
+              <Link href="/lab" className="text-neutral-gray hover:text-primary-blue font-medium">
                 Solutions
               </Link>
-              <Link href="/tools" className="text-neutral-gray hover:text-primary-blue font-medium">
+              <Link href="/lab" className="text-neutral-gray hover:text-primary-blue font-medium">
                 Tools
               </Link>
               <Link href="/training" className="text-primary-blue font-semibold">
@@ -320,14 +320,10 @@ export default function Training() {
               ))}
             </div>
 
+            {/* The FHIR Quiz platform is archived; its CTA pointed at a 404. */}
             <div className="text-center mt-12">
-              <a
-                href="https://fhirquiz.vercel.app"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-primary inline-block"
-              >
-                Take Full FHIR Quiz Platform (100+ questions) →
+              <a href="/contact" className="btn-primary inline-block">
+                Ask about team training
               </a>
             </div>
           </div>
@@ -448,7 +444,7 @@ export default function Training() {
               <h4 className="font-semibold mb-4">Resources</h4>
               <ul className="space-y-2 text-fg-3">
                 <li><Link href="/blog" className="hover:text-fg">Blog</Link></li>
-                <li><Link href="/tools" className="hover:text-fg">Tools</Link></li>
+                <li><Link href="/lab" className="hover:text-fg">Tools</Link></li>
                 <li><Link href="/docs" className="hover:text-fg">Documentation</Link></li>
               </ul>
             </div>

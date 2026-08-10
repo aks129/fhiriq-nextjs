@@ -15,10 +15,10 @@ export default function Blog() {
               </Link>
             </div>
             <div className="hidden md:flex space-x-8">
-              <Link href="/products" className="text-fg-2 hover:text-fg">
+              <Link href="/lab" className="text-fg-2 hover:text-fg">
                 Products
               </Link>
-              <Link href="/builder" className="text-fg-2 hover:text-fg">
+              <Link href="/lab" className="text-fg-2 hover:text-fg">
                 AI Builder
               </Link>
               <Link href="/blog" className="text-fg font-semibold">

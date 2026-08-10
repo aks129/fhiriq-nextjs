@@ -15,13 +15,13 @@ export default function Services() {
               </Link>
             </div>
             <div className="hidden md:flex space-x-8">
-              <Link href="/solutions" className="text-neutral-gray hover:text-primary-blue font-medium">
+              <Link href="/lab" className="text-neutral-gray hover:text-primary-blue font-medium">
                 Solutions
               </Link>
-              <Link href="/library" className="text-neutral-gray hover:text-primary-blue font-medium">
+              <Link href="/lab" className="text-neutral-gray hover:text-primary-blue font-medium">
                 Library
               </Link>
-              <Link href="/tools" className="text-neutral-gray hover:text-primary-blue font-medium">
+              <Link href="/lab" className="text-neutral-gray hover:text-primary-blue font-medium">
                 Tools
               </Link>
               <Link href="/services" className="text-primary-blue font-semibold">
@@ -437,15 +437,15 @@ export default function Services() {
               <h4 className="font-semibold mb-4">Solutions</h4>
               <ul className="space-y-2 text-fg-3">
                 <li><Link href="/cql-to-sql" className="hover:text-fg">CQL-to-SQL Engine</Link></li>
-                <li><Link href="/solutions" className="hover:text-fg">Data Quality</Link></li>
+                <li><Link href="/lab" className="hover:text-fg">Data Quality</Link></li>
                 <li><Link href="/services" className="hover:text-fg">Advisory Services</Link></li>
               </ul>
             </div>
             <div>
               <h4 className="font-semibold mb-4">Resources</h4>
               <ul className="space-y-2 text-fg-3">
-                <li><Link href="/library" className="hover:text-fg">ViewDefinition Library</Link></li>
-                <li><Link href="/tools" className="hover:text-fg">Developer Tools</Link></li>
+                <li><Link href="/lab" className="hover:text-fg">ViewDefinition Library</Link></li>
+                <li><Link href="/lab" className="hover:text-fg">Developer Tools</Link></li>
                 <li><Link href="/architectures" className="hover:text-fg">Architectures</Link></li>
               </ul>
             </div>

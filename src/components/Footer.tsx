@@ -17,7 +17,7 @@ const COLUMNS = [
   {
     heading: 'Tools',
     links: [
-      { href: '/library', label: 'ViewDefinition Library' },
+      { href: '/lab', label: 'ViewDefinition Library' },
       { href: '/lab', label: 'The Lab' },
       { href: 'https://healthclaw.io', label: 'HealthClaw', external: true },
     ],
@@ -32,7 +32,7 @@ const COLUMNS = [
         label: 'Book a Call',
         external: true,
       },
-      { href: '/games', label: 'Fun & Games' },
+      { href: '/resources', label: 'Fun & Games' },
       { href: '/privacy', label: 'Privacy' },
     ],
   },

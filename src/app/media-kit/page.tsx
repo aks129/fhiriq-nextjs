@@ -527,8 +527,8 @@ export default function MediaKitPage() {
               FHIR IQ
             </Link>
             <div className="hidden md:flex space-x-7 text-sm">
-              <Link href="/solutions" className="text-neutral-gray hover:text-primary-blue font-medium">Solutions</Link>
-              <Link href="/tools" className="text-neutral-gray hover:text-primary-blue font-medium">Tools</Link>
+              <Link href="/lab" className="text-neutral-gray hover:text-primary-blue font-medium">Solutions</Link>
+              <Link href="/lab" className="text-neutral-gray hover:text-primary-blue font-medium">Tools</Link>
               <Link href="/podcast" className="text-neutral-gray hover:text-primary-blue font-medium">Podcast</Link>
               <Link href="/blog" className="text-neutral-gray hover:text-primary-blue font-medium">Blog</Link>
               <Link href="/about" className="text-neutral-gray hover:text-primary-blue font-medium">About</Link>

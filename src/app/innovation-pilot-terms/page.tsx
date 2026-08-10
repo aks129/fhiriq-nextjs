@@ -13,13 +13,13 @@ export default function InnovationPilotTerms() {
               </Link>
             </div>
             <div className="hidden md:flex space-x-8">
-              <Link href="/solutions" className="text-neutral-gray hover:text-primary-blue font-medium">
+              <Link href="/lab" className="text-neutral-gray hover:text-primary-blue font-medium">
                 Solutions
               </Link>
-              <Link href="/library" className="text-neutral-gray hover:text-primary-blue font-medium">
+              <Link href="/lab" className="text-neutral-gray hover:text-primary-blue font-medium">
                 Library
               </Link>
-              <Link href="/tools" className="text-neutral-gray hover:text-primary-blue font-medium">
+              <Link href="/lab" className="text-neutral-gray hover:text-primary-blue font-medium">
                 Tools
               </Link>
               <Link href="/services" className="text-neutral-gray hover:text-primary-blue font-medium">
@@ -264,7 +264,7 @@ export default function InnovationPilotTerms() {
             <div className="flex gap-8">
               <Link href="/" className="text-fg-3 hover:text-fg transition">Home</Link>
               <Link href="/cql-to-sql" className="text-fg-3 hover:text-fg transition">CQL-to-SQL</Link>
-              <Link href="/library" className="text-fg-3 hover:text-fg transition">ViewDefinition Library</Link>
+              <Link href="/lab" className="text-fg-3 hover:text-fg transition">ViewDefinition Library</Link>
               <Link href="/contact" className="text-fg-3 hover:text-fg transition">Contact</Link>
             </div>
           </div>
