@@ -61,3 +61,15 @@ claude-*.tmp
 
 # GCP/GitHub Actions service-account creds written by google-github-actions/auth
 gha-creds-*.json
+
+# macOS file-sync conflict copies. This repo lives under ~/Documents, which is
+# iCloud-synced, and saving a new file can leave byte-identical "page 2.tsx"
+# siblings next to it. Twelve of them reached master before anyone noticed —
+# they are not routes, so the build stayed green and nothing complained.
+* [0-9].ts
+* [0-9].tsx
+* [0-9].js
+* [0-9].jsx
+* [0-9].css
+* [0-9].json
+* [0-9].md
