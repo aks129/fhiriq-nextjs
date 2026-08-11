@@ -163,21 +163,25 @@ const PROJECTS = [
   {
     status: 'Live',
     name: 'Open Quality',
-    body: 'An open, MIT-licensed corpus of healthcare quality measures with verified provenance, plus a typed record of what implementers have actually learned about each one. CQL and SQL alongside the measure, not buried in a PDF.',
-    tags: ['MIT licensed', 'Verified provenance', 'CQL + SQL', 'Implementer notes'],
+    body: '52 CMS eCQM packages for the 2026 reporting year, with provenance verified in CI and a CLI that validates and packs them. Alongside the measures sits a typed record of what implementers have actually learned about each one. CQL and SQL next to the measure, not buried in a PDF.',
+    tags: ['52 eCQM packages', 'CI-verified provenance', 'CQL + SQL', 'oq CLI'],
     site: { href: 'https://openquality.us', label: 'openquality.us' },
     repo: 'https://github.com/FHIR-IQ/openquality',
   },
   {
-    status: 'Ecosystem Analysis',
+    // Described from what the tool does rather than as vague "ecosystem
+    // analysis". The synthetic-seed caveat is stated in full on /lab; keep
+    // this card's claims to the methodology and the per-NPI checks, which
+    // are live.
+    status: 'Live',
     name: 'AINPI',
-    body: 'An ongoing analysis of the CMS health tech ecosystem and the national provider directory modernization effort. Mapping the players, the standards, and the FHIR-based architecture behind the next-generation healthcare directory.',
+    body: 'An audit of how accurate the federal provider directory actually is, scored across every state and specialty on six dimensions. Click through to verify an individual NPI against the NPPES registry, the OIG exclusion list and SAM.gov, with no login in the way. Scoring is mapped to the REAL Health Providers Act.',
     tags: [
-      'CMS Ecosystem',
-      'National Provider Directory',
+      'Provider directory audit',
       'NPPES',
-      'FHIR',
-      'Policy Analysis',
+      'OIG exclusions',
+      'SAM.gov',
+      'REAL Health Providers Act',
     ],
     site: { href: 'https://ainpi.dev', label: 'ainpi.dev' },
     repo: 'https://github.com/FHIR-IQ/AINPI',
@@ -502,12 +506,20 @@ export default async function Home() {
       {/* ----------------------------------------------------- open source */}
       <Section label="Open Source">
         <div className="reveal">
-          <H2>What I&apos;m building</H2>
+          {/*
+            Framed as a contribution rather than as a portfolio. These are
+            usable by anyone without an engagement, which is the part of this
+            practice that Dogwood (publishes nothing free) and Point-of-Care
+            Partners (gates some material) do not have. Saying so plainly
+            beats letting them read as credibility props for the consulting.
+          */}
+          <H2>Open work, not a portfolio</H2>
           <p className="measure mt-5 text-lg leading-relaxed text-fg-2">
-            A guardrail layer between AI agents and health data, a personal
-            care agent built on top of it, and an open corpus of the quality
-            measures the whole industry keeps rewriting from scratch. All
-            open, all running.
+            A trusted framework for putting AI agents on health data, a
+            personal care agent built on top of it, an open corpus of the
+            quality measures the whole industry keeps rewriting from scratch,
+            and an audit of the federal provider directory. All open source,
+            all running, all usable without hiring anyone.
           </p>
           <ul className="mt-5 flex flex-wrap gap-x-6 gap-y-2">
             {[
