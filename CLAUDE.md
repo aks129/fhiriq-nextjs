@@ -207,6 +207,19 @@ NEXT_PUBLIC_LINKEDIN_PARTNER_ID=...
 
 See `CLAUDE_API_SETUP.md` and `EMAIL_SETUP.md`. After changing env vars in Vercel, redeploy.
 
+### The open-source work is the contribution, not a portfolio
+
+`/lab` is framed as tools other people can use without engaging anyone — "work you can use without hiring me" — not as proof the consultant can build. That is both truer and the stronger competitive position, since Dogwood publishes nothing free and POCP gates some material. Consulting funds the time; it is not what the projects are for. Keep that direction: describe what each project **gives someone**, not what it demonstrates about Eugene.
+
+Describe them from what the sites actually do, checked against the live site, not from memory. Two that were previously understated:
+
+- **Open Quality** ships 52 CMS eCQM packages for the 2026 reporting year, CI-verified provenance, an `oq` CLI (`validate`, `validate-all`, `pack`), and three conformance levels (Shared, Described, Verified). Open licences only against an SPDX allowlist; value sets referenced rather than embedded so licensing stays machine-enforceable.
+- **AINPI** is a provider-directory accuracy audit, not vague "ecosystem analysis": six scoring dimensions across every state and specialty, mapped to the REAL Health Providers Act, with per-NPI verification against NPPES, the OIG exclusion list and SAM.gov.
+
+**AINPI carries a caveat that must not be dropped.** Its aggregate treemap currently runs on a deterministic synthetic seed while the measurement pipeline is built, and the site says so itself. `/lab` repeats that disclosure. Removing it to make the list look stronger would be the same failure as the fabricated statistics.
+
+**`careagents.dev` does not resolve.** The live host is `careagents.cloud`.
+
 ## Personal Health AI (community projects)
 
 Featured on the homepage in this card order. **Frame these as community/personal work, not FHIR IQ products — there is no commercial angle.**
