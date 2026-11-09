@@ -1,7 +1,9 @@
 'use client';
 
+import Nav from '@/components/Nav';
+import { PERSON } from '@/lib/profile';
+import Footer from '@/components/Footer';
 import { useState, type ReactNode } from 'react';
-import Link from 'next/link';
 import {
   meta,
   heroStats,
@@ -19,9 +21,7 @@ import {
   podcastTopEpisodes,
   notableGuests,
   sponsorInventory,
-  advisoryOffers,
   coachingClientTypes,
-  coachingProof,
   authoritySignals,
   ownedAssets,
   tabs,
@@ -211,9 +211,6 @@ function PodcastTruthCard() {
           </div>
         </div>
       </div>
-      <div className="mt-3.5 px-3 py-2.5 rounded-lg bg-bg-2 text-xs text-fg leading-relaxed">
-        Every listener city is a US healthcare interop hub. Zero off-target waste.
-      </div>
     </Card>
   );
 }
@@ -321,8 +318,8 @@ function SponsorView() {
 
       <Card>
         <div className="flex justify-between items-center mb-3.5 flex-wrap gap-2">
-          <SectionHeader colorKey="teal">Rare-opportunity inventory — calibrated to actual asset</SectionHeader>
-          <span className="text-[10px] font-mono text-fg-3">Ordered by revenue priority</span>
+          <SectionHeader colorKey="teal">Sponsorship inventory</SectionHeader>
+          <span className="text-[10px] font-mono text-fg-3">Proposed items are marked</span>
         </div>
         <div className="flex flex-col gap-2">
           {sponsorInventory.map((s, i) => (
@@ -332,7 +329,6 @@ function SponsorView() {
                 <div className="flex items-center gap-2 flex-wrap">
                   <span className="text-[11px] font-mono text-fg-3">#{s.priority}</span>
                   <span className="text-[13px] font-semibold text-fg">{s.tier}</span>
-                  {s.scarce && <Pill colorKey="coral" size="sm">SCARCE</Pill>}
                 </div>
                 <p className="text-xs text-fg-2 mt-1 leading-relaxed">{s.note}</p>
               </div>
@@ -416,7 +412,7 @@ function CoachingView() {
       </Card>
 
       <Card>
-        <SectionHeader colorKey="teal">Where coaching clients come from</SectionHeader>
+        <SectionHeader colorKey="teal">Who follows</SectionHeader>
         <div className="grid grid-cols-[repeat(auto-fit,minmax(160px,1fr))] gap-4 mt-3.5">
           <BigStat value="12.7%" label="Founder/CEO/Co-founder/President" colorKey="teal" sub="Of LinkedIn followers" />
           <BigStat value="34.4%" label="Director+CXO+VP" colorKey="purple" sub="Decision-maker reach" />
@@ -425,39 +421,11 @@ function CoachingView() {
       </Card>
 
       <Card>
-        <SectionHeader colorKey="coral">Engagement tiers</SectionHeader>
-        <div className="flex flex-col gap-2 mt-3.5">
-          {advisoryOffers.map((o, i) => (
-            <div key={i} className="px-3.5 py-3 rounded-lg bg-bg-2">
-              <div className="flex justify-between items-center gap-2.5 flex-wrap">
-                <div className="text-[13px] font-semibold text-fg">{o.name}</div>
-                <div className="text-[13px] font-mono font-semibold text-fg">{o.price}</div>
-              </div>
-              <div className="flex gap-3.5 mt-1 flex-wrap">
-                <span className="text-xs text-fg-2">{o.who}</span>
-                <span className="text-xs font-mono text-fg-3">· {o.format}</span>
-              </div>
-            </div>
-          ))}
-        </div>
-      </Card>
-
-      <Card>
-        <div className="flex justify-between items-center mb-3.5 flex-wrap gap-2">
-          <SectionHeader colorKey="teal">Proof + testimonials</SectionHeader>
-          <Pill colorKey="amber" size="sm">Awaiting real quotes</Pill>
-        </div>
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-2.5">
-          {coachingProof.map((p, i) => (
-            <div
-              key={i}
-              className={`px-4 py-4 rounded-lg bg-bg-2 border-l-2 ${palette[p.colorKey].border.replace('border-', 'border-l-')} ${p.placeholder ? 'opacity-70' : ''}`}
-            >
-              <p className="text-[13px] text-fg leading-relaxed italic">&ldquo;{p.quote}&rdquo;</p>
-              <div className="text-[11px] font-mono text-fg-3 mt-2">— {p.attribution}</div>
-            </div>
-          ))}
-        </div>
+        <SectionHeader colorKey="coral">Engagements and prices</SectionHeader>
+        <p className="text-[13px] text-fg-2 leading-relaxed mt-3.5">
+          Scope, deliverables and starting prices are kept in one place:{' '}
+          <a href="/consulting" className="border-b border-line-3 text-fg hover:border-fg">fhiriq.com/consulting</a>.
+        </p>
       </Card>
 
       <Card>
@@ -477,7 +445,7 @@ function ContactCTA() {
         <div>
           <div className="text-lg font-semibold mb-1">Let&apos;s talk.</div>
           <p className="text-sm text-white/80 leading-relaxed max-w-2xl">
-            Sponsorship inquiries, advisory engagements, or a 20-minute intro — same inbox. I respond to every legitimate inquiry within 48 hours.
+            Sponsorship inquiries, advisory engagements, or a 30-minute intro call. Same inbox.
           </p>
         </div>
         <div className="flex gap-2.5 flex-wrap">
@@ -488,7 +456,7 @@ function ContactCTA() {
             gene@fhiriq.com
           </a>
           <a
-            href="https://calendar.app.google/TMvRGiiYfbBKNd889"
+            href={PERSON.bookingUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="px-5 py-2.5 rounded-lg border border-white/40 text-sm font-semibold hover:bg-white/10 transition-colors whitespace-nowrap"
@@ -520,23 +488,7 @@ export default function MediaKitPage() {
   return (
     <div className="min-h-screen bg-bg">
       {/* Site nav */}
-      <nav className="bg-bg shadow-sm sticky top-0 z-30">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex justify-between items-center py-4">
-            <Link href="/" className="text-2xl font-bold text-primary-blue">
-              FHIR IQ
-            </Link>
-            <div className="hidden md:flex space-x-7 text-sm">
-              <Link href="/lab" className="text-neutral-gray hover:text-primary-blue font-medium">Solutions</Link>
-              <Link href="/lab" className="text-neutral-gray hover:text-primary-blue font-medium">Tools</Link>
-              <Link href="/podcast" className="text-neutral-gray hover:text-primary-blue font-medium">Podcast</Link>
-              <Link href="/blog" className="text-neutral-gray hover:text-primary-blue font-medium">Blog</Link>
-              <Link href="/about" className="text-neutral-gray hover:text-primary-blue font-medium">About</Link>
-              <Link href="/contact" className="text-primary-blue font-semibold">Contact</Link>
-            </div>
-          </div>
-        </div>
-      </nav>
+      <Nav />
 
       {/* Hero */}
       <section className="bg-gradient-to-r from-accent-purple via-primary-blue to-primary-navy text-fg">
@@ -594,14 +546,7 @@ export default function MediaKitPage() {
       </div>
 
       {/* Footer */}
-      <footer className="bg-bg-2 border-t border-line mt-8">
-        <div className="max-w-7xl mx-auto px-4 py-6 flex flex-wrap justify-between items-center gap-3">
-          <span className="text-xs text-fg-3">
-            {meta.ownerName} · {meta.ownerSite} · <a href={`mailto:${meta.ownerEmail}`} className="hover:text-primary-blue">{meta.ownerEmail}</a>
-          </span>
-          <span className="text-xs font-mono text-fg-3">{meta.sourcesLine}</span>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

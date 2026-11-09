@@ -2,11 +2,16 @@
 
 import { useId, useState } from 'react';
 import { trackEvent, isValidEmail } from '@/lib/analytics';
+import { PERSON } from '@/lib/profile';
 
 /**
- * Newsletter capture. Same endpoint and same events as the old inline form;
- * the alert()-based feedback is replaced with inline status text so the
- * result is announced to screen readers instead of hijacking the tab.
+ * Newsletter capture.
+ *
+ * Substack owns the subscriber list and its double opt-in, so this form does
+ * not subscribe anyone by itself. It notifies Gene through /api/subscribe and
+ * then opens Substack's own subscribe page with the address pre-filled, where
+ * the reader confirms. The previous version told readers "Subscribed. Check
+ * your inbox." when nothing had been subscribed at all.
  */
 export default function SubscribeForm({
   location,
@@ -45,9 +50,12 @@ export default function SubscribeForm({
       const data = await response.json();
 
       if (response.ok) {
-        setStatus({ kind: 'ok', message: 'Subscribed. Check your inbox.' });
-        trackEvent('newsletter_signup', { email });
-        setEmail('');
+        trackEvent('newsletter_signup', { location });
+        setStatus({
+          kind: 'ok',
+          message: 'Opening Substack to confirm your subscription.',
+        });
+        window.location.href = `${PERSON.substack}/subscribe?email=${encodeURIComponent(email)}`;
       } else {
         setStatus({
           kind: 'error',

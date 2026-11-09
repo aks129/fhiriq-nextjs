@@ -2,6 +2,7 @@
 
 import { useState, type FormEvent } from 'react';
 import Link from 'next/link';
+import { BIO } from '@/lib/profile';
 import './builders.css';
 
 const FONT_LINK =
@@ -55,14 +56,14 @@ export default function BuildersPage() {
 
           {/* HERO */}
           <section className="hero">
-            <div className="eyebrow">Cohort 01 · Now enrolling</div>
+            <div className="eyebrow">Healthcare AI Builders · Waitlist open</div>
             <h1 className="hero-headline">
               Stop reading about<br />
               healthcare AI.<br />
               <span className="underline-art">Start <span className="italic">shipping</span> it.</span>
             </h1>
             <p className="hero-sub">
-              A small cohort for healthcare PMs, clinicians, and builders who want a working system — not another course library. The exact playbook I used to ship HealthClaw, AINPI, and 25+ other projects with Claude Code + FHIR.
+              A small cohort for healthcare PMs, clinicians, and builders who want a working system, not another course library. The same Claude Code and FHIR workflow I use to build HealthClaw, Open Quality and AINPI.
             </p>
 
             <div className="hero-cta-row">
@@ -72,10 +73,9 @@ export default function BuildersPage() {
             </div>
 
             <div className="stamps">
-              <div className="stamp"><span className="stamp-dot" />50 seats total</div>
+              <div className="stamp"><span className="stamp-dot" />Small group</div>
               <div className="stamp"><span className="stamp-dot" />$29 first month</div>
               <div className="stamp"><span className="stamp-dot" />Live · founder-led</div>
-              <div className="stamp"><span className="stamp-dot" />Ship by DevDays MN, June 2026</div>
             </div>
 
             <div className="spec-card">
@@ -83,7 +83,6 @@ export default function BuildersPage() {
               <div className="spec-card-row"><span>start</span><span className="v">rolling</span></div>
               <div className="spec-card-row"><span>format</span><span className="v">live + 1:1</span></div>
               <div className="spec-card-row"><span>time/wk</span><span className="v">2–3 hrs</span></div>
-              <div className="spec-card-row"><span>seats_open</span><span className="v">48 / 50</span></div>
               <div className="spec-card-row"><span>stack</span><span className="v">Claude Code, FHIR, MCP</span></div>
             </div>
           </section>
@@ -94,36 +93,26 @@ export default function BuildersPage() {
           <div className="wrap">
             <div className="section-label">What you&apos;ll be able to build</div>
             <h2 className="section-title">Real projects. <span className="italic">Not toy demos.</span></h2>
-            <p className="section-lede">Everything below was built solo, on nights and weekends, using the same system you&apos;ll learn. Most would normally take a team months.</p>
+            <p className="section-lede">Everything below is public and built with the same workflow you&apos;ll learn.</p>
 
             <div className="proof-grid">
               <div className="proof-card">
                 <div className="proof-tag">Production · MCP + FHIR</div>
                 <h3>HealthClaw Guardrails</h3>
-                <p>PHI redaction, step-up auth, MCP tool validation, Curatr data-quality eval. Running on Railway with full test coverage.</p>
+                <p>PHI redaction, step-up auth, MCP tool validation, Curatr data-quality eval. 29 MCP tools and 4,000+ tests, per the repo.</p>
               </div>
               <div className="proof-card">
                 <div className="proof-tag">Open source · CMS audit</div>
                 <h3>AINPI.dev</h3>
-                <p>An audit of the CMS National Provider Directory with five data-quality findings. Pre-registered methodology, published findings.</p>
-              </div>
-              <div className="proof-card">
-                <div className="proof-tag">SMART on FHIR</div>
-                <h3>SmartHealthConnect</h3>
-                <p>Patient access app with SMART on FHIR auth. Built end-to-end in weeks, not quarters.</p>
+                <p>A provider-directory accuracy audit with per-NPI checks against NPPES, the OIG exclusion list and SAM.gov. The aggregate view runs on a synthetic seed while the measurement pipeline is built, as the site says.</p>
               </div>
               <div className="proof-card">
                 <div className="proof-tag">Quality measures</div>
-                <h3>CQL on Medplum</h3>
-                <p>Breast cancer screening, ADHD med monitoring, LDL compliance. Live CQL measures running against a real FHIR server.</p>
+                <h3>Open Quality</h3>
+                <p>52 CMS eCQM packages for the 2026 reporting year, with CQL and SQL side by side and provenance checked in CI.</p>
               </div>
               <div className="proof-card">
-                <div className="proof-tag">Analytics</div>
-                <h3>Payer analytics dashboards</h3>
-                <p>Sigma dashboards built on FHIR-derived data. The pattern that powers my day-job platform.</p>
-              </div>
-              <div className="proof-card">
-                <div className="proof-tag">+ 20 more</div>
+                <div className="proof-tag">Yours</div>
                 <h3>Your project here</h3>
                 <p>What&apos;s the one healthcare problem you can&apos;t get out of your head? That&apos;s what you&apos;ll build in this cohort.</p>
               </div>
@@ -179,7 +168,7 @@ export default function BuildersPage() {
               <div className="rung">
                 <div className="rung-num">STEP 01</div>
                 <div className="rung-price">Free</div>
-                <div className="rung-price-sub">45–60 minutes · 1:1 with me</div>
+                <div className="rung-price-sub">1:1 with me</div>
                 <h4>Intro call</h4>
                 <ul>
                   <li>Full walkthrough of the system</li>
@@ -190,7 +179,6 @@ export default function BuildersPage() {
               </div>
 
               <div className="rung featured">
-                <div className="rung-badge">Most popular</div>
                 <div className="rung-num">STEP 02</div>
                 <div className="rung-price">$29</div>
                 <div className="rung-price-sub">first month, intro rate</div>
@@ -226,18 +214,16 @@ export default function BuildersPage() {
 
             <div className="about-grid">
               <div className="about-bio">
-                <p>I&apos;m a senior PM at a national pharmacy data platform by day, and the founder of <strong>FHIR IQ</strong> by night. Over the past 18 months I&apos;ve shipped 25+ healthcare AI projects solo using Claude Code, FHIR, and a system I refined the hard way.</p>
-                <p>Before that: <strong>Director of FHIR Data Analytics</strong> at a health tech startup. Before that: building the data layer at <strong>b.well Connected Health</strong>, powering Samsung Health, Google Fitbit, and major health systems. Roughly 15 years in this industry.</p>
-                <p>I&apos;m not selling a secret. I&apos;m selling time — the months I&apos;ve already spent figuring out what works, so you don&apos;t have to. I&apos;ve taught this in 1:1s. I&apos;m formalizing it into a cohort because the demand is there and the timing is right.</p>
-                <p>Speaking at <strong>HL7 DevDays Minneapolis, June 2026.</strong> Host of <em>Out of the FHIR</em> podcast. Author of the <em>FHIR IQ Playbook</em> on Substack.</p>
+                <p>{BIO}</p>
+                <p>I&apos;m not selling a secret. I&apos;m selling time: the months I&apos;ve already spent figuring out what works, so you don&apos;t have to.</p>
+                <p>HL7 FHIR DevDays speaker. Host of <em>Out of the FHIR</em> podcast. Author of the <em>FHIR IQ Playbook</em> on Substack.</p>
               </div>
 
               <div className="about-stats">
-                <div className="stat-row"><span className="label">Projects shipped</span><span className="value">25+</span></div>
-                <div className="stat-row"><span className="label">Years in healthcare</span><span className="value">15</span></div>
-                <div className="stat-row"><span className="label">FHIR Goats members</span><span className="value">780</span></div>
-                <div className="stat-row"><span className="label">Substack subscribers</span><span className="value">560</span></div>
-                <div className="stat-row"><span className="label">DevDays MN 2026</span><span className="value">Speaker</span></div>
+                <div className="stat-row"><span className="label">Healthcare data</span><span className="value">15+ yrs</span></div>
+                <div className="stat-row"><span className="label">Open-source projects live</span><span className="value">4</span></div>
+                <div className="stat-row"><span className="label">Podcast</span><span className="value">Out of the FHIR</span></div>
+                <div className="stat-row"><span className="label">HL7 FHIR DevDays</span><span className="value">Speaker</span></div>
               </div>
             </div>
           </section>
@@ -252,15 +238,15 @@ export default function BuildersPage() {
 
             <div className="signup-grid">
               <div className="signup-left">
-                <h3>Two seats already taken from my Substack. 48 left.</h3>
-                <p>This is a small group on purpose. I want to know everyone&apos;s project well enough to actually help unstick them.</p>
+                <h3>A small group, on purpose.</h3>
+                <p>I want to know everyone&apos;s project well enough to actually help unstick them.</p>
                 <p>If the cohort isn&apos;t a fit after the intro call, no pressure. You&apos;ll still leave with the methodology and a clear next step on your project.</p>
                 <div className="meta">
                   Questions before signing up?<br />
                   DM me on LinkedIn or reply to any Substack post.
                   <br /><br />
                   <strong>Want to try before you commit?</strong>{' '}
-                  <Link href="/workshop">Cohort 00 is free — start there →</Link>
+                  <Link href="/workshop">The workshop is free. Start there →</Link>
                 </div>
               </div>
 
@@ -353,7 +339,7 @@ export default function BuildersPage() {
           {/* FOOTER */}
           <footer className="footer-section">
             <div className="footer-grid">
-              <div>FHIR IQ · Healthcare AI Builders · Cohort 01</div>
+              <div>FHIR IQ · Healthcare AI Builders</div>
               <div>
                 <Link href="/">fhiriq.com</Link> ·{' '}
                 <a href="https://evestel.substack.com" target="_blank" rel="noopener noreferrer">Substack</a> ·{' '}

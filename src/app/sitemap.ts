@@ -1,6 +1,5 @@
 import { MetadataRoute } from 'next';
-
-const BASE = 'https://fhiriq.com';
+import { SITE_URL as BASE } from '@/lib/profile';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
@@ -21,7 +20,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/cqlguide`,            changeFrequency: 'monthly', priority: 0.5 },
     { url: `${BASE}/mappingguide`,        changeFrequency: 'monthly', priority: 0.5 },
     { url: `${BASE}/profilingguide`,      changeFrequency: 'monthly', priority: 0.5 },
-    { url: `${BASE}/investor`,            changeFrequency: 'monthly', priority: 0.4 },
     { url: `${BASE}/contact`,             changeFrequency: 'yearly',  priority: 0.4 },
     { url: `${BASE}/privacy`,             changeFrequency: 'yearly',  priority: 0.2 },
   ];

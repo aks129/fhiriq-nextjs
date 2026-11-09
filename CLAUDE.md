@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this site actually is
 
-**fhiriq.com is a personal authority site for Eugene Vestel** — healthcare interoperability consultant, host of the *Out of the FHIR* podcast, and builder of open-source FHIR tooling. The homepage h1 is "I help healthcare orgs make sense of FHIR, AI, and quality measurement"; the primary CTAs are the Substack newsletter and the podcast.
+**fhiriq.com is a personal authority site for Eugene Vestel** — healthcare interoperability consultant, host of the *Out of the FHIR* podcast, and builder of open-source FHIR tooling. The homepage h1 is "Free implementation reference for AI agents on FHIR and digital quality measures"; the primary CTAs are the agent guide and the reference, with newsletter and podcast below.
 
 Do not "correct" this toward product-startup positioning. Earlier revisions of this file described a product-centric site built around an "Open Quality AI Layer" and a Design Partner program. That is not what ships. Consulting, the podcast, the newsletter, and the open-source projects are the content.
 
@@ -19,7 +19,8 @@ npm run dev              # dev server on :3000 (Turbopack)
 npm run build            # production build (Turbopack)
 npm start                # serve the production build
 npm run lint             # ESLint
-npx tsc --noEmit         # typecheck — NOT in package.json, run it directly
+npm run typecheck        # tsc --noEmit
+npm run check:claims     # banned-claims scan; also runs as prebuild, so a hit fails the Vercel build
 ```
 
 **There is no test runner.** `seed.spec.ts` at the repo root imports `@playwright/test`, which is not installed, so `npx tsc --noEmit` always reports two errors from that file. Those two are the expected baseline — anything else is yours. `npm run lint` likewise has ~45 pre-existing warnings across untouched routes; the bar is **zero errors and zero new warnings in files you touched**, not a clean global run.
@@ -67,7 +68,7 @@ Two invariants in that layer are load-bearing, and reversing either one reintrod
 
 ## Page composition
 
-`src/components/Nav.tsx` and `src/components/Footer.tsx` are the site's shared chrome. **Only the homepage uses them so far — 35 other routes still inline their own `<nav>`.** Adopting the shared components on a route is the mechanical first step of converting it. The Nav's mobile menu is a native `<details>`, so it works with JavaScript disabled.
+`src/components/Nav.tsx` and `src/components/Footer.tsx` are the site's shared chrome. **Most routes now use them. Still inline: `/workshop` and `/builders` (deliberately, see Cohort funnel) and `/architectures`.** Adopting the shared components on a route is the mechanical first step of converting it. The Nav's mobile menu is a native `<details>`, so it works with JavaScript disabled.
 
 `src/app/page.tsx` is the reference implementation and is a **server component**. Interactivity lives in small client islands, not in a page-wide `'use client'`:
 
@@ -123,6 +124,22 @@ Claims about third parties are the same problem one step removed. `/partners` de
 
 The same drift showed up in tense. "NCQA advisor" appeared in the present tense in four places, as "Former NCQA Advisor" in a fifth and "NCQA collaborator" in a sixth, for what was a four-month engagement. When a role ends, fix every instance — grep the org name, do not fix the one you happened to be looking at.
 
+## Single sources of truth — edit these, not pages
+
+The October 2026 QA pass (five reviewer personas: FHIR expert, CMIO buyer, vendor alliances, AI company, digital-health CTO) found the same facts stated differently across pages: three careers, three intro-call lengths, two price lists. Facts now live in one place each:
+
+| File | Holds |
+| ---- | ----- |
+| `src/lib/profile.ts` | `PERSON` (email, booking URL, LinkedIn, GitHub, Substack), `BIO`, `YEARS_IN_HEALTHCARE_DATA`, `EXPERIENCE`, `EDUCATION`, `CREDENTIALS` |
+| `src/lib/engagements.ts` | Offers, scope, deliverables, starting prices, `INTRO_CALL` |
+| `src/lib/chat-prompt.ts` | The chatbot system prompt, built from the two files above |
+| `src/components/ContactCTA.tsx` | Booking and email together, everywhere a page asks for contact |
+| `scripts/check-claims.mjs` | Patterns the site has had to retract; runs before every build |
+
+**Career facts** come from Eugene's own employment record and resume, not from memory. Do not name a current employer. Outcomes (Senior Product Manager) ended in 2026 and appears only as a dated past role.
+
+**The Google booking page showed "No available times in the next year"** in October 2026, which is why `ContactCTA` always pairs it with email. Check it before making booking the only route anywhere.
+
 ## Positioning — what this site competes on
 
 The named competitors are **Dogwood Health Consulting** and **Point-of-Care Partners**, and they win on different things. Dogwood's authority is personal: Lloyd McKenzie is on the FHIR core team, and their site publishes **no free reference material** because it does not need to. POCP's moat is regulatory intelligence — the Regulatory Resource Center, HIT Perspectives, a podcast — which is policy rather than implementation.
@@ -135,7 +152,7 @@ Consequences for anything you add here:
 - Do not put the reference material behind a signup. Free and ungated is the competitive move; POCP gates some of theirs.
 - Standards details on these pages are **checked against the spec, not recalled**. The SMART v2 scope syntax in `/agentguide` is verified against the SMART App Launch IG; `.rs` and `.read` are not interchangeable and the cruds letters are order-sensitive.
 
-**Verified credentials** (the credential wall and the Standards section in `page.tsx`): Outcomes — Payer Interoperability Analytics & AI Lead; SQL on FHIR — HL7 working group; NCQA — consultant April to August 2025 (a defined engagement, not a standing advisory role): strategy for digital content services optimization and AI adoption, plus data quality strategy; b.well Connected Health — Director of Data & Analytics, hired and led their first FHIR team, stood up Analytics on FHIR and mapped the data for the interoperability platform now behind Samsung Health and Fitbit (both partnerships are public and press-released); UPMC — 5 years Clinical Analytics; HL7 FHIR DevDays speaker on HealthClaw; Analytics on FHIR 2025; FHIR Camp 2025; Agents on FHIR weekly working group; early CQL and CQL-to-SQL practitioner.
+**Verified credentials** (now in `src/lib/profile.ts`): SQL on FHIR v2 — participant in the HL7 implementation guide (FHIR Infrastructure WG); NCQA — FHIR advisor (contract), 2025 (a defined engagement, not a standing advisory role): strategy for digital content services optimization and AI adoption, plus data quality strategy; b.well Connected Health — Director of Data & Analytics, hired and led their first FHIR team, stood up Analytics on FHIR and mapped the data for the interoperability platform now behind Samsung Health and Fitbit (both partnerships are public and press-released); UPMC Health Plan — 5 years Quality Analytics (Manager, Strategic Data Management & Operations); HL7 FHIR DevDays speaker on HealthClaw; Analytics on FHIR 2025; FHIR Camp 2025; Agents on FHIR weekly working group; early CQL and CQL-to-SQL practitioner.
 
 **Still unconfirmed:** a specific implementation-guide authorship or work-group co-chair title. Participation in SQL on FHIR is stated; authorship of a named IG is not. Do not upgrade one into the other.
 
@@ -144,24 +161,26 @@ Consequences for anything you add here:
 | Route | Purpose |
 | ----- | ------- |
 | `/` | Homepage — personal brand, podcast, newsletter, open-source work, advisory |
-| `/podcast` | *Out of the FHIR* with live metrics |
+| `/podcast` | *Out of the FHIR*, episodes from the feed (no metrics; the old "live metrics" were hardcoded) |
 | `/lab` | The Lab — the live projects, verified against Vercel and GitHub |
-| `/media-kit` | Podcast sponsor/advisory/coaching dashboard, outbound-shareable |
-| `/builders` | Healthcare AI Builders — Cohort 01 signup |
-| `/workshop` | Free workshop — Cohort 00 entry funnel |
-| `/workshop-agenda`, `/workshop-agenda/present` | Cohort 00 reference + slide deck |
-| `/investor`, `/early-access`, `/innovation-pilot-terms` | Legacy product-era pages, still live |
+| `/media-kit` | Podcast sponsor dashboard. Numbers are self-reported platform exports with an as-of date; prices live on `/consulting` |
+| `/consulting` | Work with me: three fixed-scope reviews plus code review, training, ongoing advisory |
+| `/privacy` | Written from what the code collects; also carries the security statement |
+| `/builders` | Healthcare AI Builders, waitlist |
+| `/workshop` | Free workshop, waitlist |
+| `/workshop-agenda`, `/workshop-agenda/present` | Cohort 00 reference + deck, a record of a past cohort; `noindex`, unlinked |
 
-Retired in the truth pass and redirected: `/games` (+3), `/library`, `/tools` (+1), `/fhirsquire`, `/solutions` (+1), `/builder`, `/portfolio`, `/products`, `/partners`, `/training`, `/resources` (→ `/reference`).
+Retired in the truth pass and redirected: `/games` (+3), `/library`, `/tools` (+1), `/fhirsquire`, `/solutions` (+1), `/builder`, `/portfolio`, `/products`, `/partners`, `/training`, `/resources` (→ `/reference`). Retired in the October 2026 QA pass: `/investor`, `/differentiation`, `/early-access`, `/innovation-pilot-terms` (→ `/`), `/services` (→ `/consulting`), `/store` (→ `/lab`), `/security` (→ `/privacy`).
 
-40 routes total. Guides under `/cqlguide`, `/mappingguide`, `/profilingguide` are served from `public/`; `/mappingguide` is rewritten to its `index.html` in `next.config.ts`.
+Guides under `/cqlguide`, `/mappingguide`, `/profilingguide` are served from `public/`; `/mappingguide` is rewritten to its `index.html` in `next.config.ts`.
 
 ### Cohort funnel
 
 `/workshop` and `/builders` are a two-stage funnel with mutual cross-links — do not treat them as independent pages:
 
-- **`/workshop`** = **Cohort 00** = free entry funnel. 5 sessions, capped at 20, first session free.
-- **`/builders`** = **Cohort 01** = paid ongoing program. $29 first month, $99/mo after.
+- **`/workshop`** = free entry funnel. 5 live sessions, capped at 20 per cohort, first session free.
+- **`/builders`** = paid ongoing program. $29 first month, $99/mo after.
+- Both are **waitlists** with no dates or seat counts. Cohort 00 ran in mid-2026 and its dates went stale on the live pages; put dates back only when a cohort is actually scheduled, and take them down when it ends.
 - `/builders` hero CTA and signup meta both link to `/workshop`; `/workshop` has an upgrade block and footer link to `/builders`.
 
 When editing copy, pricing, seat caps, or the session list on one, **mirror the substantive change on the other**.
@@ -170,11 +189,13 @@ Both use a **scoped CSS file** (`builders.css`, `workshop.css`) with every rule 
 
 ## API routes
 
-All in `src/app/api/`. `/api/chat` (Claude, with a keyword-based fallback when `ANTHROPIC_API_KEY` is unset), `/api/contact`, `/api/subscribe`, `/api/cohort-signup`, `/api/workshop-signup`, `/api/builder`, `/api/fhir/capabilities`, `/api/health`, `/api/podcast-metrics`, `/api/portfolio-metrics`, `/api/webhooks/commerce`.
+All in `src/app/api/`. `/api/chat`, `/api/subscribe`, `/api/cohort-signup`, `/api/workshop-signup`, `/api/podcast-feed`, `/api/fhir/capabilities`, `/api/health`. The unused product-era routes (contact, builder, podcast-metrics, portfolio-metrics, webhooks/commerce) and MongoDB were removed.
 
-The chatbot system prompt exists in **both** `src/components/ChatBot.tsx` and `src/app/api/chat/route.ts` — keep them synchronized.
+`/api/chat` uses the official Anthropic SDK with `claude-opus-5-5`, effort `low`, an 8192-token cap, a 2,000-character input cap, and server-side refusal fallback (`fallbacks: "default"`). **The system prompt is server-only** (`src/lib/chat-prompt.ts`). The route used to accept a `systemPrompt` from the browser, which made it an open Claude proxy on the site's key; never reintroduce that.
 
-MongoDB uses a cached singleton in `src/lib/mongodb.ts` to survive serverless invocations. Always go through it; never open a direct connection. `src/lib/licenseManager.ts` is a scaffold — its DB functions are stubs, not wired to MongoDB.
+**The newsletter form does not subscribe anyone by itself.** Substack owns the list. `SubscribeForm` notifies Gene via `/api/subscribe`, then sends the reader to `evestel.substack.com/subscribe?email=…` to confirm. It previously said "Subscribed. Check your inbox." when nothing had happened.
+
+Sign-up routes do not log PII; the sign-up reaches Gene by email only, which is what `/privacy` says.
 
 ## Email (Resend) — hard-won
 
@@ -196,13 +217,12 @@ If a `[PROD TEST]` returns 200 from the route but never appears in `/emails`, th
 ## Environment variables
 
 ```bash
-ANTHROPIC_API_KEY=sk-...       # optional — /api/chat falls back without it
-MONGODB_URI=mongodb+srv://...
+ANTHROPIC_API_KEY=sk-...       # optional — /api/chat returns a fixed message without it
 RESEND_API_KEY=re_...
 RESEND_FROM=FHIR Builders <notifications@fhirbuilders.com>   # must be a verified domain
 SUBSTACK_PUBLICATION_ID=evestel
 NEXT_PUBLIC_SITE_URL=https://fhiriq.com
-NEXT_PUBLIC_LINKEDIN_PARTNER_ID=...
+NEXT_PUBLIC_LINKEDIN_PARTNER_ID=...   # unset in production; /privacy mentions LinkedIn only when it is set
 ```
 
 See `CLAUDE_API_SETUP.md` and `EMAIL_SETUP.md`. After changing env vars in Vercel, redeploy.
@@ -227,8 +247,11 @@ Featured on the homepage in this card order. **Frame these as community/personal
 | Project | Status | Links |
 | ------- | ------ | ----- |
 | HealthClaw Guardrails | Live | [healthclaw.io](https://healthclaw.io) · [aks129/HealthClawGuardrails](https://github.com/aks129/HealthClawGuardrails) |
-| Smart Health Connect | Open Source | [aks129/SmartHealthConnect](https://github.com/aks129/SmartHealthConnect) |
-| AINPI | Ecosystem Analysis | [ainpi.dev](https://ainpi.dev) · [FHIR-IQ/AINPI](https://github.com/FHIR-IQ/AINPI) |
+| CareAgents | Beta, synthetic records only | [careagents.cloud](https://careagents.cloud) |
+| Open Quality | Live | [openquality.us](https://openquality.us) · [FHIR-IQ/openquality](https://github.com/FHIR-IQ/openquality) |
+| AINPI | Live, synthetic-seed caveat | [ainpi.dev](https://ainpi.dev) · [FHIR-IQ/AINPI](https://github.com/FHIR-IQ/AINPI) |
+
+HealthClaw facts, from its README: 29 MCP tools, 4,000+ Python and 200+ Node tests, FHIR R4 US Core v9 (stable) and R6 v6.0.0-ballot3 (experimental). Its own security page says it is not a HIPAA compliance determination; never say "HIPAA-compliant". Open Quality: measure packages are CC0, tooling is MIT.
 
 Covered in two Substack posts: "Building a New Empowered Health System" and "How I Build My Personal OpenClaw" (evestel.substack.com).
 
@@ -247,4 +270,4 @@ Vercel, auto-deploy on push. `vercel.json` contains **only** API CORS headers; a
 
 ## Contact
 
-- <gene@fhiriq.com> · booking: <https://calendar.app.google/TMvRGiiYfbBKNd889> · <https://fhiriq.com>
+- See `PERSON` in `src/lib/profile.ts`.

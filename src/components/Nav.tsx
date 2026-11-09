@@ -17,6 +17,7 @@ const LINKS = [
   { href: '/lab', label: 'Lab' },
   { href: '/reference', label: 'Reference' },
   { href: '/about', label: 'About' },
+  { href: '/consulting', label: 'Work with me' },
 ] as const;
 
 export default function Nav() {

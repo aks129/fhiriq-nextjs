@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { PERSON } from '@/lib/profile';
 
 /**
  * Shared Footer — the colophon. Same content the homepage footer carried,
@@ -31,10 +32,10 @@ const COLUMNS = [
     heading: 'Connect',
     links: [
       { href: '/about', label: 'About Eugene' },
-      { href: '/consulting', label: 'Advisory' },
+      { href: '/consulting', label: 'Work with me' },
       { href: '/contact', label: 'Contact' },
       {
-        href: 'https://calendar.app.google/TMvRGiiYfbBKNd889',
+        href: PERSON.bookingUrl,
         label: 'Book a Call',
         external: true,
       },
@@ -63,7 +64,7 @@ export default function Footer() {
             </p>
             <div className="mt-5 flex gap-3">
               <a
-                href="https://www.linkedin.com/in/evestel/"
+                href={PERSON.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn profile"
@@ -74,7 +75,7 @@ export default function Footer() {
                 </svg>
               </a>
               <a
-                href="https://github.com/aks129"
+                href={PERSON.github}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub profile"
@@ -115,7 +116,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-12 flex flex-col justify-between gap-3 border-t border-line pt-6 md:flex-row md:items-center">
-          <p className="label">© 2026 FHIR IQ</p>
+          <p className="label">© {new Date().getFullYear()} FHIR IQ</p>
           <p className="caption text-xs">
             FHIR® is a registered trademark of HL7® and is used with permission.
           </p>

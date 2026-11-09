@@ -25,6 +25,16 @@ const nextConfig: NextConfig = {
       // real third-party organisations that nothing here verifies — over four
       // fabricated client testimonials.
       '/partners',
+      // Retired in the October 2026 QA pass. Each was product-era copy that
+      // the site could not stand behind: /investor named data-platform
+      // "partnerships" and pitched a raise, /differentiation scored named
+      // vendors with an X on every row, and /early-access and
+      // /innovation-pilot-terms recruited design partners for a proprietary
+      // engine that the open-source work replaced.
+      '/investor',
+      '/differentiation',
+      '/early-access',
+      '/innovation-pilot-terms',
     ];
     return [
       ...retired.map((source) => ({ source, destination: '/', permanent: true })),
@@ -37,6 +47,15 @@ const nextConfig: NextConfig = {
       // with cohort dates from February 2024 and invented "seats remaining"
       // counts. The real training funnel is the workshop, so send it there.
       { source: '/training', destination: '/workshop', permanent: true },
+      // /services duplicated /consulting with older copy.
+      { source: '/services', destination: '/consulting', permanent: true },
+      // /store sold fifteen data products, all "instant download", none of
+      // which existed; every button went to /contact.
+      { source: '/store', destination: '/lab', permanent: true },
+      // /security described controls a one-person practice does not run
+      // (annual penetration tests, 24/7 monitoring, a Security Officer). The
+      // honest statement now lives on /privacy.
+      { source: '/security', destination: '/privacy', permanent: true },
     ];
   },
   async rewrites() {

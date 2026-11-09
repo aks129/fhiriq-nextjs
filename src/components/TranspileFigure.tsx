@@ -5,7 +5,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 /**
  * Fig. 1 — the signature moment.
  *
- * A real CQL numerator definition and the warehouse SQL it compiles to, set
+ * An illustrative CQL numerator, simplified from CMS165, and the warehouse SQL it compiles to, set
  * as a figure on the page. The motion is a compiler pass: a cursor walks the
  * source, and each source line lights the target lines it produced.
  *
@@ -210,7 +210,7 @@ export default function TranspileFigure() {
           <div className="flex items-baseline gap-3">
             <span className="label text-fg">Fig. 1</span>
             <span className="label text-fg-3 normal-case tracking-normal">
-              CBP · Controlling High Blood Pressure
+              Simplified from CMS165 · Controlling High Blood Pressure
             </span>
           </div>
           {canAnimate && (
@@ -265,9 +265,11 @@ export default function TranspileFigure() {
       </div>
 
       <figcaption className="caption mt-4 measure">
-        Fig. 1 — A quality-measure numerator written once in CQL, and the
-        warehouse SQL it compiles to. The value set resolves to a join, the
-        measurement period to a bounded predicate.
+        Fig. 1. An illustrative numerator, simplified from CMS165, written once
+        in CQL and shown with the warehouse SQL it compiles to. The value set
+        resolves to a join, the measurement period to a bounded predicate. The
+        published measure uses the lowest systolic and diastolic readings on the
+        most recent blood pressure day; see Open Quality for the full logic.
       </figcaption>
     </figure>
   );

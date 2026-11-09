@@ -1,27 +1,14 @@
 'use client';
 
+import Nav from '@/components/Nav';
+import Footer from '@/components/Footer';
 import Link from 'next/link';
 
 export default function ProfilingGuide() {
   return (
     <div className="min-h-screen bg-bg-2">
       {/* Navigation */}
-      <nav className="bg-bg shadow-lg sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex justify-between items-center py-4">
-            <div className="flex items-center">
-              <Link href="/" className="text-2xl font-bold text-primary-blue">
-                FHIR IQ
-              </Link>
-              <span className="ml-4 text-fg-3">|</span>
-              <span className="ml-4 text-lg font-semibold text-fg-2">FHIR Profiling Guide</span>
-            </div>
-            <Link href="/" className="text-primary-blue hover:text-primary-navy font-medium">
-              ← Back to Home
-            </Link>
-          </div>
-        </div>
-      </nav>
+      <Nav />
 
       {/* GitHub Contribution Banner */}
       <div className="bg-gradient-to-r from-bg-3 to-bg-3 text-fg">
@@ -63,7 +50,7 @@ export default function ProfilingGuide() {
             FHIR Data Modeling & Profiling Design Guide
           </h1>
           <p className="text-xl opacity-90 max-w-3xl mb-6">
-            Master the art of designing FHIR profiles using the proven &quot;Learn, Build, Use&quot; framework
+            Master the art of designing FHIR profiles using a &quot;Learn, Build, Use&quot; framework
           </p>
           <div className="flex gap-4 flex-wrap">
             <div className="bg-white/10 px-4 py-2 rounded-lg">
@@ -834,7 +821,7 @@ export default function ProfilingGuide() {
             Need Help with FHIR Profiling?
           </h2>
           <p className="text-xl text-fg-2 mb-8 max-w-2xl mx-auto">
-            Our experts can help you design, validate, and implement FHIR profiles
+            I can help you design, validate, and implement FHIR profiles
             tailored to your organization&apos;s specific requirements.
           </p>
           <div className="flex gap-4 justify-center flex-wrap">
@@ -856,16 +843,7 @@ export default function ProfilingGuide() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-bg-2 text-fg py-8 mt-12">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <p className="text-fg-3">
-            &copy; 2025 FHIR IQ. FHIR Data Modeling & Profiling Design Guide.
-          </p>
-          <p className="text-fg-3 text-sm mt-2">
-            Last updated: January 2025
-          </p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
