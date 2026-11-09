@@ -1,337 +1,133 @@
-'use client';
+import type { Metadata } from 'next';
+import Nav from '@/components/Nav';
+import Footer from '@/components/Footer';
+import { PERSON } from '@/lib/profile';
 
-import Link from 'next/link';
+/**
+ * Privacy, and the security statement that /security used to make.
+ *
+ * Written from what the code does, not from a template. The previous policy
+ * described payment processing, user accounts, "employee training" and
+ * "regular security assessments", none of which exist. If you add a form, a
+ * tracker or a processor, add it here in the same change.
+ *
+ * The LinkedIn section renders only when the Insight Tag is configured, so the
+ * policy cannot claim a tracker that is not running, or miss one that is.
+ */
 
-export default function PrivacyPolicy() {
+export const metadata: Metadata = {
+  title: 'Privacy',
+  description: 'What fhiriq.com collects, where it goes, and how to ask for it to be deleted.',
+};
+
+const UPDATED = 'October 2026';
+const SHELL = 'mx-auto max-w-[84rem] px-4 sm:px-6';
+
+function Block({ title, children }: { title: string; children: React.ReactNode }) {
+  return (
+    <section className="border-t border-line py-8">
+      <h2 className="text-xl text-fg">{title}</h2>
+      <div className="measure mt-3 space-y-3 leading-relaxed text-fg-2">{children}</div>
+    </section>
+  );
+}
+
+export default function Privacy() {
+  const linkedin = Boolean(process.env.NEXT_PUBLIC_LINKEDIN_PARTNER_ID);
+
   return (
     <div className="min-h-screen bg-bg">
-      {/* Navigation */}
-      <nav className="bg-bg shadow-lg">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex justify-between items-center py-4">
-            <div className="flex items-center">
-              <Link href="/" className="text-2xl font-bold text-primary-blue">
-                FHIR IQ
-              </Link>
-            </div>
-            <div className="hidden md:flex space-x-8">
-              <Link href="/lab" className="text-neutral-gray hover:text-primary-blue font-medium">
-                Solutions
-              </Link>
-              <Link href="/lab" className="text-neutral-gray hover:text-primary-blue font-medium">
-                Tools
-              </Link>
-              <Link href="/about" className="text-neutral-gray hover:text-primary-blue font-medium">
-                About
-              </Link>
-              <Link href="/contact" className="text-neutral-gray hover:text-primary-blue font-medium">
-                Contact
-              </Link>
-            </div>
-          </div>
-        </div>
-      </nav>
-
-      {/* Privacy Policy Content */}
-      <div className="max-w-4xl mx-auto px-4 py-16">
-        <h1 className="text-4xl font-bold text-fg mb-4">Privacy Policy</h1>
-        <p className="text-fg-2 mb-8">Last Updated: January 17, 2025</p>
-
-        <div className="prose prose-lg max-w-none">
-          {/* Introduction */}
-          <section className="mb-8">
-            <h2 className="text-2xl font-bold text-fg mb-4">1. Introduction</h2>
-            <p className="text-fg-2 mb-4">
-              FHIR IQ ("we," "us," or "our") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website fhiriq.com (the "Site") and use our services.
-            </p>
-            <p className="text-fg-2 mb-4">
-              This policy applies to all users located in the United States, including residents of Pennsylvania, and complies with applicable federal and state privacy laws.
-            </p>
-            <p className="text-fg-2">
-              By using our Site, you agree to the collection and use of information in accordance with this policy. If you do not agree with our policies and practices, please do not use our Site.
-            </p>
-          </section>
-
-          {/* Information We Collect */}
-          <section className="mb-8">
-            <h2 className="text-2xl font-bold text-fg mb-4">2. Information We Collect</h2>
-
-            <h3 className="text-xl font-semibold text-fg mb-3">2.1 Personal Information</h3>
-            <p className="text-fg-2 mb-4">
-              We may collect personally identifiable information that you voluntarily provide to us when you:
-            </p>
-            <ul className="list-disc pl-6 text-fg-2 mb-4 space-y-2">
-              <li>Fill out contact forms or request information</li>
-              <li>Subscribe to our newsletter</li>
-              <li>Register for our services or create an account</li>
-              <li>Schedule consultations or meetings</li>
-              <li>Purchase products or services</li>
-              <li>Participate in surveys or provide feedback</li>
-            </ul>
-            <p className="text-fg-2 mb-4">
-              Personal information may include:
-            </p>
-            <ul className="list-disc pl-6 text-fg-2 mb-4 space-y-2">
-              <li>Name</li>
-              <li>Email address</li>
-              <li>Company name and job title</li>
-              <li>Phone number</li>
-              <li>Billing and payment information</li>
-              <li>Professional credentials and background</li>
-            </ul>
-
-            <h3 className="text-xl font-semibold text-fg mb-3">2.2 Automatically Collected Information</h3>
-            <p className="text-fg-2 mb-4">
-              When you visit our Site, we automatically collect certain information about your device, including:
-            </p>
-            <ul className="list-disc pl-6 text-fg-2 mb-4 space-y-2">
-              <li>IP address and approximate geographic location</li>
-              <li>Browser type and version</li>
-              <li>Operating system</li>
-              <li>Device identifiers</li>
-              <li>Pages visited and time spent on pages</li>
-              <li>Referring website addresses</li>
-              <li>Clickstream data</li>
-            </ul>
-
-            <h3 className="text-xl font-semibold text-fg mb-3">2.3 Cookies and Tracking Technologies</h3>
-            <p className="text-fg-2 mb-4">
-              We use cookies, web beacons, and similar tracking technologies to enhance your experience, analyze site usage, and assist in our marketing efforts. You can control cookies through your browser settings.
-            </p>
-          </section>
-
-          {/* How We Use Your Information */}
-          <section className="mb-8">
-            <h2 className="text-2xl font-bold text-fg mb-4">3. How We Use Your Information</h2>
-            <p className="text-fg-2 mb-4">
-              We use the information we collect for the following purposes:
-            </p>
-            <ul className="list-disc pl-6 text-fg-2 mb-4 space-y-2">
-              <li>To provide, operate, and maintain our services</li>
-              <li>To process transactions and send transaction notifications</li>
-              <li>To respond to your inquiries and provide customer support</li>
-              <li>To send you technical notices, updates, and security alerts</li>
-              <li>To communicate with you about products, services, and promotional offers</li>
-              <li>To improve our Site and develop new products and services</li>
-              <li>To monitor and analyze usage trends and preferences</li>
-              <li>To detect, prevent, and address technical issues and security threats</li>
-              <li>To comply with legal obligations and enforce our terms</li>
-            </ul>
-          </section>
-
-          {/* Information Sharing and Disclosure */}
-          <section className="mb-8">
-            <h2 className="text-2xl font-bold text-fg mb-4">4. Information Sharing and Disclosure</h2>
-            <p className="text-fg-2 mb-4">
-              We do not sell, rent, or trade your personal information. We may share your information in the following circumstances:
+      <Nav />
+      <main className={`${SHELL} pb-10 pt-14 md:pt-20`}>
+        <div className="grid min-w-0 gap-8 md:grid-cols-[8.5rem_minmax(0,1fr)] md:gap-12">
+          <p className="label label-bright md:pt-3">Privacy</p>
+          <div className="min-w-0">
+            <h1 className="text-display tracking-tight text-fg">Privacy</h1>
+            <p className="label mt-4">Updated {UPDATED}</p>
+            <p className="measure mt-8 text-lg leading-relaxed text-fg-2">
+              fhiriq.com is the personal site of {PERSON.name}. There are no
+              accounts, no payments and no advertising. This page lists
+              everything the site collects.
             </p>
 
-            <h3 className="text-xl font-semibold text-fg mb-3">4.1 Service Providers</h3>
-            <p className="text-fg-2 mb-4">
-              We may share information with third-party service providers who perform services on our behalf, including:
-            </p>
-            <ul className="list-disc pl-6 text-fg-2 mb-4 space-y-2">
-              <li>Payment processors</li>
-              <li>Email service providers</li>
-              <li>Analytics providers</li>
-              <li>Hosting and infrastructure providers</li>
-              <li>Customer relationship management platforms</li>
-            </ul>
+            <div className="mt-10">
+              <Block title="Page views">
+                <p>
+                  Vercel Web Analytics counts page views. It does not set
+                  cookies and does not identify individual visitors. Vercel,
+                  which hosts the site, also keeps standard server logs,
+                  including IP addresses, for a limited period.
+                </p>
+              </Block>
 
-            <h3 className="text-xl font-semibold text-fg mb-3">4.2 Business Transfers</h3>
-            <p className="text-fg-2 mb-4">
-              If we are involved in a merger, acquisition, financing, reorganization, bankruptcy, or sale of assets, your information may be transferred as part of that transaction.
-            </p>
+              {linkedin && (
+                <Block title="LinkedIn Insight Tag">
+                  <p>
+                    The site loads LinkedIn&apos;s Insight Tag, which sets
+                    cookies so LinkedIn can report aggregate audience and
+                    conversion data. LinkedIn&apos;s privacy policy applies to
+                    that data.
+                  </p>
+                </Block>
+              )}
 
-            <h3 className="text-xl font-semibold text-fg mb-3">4.3 Legal Requirements</h3>
-            <p className="text-fg-2 mb-4">
-              We may disclose your information if required to do so by law or in response to valid requests by public authorities (e.g., court orders, subpoenas).
-            </p>
+              <Block title="Forms">
+                <p>
+                  The newsletter form sends your email address to me as a
+                  notification, then opens Substack, which manages the
+                  subscriber list. Substack&apos;s privacy policy applies from
+                  there.
+                </p>
+                <p>
+                  The workshop and cohort sign-up forms send what you enter
+                  (name, email and the other fields shown) to me by email
+                  through Resend. They are not stored in a database.
+                </p>
+              </Block>
 
-            <h3 className="text-xl font-semibold text-fg mb-3">4.4 Protection of Rights</h3>
-            <p className="text-fg-2 mb-4">
-              We may disclose information to protect and defend our rights, property, or safety, or that of our users or others.
-            </p>
-          </section>
+              <Block title="Chat">
+                <p>
+                  Messages typed into the site chat are sent to Anthropic&apos;s
+                  API to generate a reply. Do not enter health information or
+                  anything confidential.
+                </p>
+              </Block>
 
-          {/* Data Security */}
-          <section className="mb-8">
-            <h2 className="text-2xl font-bold text-fg mb-4">5. Data Security</h2>
-            <p className="text-fg-2 mb-4">
-              We implement appropriate technical and organizational security measures to protect your personal information from unauthorized access, disclosure, alteration, or destruction. These measures include:
-            </p>
-            <ul className="list-disc pl-6 text-fg-2 mb-4 space-y-2">
-              <li>Encryption of data in transit and at rest</li>
-              <li>Regular security assessments and audits</li>
-              <li>Access controls and authentication mechanisms</li>
-              <li>Employee training on data protection</li>
-              <li>Secure data storage and backup procedures</li>
-            </ul>
-            <p className="text-fg-2">
-              However, no method of transmission over the Internet or electronic storage is 100% secure. While we strive to protect your information, we cannot guarantee its absolute security.
-            </p>
-          </section>
+              <Block title="Booking">
+                <p>
+                  Calls are booked through Google Calendar. Google&apos;s privacy
+                  policy applies to what you enter there.
+                </p>
+              </Block>
 
-          {/* Data Retention */}
-          <section className="mb-8">
-            <h2 className="text-2xl font-bold text-fg mb-4">6. Data Retention</h2>
-            <p className="text-fg-2">
-              We retain your personal information only for as long as necessary to fulfill the purposes outlined in this Privacy Policy, unless a longer retention period is required or permitted by law. When we no longer need your information, we will securely delete or anonymize it.
-            </p>
-          </section>
+              <Block title="Security">
+                <p>
+                  This is a one-person practice. I do not hold SOC 2 or HITRUST
+                  certification. Client engagements happen inside the
+                  client&apos;s environment and under the client&apos;s agreements,
+                  including a BAA where one is required. I do not keep client
+                  PHI on my own systems.
+                </p>
+              </Block>
 
-          {/* Your Rights and Choices */}
-          <section className="mb-8">
-            <h2 className="text-2xl font-bold text-fg mb-4">7. Your Rights and Choices</h2>
-            <p className="text-fg-2 mb-4">
-              Depending on your location, you may have certain rights regarding your personal information:
-            </p>
-            <ul className="list-disc pl-6 text-fg-2 mb-4 space-y-2">
-              <li><strong>Access:</strong> Request access to the personal information we hold about you</li>
-              <li><strong>Correction:</strong> Request correction of inaccurate or incomplete information</li>
-              <li><strong>Deletion:</strong> Request deletion of your personal information</li>
-              <li><strong>Opt-Out:</strong> Opt out of marketing communications</li>
-              <li><strong>Data Portability:</strong> Request a copy of your data in a portable format</li>
-              <li><strong>Restriction:</strong> Request restriction of processing of your information</li>
-            </ul>
-            <p className="text-fg-2">
-              To exercise these rights, please contact us at <a href="mailto:gene@fhiriq.com" className="text-primary-blue hover:underline">gene@fhiriq.com</a>. We will respond to your request within 30 days.
-            </p>
-          </section>
-
-          {/* Third-Party Links */}
-          <section className="mb-8">
-            <h2 className="text-2xl font-bold text-fg mb-4">8. Third-Party Links</h2>
-            <p className="text-fg-2">
-              Our Site may contain links to third-party websites and services. We are not responsible for the privacy practices of these third parties. We encourage you to read their privacy policies before providing any information.
-            </p>
-          </section>
-
-          {/* Children's Privacy */}
-          <section className="mb-8">
-            <h2 className="text-2xl font-bold text-fg mb-4">9. Children's Privacy</h2>
-            <p className="text-fg-2">
-              Our Site is not intended for children under 13 years of age. We do not knowingly collect personal information from children under 13. If you become aware that a child has provided us with personal information, please contact us, and we will take steps to delete such information.
-            </p>
-          </section>
-
-          {/* Pennsylvania-Specific Rights */}
-          <section className="mb-8">
-            <h2 className="text-2xl font-bold text-fg mb-4">10. Pennsylvania Residents</h2>
-            <p className="text-fg-2 mb-4">
-              If you are a Pennsylvania resident, you have specific rights under Pennsylvania law:
-            </p>
-            <ul className="list-disc pl-6 text-fg-2 mb-4 space-y-2">
-              <li>Right to know what personal information we collect and how it is used</li>
-              <li>Right to request deletion of your personal information</li>
-              <li>Right to opt out of the sale of personal information (we do not sell personal information)</li>
-              <li>Right to non-discrimination for exercising your privacy rights</li>
-            </ul>
-            <p className="text-fg-2">
-              Pennsylvania residents can exercise these rights by contacting us at <a href="mailto:gene@fhiriq.com" className="text-primary-blue hover:underline">gene@fhiriq.com</a>.
-            </p>
-          </section>
-
-          {/* Do Not Track Signals */}
-          <section className="mb-8">
-            <h2 className="text-2xl font-bold text-fg mb-4">11. Do Not Track Signals</h2>
-            <p className="text-fg-2">
-              Some web browsers have a "Do Not Track" feature. Our Site does not currently respond to Do Not Track signals. You can manage tracking preferences through your browser settings and third-party tools.
-            </p>
-          </section>
-
-          {/* Changes to Privacy Policy */}
-          <section className="mb-8">
-            <h2 className="text-2xl font-bold text-fg mb-4">12. Changes to This Privacy Policy</h2>
-            <p className="text-fg-2">
-              We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last Updated" date. We encourage you to review this Privacy Policy periodically for any changes.
-            </p>
-          </section>
-
-          {/* Contact Information */}
-          <section className="mb-8">
-            <h2 className="text-2xl font-bold text-fg mb-4">13. Contact Us</h2>
-            <p className="text-fg-2 mb-4">
-              If you have questions or concerns about this Privacy Policy or our data practices, please contact us:
-            </p>
-            <div className="bg-bg-2 p-6 rounded-lg">
-              <p className="text-fg font-semibold mb-2">FHIR IQ</p>
-              <p className="text-fg-2">Email: <a href="mailto:gene@fhiriq.com" className="text-primary-blue hover:underline">gene@fhiriq.com</a></p>
-              <p className="text-fg-2">Website: <a href="https://www.fhiriq.com" className="text-primary-blue hover:underline">www.fhiriq.com</a></p>
-              <p className="text-fg-2 mt-4">
-                For privacy-related inquiries, please include "Privacy Policy" in the subject line.
-              </p>
-            </div>
-          </section>
-
-          {/* Consent */}
-          <section className="mb-8">
-            <h2 className="text-2xl font-bold text-fg mb-4">14. Consent</h2>
-            <p className="text-fg-2">
-              By using our Site, you consent to our Privacy Policy and agree to its terms. If you do not agree with this policy, please discontinue use of our Site immediately.
-            </p>
-          </section>
-        </div>
-
-        {/* Back to Home Button */}
-        <div className="mt-12 pt-8 border-t border-line">
-          <Link
-            href="/"
-            className="inline-flex items-center text-primary-blue hover:text-primary-blue/80 font-semibold"
-          >
-            <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-            </svg>
-            Back to Home
-          </Link>
-        </div>
-      </div>
-
-      {/* Footer */}
-      <footer className="bg-bg-2 text-fg py-12 mt-16">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="grid md:grid-cols-4 gap-8">
-            <div>
-              <h3 className="text-xl font-bold mb-4">FHIR IQ</h3>
-              <p className="text-fg-3">
-                Leading healthcare interoperability solutions powered by AI and FHIR expertise.
-              </p>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4">Products</h4>
-              <ul className="space-y-2 text-fg-3">
-                <li><Link href="/lab" className="hover:text-fg">Tools</Link></li>
-                <li><Link href="/workshop" className="hover:text-fg">Workshop</Link></li>
-                <li><Link href="/consulting" className="hover:text-fg">Consulting</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4">Resources</h4>
-              <ul className="space-y-2 text-fg-3">
-                <li><Link href="/blog" className="hover:text-fg">Blog</Link></li>
-                <li><Link href="/architectures" className="hover:text-fg">Architectures</Link></li>
-                <li><Link href="/reference" className="hover:text-fg">Guides</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4">Policies</h4>
-              <ul className="space-y-2 text-fg-3">
-                <li><Link href="/privacy" className="hover:text-fg">Privacy Policy</Link></li>
-                <li><Link href="/security" className="hover:text-fg">Security Policy</Link></li>
-                <li><Link href="/about" className="hover:text-fg">About</Link></li>
-                <li><Link href="/contact" className="hover:text-fg">Contact</Link></li>
-              </ul>
+              <Block title="Your data">
+                <p>
+                  Nothing collected here is sold or shared beyond the services
+                  named above. To see or delete anything you have sent, email{' '}
+                  <a
+                    href={`mailto:${PERSON.email}`}
+                    className="border-b border-line-3 text-fg hover:border-fg"
+                  >
+                    {PERSON.email}
+                  </a>
+                  .
+                </p>
+              </Block>
             </div>
           </div>
-          <div className="border-t border-line-2 mt-8 pt-8 text-center text-fg-3">
-            <p className="mb-3">&copy; 2025 FHIR IQ. All rights reserved.</p>
-            <p className="text-sm text-fg-3">
-              FHIR® is a registered trademark of Health Level Seven International (HL7®) and is used with permission.
-              Use of this trademark does not constitute endorsement by HL7 or represent any official HL7 initiatives.
-            </p>
-          </div>
         </div>
-      </footer>
+      </main>
+      <Footer />
     </div>
   );
 }

@@ -4,6 +4,7 @@ import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import Reveal from '@/components/Reveal';
 import PageAnalytics from '@/components/PageAnalytics';
+import ContactCTA from '@/components/ContactCTA';
 
 /**
  * The reference desk.
@@ -88,13 +89,13 @@ const TRACKS: Track[] = [
         href: '/cqlguide',
         kind: 'Guide',
         title: 'CQL for quality measures',
-        desc: 'Population criteria, value sets and measurement periods, worked through real CMS measure logic rather than toy examples.',
+        desc: 'Population criteria, value sets and measurement periods, worked through excerpts of the 2026 CMS125 CQL.',
       },
       {
         href: 'https://openquality.us',
         kind: 'Open source',
         title: 'Open Quality',
-        desc: 'An MIT-licensed corpus of quality measures with verified provenance and implementer notes, carrying CQL and SQL side by side.',
+        desc: '52 CMS eCQM packages for 2026 (CC0) with MIT-licensed tooling, provenance checked in CI, and CQL and SQL side by side.',
         external: true,
       },
     ],
@@ -109,7 +110,7 @@ const TRACKS: Track[] = [
         href: '/architectures',
         kind: 'Guide',
         title: 'FHIR reference architectures',
-        desc: 'Eight patterns — facade, clinical data repository, health apps, clinical reasoning, analytics, data lake and more — with the trade-offs that decide between them.',
+        desc: 'Eight patterns summarised, and four worked through in detail: facade, clinical data repository, health apps and analytics.',
       },
       {
         href: '/profilingguide',
@@ -232,20 +233,15 @@ export default function ReferencePage() {
                 that has to survive audit — that is what the advisory work is
                 for.
               </p>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <a
-                  href="https://calendar.app.google/TMvRGiiYfbBKNd889"
-                  className="rounded-[6px] bg-fg px-4 py-2.5 text-sm font-medium text-bg transition-opacity hover:opacity-85"
-                >
-                  Book a call
-                </a>
-                <Link
-                  href="/consulting"
-                  className="chip px-4 py-2.5 text-sm text-fg-2 transition-colors hover:text-fg"
-                >
-                  How engagements work
-                </Link>
+              <div className="mt-8">
+                <ContactCTA location="reference" />
               </div>
+              <Link
+                href="/consulting"
+                className="mt-6 inline-block border-b border-line-3 pb-0.5 text-sm text-fg-2 transition-colors hover:border-fg hover:text-fg"
+              >
+                How engagements work
+              </Link>
             </div>
           </div>
         </div>

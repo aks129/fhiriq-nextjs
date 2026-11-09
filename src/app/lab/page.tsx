@@ -46,17 +46,17 @@ const PROJECTS: Project[] = [
     name: 'HealthClaw Guardrails',
     href: 'https://healthclaw.io',
     label: 'healthclaw.io',
-    desc: 'A trusted framework for putting AI agents on health data. Redaction, audit and human sign-off are enforced server-side, so an agent cannot read PHI unredacted or write to a chart without an approval step.',
+    desc: 'A trusted framework for putting AI agents on health data. Redaction, audit and human sign-off are enforced server-side, so reads pass through field redaction and writes are held until a person approves them. Redaction is a compensating control, not de-identification, and the gaps are published.',
     gives:
       'A policy broker you can run in front of your own FHIR server, rather than a set of rules you ask a model to follow.',
-    tags: ['12 MCP tools', 'FHIR R4/R6', 'US Core v9', 'PHI redaction', 'Audit log'],
+    tags: ['29 MCP tools', 'FHIR R4 · R6 ballot', 'US Core v9', 'PHI redaction', 'Audit log'],
     repo: 'https://github.com/aks129/HealthClawGuardrails',
   },
   {
     name: 'CareAgents',
     href: 'https://careagents.cloud',
     label: 'careagents.cloud',
-    desc: 'A personal health agent you can stand up in under a minute, integrated and guardrailed by HealthClaw. Every read redacted, every access audited, every action approved by the person whose data it is.',
+    desc: 'A personal health agent you can stand up in under a minute, integrated and guardrailed by HealthClaw. Every read redacted, every access audited, every action approved by the person whose data it is. In beta, on synthetic records only.',
     gives:
       'Somewhere to watch the guardrails work end to end before you commit to building on them.',
     tags: ['Personal health agent', 'Guardrailed by HealthClaw'],

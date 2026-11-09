@@ -1,42 +1,13 @@
 'use client';
 
-import Link from 'next/link';
+import Nav from '@/components/Nav';
+import Footer from '@/components/Footer';
 
 export default function Blog() {
   return (
     <div className="min-h-screen bg-bg">
       {/* Navigation */}
-      <nav className="bg-bg shadow-lg">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex justify-between items-center py-4">
-            <div className="flex items-center">
-              <Link href="/" className="text-2xl font-bold text-fg">
-                FHIR IQ
-              </Link>
-            </div>
-            <div className="hidden md:flex space-x-8">
-              <Link href="/lab" className="text-fg-2 hover:text-fg">
-                Products
-              </Link>
-              <Link href="/lab" className="text-fg-2 hover:text-fg">
-                AI Builder
-              </Link>
-              <Link href="/blog" className="text-fg font-semibold">
-                Blog
-              </Link>
-              <Link href="/podcast" className="text-fg-2 hover:text-fg">
-                Podcast
-              </Link>
-              <Link href="/about" className="text-fg-2 hover:text-fg">
-                About
-              </Link>
-              <Link href="/contact" className="text-fg-2 hover:text-fg">
-                Contact
-              </Link>
-            </div>
-          </div>
-        </div>
-      </nav>
+      <Nav />
 
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-bg-3 to-bg-3 text-fg py-20">
@@ -44,7 +15,7 @@ export default function Blog() {
           <h1 className="text-5xl font-bold mb-6">FHIR IQ Blog</h1>
           <p className="text-xl mb-8 max-w-3xl mx-auto">
             Insights, tutorials, and best practices for healthcare interoperability
-            and FHIR implementation from our team of experts.
+            and FHIR implementation, written from implementation work.
           </p>
         </div>
       </section>
@@ -141,11 +112,7 @@ export default function Blog() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-bg-2 text-fg py-8">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <p>&copy; 2024 FHIR IQ. All rights reserved.</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

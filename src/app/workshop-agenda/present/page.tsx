@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { SLACK_INVITE, SLACK_FALLBACK_EMAIL } from "@/lib/cohort";
 import "./present.css";
+import { BIO } from '@/lib/profile';
 
 const FONT_LINK =
   "https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,400&family=JetBrains+Mono:wght@400;500;700&display=swap";
@@ -259,12 +260,8 @@ export default function PresentPage() {
                 <span className="em">not a course platform.</span>
               </h1>
               <div className="lede" style={{ maxWidth: 940 }}>
-                Healthcare interoperability operator. Founder of <strong>FHIR IQ</strong> — the
-                semantic intelligence layer for healthcare data — and host of{" "}
-                <em>Out of the FHIR®</em>. Recently presented CQL-to-SQL at Analytics on FHIR.
-                Building in public: HealthClaw (security layer between AI agents and clinical data),
-                AINPI (national provider directory analysis), FHIRspective, FHIR ViewDefinition
-                Builder, and a stream of FHIR tools at github.com/aks129.
+                {BIO} Host of <em>Out of the FHIR®</em>. Code at github.com/aks129 and
+                github.com/FHIR-IQ.
               </div>
               <div className="lede" style={{ marginTop: 16, maxWidth: 940 }}>
                 I run cohorts the way I run projects: live, IDE-open, someone watching.

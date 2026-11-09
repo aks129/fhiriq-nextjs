@@ -106,17 +106,17 @@ export default function WorkshopPage() {
             }}
           >
             <span style={{ background: "var(--ember)", color: "var(--paper-light)", padding: "3px 8px", borderRadius: 3, fontWeight: 600 }}>
-              COHORT 00 · LIVE
+              NEXT COHORT
             </span>
-            <span>Intro calls running this week · 14 of 20 seats filled · last signups close Fri Jun 5</span>
-            <a href="#cohort-01" style={{ marginLeft: "auto", color: "var(--ember)", textDecoration: "underline", whiteSpace: "nowrap" }}>
-              Cohort 01 waitlist →
+            <span>Dates go to the waitlist first</span>
+            <a href="#signup" style={{ marginLeft: "auto", color: "var(--ember)", textDecoration: "underline", whiteSpace: "nowrap" }}>
+              Join the waitlist →
             </a>
           </div>
 
           {/* HERO */}
           <section className="hero">
-            <div className="eyebrow">By popular demand · Free workshop</div>
+            <div className="eyebrow">Free workshop</div>
             <h1>
               Building Healthcare AI<br />
               with <span className="italic">Claude Code.</span>
@@ -126,7 +126,7 @@ export default function WorkshopPage() {
             </p>
 
             <div className="hero-cta-row">
-              <a href="#signup" className="btn-primary">Save my seat</a>
+              <a href="#signup" className="btn-primary">Join the waitlist</a>
               <a
                 href="https://www.linkedin.com/in/evestel/"
                 target="_blank"
@@ -138,36 +138,10 @@ export default function WorkshopPage() {
             </div>
 
             <div className="stamps">
-              <span className="stamp featured">Cohort 00</span>
               <span className="stamp">First session free</span>
-              <span className="stamp">6-week sprint</span>
+              <span className="stamp">5 live sessions</span>
               <span className="stamp">1–2× per week</span>
               <span className="stamp">Capped at 20</span>
-            </div>
-          </section>
-
-          {/* DM PROOF */}
-          <section>
-            <div className="section-label">Why now</div>
-            <h2>The DMs were <span className="italic">unambiguous.</span></h2>
-            <p className="lede">Two from this week&apos;s inbox. Names with permission, paraphrased lightly for length.</p>
-
-            <div className="quote-block">
-              <p className="quote">
-                &ldquo;Definitely interested. I&apos;m already deep in Claude Design and Code for a consumer iOS app — but I&apos;m beyond eager to learn more.&rdquo;
-              </p>
-              <div className="quote-attr">
-                <strong>iOS founder</strong> · already shipping in Claude Code
-              </div>
-            </div>
-
-            <div className="quote-block">
-              <p className="quote">
-                &ldquo;I want to get fluent in Claude Code, MCP, and vector DB before going deeper. I&apos;d build a FHIR-native survey-to-intervention workflow for depression screening + SDoH.&rdquo;
-              </p>
-              <div className="quote-attr">
-                <strong>Practicing clinician</strong> · builder, FHIR-curious
-              </div>
             </div>
           </section>
 
@@ -209,18 +183,18 @@ export default function WorkshopPage() {
         {/* SIGNUP */}
         <section className="signup" id="signup">
           <div className="wrap">
-            <div className="section-label">Save your seat</div>
-            <h2>20 seats. <span className="italic">First come.</span></h2>
+            <div className="section-label">Waitlist</div>
+            <h2>Capped at 20. <span className="italic">Waitlist first.</span></h2>
             <p className="lede">
-              Drop your name and what you want to build. I&apos;ll reply with the date for Session 1 and the prep doc. If the cohort fills before I get to you, you go on the next one.
+              Drop your name and what you want to build. When the next cohort&apos;s dates are set, the waitlist hears first, with the Session 1 date and the prep doc.
             </p>
 
             {status === 'success' ? (
               <div className="form-success">
                 <div className="check">✓</div>
-                <h3>You&apos;re in.</h3>
+                <h3>You&apos;re on the list.</h3>
                 <p>
-                  I&apos;ll email you within 48 hours with the Session 1 date and the prep doc. Check your inbox (and spam folder) for a note from Eugene at FHIR IQ.
+                  You&apos;re on the waitlist. I&apos;ll email you when the next cohort&apos;s dates are set. Look for a note from Eugene at FHIR IQ, and check spam.
                 </p>
               </div>
             ) : (
@@ -259,7 +233,7 @@ export default function WorkshopPage() {
                   />
                 </div>
                 <button type="submit" className="submit-btn" disabled={status === 'submitting'}>
-                  {status === 'submitting' ? 'Sending…' : 'Save my seat →'}
+                  {status === 'submitting' ? 'Sending…' : 'Join the waitlist →'}
                 </button>
                 {status === 'error' && errorMsg && <div className="form-error">{errorMsg}</div>}
                 <div className="form-foot">No drip sequence. No course-platform onboarding. Just a reply from Eugene.</div>
@@ -274,33 +248,10 @@ export default function WorkshopPage() {
             <div className="next-steps">
               <h3>What happens after you sign up</h3>
               <ol>
-                <li>You get a confirmation email within 5 minutes.</li>
-                <li>Within 48 hours I email you the Session 1 date, time, and a 15-minute prep doc — Claude Code installed, a Medplum sandbox you can log in to, and the synthetic FHIR bundle we&apos;ll work with.</li>
+                <li>When the next cohort&apos;s dates are set, I email you the Session 1 date, time, and a 15-minute prep doc — Claude Code installed, a Medplum sandbox you can log in to, and the synthetic FHIR bundle we&apos;ll work with.</li>
                 <li>We meet live. You leave Session 1 with the dev environment running and a clear sketch of what you&apos;ll ship.</li>
                 <li>If the workshop isn&apos;t for you after Session 1, no pressure. You keep the setup and the prep doc either way.</li>
               </ol>
-            </div>
-          </section>
-
-          {/* COHORT 01 WAITLIST */}
-          <section id="cohort-01">
-            <div className="upgrade" style={{ borderColor: "var(--ember)" }}>
-              <div className="upgrade-eyebrow">Cohort 00 closes Friday</div>
-              <h3>
-                Missed it? <span className="italic">Cohort 01 starts Aug 17.</span>
-              </h3>
-              <p>
-                Same format, paid program — $29 first month, $99/mo after.
-                Cohort 00 graduates set the curriculum, the mentors, and the
-                ship-or-refund standard. Cohort 01 spots open after Demo Day
-                (Fri Jul 3); waitlist gets first invite + a discounted founding rate.
-              </p>
-              <a
-                href="mailto:gene@fhiriq.com?subject=Cohort%2001%20waitlist&body=Hi%20Eugene%2C%0A%0AAdd%20me%20to%20the%20Cohort%2001%20waitlist.%20%0A%0AWhat%20I%27d%20build%3A%20%5Boptional%2C%20one%20line%5D%0A%0AThanks%2C%0A"
-                className="upgrade-link"
-              >
-                Email me to join the waitlist →
-              </a>
             </div>
           </section>
 
@@ -322,7 +273,7 @@ export default function WorkshopPage() {
           {/* FOOTER */}
           <footer className="footer-section">
             <div className="footer-grid">
-              <div>FHIR IQ · Workshop · Cohort 00</div>
+              <div>FHIR IQ · Workshop</div>
               <div>
                 <Link href="/">fhiriq.com</Link> ·{' '}
                 <Link href="/builders">/builders</Link> ·{' '}

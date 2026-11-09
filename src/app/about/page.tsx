@@ -1,421 +1,200 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Nav from '@/components/Nav';
+import Footer from '@/components/Footer';
+import Reveal from '@/components/Reveal';
+import PageAnalytics from '@/components/PageAnalytics';
+import TrackedLink from '@/components/TrackedLink';
+import {
+  BIO,
+  EDUCATION,
+  EXPERIENCE,
+  PERSON,
+  YEARS_IN_HEALTHCARE_DATA,
+} from '@/lib/profile';
+
+/**
+ * About. Every fact on this page comes from src/lib/profile.ts, so it cannot
+ * drift from the homepage or /consulting. The previous version described FHIR
+ * IQ as "a healthcare technology company delivering AI-powered data
+ * intelligence solutions", which is the product-era positioning the site no
+ * longer makes.
+ */
 
 export const metadata: Metadata = {
   title: 'About Eugene Vestel',
-  description:
-    'Eugene Vestel is a healthcare data expert, former NCQA consultant, and host of the Out of the FHIR podcast. 15+ years helping health systems, payers, and vendors navigate FHIR and quality measurement.',
+  description: `${BIO} ${YEARS_IN_HEALTHCARE_DATA}.`,
   openGraph: {
     title: 'About Eugene Vestel | FHIR IQ',
-    description:
-      'Healthcare data expert, former NCQA consultant, and host of the Out of the FHIR podcast.',
-    url: 'https://fhiriq.com/about',
+    description: BIO,
+    url: '/about',
   },
 };
+
+const SHELL = 'mx-auto max-w-[84rem] px-4 sm:px-6';
+
+function Section({
+  label,
+  children,
+}: {
+  label: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <section className="border-t border-line">
+      <div className={`${SHELL} py-16 md:py-24`}>
+        <div className="grid min-w-0 gap-8 md:grid-cols-[8.5rem_minmax(0,1fr)] md:gap-12">
+          <p className="label label-bright md:pt-3">{label}</p>
+          <div className="min-w-0">{children}</div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+const STANDARDS = [
+  {
+    name: 'SQL on FHIR v2',
+    detail: 'Participant in the HL7 implementation guide that defines ViewDefinition.',
+  },
+  {
+    name: 'Agents on FHIR',
+    detail: 'Weekly working group on putting agents against clinical data safely.',
+  },
+  { name: 'HL7 FHIR DevDays', detail: 'Speaker, presenting HealthClaw.' },
+  { name: 'Analytics on FHIR', detail: 'Speaker, 2025.' },
+  { name: 'FHIR Camp', detail: '2025.' },
+] as const;
 
 export default function About() {
   return (
     <div className="min-h-screen bg-bg">
-      {/* Navigation */}
-      <nav className="bg-bg shadow-lg">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex justify-between items-center py-4">
-            <div className="flex items-center">
-              <Link href="/" className="text-2xl font-bold text-primary-blue">
-                FHIR IQ
-              </Link>
-            </div>
-            <div className="hidden md:flex space-x-8">
-              <Link href="/lab" className="text-neutral-gray hover:text-primary-blue font-medium">
-                Solutions
-              </Link>
-              <Link href="/architectures" className="text-neutral-gray hover:text-primary-blue font-medium">
-                Architectures
-              </Link>
-              <Link href="/lab" className="text-neutral-gray hover:text-primary-blue font-medium">
-                Tools
-              </Link>
-              <Link href="/reference" className="text-neutral-gray hover:text-primary-blue font-medium">
-                Resources
-              </Link>
-              <Link href="/about" className="text-primary-blue font-semibold">
-                About
-              </Link>
-              <Link href="/contact" className="text-neutral-gray hover:text-primary-blue font-medium">
-                Contact
-              </Link>
-            </div>
-          </div>
-        </div>
-      </nav>
+      <PageAnalytics page="about" />
+      <Reveal />
+      <Nav />
 
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary-blue via-bg-3 to-bg-3 text-fg py-24">
-        <div className="max-w-5xl mx-auto px-4">
-          <div className="text-center mb-8">
-            <div className="w-32 h-32 bg-bg rounded-full mx-auto mb-6 flex items-center justify-center shadow-xl">
-              <span className="text-6xl">👨‍💼</span>
-            </div>
-            <h1 className="text-5xl font-bold mb-4">Eugene Vestel, MBA</h1>
-            <p className="text-2xl mb-6 text-fg-2">Founder of FHIR IQ</p>
-            <p className="text-xl max-w-3xl mx-auto leading-relaxed text-fg-2">
-              Delivering Value from Data & AI in Healthcare | FHIR + Data Strategy + Outcomes
+      <section className={`${SHELL} pb-14 pt-14 md:pb-20 md:pt-20`}>
+        <div className="grid min-w-0 gap-8 md:grid-cols-[8.5rem_minmax(0,1fr)] md:gap-12">
+          <p className="label label-bright md:pt-3">About</p>
+          <div className="min-w-0">
+            <h1 className="max-w-[52rem] text-display tracking-tight text-fg">
+              {PERSON.name}
+            </h1>
+            <p className="measure mt-8 text-lg leading-relaxed text-fg-2">
+              {BIO}
             </p>
-          </div>
-          <div className="flex justify-center gap-4 mt-8">
-            <a
-              href="https://www.linkedin.com/in/evestel/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block bg-bg text-primary-blue px-6 py-3 rounded-lg font-semibold hover:bg-bg-2 transition"
-            >
-              Connect on LinkedIn
-            </a>
-            <Link
-              href="/contact"
-              className="inline-block bg-transparent border-2 border-white text-fg px-6 py-3 rounded-lg font-semibold hover:bg-bg hover:text-primary-blue transition"
-            >
-              Get In Touch
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Mission Statement */}
-      <section className="py-16 bg-bg-2">
-        <div className="max-w-4xl mx-auto px-4">
-          <div className="bg-bg rounded-xl shadow-lg p-8 md:p-12">
-            <h2 className="text-3xl font-bold mb-6 text-fg">About Me</h2>
-            <p className="text-lg text-fg-2 leading-relaxed mb-4">
-              Most healthcare organizations are drowning in messy, siloed, and underutilized data. They struggle to meet
-              interoperability standards, deliver meaningful analytics, or scale innovation—especially when FHIR feels more
-              like a compliance burden than an opportunity. That's where I come in.
+            <p className="measure mt-4 text-lg leading-relaxed text-fg-2">
+              {YEARS_IN_HEALTHCARE_DATA}, starting in pharmacy benefits and
+              Medicare Part D, then quality analytics at a payer-provider, then
+              building on FHIR. The work I publish now is the part of that I
+              think other teams should not have to rediscover.
             </p>
-            <p className="text-lg text-fg-2 leading-relaxed">
-              I'm the founder of <strong>FHIR IQ</strong>, a healthcare technology company delivering AI-powered data intelligence
-              solutions tailored to the real-world challenges of digital health. With over 15 years of experience in healthcare
-              data and analytics, I help organizations turn complex FHIR standards into actionable insights and scalable solutions.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Experience Timeline */}
-      <section className="py-16">
-        <div className="max-w-5xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12 text-fg">Professional Experience</h2>
-
-          <div className="space-y-8">
-            {/* FHIR IQ */}
-            <div className="bg-bg rounded-lg shadow-md p-6 border-l-4 border-primary-blue">
-              <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-3">
-                <div>
-                  <h3 className="text-2xl font-bold text-fg">Founder</h3>
-                  <p className="text-xl text-primary-blue font-semibold">FHIR IQ</p>
-                </div>
-                <span className="text-fg-2 mt-2 md:mt-0">February 2025 - Present</span>
-              </div>
-              <p className="text-fg-2">
-                Leading a healthcare technology company focused on AI-powered data intelligence solutions. Helping organizations
-                transform FHIR compliance challenges into strategic opportunities through innovative tools, consulting, and training.
-              </p>
-            </div>
-
-            {/* Out of the FHIR Podcast */}
-            <div className="bg-bg rounded-lg shadow-md p-6 border-l-4 border-line-2">
-              <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-3">
-                <div>
-                  <h3 className="text-2xl font-bold text-fg">Host & Producer</h3>
-                  <p className="text-xl text-fg font-semibold">Out of the FHIR Podcast</p>
-                </div>
-                <span className="text-fg-2 mt-2 md:mt-0">June 2025 - Present</span>
-              </div>
-              <p className="text-fg-2">
-                Hosting a podcast exploring the cutting edge of FHIR, healthcare interoperability, and digital health innovation.
-                Engaging with industry leaders, innovators, and practitioners to share insights and practical knowledge.
-              </p>
-            </div>
-
-            {/* Outcomes */}
-            <div className="bg-bg rounded-lg shadow-md p-6 border-l-4 border-line-2">
-              <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-3">
-                <div>
-                  <h3 className="text-2xl font-bold text-fg">Payer Interoperability Analytics and AI Lead</h3>
-                  <p className="text-xl text-fg font-semibold">Outcomes</p>
-                </div>
-                <span className="text-fg-2 mt-2 md:mt-0">2025 - Present</span>
-              </div>
-              <p className="text-fg-2">
-                Leading payer interoperability analytics and AI initiatives, driving data-driven strategies
-                to improve healthcare outcomes through advanced analytics, AI solutions, and interoperability standards.
-              </p>
-            </div>
-
-            {/* NCQA */}
-            <div className="bg-bg rounded-lg shadow-md p-6 border-l-4 border-line-2">
-              <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-3">
-                <div>
-                  <h3 className="text-2xl font-bold text-fg">Consultant</h3>
-                  <p className="text-xl text-fg font-semibold">NCQA (National Committee for Quality Assurance)</p>
-                </div>
-                {/* Corrected from "March 2025" — the engagement ran April to August. */}
-                <span className="text-fg-2 mt-2 md:mt-0">April 2025 - August 2025</span>
-              </div>
-              <p className="text-fg-2">
-                Strategy for digital content services optimization and AI adoption,
-                and data quality strategy.
-              </p>
-            </div>
-
-            {/* b.well Connected Health */}
-            <div className="bg-bg rounded-lg shadow-md p-6 border-l-4 border-line-2">
-              <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-3">
-                <div>
-                  <h3 className="text-2xl font-bold text-fg">Director of Data & Analytics</h3>
-                  <p className="text-xl text-fg font-semibold">b.well Connected Health</p>
-                </div>
-                <span className="text-fg-2 mt-2 md:mt-0">January 2022 - March 2025</span>
-              </div>
-              <p className="text-fg-2 mb-3">
-                Led data strategy and analytics for a comprehensive health data platform serving millions of users.
-                Managed FHIR implementation, data integration pipelines, and advanced analytics capabilities.
-              </p>
-              <ul className="list-disc list-inside text-fg-2 space-y-1">
-                <li>Architected FHIR-based data ingestion and normalization frameworks</li>
-                <li>Built analytics products supporting population health and personalized care</li>
-                <li>Led cross-functional teams in delivering data-driven product features</li>
-              </ul>
-            </div>
-
-            {/* UPMC */}
-            <div className="bg-bg rounded-lg shadow-md p-6 border-l-4 border-fg">
-              <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-3">
-                <div>
-                  <h3 className="text-2xl font-bold text-fg">Manager, Strategic Data Management & Operations</h3>
-                  <p className="text-xl text-fg font-semibold">UPMC - Quality Analytics</p>
-                </div>
-                <span className="text-fg-2 mt-2 md:mt-0">February 2017 - January 2022</span>
-              </div>
-              <p className="text-fg-2 mb-3">
-                Managed strategic data initiatives for one of the nation's largest integrated healthcare delivery systems.
-                Focused on quality measurement, clinical analytics, and operational intelligence.
-              </p>
-              <ul className="list-disc list-inside text-fg-2 space-y-1">
-                <li>Designed enterprise data models supporting quality reporting and value-based care</li>
-                <li>Led implementation of clinical data warehouses and analytics platforms</li>
-                <li>Delivered actionable insights improving patient outcomes and operational efficiency</li>
-              </ul>
-            </div>
-
-            {/* Previous Experience Summary */}
-            <div className="bg-bg-2 rounded-lg p-6 border border-line">
-              <h3 className="text-xl font-bold text-fg mb-3">Earlier Career Highlights</h3>
-              <p className="text-fg-2 mb-3">
-                Additional healthcare data and analytics experience includes roles at:
-              </p>
-              <ul className="list-disc list-inside text-fg-2 space-y-1">
-                <li><strong>Allegheny Health Network</strong> - Data analytics and reporting</li>
-                <li><strong>Express Scripts / Medco Health Solutions</strong> - Pharmacy benefits analytics</li>
-                <li><strong>Duane Reade</strong> - Retail pharmacy operations</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Expertise Areas */}
-      <section className="py-16 bg-gradient-to-br from-bg-2 to-bg-2">
-        <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12 text-fg">Areas of Expertise</h2>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="bg-bg rounded-lg p-6 shadow-md hover:shadow-xl transition">
-              <div className="text-4xl mb-4">🔥</div>
-              <h3 className="text-xl font-bold mb-2 text-fg">FHIR Implementation</h3>
-              <p className="text-fg-2">
-                Deep expertise in FHIR standards, profiles, extensions, and implementation patterns across diverse healthcare use cases.
-              </p>
-            </div>
-
-            <div className="bg-bg rounded-lg p-6 shadow-md hover:shadow-xl transition">
-              <div className="text-4xl mb-4">🤖</div>
-              <h3 className="text-xl font-bold mb-2 text-fg">AI & Machine Learning</h3>
-              <p className="text-fg-2">
-                Applying AI and machine learning to healthcare data challenges, from predictive analytics to intelligent automation.
-              </p>
-            </div>
-
-            <div className="bg-bg rounded-lg p-6 shadow-md hover:shadow-xl transition">
-              <div className="text-4xl mb-4">📊</div>
-              <h3 className="text-xl font-bold mb-2 text-fg">Data Strategy & Architecture</h3>
-              <p className="text-fg-2">
-                Designing scalable data architectures, warehouses, and platforms that enable analytics and drive business value.
-              </p>
-            </div>
-
-            <div className="bg-bg rounded-lg p-6 shadow-md hover:shadow-xl transition">
-              <div className="text-4xl mb-4">🔗</div>
-              <h3 className="text-xl font-bold mb-2 text-fg">Interoperability</h3>
-              <p className="text-fg-2">
-                Healthcare data exchange, integration patterns, API development, and solving complex interoperability challenges.
-              </p>
-            </div>
-
-            <div className="bg-bg rounded-lg p-6 shadow-md hover:shadow-xl transition">
-              <div className="text-4xl mb-4">📈</div>
-              <h3 className="text-xl font-bold mb-2 text-fg">Analytics & Insights</h3>
-              <p className="text-fg-2">
-                Building analytics products, dashboards, and reporting solutions that deliver actionable insights from healthcare data.
-              </p>
-            </div>
-
-            <div className="bg-bg rounded-lg p-6 shadow-md hover:shadow-xl transition">
-              <div className="text-4xl mb-4">🎯</div>
-              <h3 className="text-xl font-bold mb-2 text-fg">Quality & Outcomes</h3>
-              <p className="text-fg-2">
-                Quality measurement, value-based care analytics, and data solutions supporting improved patient outcomes.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Education */}
-      <section className="py-16">
-        <div className="max-w-5xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12 text-fg">Education & Certifications</h2>
-
-          <div className="space-y-6">
-            <div className="bg-bg rounded-lg shadow-md p-6 border-l-4 border-line-2">
-              <div className="flex flex-col md:flex-row md:justify-between md:items-start">
-                <div>
-                  <h3 className="text-2xl font-bold text-fg">MBA in Healthcare</h3>
-                  <p className="text-xl text-fg-2">University of Pittsburgh - Joseph M. Katz Graduate School of Business</p>
-                </div>
-                <span className="text-fg-2 mt-2 md:mt-0">2017 - 2018</span>
-              </div>
-            </div>
-
-            <div className="bg-bg rounded-lg shadow-md p-6 border-l-4 border-line-2">
-              <div className="flex flex-col md:flex-row md:justify-between md:items-start">
-                <div>
-                  <h3 className="text-2xl font-bold text-fg">Bachelor's in Business Administration</h3>
-                  <p className="text-xl text-fg-2">Brooklyn College</p>
-                </div>
-                <span className="text-fg-2 mt-2 md:mt-0">2002 - 2006</span>
-              </div>
-            </div>
-
-            <div className="bg-bg rounded-lg shadow-md p-6 border-l-4 border-line-2">
-              <div className="flex flex-col md:flex-row md:justify-between md:items-start">
-                <div>
-                  <h3 className="text-2xl font-bold text-fg">Big Data Foundation Certificate</h3>
-                  <p className="text-xl text-fg-2">Coursera</p>
-                </div>
-                <span className="text-fg-2 mt-2 md:mt-0">2017</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Community Leadership */}
-      <section className="py-16 bg-bg-2">
-        <div className="max-w-5xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12 text-fg">Community Leadership</h2>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-bg rounded-lg shadow-md p-8 text-center">
-              <div className="text-5xl mb-4">🎙️</div>
-              <h3 className="text-2xl font-bold mb-3 text-fg">Out of the FHIR Podcast</h3>
-              <p className="text-fg-2 mb-4">
-                Host of a podcast exploring FHIR, healthcare interoperability, and digital health innovation with industry leaders.
-              </p>
-              <a
-                href="/podcast"
-                className="text-primary-blue font-semibold hover:underline"
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              <TrackedLink
+                href={PERSON.bookingUrl}
+                event="about_cta_clicked"
+                payload={{ button: 'book_call' }}
+                external
+                className="btn-primary"
               >
-                Listen Now →
-              </a>
-            </div>
-
-            <div className="bg-bg rounded-lg shadow-md p-8 text-center">
-              <div className="text-5xl mb-4">💬</div>
-              <h3 className="text-2xl font-bold mb-3 text-fg">FHIR Community</h3>
-              <p className="text-fg-2 mb-4">
-                Active contributor to the FHIR Slack community and regular speaker on FHIR implementation best practices.
-              </p>
+                Book a call
+              </TrackedLink>
               <a
-                href="https://chat.fhir.org"
+                href={PERSON.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-primary-blue font-semibold hover:underline"
+                className="btn-secondary"
               >
-                Join FHIR Chat →
+                LinkedIn
               </a>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Newsletter & Substack */}
-      <section className="py-16 bg-gradient-to-r from-primary-blue to-bg-3 text-fg">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <div className="text-5xl mb-4">📰</div>
-          <h2 className="text-3xl font-bold mb-4">FHIR IQ Newsletter</h2>
-          <p className="text-xl mb-8 text-fg-2">
-            Get the latest insights on FHIR, healthcare data, and digital health innovation delivered to your inbox.
-          </p>
-          <a
-            href="https://evestel.substack.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block bg-bg text-primary-blue px-8 py-3 rounded-lg font-semibold hover:bg-bg-2 transition"
-          >
-            Subscribe on Substack
-          </a>
-        </div>
-      </section>
+      <Section label="Experience">
+        <ol className="border-t border-line">
+          {EXPERIENCE.map((r) => (
+            <li
+              key={r.org}
+              className="reveal grid gap-2 border-b border-line py-7 md:grid-cols-[10rem_minmax(0,1fr)] md:gap-8"
+            >
+              <p className="label pt-1">{r.dates}</p>
+              <div className="min-w-0">
+                <h2 className="text-xl leading-snug text-fg">{r.org}</h2>
+                <p className="mt-1 text-sm text-fg-3">{r.title}</p>
+                <p className="measure mt-3 leading-relaxed text-fg-2">
+                  {r.detail}
+                </p>
+                {r.source && (
+                  <a
+                    href={r.source.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-3 inline-block border-b border-line-3 pb-0.5 text-sm text-fg-2 transition-colors hover:border-fg hover:text-fg"
+                  >
+                    {r.source.label}
+                  </a>
+                )}
+              </div>
+            </li>
+          ))}
+        </ol>
+      </Section>
 
-      {/* Contact CTA */}
-      <section className="py-16">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-6 text-fg">
-            Let's Work Together
-          </h2>
-          <p className="text-xl text-fg-2 mb-8">
-            Whether you need consulting on FHIR implementation, data strategy, or AI-powered healthcare solutions,
-            I'm here to help turn your data challenges into opportunities.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+      <Section label="Standards">
+        <dl className="reveal grid gap-6 sm:grid-cols-2">
+          {STANDARDS.map((s) => (
+            <div key={s.name} className="min-w-0">
+              <dt className="text-lg leading-snug text-fg">{s.name}</dt>
+              <dd className="measure-tight mt-1 text-sm leading-relaxed text-fg-2">
+                {s.detail}
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </Section>
+
+      <Section label="Education">
+        <ul className="reveal border-t border-line">
+          {EDUCATION.map((e) => (
+            <li
+              key={e.school}
+              className="grid gap-2 border-b border-line py-5 md:grid-cols-[10rem_minmax(0,1fr)] md:gap-8"
+            >
+              <p className="label pt-1">{e.year}</p>
+              <div>
+                <p className="text-lg text-fg">{e.degree}</p>
+                <p className="mt-1 text-sm text-fg-3">{e.school}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </Section>
+
+      <Section label="Contact">
+        <div className="reveal">
+          <p className="measure text-lg leading-relaxed text-fg-2">
+            Email{' '}
             <a
-              href="https://calendar.app.google/TMvRGiiYfbBKNd889"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block bg-primary-blue text-fg px-8 py-3 rounded-lg font-semibold hover:bg-fg transition"
+              href={`mailto:${PERSON.email}`}
+              className="border-b border-line-3 text-fg hover:border-fg"
             >
-              Schedule a Meeting
+              {PERSON.email}
             </a>
+            , or see{' '}
             <Link
-              href="/contact"
-              className="inline-block bg-bg-3 text-fg px-8 py-3 rounded-lg font-semibold hover:bg-bg-3 transition"
+              href="/consulting"
+              className="border-b border-line-3 text-fg hover:border-fg"
             >
-              Contact Me
+              how engagements work
             </Link>
-          </div>
-          <div className="mt-8 text-fg-2">
-            <p className="mb-2">📧 eugene.vestel@gmail.com</p>
-            <p>📍 Pittsburgh, Pennsylvania</p>
-          </div>
+            . Based in {PERSON.location}.
+          </p>
         </div>
-      </section>
+      </Section>
 
-      {/* Footer */}
-      <footer className="bg-bg-2 text-fg py-8">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <p>&copy; 2025 FHIR IQ. All rights reserved.</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

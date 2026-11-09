@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import LivePodcastMetrics from '@/components/LivePodcastMetrics';
+import Nav from '@/components/Nav';
 
 interface PodcastEpisode {
   title: string;
@@ -89,40 +89,7 @@ export default function Podcast() {
   return (
     <div className="min-h-screen bg-bg">
       {/* Navigation */}
-      <nav className="bg-bg shadow-lg">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex justify-between items-center py-4">
-            <div className="flex items-center">
-              <Link href="/" className="text-2xl font-bold text-primary-blue">
-                FHIR IQ
-              </Link>
-            </div>
-            <div className="hidden md:flex space-x-8">
-              <Link href="/lab" className="text-neutral-gray hover:text-primary-blue font-medium">
-                Solutions
-              </Link>
-              <Link href="/lab" className="text-neutral-gray hover:text-primary-blue font-medium">
-                Tools
-              </Link>
-              <Link href="/workshop" className="text-neutral-gray hover:text-primary-blue font-medium">
-                Workshop
-              </Link>
-              <Link href="/blog" className="text-neutral-gray hover:text-primary-blue font-medium">
-                Blog
-              </Link>
-              <Link href="/podcast" className="text-primary-blue font-semibold">
-                Podcast
-              </Link>
-              <Link href="/about" className="text-neutral-gray hover:text-primary-blue font-medium">
-                About
-              </Link>
-              <Link href="/contact" className="btn-primary text-sm">
-                Book Consultation
-              </Link>
-            </div>
-          </div>
-        </div>
-      </nav>
+      <Nav />
 
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-accent-purple via-primary-blue to-primary-navy text-fg py-24">
@@ -173,21 +140,6 @@ export default function Podcast() {
               See the media kit &amp; reach report →
             </Link>
           </div>
-        </div>
-      </section>
-
-      {/* Live Stats Section */}
-      <section className="py-16 bg-bg-secondary">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold mb-4 text-primary-navy">
-              📊 Live Podcast Metrics
-            </h2>
-            <p className="text-lg text-neutral-gray">
-              Real-time data from all platforms showing our growing community
-            </p>
-          </div>
-          <LivePodcastMetrics showPlatformBreakdown={true} />
         </div>
       </section>
 
@@ -383,8 +335,7 @@ export default function Podcast() {
             🔔 Never Miss an Episode
           </h2>
           <p className="text-xl mb-12 max-w-3xl mx-auto">
-            Subscribe to Out of the FHIR Podcast on your favorite platform and join our growing community of
-            healthcare professionals staying current with FHIR and interoperability trends.
+            Subscribe to Out of the FHIR on your platform of choice.
           </p>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
@@ -542,8 +493,7 @@ export default function Podcast() {
             <div>
               <h3 className="text-xl font-bold mb-4">Out of the FHIR Podcast</h3>
               <p className="text-fg-3 leading-relaxed">
-                Your trusted source for FHIR expertise, implementation insights,
-                and healthcare interoperability conversations.
+                Conversations with the people building healthcare interoperability.
               </p>
             </div>
             <div>
@@ -574,7 +524,7 @@ export default function Podcast() {
             </div>
           </div>
           <div className="border-t border-line-2 mt-12 pt-8 text-center text-fg-3">
-            <p>&copy; 2024 FHIR IQ. All rights reserved. | Out of the FHIR Podcast</p>
+            <p>&copy; {new Date().getFullYear()} FHIR IQ. All rights reserved. | Out of the FHIR Podcast</p>
           </div>
         </div>
       </footer>

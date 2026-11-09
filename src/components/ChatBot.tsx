@@ -25,60 +25,14 @@ const QUICK_SUGGESTIONS = [
   "How do I book a consultation?"
 ];
 
-const FHIR_IQ_SYSTEM_PROMPT = `You are a FHIR IQ representative - answer questions about FHIR IQ and our products for customers.
-
-About FHIR IQ:
-FHIR IQ is Eugene Vestel's practice: healthcare interoperability consulting, open-source tooling, and the Out of the FHIR podcast.
-
-What is actually live (do not recommend anything not on this list — earlier
-versions of this prompt pointed people at FHIRspective, FHIR Data Mapper,
-FHIR Quiz, FHIRSquire, FPAS and the CQL Builder, all of which are archived
-and now 404):
-
-1. **HealthClaw Guardrails** — https://healthclaw.io
-   - Open-source guardrail layer between AI agents and FHIR health data
-   - Redaction, audit and human sign-off enforced server-side
-   - Source: https://github.com/aks129/HealthClawGuardrails
-
-2. **CareAgents** — https://careagents.cloud
-   - Stand up a personal health agent in under a minute
-   - Every read redacted, every access audited, every action approved by you
-   - Guardrailed by HealthClaw
-
-3. **Open Quality** — https://openquality.us
-   - Open, MIT-licensed corpus of healthcare quality measures
-   - Verified provenance plus implementer notes; CQL and SQL alongside each measure
-   - Source: https://github.com/FHIR-IQ/openquality
-
-4. **AINPI** — https://ainpi.dev
-   - Analysis of the CMS ecosystem and national provider directory modernization
-
-5. **Out of the FHIR podcast & the FHIR IQ Playbook newsletter**
-   - https://evestel.substack.com
-
-6. **Consulting & advisory**
-   - FHIR implementation strategy, data architecture, quality measurement, AI readiness
-   - Book a call: https://calendar.app.google/TMvRGiiYfbBKNd889
-   - Contact: gene@fhiriq.com
-
-Contact Information:
-- Email: gene@fhiriq.com
-- Book a meeting: https://calendar.app.google/TMvRGiiYfbBKNd889
-- Website: https://fhiriq.com
-
-Guidelines:
-- Be helpful and knowledgeable about FHIR IQ's products
-- For complex needs, recommend booking a consultation with Gene
-- Provide accurate information about our tools and pricing
-- Never provide medical advice
-- Focus on how FHIR IQ can solve customer problems`;
+// The system prompt lives on the server (src/lib/chat-prompt.ts); the
+// browser only sends the visitor's message.
 
 export default function ChatBot({ className = '' }: ChatBotProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [conversationId] = useState(() => Math.random().toString(36).substring(7));
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -95,7 +49,7 @@ export default function ChatBot({ className = '' }: ChatBotProps) {
       const welcomeMessage: ChatMessage = {
         id: '1',
         role: 'assistant',
-        content: "Hi! I'm the FHIR IQ Assistant. I can help you learn about our FHIR products and services. What can I help you with today?",
+        content: "Hi. I can answer FHIR questions and point you to the guides and open-source projects on this site. Please don't paste health information here.",
         timestamp: new Date()
       };
       setMessages([welcomeMessage]);
@@ -123,11 +77,7 @@ export default function ChatBot({ className = '' }: ChatBotProps) {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          message: content,
-          conversationId,
-          systemPrompt: FHIR_IQ_SYSTEM_PROMPT
-        }),
+        body: JSON.stringify({ message: content }),
       });
 
       if (!response.ok) {
@@ -139,7 +89,7 @@ export default function ChatBot({ className = '' }: ChatBotProps) {
       const assistantMessage: ChatMessage = {
         id: (Date.now() + 1).toString(),
         role: 'assistant',
-        content: data.message || "I'm having trouble right now. Please try again or contact our support team.",
+        content: data.message || "I'm having trouble right now. Email gene@fhiriq.com instead.",
         timestamp: new Date()
       };
 
@@ -149,7 +99,7 @@ export default function ChatBot({ className = '' }: ChatBotProps) {
       const errorMessage: ChatMessage = {
         id: (Date.now() + 1).toString(),
         role: 'assistant',
-        content: "I'm experiencing some technical difficulties. Please try again or contact our support team at support@fhiriq.com.",
+        content: "Something went wrong. Email gene@fhiriq.com instead.",
         timestamp: new Date()
       };
       setMessages(prev => [...prev, errorMessage]);

@@ -7,7 +7,10 @@ import PageAnalytics from '@/components/PageAnalytics';
 import SubscribeForm from '@/components/SubscribeForm';
 import TrackedLink from '@/components/TrackedLink';
 import TranspileFigure from '@/components/TranspileFigure';
+import ContactCTA from '@/components/ContactCTA';
+import { REVIEWS } from '@/lib/engagements';
 import { getEpisodes, formatEpisodeDate } from '@/lib/podcast';
+import { CREDENTIALS, YEARS_IN_HEALTHCARE_DATA } from '@/lib/profile';
 
 /**
  * MONO homepage, adapted from agencidev.com.
@@ -77,17 +80,6 @@ const PLATFORMS = [
   },
 ] as const;
 
-const CREDENTIALS = [
-  { label: 'Outcomes', detail: 'Payer Interoperability Analytics & AI Lead' },
-  { label: 'SQL on FHIR', detail: 'HL7 working group' },
-  // A defined engagement (Apr–Aug 2025), not a standing role. The site used
-  // to say "NCQA advisor" in the present tense in four places, "Former NCQA
-  // Advisor" in a fifth and "NCQA collaborator" in a sixth.
-  { label: 'NCQA', detail: 'Consultant · 2025' },
-  { label: 'b.well Connected Health', detail: 'Director of Data & Analytics' },
-  { label: 'UPMC Health System', detail: '5 years in Clinical Analytics' },
-  { label: 'HL7 FHIR DevDays', detail: 'Speaker · HealthClaw' },
-] as const;
 
 /**
  * Standards work.
@@ -109,7 +101,7 @@ const STANDARDS = [
       {
         name: 'SQL on FHIR',
         detail:
-          'HL7 working group behind ViewDefinition — the specification underneath the CQL-to-SQL work above, and the ViewDefinition packs in the library.',
+          'Participant in SQL on FHIR v2, the HL7 implementation guide (FHIR Infrastructure WG) that defines ViewDefinition. It is the specification underneath the CQL-to-SQL work above.',
       },
       {
         name: 'Agents on FHIR',
@@ -119,7 +111,7 @@ const STANDARDS = [
       {
         name: 'Quality measurement community',
         detail:
-          'Early CQL practitioner, and among the first doing CQL-to-SQL conversion for measures that have to execute at scale.',
+          'Early CQL practitioner, doing CQL-to-SQL conversion for measures that have to execute at scale.',
       },
     ],
   },
@@ -140,11 +132,11 @@ const PROJECTS = [
   {
     status: 'Live',
     name: 'HealthClaw Guardrails',
-    body: 'A security layer between AI agents and clinical data. Redacts PHI on every read, enforces multi-step human approval for clinical writes — proposal, permission evaluation, HMAC confirmation, immutable audit log — and keeps your health agent interactions HIPAA-compliant.',
+    body: 'A security layer between AI agents and clinical data. Redacts PHI on every read, enforces multi-step human approval for clinical writes — proposal, permission evaluation, HMAC confirmation, immutable audit log. Redaction is a Safe-Harbor-style compensating control, not a HIPAA compliance determination; the known gaps are published on its security page.',
     tags: [
-      '12 MCP Tools',
+      '29 MCP tools',
       'PHI Redaction',
-      'FHIR R4/R6',
+      'FHIR R4 · R6 ballot',
       'US Core v9',
       'Fasten Connect',
       'Local SQLite',
@@ -155,7 +147,7 @@ const PROJECTS = [
   {
     status: 'Live',
     name: 'CareAgents',
-    body: 'Spin up a personal health agent in under a minute. Every read redacted, every access audited, every action approved by you — guardrailed by HealthClaw. This is what the guardrail layer looks like once a person is actually using it.',
+    body: 'Spin up a personal health agent in under a minute. Every read redacted, every access audited, every action approved by you — guardrailed by HealthClaw. This is what the guardrail layer looks like once a person is actually using it. In beta, running on synthetic records only.',
     tags: ['Personal health agent', 'Redacted reads', 'Audited access', 'Human approval'],
     site: { href: 'https://careagents.cloud', label: 'careagents.cloud' },
     repo: null,
@@ -188,44 +180,46 @@ const PROJECTS = [
   },
 ] as const;
 
-// The agent reference leads deliberately. It is the one subject here that
-// neither Dogwood nor Point-of-Care Partners covers, and the only one backed
-// by shipped code, so it is the strongest thing to put first.
-const RESOURCES = [
-  {
-    href: '/agentguide',
-    kind: 'Reference',
-    title: 'AI Agents on FHIR',
-    desc: 'Access patterns, scopes, redaction and audit',
-  },
-  {
-    href: '/architectures',
-    kind: 'Reference',
-    title: 'FHIR Architectures',
-    desc: 'Proven architecture patterns for FHIR systems',
-  },
-  {
-    href: '/cqlguide',
-    kind: 'Guide',
-    title: 'CQL Quality Measures',
-    desc: 'Implement quality measures using CQL',
-  },
-  {
-    href: '/profilingguide',
-    kind: 'Guide',
-    title: 'FHIR Profiling',
-    desc: 'Data modeling and profiling best practices',
-  },
-] as const;
+// Segmented by the reader's problem. The agent reference leads: it is the one
+// subject neither Dogwood nor Point-of-Care Partners covers, and the only one
+// backed by shipped code. Every link here is live (see CLAUDE.md).
+type PathLink = { href: string; label: string; external?: boolean };
 
-const ADVISORY = [
-  'FHIR implementation strategy',
-  'Data architecture & pipelines',
-  'Quality measure implementation',
-  'SQL on FHIR adoption',
-  'AI & LLM integration',
-  'Team training & enablement',
-] as const;
+const PATHS: readonly {
+  who: string;
+  title: string;
+  desc: string;
+  links: readonly PathLink[];
+}[] = [
+  {
+    who: 'Building with AI agents',
+    title: 'Put an agent on clinical data without a leak',
+    desc: 'Access patterns, SMART v2 scopes, the redaction boundary people miss, and audit records that survive review.',
+    links: [
+      { href: '/agentguide', label: 'Read the agent guide' },
+      { href: 'https://healthclaw.io', label: 'Run HealthClaw', external: true },
+    ],
+  },
+  {
+    who: 'Quality measurement',
+    title: 'Get a published measure to a number you can defend',
+    desc: 'CQL worked through real CMS logic, plus an open corpus of 52 eCQM packages with CQL and SQL side by side.',
+    links: [
+      { href: '/cqlguide', label: 'Read the CQL guide' },
+      { href: 'https://openquality.us', label: 'Open Quality', external: true },
+    ],
+  },
+  {
+    who: 'Deciding something specific',
+    title: 'An architecture, an access model, an audit',
+    desc: 'Reference architectures and profiling guidance cover the general case. For one decision with real stakes, book a conversation.',
+    links: [
+      { href: '/architectures', label: 'FHIR reference architectures' },
+      { href: '/consulting', label: 'How engagements work' },
+    ],
+  },
+];
+
 
 function GitHubMark() {
   return (
@@ -256,46 +250,58 @@ export default async function Home() {
               aria-hidden="true"
               className="mt-[5px] inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-fg"
             />
-            <span>Out of the FHIR Podcast · New episodes weekly</span>
+            <span>
+              {episodes[0]
+                ? `Out of the FHIR Podcast · Latest episode ${formatEpisodeDate(episodes[0].date)}`
+                : 'Out of the FHIR Podcast'}
+            </span>
           </p>
 
           <div className="min-w-0">
             <h1 className="max-w-[52rem] text-display tracking-tight text-fg">
-              I help healthcare orgs make sense of{' '}
-              <em className="italic text-fg">
-                FHIR, AI, and quality measurement
-              </em>
+              Free implementation reference for{' '}
+              <em className="italic text-fg">AI agents on FHIR</em> and digital
+              quality measures
             </h1>
 
             <p className="measure mt-8 text-lg leading-relaxed text-fg-2">
-              I&apos;m Eugene Vestel. Through consulting, open-source tools, and
-              the Out of the FHIR podcast, I help teams navigate healthcare
-              interoperability and turn data into outcomes.
+              I&apos;m Eugene Vestel. The guides and open-source tools here come
+              from shipping this work: HealthClaw for putting guardrails between
+              agents and clinical data, Open Quality for CMS measures that
+              actually execute. No signup. When the reading runs out, I
+              consult.
             </p>
 
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-8 flex flex-wrap items-center gap-3">
               <TrackedLink
-                href="https://evestel.substack.com"
+                href="/agentguide"
                 event="hero_cta_clicked"
-                payload={{ button: 'subscribe_playbook' }}
-                external
+                payload={{ button: 'read_agent_guide' }}
                 className="btn-primary"
               >
-                Subscribe to the Playbook
+                Read the agent guide
               </TrackedLink>
               <TrackedLink
-                href="/podcast"
+                href="/reference"
                 event="hero_cta_clicked"
-                payload={{ button: 'listen_podcast' }}
+                payload={{ button: 'browse_reference' }}
                 className="btn-secondary"
               >
-                Listen to the Podcast
+                Browse the reference
+              </TrackedLink>
+              <TrackedLink
+                href="/consulting"
+                event="hero_cta_clicked"
+                payload={{ button: 'work_with_me' }}
+                className="px-2 py-2 text-sm text-fg-2 transition-colors hover:text-fg"
+              >
+                Work with me
               </TrackedLink>
             </div>
 
             <p className="label mt-9 border-t border-line pt-4 leading-relaxed">
-              Payer Interoperability Analytics &amp; AI Lead at Outcomes ·
-              Former NCQA consultant · 15+ years in healthcare data
+              Built b.well&apos;s first FHIR team · UPMC Health Plan quality
+              analytics · NCQA FHIR advisor, 2025 · {YEARS_IN_HEALTHCARE_DATA}
             </p>
           </div>
         </div>
@@ -393,9 +399,8 @@ export default async function Home() {
           <div className="reveal">
             <H2>Out of the FHIR</H2>
             <p className="measure mt-5 text-lg leading-relaxed text-fg-2">
-              Weekly conversations with the people building the future of
-              healthcare interoperability. From HL7 work group chairs to startup
-              founders to CMS policy makers — the stories behind the standards.
+              Conversations with the people building healthcare
+              interoperability, and the stories behind the standards.
             </p>
 
             <ul className="mt-7 flex flex-wrap gap-2">
@@ -478,20 +483,19 @@ export default async function Home() {
           <div className="reveal">
             <H2>The FHIR IQ Playbook</H2>
             <p className="measure mt-5 text-lg leading-relaxed text-fg-2">
-              A weekly newsletter on FHIR implementation, quality measurement,
+              A newsletter on FHIR implementation, quality measurement,
               healthcare AI, and the tools and standards shaping
               interoperability. Written for the people doing the actual work.
             </p>
             <p className="caption mt-4">
-              Read by 450+ healthcare data professionals · Presented at
-              Analytics on FHIR 2025
+              Written from implementation work. Free to read.
             </p>
           </div>
 
           <div className="reveal lg:pt-2">
             <SubscribeForm location="main_section" cta="Subscribe Free" />
             <ul className="mt-4 flex flex-wrap gap-x-5 gap-y-1.5">
-              {['Weekly insights', 'No spam, ever', 'Unsubscribe anytime'].map(
+              {['Free', 'No spam, ever', 'Unsubscribe anytime'].map(
                 (t) => (
                   <li key={t} className="label">
                     {t}
@@ -619,34 +623,45 @@ export default async function Home() {
         </div>
       </Section>
 
-      {/* -------------------------------------------------------- resources */}
-      <Section label="Resources">
+      {/* ------------------------------------------------------- start here */}
+      {/* Segmented by what the reader is trying to do, not by what exists.
+          Replaces the old Resources grid, which listed four guides with no
+          indication of who each was for. */}
+      <Section label="Start here">
         <div className="reveal">
-          <H2>Free guides &amp; references</H2>
-          <p className="measure mt-5 text-lg leading-relaxed text-fg-2">
-            Practical resources I&apos;ve written based on real implementation
-            experience.
-          </p>
+          <H2>Pick the problem you have</H2>
         </div>
 
-        <ul className="reveal mt-10 grid border-t border-line sm:grid-cols-2 lg:grid-cols-4">
-          {RESOURCES.map((r) => (
+        <ul className="reveal mt-10 grid border-t border-line md:grid-cols-3">
+          {PATHS.map((r) => (
             <li
-              key={r.href}
-              className="border-b border-line lg:border-r lg:last:border-r-0"
+              key={r.title}
+              className="border-b border-line md:border-r md:last:border-r-0"
             >
-              <Link
-                href={r.href}
-                className="group block h-full px-0 py-6 transition-colors lg:px-5"
-              >
-                <span className="label label-bright">{r.kind}</span>
-                <span className="mt-2.5 block text-xl leading-snug text-fg group-hover:text-fg">
+              <div className="flex h-full flex-col px-0 py-6 md:px-6 md:first:pl-0">
+                <span className="label label-bright">{r.who}</span>
+                <h3 className="mt-2.5 text-xl leading-snug text-fg">
                   {r.title}
-                </span>
-                <span className="mt-1.5 block text-sm leading-snug text-fg-2">
+                </h3>
+                <p className="mt-2 flex-1 text-sm leading-relaxed text-fg-2">
                   {r.desc}
-                </span>
-              </Link>
+                </p>
+                <ul className="mt-5 space-y-2">
+                  {r.links.map((l) => (
+                    <li key={l.href}>
+                      <TrackedLink
+                        href={l.href}
+                        event="path_link_clicked"
+                        payload={{ path: r.who, target: l.href }}
+                        external={l.external}
+                        className="border-b border-line-3 pb-0.5 text-sm text-fg transition-colors hover:border-fg"
+                      >
+                        {l.label}
+                      </TrackedLink>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </li>
           ))}
         </ul>
@@ -655,7 +670,7 @@ export default async function Home() {
           href="/reference"
           className="mt-7 inline-block border-b border-fg pb-0.5 text-sm font-medium text-fg transition-colors hover:border-fg hover:text-fg"
         >
-          View all resources
+          All reference, free and ungated
         </Link>
       </Section>
 
@@ -665,51 +680,36 @@ export default async function Home() {
           <div className="reveal">
             <H2>Work with me</H2>
             <p className="measure mt-5 text-lg leading-relaxed text-fg-2">
-              I advise healthcare organizations on FHIR implementation strategy,
-              data architecture, quality measurement, and AI readiness. Whether
-              you&apos;re starting your FHIR journey or optimizing an existing
-              implementation, I can help you move faster and avoid common
-              pitfalls.
+              Fixed-scope reviews with written deliverables, for when the free
+              reference covers the general case and you need it applied to
+              your data, vendors and deadline.
             </p>
-            <TrackedLink
-              href="https://calendar.app.google/TMvRGiiYfbBKNd889"
-              event="advisory_cta_clicked"
-              payload={{ button: 'book_call' }}
-              external
-              className="btn-primary mt-7"
-            >
-              Book a Call
-            </TrackedLink>
+            <div className="mt-7">
+              <ContactCTA location="home_advisory" />
+            </div>
           </div>
 
           <ul className="reveal border-t border-line lg:pt-1">
-            {ADVISORY.map((item) => (
-              <li
-                key={item}
-                className="flex items-baseline gap-3 border-b border-line py-3"
-              >
-                <span aria-hidden="true" className="h-px w-3 shrink-0 bg-line-3" />
-                <span className="text-sm text-fg">{item}</span>
+            {REVIEWS.map((e) => (
+              <li key={e.id} className="border-b border-line py-4">
+                <Link
+                  href={`/consulting#${e.id}`}
+                  className="group flex items-baseline justify-between gap-4"
+                >
+                  <span className="text-fg group-hover:underline">{e.name}</span>
+                  <span className="label shrink-0">{e.duration}</span>
+                </Link>
               </li>
             ))}
+            <li className="py-4">
+              <Link
+                href="/consulting"
+                className="border-b border-fg pb-0.5 text-sm font-medium text-fg"
+              >
+                All engagements and prices
+              </Link>
+            </li>
           </ul>
-        </div>
-      </Section>
-
-      {/* -------------------------------------------------------- final CTA */}
-      <Section label="Stay in touch">
-        <div className="grid gap-10 lg:grid-cols-[1fr_minmax(0,0.8fr)] lg:gap-16">
-          <div className="reveal">
-            <H2>Stay in the loop</H2>
-            <p className="measure mt-5 leading-relaxed text-fg-2">
-              Join 450+ healthcare data professionals getting weekly insights on
-              FHIR, AI, and quality measurement. Read by engineers, architects,
-              and analysts at health systems, payers, and vendors.
-            </p>
-          </div>
-          <div className="reveal lg:pt-2">
-            <SubscribeForm location="footer_section" />
-          </div>
         </div>
       </Section>
 

@@ -37,7 +37,7 @@ export async function POST(request: NextRequest) {
     const timestamp = new Date().toLocaleString('en-US', { timeZone: 'America/New_York' });
     const source = request.headers.get('referer') || 'Direct';
 
-    console.log('Workshop signup:', { name, email, linkedin, build, timestamp, source });
+    // No PII in logs: the sign-up reaches Gene by email only (see /privacy).
 
     const resendApiKey = process.env.RESEND_API_KEY;
     const fromAddress = process.env.RESEND_FROM || 'FHIR Builders <notifications@fhirbuilders.com>';

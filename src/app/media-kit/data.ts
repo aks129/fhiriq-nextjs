@@ -6,13 +6,13 @@ export type ColorKey = "teal" | "purple" | "coral" | "amber" | "blue" | "green" 
 
 export const meta = {
   brandName: "Out of the FHIR — Media Kit",
-  subtitle: "HEALTHCARE INTEROPERABILITY ECOSYSTEM · TRAILING 365D",
+  subtitle: "HEALTHCARE INTEROPERABILITY ECOSYSTEM · MAY 2025 – MAY 2026",
   ownerName: "Eugene Vestel",
   ownerEmail: "gene@fhiriq.com",
   ownerSite: "fhiriq.com",
-  periodLabel: "Trailing 365d · May 2025 – May 2026",
+  periodLabel: "Data as of May 2026 · covers May 2025 – May 2026",
   sourcesLine: "Sources: LinkedIn, Apple Podcasts, Spotify, Substack · May 2025 – May 2026",
-  verifiedSources: "LinkedIn + Apple + Spotify + Substack · verified",
+  verifiedSources: "Self-reported from LinkedIn, Apple, Spotify and Substack exports · screenshots on request",
   pendingSources: "YouTube + GitHub · pending",
 };
 
@@ -28,7 +28,7 @@ export const heroStats: Stat[] = [
   { value: "313k", label: "LinkedIn impressions / yr", colorKey: "teal", growth: "+132.7%", sub: "Personal + page + group" },
   { value: "5,843", label: "Owned audience", colorKey: "purple", sub: "3.7k LinkedIn + 777 group + 554 Substack" },
   { value: "68.8%", label: "Senior+ on LinkedIn", colorKey: "amber", sub: "Senior, Director, CXO, VP" },
-  { value: "48.2%", label: "Substack open rate", colorKey: "blue", sub: "Industry avg ~35%" },
+  { value: "48.2%", label: "Substack open rate", colorKey: "blue", sub: "Substack export" },
 ];
 
 export type Platform = {
@@ -88,7 +88,6 @@ export const substackStats: Stat[] = [
 
 export const substackTopPosts = [
   { title: "openclaw meets healthcare", views: 2336, openRate: 46.4, eng: 15.1, date: "Feb 2026" },
-  { title: "Introducing Agent Interop", views: 1158, openRate: 52.8, eng: 11.7, date: "Sep 2025" },
   { title: "What Happens When a Patient Has More Processing Power Than a Provider", views: 871, openRate: 42.6, eng: 12.6, date: "Mar 2026" },
   { title: "Claude Healthcare quick impressions", views: 727, openRate: 49.7, eng: 19.4, date: "Jan 2026" },
   { title: "MCP Apps and the Healthcare Ecosystem That's About to Explode", views: 637, openRate: 48.5, eng: 19.1, date: "Feb 2026" },
@@ -107,7 +106,7 @@ export const substackCountriesLine = "US 396 · India 34 · Canada 21 · AU 13 �
 export const podcastStats: Stat[] = [
   { value: "2,494", label: "Total plays (Apple + Spotify)", colorKey: "teal", sub: "27 episodes · ~93 plays/ep" },
   { value: "316h", label: "Total listening", colorKey: "purple", sub: "157 Apple + 159 Spotify" },
-  { value: "63%", label: "Apple follow rate", colorKey: "coral", sub: "Industry avg ~30–40%" },
+  { value: "63%", label: "Apple follow rate", colorKey: "coral", sub: "Apple Podcasts Connect" },
   { value: "91+64", label: "Engaged + Spotify follows", colorKey: "amber", sub: "Loyal core" },
 ];
 
@@ -150,18 +149,11 @@ export const notableGuests = [
 ];
 
 export const sponsorInventory = [
-  { tier: "Anchor sponsor — Annual State-of-FHIR Report", price: "$25–40k", note: "Logo, named insight section, co-marketed across 313k LinkedIn impressions + 554 Substack subscribers (48% open rate). 1 slot.", colorKey: "teal" as ColorKey, scarce: true, priority: 1 },
-  { tier: "Executive Roundtable title sponsor", price: "$15–25k", note: "Curated 12–15 decision-makers drawn from podcast guest network + FHIR Goats group. Branded recap distributed to full ecosystem. Quarterly.", colorKey: "purple" as ColorKey, scarce: true, priority: 2 },
-  { tier: "Co-sponsor — Annual Report", price: "$8–12k", note: "Logo + section. 3 slots available.", colorKey: "teal" as ColorKey, scarce: false, priority: 3 },
+  { tier: "Proposed: anchor sponsor, State-of-FHIR report", price: "$25–40k", note: "First edition not yet published. Logo and a named insight section, distributed across LinkedIn and the Substack.", colorKey: "teal" as ColorKey, scarce: false, priority: 1 },
+  { tier: "Proposed: executive roundtable title sponsor", price: "$15–25k", note: "Not yet run. A small invited group drawn from the podcast guest network and the FHIR Goats group, with a recap distributed afterwards.", colorKey: "purple" as ColorKey, scarce: false, priority: 2 },
+  { tier: "Proposed: co-sponsor, State-of-FHIR report", price: "$8–12k", note: "Logo and a section in the first edition.", colorKey: "teal" as ColorKey, scarce: false, priority: 3 },
   { tier: "Substack sponsored issue", price: "$2–4k", note: "Long-form case study. 48.2% avg open rate. Posts have hit 2,336 views. Top funnel for paid + LinkedIn syndication.", colorKey: "amber" as ColorKey, scarce: false, priority: 4 },
   { tier: "Podcast presenting sponsor (4 episodes)", price: "$1–2k / month", note: "Host-read pre + mid-roll. ~90 plays/ep across Apple + Spotify, concentrated in NYC/Boston/Chicago/Pittsburgh. Value is association with the guest bench.", colorKey: "coral" as ColorKey, scarce: false, priority: 5 },
-];
-
-export const advisoryOffers = [
-  { name: "Executive coaching — 1:1", who: "Healthcare AI founders, CTOs, product leaders", price: "$1.5–3k / month", format: "2× monthly + async" },
-  { name: "Cohort advisory program", who: "PM + dev teams building on FHIR", price: "$3–5k / seat / quarter", format: "Office hours + private channel" },
-  { name: "Fractional interop advisor", who: "Series A–B health tech", price: "$8–15k / month retainer", format: "Weekly + architecture review" },
-  { name: "Custom workshop", who: "Provider IT / payer teams", price: "$10–25k / engagement", format: "On-site or remote, 1–3 days" },
 ];
 
 export const coachingClientTypes = [
@@ -171,29 +163,22 @@ export const coachingClientTypes = [
   { label: "Payer + provider innovators", desc: "Internal AI / interop teams", colorKey: "amber" as ColorKey },
 ];
 
-export const coachingProof = [
-  { quote: "Shaped our entire FHIR + AI strategy in 90 days.", attribution: "VP Product, payer infrastructure co.", colorKey: "teal" as ColorKey, placeholder: true },
-  { quote: "Best 1:1 healthcare technical advisor we found.", attribution: "Founder, health AI Series A", colorKey: "purple" as ColorKey, placeholder: true },
-  { quote: "Helped us move from prototype to production faster than internal team alone.", attribution: "Engineering lead, digital health", colorKey: "coral" as ColorKey, placeholder: true },
-];
-
 export const authoritySignals = [
-  { label: "DevDays 2026 speaker", colorKey: "teal" as ColorKey },
+  { label: "HL7 FHIR DevDays speaker", colorKey: "teal" as ColorKey },
   { label: "FHIR IQ Playbook — 554 subs · 48% open rate", colorKey: "amber" as ColorKey },
-  { label: "OSS maintainer — SmartHealthConnect + FHIR Guardrails + HealthClaw", colorKey: "purple" as ColorKey },
+  { label: "Open source: HealthClaw Guardrails, Open Quality, AINPI", colorKey: "purple" as ColorKey },
   { label: "Out of the FHIR — 27 episodes, FHIR ecosystem guest roster", colorKey: "coral" as ColorKey },
   { label: "FHIR Goats group founder (777 members)", colorKey: "blue" as ColorKey },
   { label: "Free Claude Code course (healthcare)", colorKey: "green" as ColorKey },
 ];
 
 export const ownedAssets = [
-  { name: "HealthClaw", desc: "Production agent platform for personal + family health records", colorKey: "teal" as ColorKey },
-  { name: "FHIR Guardrails MCP", desc: "Open-source safety proxy for AI on FHIR", colorKey: "purple" as ColorKey },
-  { name: "SmartHealthConnect", desc: "Patient-facing FHIR dashboard + MCP server", colorKey: "blue" as ColorKey },
+  { name: "HealthClaw Guardrails", desc: "Open-source guardrails between AI agents and FHIR data", colorKey: "teal" as ColorKey },
+  { name: "Open Quality", desc: "Open corpus of the 2026 CMS eCQMs, CQL and SQL side by side", colorKey: "purple" as ColorKey },
   { name: "FHIR IQ Playbook", desc: "Substack newsletter — 554 subs, 48% open rate, 72 posts", colorKey: "amber" as ColorKey },
   { name: "Out of the FHIR", desc: "Podcast — 27 episodes, Apple + Spotify, FHIR community guests", colorKey: "coral" as ColorKey },
   { name: "FHIR Goats group", desc: "Private LinkedIn group — 777 members, 84k post views/yr", colorKey: "blue" as ColorKey },
-  { name: "Claude Code for Healthcare", desc: "Free course + advisory program", colorKey: "green" as ColorKey },
+  { name: "Claude Code for Healthcare", desc: "Free workshop (fhiriq.com/workshop)", colorKey: "green" as ColorKey },
 ];
 
 export const tabs = [

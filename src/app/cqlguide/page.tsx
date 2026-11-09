@@ -1,27 +1,14 @@
 'use client';
 
+import Nav from '@/components/Nav';
+import Footer from '@/components/Footer';
 import Link from 'next/link';
 
 export default function CQLGuide() {
   return (
     <div className="min-h-screen bg-bg-2">
       {/* Navigation */}
-      <nav className="bg-bg shadow-lg sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex justify-between items-center py-4">
-            <div className="flex items-center">
-              <Link href="/" className="text-2xl font-bold text-primary-blue">
-                FHIR IQ
-              </Link>
-              <span className="ml-4 text-fg-3">|</span>
-              <span className="ml-4 text-lg font-semibold text-fg-2">CQL Quality Measures Guide</span>
-            </div>
-            <Link href="/" className="text-primary-blue hover:text-primary-navy font-medium">
-              ← Back to Home
-            </Link>
-          </div>
-        </div>
-      </nav>
+      <Nav />
 
       {/* GitHub Contribution Banner */}
       <div className="bg-gradient-to-r from-bg-3 to-bg-3 text-fg">
@@ -119,68 +106,70 @@ export default function CQLGuide() {
 
           <div className="prose prose-lg max-w-none">
             <p className="text-fg-2 mb-6">
-              Let&apos;s explore a real-world example: measuring breast cancer screening rates. This is based on
-              the CMS 125 measure - women ages 50-74 who had a mammogram within the past 27 months.
+              A worked example from CMS125 Breast Cancer Screening, using the 2026 FHIR version of the
+              measure (QI-Core 6.0.0). The excerpts below are taken from the published CQL, which{' '}
+              <a href="https://openquality.us" className="underline">Open Quality</a> carries in full.
+              Checked October 2026.
             </p>
 
             <h3 className="text-2xl font-bold text-fg mb-4">1. Measure Definition</h3>
             <div className="bg-bg-2 p-6 rounded-lg mb-6">
               <h4 className="font-semibold mb-2">Clinical Criteria:</h4>
               <ul className="list-disc pl-6 space-y-2 text-fg-2">
-                <li><strong>Population:</strong> Women ages 50-74</li>
-                <li><strong>Denominator:</strong> All women in the age range</li>
-                <li><strong>Numerator:</strong> Women who had a mammogram in the past 27 months</li>
-                <li><strong>Exclusions:</strong> Women with bilateral mastectomy, certain diagnoses</li>
+                <li><strong>Initial population:</strong> female patients aged 42 to 74 at the end of the measurement period, with a qualifying outpatient encounter in the period</li>
+                <li><strong>Denominator:</strong> the initial population</li>
+                <li><strong>Numerator:</strong> a mammogram ending between October 1 two years before the measurement period and the end of the period (27 months for a calendar-year period)</li>
+                <li><strong>Exclusions:</strong> hospice, palliative care, age 66+ with advanced illness and frailty or living long-term in a nursing home, bilateral mastectomy, or left and right unilateral mastectomies</li>
               </ul>
             </div>
 
             <h3 className="text-2xl font-bold text-fg mb-4">2. CQL Library Structure</h3>
             <pre className="bg-bg-2 text-fg p-6 rounded-lg overflow-x-auto mb-6">
-              <code>{`library BreastCancerScreening version '1.0.0'
+              <code>{`library CMS125FHIRBreastCancerScreening version '0.4.000'
 
-using FHIR version '4.0.1'
+using QICore version '6.0.0'
 
-include FHIRHelpers version '4.0.1'
-include MATGlobalCommonFunctions version '5.0.000' called Global
-
-codesystem "LOINC": 'http://loinc.org'
-codesystem "SNOMEDCT": 'http://snomed.info/sct'
+include FHIRHelpers version '4.4.000' called FHIRHelpers
+include QICoreCommon version '4.0.000' called QICoreCommon
+include AdultOutpatientEncounters version '4.19.000' called AdultOutpatientEncounters
+include Hospice version '6.18.000' called Hospice
+include Status version '1.15.000' called Status
+include PalliativeCare version '1.18.000' called PalliativeCare
+include AdvancedIllnessandFrailty version '1.27.000' called AIFrailLTCF
 
 valueset "Mammography": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.108.12.1018'
 valueset "Bilateral Mastectomy": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1005'
+// ...six more mastectomy value sets in the full library
 
 parameter "Measurement Period" Interval<DateTime>
 
 context Patient
 
-// Initial Population
 define "Initial Population":
-  Patient.gender = 'female'
-    and AgeInYearsAt(start of "Measurement Period") >= 50
-    and AgeInYearsAt(start of "Measurement Period") < 75
+  AgeInYearsAt(date from end of "Measurement Period") in Interval[42, 74]
+    and Patient.sex = '248152002'
+    and exists AdultOutpatientEncounters."Qualifying Encounters"
 
-// Denominator
 define "Denominator":
   "Initial Population"
 
-// Numerator
+define "Denominator Exclusions":
+  Hospice."Has Hospice Services"
+    or exists "Bilateral Mastectomy Procedure"
+    // ...or bilateral mastectomy diagnosis, or right AND left unilateral
+    // mastectomy, or the frailty and palliative care exclusions
+    or AIFrailLTCF."Is Age 66 or Older with Advanced Illness and Frailty"
+    or AIFrailLTCF."Is Age 66 or Older Living Long Term in a Nursing Home"
+    or PalliativeCare."Has Palliative Care in the Measurement Period"
+
 define "Numerator":
-  exists (
-    [Observation: "Mammography"] Mammogram
-      where Mammogram.status in { 'final', 'amended', 'corrected' }
-        and Mammogram.effective during Interval[
-          start of "Measurement Period" - 27 months,
-          end of "Measurement Period"
-        ]
+  exists ( ( ( [ObservationClinicalResult: "Mammography"] ).isDiagnosticStudyPerformed ( ) ) Mammogram
+      where Mammogram.effective.toInterval ( ) ends during day of
+        Interval["October 1 Two Years Prior to the Measurement Period", end of "Measurement Period"]
   )
 
-// Denominator Exclusions
-define "Denominator Exclusions":
-  exists (
-    [Procedure: "Bilateral Mastectomy"] BilateralMastectomy
-      where BilateralMastectomy.status = 'completed'
-        and BilateralMastectomy.performed before end of "Measurement Period"
-  )`}</code>
+define "October 1 Two Years Prior to the Measurement Period":
+  DateTime((year from start of "Measurement Period" - 2), 10, 1, 0, 0, 0, 0, 0)`}</code>
             </pre>
 
             <h3 className="text-2xl font-bold text-fg mb-4">3. FHIR Measure Resource</h3>
@@ -195,7 +184,7 @@ define "Denominator Exclusions":
   "status": "active",
   "experimental": false,
   "date": "2025-01-01",
-  "description": "Percentage of women 50-74 years of age who had a mammogram to screen for breast cancer",
+  "description": "Percentage of women 42-74 years of age who had a mammogram to screen for breast cancer",
   "purpose": "To measure the rate of breast cancer screening in eligible women",
   "scoring": {
     "coding": [{
@@ -230,7 +219,7 @@ define "Denominator Exclusions":
         }]
       },
       "criteria": {
-        "language": "text/cql",
+        "language": "text/cql-identifier",
         "expression": "Initial Population"
       }
     }, {
@@ -241,7 +230,7 @@ define "Denominator Exclusions":
         }]
       },
       "criteria": {
-        "language": "text/cql",
+        "language": "text/cql-identifier",
         "expression": "Denominator"
       }
     }, {
@@ -252,7 +241,7 @@ define "Denominator Exclusions":
         }]
       },
       "criteria": {
-        "language": "text/cql",
+        "language": "text/cql-identifier",
         "expression": "Numerator"
       }
     }, {
@@ -263,7 +252,7 @@ define "Denominator Exclusions":
         }]
       },
       "criteria": {
-        "language": "text/cql",
+        "language": "text/cql-identifier",
         "expression": "Denominator Exclusions"
       }
     }]
@@ -276,7 +265,8 @@ define "Denominator Exclusions":
               Example patient data that would be evaluated by this measure:
             </p>
             <pre className="bg-bg-2 text-fg p-6 rounded-lg overflow-x-auto mb-6">
-              <code>{`// Patient Resource
+              <code>{`// Patient Resource. The 2026 measure reads Patient.sex (SNOMED 248152002),
+// not Patient.gender; see the QI-Core 6 Patient profile for how it is carried.
 {
   "resourceType": "Patient",
   "id": "patient-example",
@@ -285,6 +275,7 @@ define "Denominator Exclusions":
 }
 
 // Observation Resource (Mammogram)
+// 24606-6 is in the Mammography value set (checked against tx.fhir.org)
 {
   "resourceType": "Observation",
   "id": "mammogram-example",
@@ -292,8 +283,8 @@ define "Denominator Exclusions":
   "code": {
     "coding": [{
       "system": "http://loinc.org",
-      "code": "24604-1",
-      "display": "Mammography"
+      "code": "24606-6",
+      "display": "MG Breast Screening"
     }]
   },
   "subject": {
@@ -332,8 +323,9 @@ define "Denominator Exclusions":
                 CQL must be translated to Expression Logical Model (ELM) JSON for execution:
               </p>
               <pre className="bg-bg-2 text-fg p-4 rounded-lg mt-4 overflow-x-auto">
-                <code>{`npm install -g cql-to-elm
-cql-to-elm --input BreastCancerScreening.cql --output BreastCancerScreening.json`}</code>
+                <code>{`# The reference translator is the Java CQL-to-ELM translator in
+# github.com/cqframework/clinical_quality_language. MADiE and most
+# measure engines run it for you; run it yourself for local testing.`}</code>
               </pre>
             </div>
 
@@ -359,7 +351,7 @@ Content-Type: application/fhir+json
     "valueString": "Patient/patient-example"
   }, {
     "name": "reportType",
-    "valueCode": "individual"
+    "valueCode": "subject"
   }]
 }`}</code>
               </pre>
@@ -431,7 +423,7 @@ Content-Type: application/fhir+json
                 <li>✅ Write comprehensive unit tests for CQL logic</li>
                 <li>✅ Document clinical rationale for each criterion</li>
                 <li>✅ Use FHIRPath expressions when possible</li>
-                <li>✅ Leverage existing CQL libraries (MAT Global Common Functions)</li>
+                <li>✅ Reuse the shared CMS libraries (QICoreCommon, Status, Hospice, PalliativeCare, AdvancedIllnessandFrailty)</li>
               </ul>
             </div>
 
@@ -664,7 +656,7 @@ define "Number of Encounters":
             Need Help Implementing CQL Quality Measures?
           </h2>
           <p className="text-xl text-fg-2 mb-8 max-w-2xl mx-auto">
-            Our experts can help you design, implement, and validate CQL-based quality measures for your organization.
+            I can help you design, implement, and validate CQL-based quality measures for your organization.
           </p>
           <div className="flex gap-4 justify-center flex-wrap">
             <Link
@@ -685,16 +677,7 @@ define "Number of Encounters":
       </main>
 
       {/* Footer */}
-      <footer className="bg-bg-2 text-fg py-8 mt-12">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <p className="text-fg-3">
-            &copy; 2025 FHIR IQ. CQL Guide for Quality Measures on FHIR.
-          </p>
-          <p className="text-fg-3 text-sm mt-2">
-            Last updated: January 2025
-          </p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

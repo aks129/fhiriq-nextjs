@@ -2,6 +2,7 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { SLACK_INVITE, SLACK_FALLBACK_EMAIL, SLACK_FALLBACK_HREF } from '@/lib/cohort';
 import './workshop-agenda.css';
+import { BIO } from '@/lib/profile';
 
 export const metadata: Metadata = {
   title: 'Workshop Agenda · FHIR IQ Cohort 00',
@@ -11,8 +12,11 @@ export const metadata: Metadata = {
     title: 'Workshop Agenda · FHIR IQ Cohort 00',
     description:
       'The full agenda for the free 6-week Building Healthcare AI with Claude Code workshop. 5 sessions, pods of 4, live IDE, shipped slices.',
-    url: 'https://fhiriq.com/workshop-agenda',
+    url: '/workshop-agenda',
   },
+  // The Cohort 00 reference, kept as a record of a cohort that has run. Not
+  // linked from the site; kept out of search so it is not read as current.
+  robots: { index: false, follow: true },
 };
 
 const FONT_LINK =
@@ -212,23 +216,17 @@ export default function WorkshopAgendaPage() {
               <div className="av">EV</div>
               <div className="who">
                 <div className="name">Eugene Vestel</div>
-                <div className="role">Founder, FHIR IQ · Ships things</div>
+                <div className="role">FHIR IQ</div>
               </div>
             </div>
 
-            <p>
-              Healthcare interoperability operator. Founder of FHIR IQ — the semantic intelligence layer for healthcare
-              data — and host of <em>Out of the FHIR®</em>, the podcast covering FHIR adoption, payer/provider data flows,
-              and the move from CQL toward native SQL-on-FHIR. Recently presented CQL-to-SQL compilation at Analytics on
-              FHIR (December 2025); recruiting Q1 2026 design partners for the engine now.
-            </p>
+            <p>{BIO}</p>
 
             <p>
-              Building in public: <strong>HealthClaw</strong> — a security layer between AI agents and clinical data —
-              plus AINPI (national provider directory analysis), FHIRspective, FHIR ViewDefinition Builder, and a steady
-              stream of FHIR tools at <a href="https://github.com/aks129" target="_blank" rel="noopener noreferrer">github.com/aks129</a>{" "}
+              Host of <em>Out of the FHIR®</em>. Building in public: <strong>HealthClaw</strong>, Open Quality and
+              AINPI, with the code at{" "}
+              <a href="https://github.com/aks129" target="_blank" rel="noopener noreferrer">github.com/aks129</a>{" "}
               and <a href="https://github.com/FHIR-IQ" target="_blank" rel="noopener noreferrer">github.com/FHIR-IQ</a>.
-              Also runs DevDays FHIR Side Chats with Firely.
             </p>
 
             <p>

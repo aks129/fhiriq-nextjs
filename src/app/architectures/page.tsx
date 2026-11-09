@@ -16,6 +16,11 @@ export default function ArchitecturesPage() {
     { id: 'clinical', label: 'Clinical Workflows' },
   ];
 
+  // Patterns with a detailed section further down the page. The other four
+  // are summarised on their card only; they used to show "View Details"
+  // and scroll to nothing.
+  const DETAILED = new Set(['fhir-facade', 'clinical-data-repository', 'health-apps', 'analytics-platform']);
+
   const architectures = [
     {
       id: 'fhir-facade',
@@ -138,7 +143,7 @@ export default function ArchitecturesPage() {
               FHIR Reference Architectures
             </h1>
             <p className="text-xl mb-8 text-white/90">
-              Proven architecture patterns, design approaches, and implementation strategies for building healthcare data platforms with FHIR
+              Architecture patterns, design approaches, and implementation strategies for building healthcare data platforms with FHIR
             </p>
             <div className="flex gap-4">
               <Link href="/consulting" className="bg-bg text-primary-blue px-6 py-3 rounded-lg font-semibold hover:bg-bg-2 transition">
@@ -180,10 +185,10 @@ export default function ArchitecturesPage() {
             {filteredArchitectures.map(arch => (
               <div
                 key={arch.id}
-                className="bg-bg border-2 border-line rounded-xl p-6 hover:border-primary-blue hover:shadow-lg transition cursor-pointer"
+                className={`bg-bg border-2 border-line rounded-xl p-6 transition ${DETAILED.has(arch.id) ? 'hover:border-primary-blue hover:shadow-lg cursor-pointer' : ''}`}
                 onClick={() => {
-                  const element = document.getElementById(`arch-${arch.id}`);
-                  element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  if (!DETAILED.has(arch.id)) return;
+                  document.getElementById(`arch-${arch.id}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }}
               >
                 <div className="text-4xl mb-4">{arch.icon}</div>
@@ -209,9 +214,11 @@ export default function ArchitecturesPage() {
                     ))}
                   </ul>
                 </div>
-                <div className="mt-4 text-primary-blue font-semibold text-sm">
-                  View Details →
-                </div>
+                {DETAILED.has(arch.id) && (
+                  <div className="mt-4 text-primary-blue font-semibold text-sm">
+                    View Details →
+                  </div>
+                )}
               </div>
             ))}
           </div>
@@ -495,7 +502,7 @@ export default function ArchitecturesPage() {
 
               <h4 className="text-lg font-semibold mb-3 mt-6">Implementation Considerations</h4>
               <ul className="space-y-2 text-fg-2">
-                <li><strong>Scopes:</strong> Request minimal necessary scopes (patient/*.read vs user/*.write)</li>
+                <li><strong>Scopes:</strong> Request minimal necessary scopes in SMART v2 syntax, e.g. patient/Observation.rs rather than patient/*.read</li>
                 <li><strong>Security:</strong> Implement PKCE for public clients, validate tokens server-side</li>
                 <li><strong>UX:</strong> Handle launch context, patient selection, and session management</li>
                 <li><strong>Offline Access:</strong> Request refresh tokens for apps that need persistent access</li>
@@ -602,16 +609,21 @@ export default function ArchitecturesPage() {
 CREATE TABLE observations_flat AS
 SELECT
   o.id,
-  o.resource->>'subject' AS patient_id,
+  o.resource->'subject'->>'reference' AS patient_ref,
+  -- Takes the first coding only; one row per coding needs a lateral join
   o.resource->'code'->'coding'->0->>'code' AS code,
   o.resource->'code'->'coding'->0->>'display' AS code_display,
   o.resource->'valueQuantity'->>'value' AS value_numeric,
   o.resource->'valueQuantity'->>'unit' AS unit,
+  -- effective[x] can also be a Period or Instant; this keeps dateTime only
   o.resource->>'effectiveDateTime' AS effective_date
 FROM fhir_observation o;
 
+-- SQL on FHIR v2 expresses the same flattening as a portable
+-- ViewDefinition, so it is not tied to one database's JSON operators.
+
 -- Index for performance
-CREATE INDEX idx_obs_patient ON observations_flat(patient_id);
+CREATE INDEX idx_obs_patient ON observations_flat(patient_ref);
 CREATE INDEX idx_obs_code ON observations_flat(code);
 CREATE INDEX idx_obs_date ON observations_flat(effective_date);`}
               </div>
@@ -641,7 +653,7 @@ CREATE INDEX idx_obs_date ON observations_flat(effective_date);`}
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">FHIR Design Patterns</h2>
             <p className="text-xl text-fg-2 max-w-3xl mx-auto">
-              Proven patterns for modeling clinical data in FHIR
+              Patterns for modeling clinical data in FHIR
             </p>
           </div>
 
@@ -693,23 +705,24 @@ CREATE INDEX idx_obs_date ON observations_flat(effective_date);`}
                 Constrain base resources for specific use cases and regions
               </p>
               <div className="text-xs bg-bg-2 p-3 rounded font-mono">
-                {`US Core Patient:
-- Must have name
-- Must have identifier
-- Race/ethnicity required`}
+                {`US Core 9.0.0 Patient:
+- identifier 1..*  (Must Support)
+- name       1..*  (Must Support)
+- race, ethnicity extensions 0..1`}
               </div>
             </div>
 
             <div className="bg-bg border-2 border-line rounded-lg p-6">
               <h3 className="text-lg font-bold mb-2">Must Support</h3>
               <p className="text-fg-2 text-sm mb-3">
-                Mark elements that systems must handle if present in data
+                Meaning is set by each IG, not by base FHIR. Read the IG&apos;s conformance page
               </p>
               <div className="text-xs bg-bg-2 p-3 rounded font-mono">
                 {`mustSupport: true
-// Server MUST store
-// Client MUST display
-// If present in data`}
+// US Core: responders SHALL be able
+//   to populate the element;
+// requestors SHALL process it
+//   without error`}
               </div>
             </div>
 
@@ -770,8 +783,8 @@ CREATE INDEX idx_obs_date ON observations_flat(effective_date);`}
               <div className="mt-6 pt-6 border-t">
                 <h4 className="font-semibold mb-2">Key Capabilities</h4>
                 <ul className="text-sm text-fg-2 space-y-1">
-                  <li>• Auto-scaling FHIR servers with SLA guarantees</li>
-                  <li>• Built-in compliance (HIPAA, HITRUST, SOC 2)</li>
+                  <li>• Managed FHIR servers with a published SLA</li>
+                  <li>• HIPAA-eligible under the provider&apos;s BAA; check its current attestations</li>
                   <li>• Native integration with analytics tools</li>
                   <li>• Managed backups and disaster recovery</li>
                 </ul>
@@ -794,8 +807,8 @@ CREATE INDEX idx_obs_date ON observations_flat(effective_date);`}
                   <div className="text-sm text-fg-2">.NET-based, high performance, commercial support available</div>
                 </div>
                 <div className="border-l-4 border-line-2 pl-4">
-                  <div className="font-semibold text-fg">IBM FHIR Server</div>
-                  <div className="text-sm text-fg-2">Java, linear scalability, multi-tenancy support</div>
+                  <div className="font-semibold text-fg">LinuxForHealth FHIR Server (formerly IBM FHIR Server)</div>
+                  <div className="text-sm text-fg-2">Java, multi-tenant. No commits since April 2024; check activity before choosing it</div>
                 </div>
                 <div className="border-l-4 border-line-2 pl-4">
                   <div className="font-semibold text-fg">Medplum</div>

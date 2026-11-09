@@ -25,16 +25,16 @@ export async function POST(request: NextRequest) {
     const resendApiKey = process.env.RESEND_API_KEY;
 
     // Email content
-    const emailSubject = `New Newsletter Subscriber: ${email}`;
+    const emailSubject = `Newsletter signup started: ${email}`;
     const emailHtml = `
-      <h2>New Newsletter Subscription</h2>
+      <h2>Newsletter signup started (confirm on Substack)</h2>
       <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
       <p><strong>Time:</strong> ${new Date().toLocaleString('en-US', { timeZone: 'America/New_York' })} ET</p>
       <p><strong>Source:</strong> ${request.headers.get('referer') || 'Direct'}</p>
     `;
 
     const emailText = `
-New Newsletter Subscription
+Newsletter signup started (confirm on Substack)
 
 Email: ${email}
 Time: ${new Date().toISOString()}
@@ -59,13 +59,10 @@ Source: ${request.headers.get('referer') || 'Direct'}
           })
         });
 
+        // Read the body once; a second .json() call throws.
         if (!resendResponse.ok) {
-          const errorData = await resendResponse.json();
-          console.error('Resend API error:', errorData);
+          console.error('Resend API error:', await resendResponse.json());
         }
-
-        const resendData = await resendResponse.json();
-        console.log('Admin notification sent:', resendData);
 
       } catch (emailError) {
         console.error('Email sending error:', emailError);
@@ -74,7 +71,7 @@ Source: ${request.headers.get('referer') || 'Direct'}
 
     return NextResponse.json({
       success: true,
-      message: 'Successfully subscribed to FHIR IQ Newsletter! Check your email for confirmation.'
+      message: 'Noted. Confirm the subscription on Substack.'
     });
 
   } catch (error) {
