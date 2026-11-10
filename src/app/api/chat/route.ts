@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Anthropic from '@anthropic-ai/sdk';
 import { CHAT_FALLBACK, CHAT_SYSTEM_PROMPT } from '@/lib/chat-prompt';
+import { federatedClient } from '@/lib/anthropic-client';
 
 /**
  * Site assistant.
@@ -13,7 +14,10 @@ import { CHAT_FALLBACK, CHAT_SYSTEM_PROMPT } from '@/lib/chat-prompt';
  */
 
 const MAX_MESSAGE_CHARS = 2000;
-const client = process.env.ANTHROPIC_API_KEY ? new Anthropic() : null;
+// No API key: authenticates by workload identity federation (see
+// src/lib/anthropic-client.ts). null outside production, so the route
+// answers with CHAT_FALLBACK.
+const client = federatedClient();
 
 export async function POST(request: NextRequest) {
   let message: unknown;
