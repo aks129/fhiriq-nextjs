@@ -217,7 +217,12 @@ If a `[PROD TEST]` returns 200 from the route but never appears in `/emails`, th
 ## Environment variables
 
 ```bash
-ANTHROPIC_API_KEY=sk-...       # optional — /api/chat returns a fixed message without it
+# /api/chat has no API key. It authenticates by workload identity federation
+# (src/lib/anthropic-client.ts, rule fhiriq-site-chat-prod in org "vestel ai llc").
+# Set by scripts/setup-anthropic-wif.sh, production only:
+ANTHROPIC_FEDERATION_RULE_ID=fdrl_...
+ANTHROPIC_ORGANIZATION_ID=...
+ANTHROPIC_SERVICE_ACCOUNT_ID=svac_...
 RESEND_API_KEY=re_...
 RESEND_FROM=FHIR Builders <notifications@fhirbuilders.com>   # must be a verified domain
 SUBSTACK_PUBLICATION_ID=evestel
