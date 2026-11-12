@@ -14,18 +14,24 @@
 # API key.
 #
 # Usage:
-#   bash scripts/setup-anthropic-wif.sh
-#   PROFILE=fhiriq-admin bash scripts/setup-anthropic-wif.sh   # another ant profile
+#   WORKSPACE_ID=wrkspc_... bash scripts/setup-anthropic-wif.sh
+#   PROFILE=teams-admin WORKSPACE_ID=wrkspc_... bash scripts/setup-anthropic-wif.sh
 #
-# The rule applies to all workspaces (the org has only the Default Workspace),
-# and its scope is workspace:inference, which allows model calls and nothing
-# else. Optionally pin one workspace: WORKSPACE_ID=wrkspc_... bash ...
+# The rule's scope is workspace:inference, which allows model calls and nothing
+# else. When a rule applies to all workspaces, every token exchange must name a
+# workspace or it fails with workspace_id_required, so the script always sets
+# ANTHROPIC_WORKSPACE_ID. The Default workspace has a real wrkspc_ ID but the
+# workspaces list omits it; find it in Console > Workspaces, or on an existing
+# federation rule. The new rule is pinned to that workspace.
 set -euo pipefail
 
 TEAM=aks129s-projects
 PROJECT=fhiriq-nextjs
 ISSUER_URL="https://oidc.vercel.com/$TEAM"
 SUBJECT="owner:$TEAM:project:$PROJECT:environment:production"
+# Vercel tokens carry this aud. Without it the rule expects Anthropic's own
+# audience and every exchange fails with a bare 401.
+AUDIENCE="https://vercel.com/$TEAM"
 API=https://api.anthropic.com
 
 command -v ant >/dev/null || { echo "Install the ant CLI first: brew install anthropics/tap/ant"; exit 1; }
@@ -58,7 +64,7 @@ if [ -z "${YES:-}" ]; then
   [ "$ok" = y ] || { echo "Stopped. Log in to the right org: ant auth login --profile $PROFILE --scope org:admin"; exit 1; }
 fi
 
-echo "Workspaces besides Default: $(call GET "/v1/organizations/workspaces?limit=100" | jq '.data | length')"
+[ -n "${WORKSPACE_ID:-}" ] || { echo "Set WORKSPACE_ID=wrkspc_... (Console > Workspaces; the Default workspace has one too)"; exit 1; }
 
 # 1. Service account
 SA_ID=$(call GET "/v1/organizations/service_accounts?limit=100" \
@@ -71,12 +77,13 @@ else
   echo "Reusing service account $SA_ID"
 fi
 
-# 2. Issuer for Vercel team OIDC tokens
+# 2. Issuer for Vercel team OIDC tokens. Vercel tokens live 12h (iat->exp);
+#    the issuer default is 1h, which rejects every one with jwt_lifetime_too_long.
 ISSUER_ID=$(call GET "/v1/organizations/federation_issuers?limit=100" \
   | jq -r --arg u "$ISSUER_URL" '.data[] | select(.issuer_url==$u) | .id' | head -1)
 if [ -z "$ISSUER_ID" ]; then
   ISSUER_ID=$(call POST /v1/organizations/federation_issuers "$(jq -n --arg u "$ISSUER_URL" \
-    '{name:"vercel-aks129s-projects", issuer_url:$u, jwks:{type:"discovery"}}')" | jq -r .id)
+    '{name:"vercel-aks129s-projects", issuer_url:$u, jwks:{type:"discovery"}, max_jwt_lifetime_seconds:43200}')" | jq -r .id)
   echo "Created issuer $ISSUER_ID"
 else
   echo "Reusing issuer $ISSUER_ID"
@@ -87,13 +94,13 @@ RULE_ID=$(call GET "/v1/organizations/federation_rules?limit=100" \
   | jq -r '.data[] | select(.name=="fhiriq-site-chat-prod") | .id' | head -1)
 if [ -z "$RULE_ID" ]; then
   RULE_ID=$(call POST /v1/organizations/federation_rules "$(jq -n \
-    --arg iss "$ISSUER_ID" --arg sub "$SUBJECT" --arg sa "$SA_ID" --arg ws "${WORKSPACE_ID:-}" \
+    --arg iss "$ISSUER_ID" --arg sub "$SUBJECT" --arg aud "$AUDIENCE" --arg sa "$SA_ID" --arg ws "${WORKSPACE_ID:-}" \
     '{name:"fhiriq-site-chat-prod", issuer_id:$iss,
-      match:{subject_prefix:$sub},
+      match:{subject_prefix:$sub, audience:$aud},
       target:{type:"service_account", service_account_id:$sa},
       oauth_scope:"workspace:inference",
       token_lifetime_seconds:600}
-     + (if $ws == "" then {applies_to_all_workspaces:true} else {workspace_id:$ws} end)')" | jq -r .id)
+     + {workspace_id:$ws}')" | jq -r .id)
   echo "Created rule $RULE_ID"
 else
   echo "Reusing rule $RULE_ID"
@@ -102,8 +109,7 @@ fi
 # 4. Store the IDs in Vercel production. They are identifiers, not secrets.
 cd "$(dirname "$0")/.."
 pairs=("ANTHROPIC_FEDERATION_RULE_ID=$RULE_ID" "ANTHROPIC_ORGANIZATION_ID=$ORG_ID" \
-       "ANTHROPIC_SERVICE_ACCOUNT_ID=$SA_ID")
-[ -n "${WORKSPACE_ID:-}" ] && pairs+=("ANTHROPIC_WORKSPACE_ID=$WORKSPACE_ID")
+       "ANTHROPIC_SERVICE_ACCOUNT_ID=$SA_ID" "ANTHROPIC_WORKSPACE_ID=$WORKSPACE_ID")
 for pair in "${pairs[@]}"; do
   name=${pair%%=*}; value=${pair#*=}
   printf '%s' "$value" | vercel env add "$name" production --force >/dev/null
@@ -111,4 +117,4 @@ for pair in "${pairs[@]}"; do
 done
 
 echo
-echo "Done. Tell Claude: \"WIF is set up\" so it can wire /api/chat to use it."
+echo "Done. Redeploy production so running functions pick up the new values."
