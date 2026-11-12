@@ -1,6 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // A stray ~/package-lock.json makes Next infer the home folder as the
+  // workspace root, which makes local Turbopack builds crawl. Pin it here.
+  turbopack: { root: __dirname },
   async redirects() {
     // Routes retired because the products behind them are archived and their
     // targets 404 (FHIRSquire, FPAS, the ViewDefinition builder, healthio and
