@@ -3,16 +3,16 @@ import { track } from '@vercel/analytics';
 type Prop = string | number | boolean | null;
 
 /**
- * Client-side event tracking.
+ * Client-side event tracking. Vercel Web Analytics is the only sink: the
+ * site loads no other analytics script, and /privacy says so. Page views
+ * are counted by <Analytics /> in the root layout, so never send a custom
+ * page_view event; it double-counts and spends event quota.
  *
- * Vercel Web Analytics is the sink that is actually loaded on this site; the
- * gtag and PostHog branches only fire if one of those scripts is ever added.
- * Before November 2026 they were the only sinks, so every CTA event was a
- * no-op in production. Vercel custom events need a Pro plan; on Hobby the
- * call is accepted and dropped.
+ * Send events for decisions, not activity: someone asked for contact,
+ * subscribed, used the chat, or read a long page to the end.
  *
- * Vercel accepts flat primitive properties only, and never pass an email or
- * any other personal data as a property.
+ * Vercel accepts flat primitive properties only. Never pass an email, a
+ * chat message or any other personal data as a property.
  */
 export function trackEvent(
   eventName: string,
@@ -26,20 +26,6 @@ export function trackEvent(
       }
     }
     track(eventName, flat);
-    if (typeof window !== 'undefined' && 'gtag' in window) {
-      (
-        window as unknown as {
-          gtag: (type: string, event: string, properties: unknown) => void;
-        }
-      ).gtag('event', eventName, properties);
-    }
-    if (typeof window !== 'undefined' && 'posthog' in window) {
-      (
-        window as unknown as {
-          posthog: { capture: (event: string, properties: unknown) => void };
-        }
-      ).posthog.capture(eventName, properties);
-    }
   } catch (error) {
     console.error('Event tracking error:', error);
   }

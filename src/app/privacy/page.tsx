@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   description: 'What fhiriq.com collects, where it goes, and how to ask for it to be deleted.',
 };
 
-const UPDATED = 'October 2026';
+const UPDATED = 'November 2026';
 const SHELL = 'mx-auto max-w-[84rem] px-4 sm:px-6';
 
 function Block({ title, children }: { title: string; children: React.ReactNode }) {
@@ -53,8 +53,12 @@ export default function Privacy() {
             <div className="mt-10">
               <Block title="Page views">
                 <p>
-                  Vercel Web Analytics counts page views. It does not set
-                  cookies and does not identify individual visitors. Vercel,
+                  Vercel Web Analytics counts page views and a few anonymous
+                  events: a click on a main link or button (navigation,
+                  contact, newsletter), a message
+                  sent in the chat (not its text), and how far down a long
+                  page you scrolled. It does not set cookies and does not
+                  identify individual visitors. Vercel,
                   which hosts the site, also keeps standard server logs,
                   including IP addresses, for a limited period.
                 </p>
