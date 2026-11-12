@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
+import { trackEvent } from '@/lib/analytics';
 
 interface ChatMessage {
   id: string;
@@ -68,6 +69,8 @@ export default function ChatBot({ className = '' }: ChatBotProps) {
 
     setMessages(prev => [...prev, userMessage]);
     setInputValue('');
+    // Count use, never content: the message itself must not leave as a property.
+    trackEvent('chat_message_sent');
     setIsLoading(true);
 
     try {

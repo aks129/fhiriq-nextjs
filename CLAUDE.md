@@ -76,10 +76,10 @@ Two invariants in that layer are load-bearing, and reversing either one reintrod
 - `Clock.tsx` — live UTC clock in the nav; renders `--:-- UTC` on the server and fills in after mount, which is how it avoids a hydration mismatch
 - `SubscribeForm.tsx` — newsletter capture, posts to `/api/subscribe`
 - `TrackedLink.tsx` — a link that fires one analytics event
-- `PageAnalytics.tsx` — page view + scroll-depth milestones
+- `PageAnalytics.tsx` — scroll-depth milestones (50% and 90%)
 - `Reveal.tsx` — arms the scroll reveal
 
-Match this shape on new pages. `src/lib/analytics.ts` holds `trackEvent` (fans out to gtag and PostHog) and `isValidEmail`.
+Match this shape on new pages. `src/lib/analytics.ts` holds `trackEvent` (Vercel Web Analytics custom events, the only sink) and `isValidEmail`. Page views come from `<Analytics />` in the root layout; events are for decisions: `contact_cta_clicked`, `newsletter_signup`, `chat_message_sent`, `scroll_depth` at 50/90 on long pages. Never send a custom `page_view` or any personal data.
 
 ## Motion must never hide content
 
