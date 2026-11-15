@@ -4,6 +4,23 @@ const nextConfig: NextConfig = {
   // A stray ~/package-lock.json makes Next infer the home folder as the
   // workspace root, which makes local Turbopack builds crawl. Pin it here.
   turbopack: { root: __dirname },
+  async headers() {
+    // Baseline security headers (Nov 2026). The CSP restricts framing, <base>,
+    // plugins and form targets only; it does not restrict script or style
+    // sources, so analytics, fonts and embeds keep working.
+    return [
+      {
+        source: "/:path*",
+        headers: [
+          { key: "Content-Security-Policy", value: "frame-ancestors 'self'; base-uri 'self'; object-src 'none'; form-action 'self' https:; upgrade-insecure-requests" },
+          { key: "X-Frame-Options", value: "SAMEORIGIN" },
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+          { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), payment=()" },
+        ],
+      },
+    ];
+  },
   async redirects() {
     // Routes retired because the products behind them are archived and their
     // targets 404 (FHIRSquire, FPAS, the ViewDefinition builder, healthio and
