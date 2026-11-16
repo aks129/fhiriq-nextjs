@@ -82,7 +82,7 @@ export const metadata: Metadata = {
     title: "FHIR IQ — Eugene Vestel",
     description:
       "Free implementation reference for AI agents on FHIR and digital quality measures.",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "FHIR IQ — Eugene Vestel" }],
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "FHIR IQ: free implementation reference for AI agents on FHIR and digital quality measures" }],
   },
   twitter: {
     card: "summary_large_image",
