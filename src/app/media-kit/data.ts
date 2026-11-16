@@ -1,17 +1,17 @@
 // Out of the FHIR — Media Kit / Reach Report data
 // Sources: LinkedIn analytics, Apple Podcasts Connect, Spotify for Podcasters, Substack.
-// Period: May 2025 – May 2026 (trailing 365 days). Refresh quarterly.
+// LinkedIn personal + Substack refreshed Nov 15, 2026 (trailing 365 days). Podcast, group and page figures as of May 2026. Refresh quarterly.
 
 export type ColorKey = "teal" | "purple" | "coral" | "amber" | "blue" | "green" | "dim";
 
 export const meta = {
   brandName: "Out of the FHIR — Media Kit",
-  subtitle: "HEALTHCARE INTEROPERABILITY ECOSYSTEM · MAY 2025 – MAY 2026",
+  subtitle: "HEALTHCARE INTEROPERABILITY ECOSYSTEM · NOVEMBER 2026",
   ownerName: "Eugene Vestel",
   ownerEmail: "gene@fhiriq.com",
   ownerSite: "fhiriq.com",
-  periodLabel: "Data as of May 2026 · covers May 2025 – May 2026",
-  sourcesLine: "Sources: LinkedIn, Apple Podcasts, Spotify, Substack · May 2025 – May 2026",
+  periodLabel: "LinkedIn and Substack as of Nov 15, 2026 (trailing 365 days) · podcast, group and page as of May 2026",
+  sourcesLine: "Sources: LinkedIn and Substack (Nov 2026), Apple Podcasts and Spotify (May 2026)",
   verifiedSources: "Self-reported from LinkedIn, Apple, Spotify and Substack exports · screenshots on request",
   pendingSources: "YouTube + GitHub · pending",
 };
@@ -25,10 +25,10 @@ export type Stat = {
 };
 
 export const heroStats: Stat[] = [
-  { value: "313k", label: "LinkedIn impressions / yr", colorKey: "teal", growth: "+132.7%", sub: "Personal + page + group" },
-  { value: "5,843", label: "Owned audience", colorKey: "purple", sub: "3.7k LinkedIn + 777 group + 554 Substack" },
-  { value: "68.8%", label: "Senior+ on LinkedIn", colorKey: "amber", sub: "Senior, Director, CXO, VP" },
-  { value: "48.2%", label: "Substack open rate", colorKey: "blue", sub: "Substack export" },
+  { value: "160k", label: "LinkedIn impressions / yr", colorKey: "teal", growth: "+14%", sub: "Personal profile, trailing 365 days" },
+  { value: "5,508", label: "Owned audience", colorKey: "purple", sub: "4,049 LinkedIn + 777 group + 682 Substack" },
+  { value: "69%", label: "Senior+ on LinkedIn", colorKey: "amber", sub: "Senior, Director, CXO, VP" },
+  { value: "41%", label: "Overlap with Health API Guy", colorKey: "blue", sub: "Substack audience overlap" },
 ];
 
 export type Platform = {
@@ -42,9 +42,9 @@ export type Platform = {
 };
 
 export const platforms: Platform[] = [
-  { name: "LinkedIn personal", metric: "3,761", sub: "followers", growth: "+41.3% YoY", colorKey: "blue", detail: "210,934 impressions · +132.7% YoY", verified: true },
+  { name: "LinkedIn personal", metric: "4,049", sub: "followers", growth: "+14% impressions YoY", colorKey: "blue", detail: "160,152 impressions · 46,155 members reached · 60% out of network", verified: true },
   { name: "FHIR Goats group", metric: "777", sub: "members", growth: "84k post views", colorKey: "purple", detail: "78 posts · 1,077 avg views/post", verified: true },
-  { name: "FHIR IQ Playbook (Substack)", metric: "554", sub: "subscribers", growth: "48.2% open rate", colorKey: "amber", detail: "72 posts · 29.7k views · $736 ARR", verified: true },
+  { name: "FHIR IQ Playbook (Substack)", metric: "682", sub: "subscribers", growth: "+155% YoY", colorKey: "amber", detail: "34% open rate (30d) · 14 paid · $1,202 ARR", verified: true },
   { name: "Podcast — Apple", metric: "1,620", sub: "all-time plays", growth: "63% follow rate", colorKey: "coral", detail: "26 eps · 131 listeners · 157 hrs", verified: true },
   { name: "Podcast — Spotify", metric: "874", sub: "all-time plays", growth: "64 followers", colorKey: "coral", detail: "27 eps · 159 hrs · 602 streams", verified: true },
   { name: "Out of the FHIR (LinkedIn page)", metric: "401", sub: "new followers (365d)", growth: "7.4% eng rate", colorKey: "coral", detail: "77 posts · 18.8k impressions", verified: true },
@@ -54,16 +54,16 @@ export const platforms: Platform[] = [
 export type Bar = { role: string; pct: number; colorKey: ColorKey };
 
 export const audienceSeniority: Bar[] = [
-  { role: "Senior", pct: 34.4, colorKey: "teal" },
-  { role: "Director", pct: 14.2, colorKey: "purple" },
-  { role: "CXO", pct: 12.2, colorKey: "coral" },
-  { role: "Entry", pct: 11.2, colorKey: "amber" },
-  { role: "VP", pct: 8.0, colorKey: "blue" },
-  { role: "Other", pct: 20.0, colorKey: "dim" },
+  { role: "Senior", pct: 35, colorKey: "teal" },
+  { role: "Director", pct: 14, colorKey: "purple" },
+  { role: "CXO", pct: 12, colorKey: "coral" },
+  { role: "Entry", pct: 10, colorKey: "amber" },
+  { role: "VP", pct: 8, colorKey: "blue" },
+  { role: "Other", pct: 21, colorKey: "dim" },
 ];
 
 export const audienceIndustry: Bar[] = [
-  { role: "Hospitals & Health Care", pct: 28.7, colorKey: "teal" },
+  { role: "Hospitals & Health Care", pct: 29, colorKey: "teal" },
   { role: "IT Services & Consulting", pct: 18.6, colorKey: "purple" },
   { role: "Software Development", pct: 9.1, colorKey: "blue" },
   { role: "Tech, Info, Internet", pct: 5.2, colorKey: "amber" },
@@ -71,7 +71,7 @@ export const audienceIndustry: Bar[] = [
 ];
 
 export const companySize: Bar[] = [
-  { role: "10,001+ employees", pct: 21.6, colorKey: "teal" },
+  { role: "10,001+ employees", pct: 21, colorKey: "teal" },
   { role: "11–50", pct: 13.0, colorKey: "purple" },
   { role: "51–200", pct: 11.9, colorKey: "coral" },
   { role: "1–10", pct: 11.8, colorKey: "amber" },
@@ -80,10 +80,10 @@ export const companySize: Bar[] = [
 ];
 
 export const substackStats: Stat[] = [
-  { value: "554", label: "Subscribers", colorKey: "teal", sub: "543 free · 10 paid · 1 comp" },
-  { value: "48.2%", label: "Avg open rate", colorKey: "purple", sub: "72 posts published" },
-  { value: "29.7k", label: "All-time views", colorKey: "coral", sub: "2–3.5k / month" },
-  { value: "$736", label: "ARR", colorKey: "amber", sub: "Validates paid willingness" },
+  { value: "682", label: "Subscribers", colorKey: "teal", sub: "Up from 267 a year ago · 14 paid" },
+  { value: "34%", label: "Open rate (30 days)", colorKey: "purple", sub: "Substack dashboard, Nov 2026" },
+  { value: "2.3k", label: "Views, last 30 days", colorKey: "coral", sub: "Readers in 44 states and 49 countries" },
+  { value: "$1,202", label: "ARR", colorKey: "amber", sub: "14 paid subscribers" },
 ];
 
 export const substackTopPosts = [
@@ -152,7 +152,7 @@ export const sponsorInventory = [
   { tier: "Proposed: anchor sponsor, State-of-FHIR report", price: "$25–40k", note: "First edition not yet published. Logo and a named insight section, distributed across LinkedIn and the Substack.", colorKey: "teal" as ColorKey, scarce: false, priority: 1 },
   { tier: "Proposed: executive roundtable title sponsor", price: "$15–25k", note: "Not yet run. A small invited group drawn from the podcast guest network and the FHIR Goats group, with a recap distributed afterwards.", colorKey: "purple" as ColorKey, scarce: false, priority: 2 },
   { tier: "Proposed: co-sponsor, State-of-FHIR report", price: "$8–12k", note: "Logo and a section in the first edition.", colorKey: "teal" as ColorKey, scarce: false, priority: 3 },
-  { tier: "Substack sponsored issue", price: "$2–4k", note: "Long-form case study. 48.2% avg open rate. Posts have hit 2,336 views. Top funnel for paid + LinkedIn syndication.", colorKey: "amber" as ColorKey, scarce: false, priority: 4 },
+  { tier: "Substack sponsored issue", price: "$2–4k", note: "Long-form case study to 682 subscribers. Top posts have reached 2,336 views. Syndicated to LinkedIn.", colorKey: "amber" as ColorKey, scarce: false, priority: 4 },
   { tier: "Podcast presenting sponsor (4 episodes)", price: "$1–2k / month", note: "Host-read pre + mid-roll. ~90 plays/ep across Apple + Spotify, concentrated in NYC/Boston/Chicago/Pittsburgh. Value is association with the guest bench.", colorKey: "coral" as ColorKey, scarce: false, priority: 5 },
 ];
 
@@ -165,7 +165,7 @@ export const coachingClientTypes = [
 
 export const authoritySignals = [
   { label: "HL7 FHIR DevDays speaker", colorKey: "teal" as ColorKey },
-  { label: "FHIR IQ Playbook — 554 subs · 48% open rate", colorKey: "amber" as ColorKey },
+  { label: "FHIR IQ Playbook: 682 subscribers, 41% audience overlap with Health API Guy", colorKey: "amber" as ColorKey },
   { label: "Open source: HealthClaw Guardrails, Open Quality, AINPI", colorKey: "purple" as ColorKey },
   { label: "Out of the FHIR — 27 episodes, FHIR ecosystem guest roster", colorKey: "coral" as ColorKey },
   { label: "FHIR Goats group founder (777 members)", colorKey: "blue" as ColorKey },
@@ -175,7 +175,7 @@ export const authoritySignals = [
 export const ownedAssets = [
   { name: "HealthClaw Guardrails", desc: "Open-source guardrails between AI agents and FHIR data", colorKey: "teal" as ColorKey },
   { name: "Open Quality", desc: "Open corpus of the 2026 CMS eCQMs, CQL and SQL side by side", colorKey: "purple" as ColorKey },
-  { name: "FHIR IQ Playbook", desc: "Substack newsletter — 554 subs, 48% open rate, 72 posts", colorKey: "amber" as ColorKey },
+  { name: "FHIR IQ Playbook", desc: "Substack newsletter: 682 subscribers, 14 paid", colorKey: "amber" as ColorKey },
   { name: "Out of the FHIR", desc: "Podcast — 27 episodes, Apple + Spotify, FHIR community guests", colorKey: "coral" as ColorKey },
   { name: "FHIR Goats group", desc: "Private LinkedIn group — 777 members, 84k post views/yr", colorKey: "blue" as ColorKey },
   { name: "Claude Code for Healthcare", desc: "Free workshop (fhiriq.com/workshop)", colorKey: "green" as ColorKey },
@@ -191,9 +191,9 @@ export type TabId = (typeof tabs)[number]["id"];
 
 export const copy = {
   sponsorIntro:
-    "You're not buying impressions — you're buying access to a difficult-to-reach healthcare interoperability ecosystem. 313k LinkedIn impressions/yr at 68.8% senior+, a 554-subscriber long-form publication at 48% open rate, and a podcast guest roster featuring the FHIR community's leadership cohort. Targeted influence at decision-maker depth.",
+    "You're not buying impressions. You're buying access to a hard-to-reach healthcare interoperability audience: 160k LinkedIn impressions a year at 69% senior or above, a 682-subscriber newsletter whose readers overlap 41% with Health API Guy, and a podcast guest roster drawn from the people building FHIR.",
   advisoryIntro:
-    "Independent healthcare interoperability media + builder ecosystem. Thought leadership distributed across 313k annual LinkedIn impressions, a 554-subscriber long-form newsletter at 48% open rate, a 777-member private group, a 27-episode podcast with the FHIR community's leadership cohort, and an active open-source surface.",
+    "Independent healthcare interoperability media + builder ecosystem. Thought leadership distributed across 160k annual LinkedIn impressions, a 682-subscriber long-form newsletter, a 777-member private group, a 27-episode podcast with the FHIR community's leadership cohort, and an active open-source surface.",
   coachingIntro:
     "Executive coaching for healthcare AI founders, CTOs, and product leaders navigating the move from prototype to production. Drawing on FHIR + AI + agent infrastructure experience and an active operator community of senior healthcare leaders.",
   podcastFraming:
@@ -201,7 +201,7 @@ export const copy = {
   substackPodcastFraming:
     "Substack RSS feed — distinct from Apple + Spotify play counts. Episodes keep accumulating downloads for 90+ days post-publish (45.7 → 81.2, a 78% lift). A mid-roll placement keeps earning impressions long after the episode ships.",
   substackFraming:
-    "Long-form healthcare interop publication. 48.2% open rate (above industry average), 15.4% engagement. The funnel: LinkedIn + Substack network → newsletter → paid + advisory.",
+    "Long-form healthcare interop publication. Subscribers grew from 267 to 682 in the past year; 41% of readers also read Health API Guy, 19% Thoughts on Healthcare Markets. The funnel: LinkedIn and the Substack network, then the newsletter, then paid and advisory.",
   guestFraming:
     "The actual sponsorship asset. This guest list is the FHIR + healthcare interop industry's leadership cohort.",
   whyThisWorks:

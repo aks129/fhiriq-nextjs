@@ -416,7 +416,7 @@ function CoachingView() {
         <div className="grid grid-cols-[repeat(auto-fit,minmax(160px,1fr))] gap-4 mt-3.5">
           <BigStat value="12.7%" label="Founder/CEO/Co-founder/President" colorKey="teal" sub="Of LinkedIn followers" />
           <BigStat value="34.4%" label="Director+CXO+VP" colorKey="purple" sub="Decision-maker reach" />
-          <BigStat value="554" label="Newsletter subscribers" colorKey="amber" sub="48.2% open rate" />
+          <BigStat value="682" label="Newsletter subscribers" colorKey="amber" sub="+155% year over year" />
         </div>
       </Card>
 
