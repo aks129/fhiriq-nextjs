@@ -30,9 +30,20 @@ export const PERSON = {
   bookingUrl: 'https://calendar.app.google/TMvRGiiYfbBKNd889',
   linkedin: 'https://www.linkedin.com/in/evestel/',
   github: 'https://github.com/aks129',
-  substack: 'https://evestel.substack.com',
+  // Canonical domain of the FHIR IQ Playbook Substack; evestel.substack.com
+  // redirects here. The podcast feed in lib/podcast.ts keeps the old host.
+  substack: 'https://newsletter.eugenevestel.com',
   homepage: 'https://eugenevestel.com',
 } as const;
+
+/**
+ * Form action for a free newsletter sign-up: the endpoint Substack's own embed
+ * form posts to. Not the prefilled /subscribe page, which opens a plan picker
+ * with a paid plan preselected. Must be the canonical domain: a redirect turns
+ * the POST into a GET and drops the address. Same list as ainpi.dev and
+ * eugenevestel.com.
+ */
+export const NEWSLETTER_FREE_SIGNUP = `${PERSON.substack}/api/v1/free?nojs=true`;
 
 /** Healthcare data work runs from Medco Health Solutions (2007) onward. */
 export const YEARS_IN_HEALTHCARE_DATA = '15+ years in healthcare data';

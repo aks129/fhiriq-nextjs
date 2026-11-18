@@ -74,7 +74,7 @@ Two invariants in that layer are load-bearing, and reversing either one reintrod
 
 - `TranspileFigure.tsx` — the signature Fig. 1 (CQL → SQL compiler pass)
 - `Clock.tsx` — live UTC clock in the nav; renders `--:-- UTC` on the server and fills in after mount, which is how it avoids a hydration mismatch
-- `SubscribeForm.tsx` — newsletter capture, posts to `/api/subscribe`
+- `SubscribeForm.tsx` — newsletter capture: Substack's free sign-up, plus a beacon to `/api/subscribe`
 - `TrackedLink.tsx` — a link that fires one analytics event
 - `PageAnalytics.tsx` — scroll-depth milestones (50% and 90%)
 - `Reveal.tsx` — arms the scroll reveal
@@ -193,7 +193,7 @@ All in `src/app/api/`. `/api/chat`, `/api/subscribe`, `/api/cohort-signup`, `/ap
 
 `/api/chat` uses the official Anthropic SDK with `claude-opus-5-5`, effort `low`, an 8192-token cap, a 2,000-character input cap, and server-side refusal fallback (`fallbacks: "default"`). **The system prompt is server-only** (`src/lib/chat-prompt.ts`). The route used to accept a `systemPrompt` from the browser, which made it an open Claude proxy on the site's key; never reintroduce that.
 
-**The newsletter form does not subscribe anyone by itself.** Substack owns the list. `SubscribeForm` notifies Gene via `/api/subscribe`, then sends the reader to `evestel.substack.com/subscribe?email=…` to confirm. It previously said "Subscribed. Check your inbox." when nothing had happened.
+**One newsletter list, on Substack** (*FHIR IQ Playbook*, `newsletter.eugenevestel.com`), shared with ainpi.dev and eugenevestel.com. `SubscribeForm` *is* Substack's free sign-up form (`NEWSLETTER_FREE_SIGNUP` in `profile.ts`, the endpoint Substack's embed posts to), submitted natively; a beacon to `/api/subscribe` notifies Gene. Never send readers to the prefilled `/subscribe?email=` page: it opens a plan picker with $80/year preselected. Use the canonical domain in any form action, because the `evestel.substack.com` redirect turns a POST into a GET and drops the address. Links for people (not forms) can use `/embed`, the free sign-up page.
 
 Sign-up routes do not log PII; the sign-up reaches Gene by email only, which is what `/privacy` says.
 
