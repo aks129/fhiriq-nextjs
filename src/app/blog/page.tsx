@@ -40,7 +40,7 @@ export default function Blog() {
                 Visit Our Substack
               </a>
               <a
-                href="https://evestel.substack.com/subscribe"
+                href="https://newsletter.eugenevestel.com/embed"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-bg-3 text-fg px-6 py-3 rounded-lg font-semibold hover:bg-bg-3 transition"

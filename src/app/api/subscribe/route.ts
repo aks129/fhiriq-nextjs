@@ -25,16 +25,16 @@ export async function POST(request: NextRequest) {
     const resendApiKey = process.env.RESEND_API_KEY;
 
     // Email content
-    const emailSubject = `Newsletter signup started: ${email}`;
+    const emailSubject = `Newsletter signup: ${email}`;
     const emailHtml = `
-      <h2>Newsletter signup started (confirm on Substack)</h2>
+      <h2>Newsletter signup (free, via Substack)</h2>
       <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
       <p><strong>Time:</strong> ${new Date().toLocaleString('en-US', { timeZone: 'America/New_York' })} ET</p>
       <p><strong>Source:</strong> ${request.headers.get('referer') || 'Direct'}</p>
     `;
 
     const emailText = `
-Newsletter signup started (confirm on Substack)
+Newsletter signup (free, via Substack)
 
 Email: ${email}
 Time: ${new Date().toISOString()}

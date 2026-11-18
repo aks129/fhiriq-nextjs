@@ -77,10 +77,11 @@ export default function Privacy() {
 
               <Block title="Forms">
                 <p>
-                  The newsletter form sends your email address to me as a
-                  notification, then opens Substack, which manages the
-                  subscriber list. Substack&apos;s privacy policy applies from
-                  there.
+                  The newsletter form signs you up for the free newsletter on
+                  Substack, which manages the subscriber list and sends it, and
+                  sends your email address to me as a notification. The same
+                  list serves ainpi.dev and eugenevestel.com. Substack&apos;s
+                  privacy policy applies to the list.
                 </p>
                 <p>
                   The workshop and cohort sign-up forms send what you enter

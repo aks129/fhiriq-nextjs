@@ -363,7 +363,7 @@ export default function Podcast() {
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
               <a
-                href="https://evestel.substack.com/subscribe"
+                href="https://newsletter.eugenevestel.com/embed"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-bg-3 text-fg px-8 py-4 rounded-lg font-semibold hover:bg-bg-3 transition-all duration-200 transform hover:scale-105 shadow-lg"
@@ -519,7 +519,7 @@ export default function Podcast() {
               <ul className="space-y-3 text-fg-3">
                 <li><Link href="/about" className="hover:text-fg transition">About</Link></li>
                 <li><Link href="/contact" className="hover:text-fg transition">Be a Guest</Link></li>
-                <li><a href="https://evestel.substack.com/subscribe" target="_blank" rel="noopener noreferrer" className="hover:text-fg transition">Newsletter</a></li>
+                <li><a href="https://newsletter.eugenevestel.com/embed" target="_blank" rel="noopener noreferrer" className="hover:text-fg transition">Newsletter</a></li>
               </ul>
             </div>
           </div>
